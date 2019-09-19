@@ -13,7 +13,9 @@ type Coin struct {
 	Exchange         string
 	FallBackExchange string
 	ExternalSource   string
+	BlockchainInfo   BlockchainInfo
 	RpcMethods       RPCMethods
+	Address          string
 	ColdAddress      string
 	RpcUser          string
 	RpcPass          string
@@ -22,6 +24,13 @@ type Coin struct {
 	Port             string
 	User             string
 	PrivKey          string
+}
+
+// Get information from Blockchain
+type BlockchainInfo struct {
+	MaxDiff        float64
+	ValidationTime float64
+	TxApiUrl       string
 }
 
 type RPCMethods struct {
@@ -42,6 +51,11 @@ var (
 		Exchange:         "bitso",
 		FallBackExchange: "",
 		ExternalSource:   "btc2.trezor.io",
+		BlockchainInfo: BlockchainInfo{
+			MaxDiff:        1000,
+			ValidationTime: 10,
+			TxApiUrl:       "https://insight.bitpay.com/api/tx/",
+		},
 		RpcMethods: RPCMethods{
 			GetWalletInfo:              "getwalletinfo",
 			GetBlockchainInfo:          "getblockchaininfo",
@@ -59,6 +73,11 @@ var (
 		Exchange:         "kucoin",
 		FallBackExchange: "crex24",
 		ExternalSource:   "",
+		BlockchainInfo: BlockchainInfo{
+			MaxDiff:        0,
+			ValidationTime: 0,
+			TxApiUrl:       "https://www.blockexperts.com/onion/tx/",
+		},
 		RpcMethods: RPCMethods{
 			GetWalletInfo:              "getwalletinfo",
 			GetBlockchainInfo:          "getblockchaininfo",
@@ -76,6 +95,11 @@ var (
 		Exchange:         "cryptobridge",
 		FallBackExchange: "novaexchange",
 		ExternalSource:   "",
+		BlockchainInfo: BlockchainInfo{
+			MaxDiff:        2,
+			ValidationTime: 1,
+			TxApiUrl:       "https://delphi.polispay.com/api/v1/COLX/tx/", // TODO Update this as delphi will be deprecated
+		},
 		RpcMethods: RPCMethods{
 			GetWalletInfo:              "getwalletinfo",
 			GetBlockchainInfo:          "getblockchaininfo",
@@ -93,6 +117,11 @@ var (
 		Exchange:         "binance",
 		FallBackExchange: "bittrex",
 		ExternalSource:   "dash2.trezor.io",
+		BlockchainInfo: BlockchainInfo{
+			MaxDiff:        10,
+			ValidationTime: 2.5,
+			TxApiUrl:       "https://insight.dash.org/api/tx/",
+		},
 		RpcMethods: RPCMethods{
 			GetWalletInfo:              "getwalletinfo",
 			GetBlockchainInfo:          "getblockchaininfo",
@@ -110,6 +139,11 @@ var (
 		Exchange:         "bittrex",
 		FallBackExchange: "",
 		ExternalSource:   "dgb2.trezor.io",
+		BlockchainInfo: BlockchainInfo{
+			MaxDiff:        0, // TODO No info
+			ValidationTime: 0.25,
+			TxApiUrl:       "https://digiexplorer.info/api/tx/",
+		},
 		RpcMethods: RPCMethods{
 			GetWalletInfo:              "getwalletinfo",
 			GetBlockchainInfo:          "getblockchaininfo",
@@ -127,6 +161,11 @@ var (
 		Exchange:         "binance",
 		FallBackExchange: "bittrex",
 		ExternalSource:   "grs.polispay.com",
+		BlockchainInfo: BlockchainInfo{
+			MaxDiff:        0, // TODO No info
+			ValidationTime: 0, // TODO No info
+			TxApiUrl:       "https://groestlsight.groestlcoin.org/api/tx/",
+		},
 		RpcMethods: RPCMethods{
 			GetWalletInfo:              "getwalletinfo",
 			GetBlockchainInfo:          "getblockchaininfo",
@@ -144,6 +183,11 @@ var (
 		Exchange:         "binance",
 		FallBackExchange: "bittrex",
 		ExternalSource:   "ltc2.trezor.io",
+		BlockchainInfo: BlockchainInfo{
+			MaxDiff:        2,
+			ValidationTime: 2.5,
+			TxApiUrl:       "https://insight.litecore.io/api/tx/",
+		},
 		RpcMethods: RPCMethods{
 			GetWalletInfo:              "getwalletinfo",
 			GetBlockchainInfo:          "getblockchaininfo",
@@ -161,6 +205,11 @@ var (
 		Exchange:         "crex24",
 		FallBackExchange: "stex",
 		ExternalSource:   "",
+		BlockchainInfo: BlockchainInfo{
+			MaxDiff:        2,
+			ValidationTime: 1,
+			TxApiUrl:       "https://delphi.polispay.com/api/v1/MNP/tx/",
+		},
 		RpcMethods: RPCMethods{
 			GetWalletInfo:              "getwalletinfo",
 			GetBlockchainInfo:          "getblockchaininfo",
@@ -178,6 +227,11 @@ var (
 		Exchange:         "cryptobridge",
 		FallBackExchange: "southxchange",
 		ExternalSource:   "blockbook.polispay.org",
+		BlockchainInfo: BlockchainInfo{
+			MaxDiff:        2,
+			ValidationTime: 2,
+			TxApiUrl:       "https://blockbook.polispay.org/api/v2/tx/",
+		},
 		RpcMethods: RPCMethods{
 			GetWalletInfo:              "getwalletinfo",
 			GetBlockchainInfo:          "getblockchaininfo",
@@ -195,6 +249,11 @@ var (
 		Exchange:         "stex",
 		FallBackExchange: "cryptobridge",
 		ExternalSource:   "",
+		BlockchainInfo: BlockchainInfo{
+			MaxDiff:        2, //TODO No info
+			ValidationTime: 1,
+			TxApiUrl:       "https://explorer.snowgem.org/tx/",
+		},
 		RpcMethods: RPCMethods{
 			GetWalletInfo:              "getwalletinfo",
 			GetBlockchainInfo:          "getblockchaininfo",
@@ -212,6 +271,11 @@ var (
 		Exchange:         "binance",
 		FallBackExchange: "bittrex",
 		ExternalSource:   "xzc.polispay.com",
+		BlockchainInfo: BlockchainInfo{
+			MaxDiff:        0, //TODO No info
+			ValidationTime: 5,
+			TxApiUrl:       "https://insight.zcoin.io/api/tx/",
+		},
 		RpcMethods: RPCMethods{
 			GetWalletInfo:              "getwalletinfo",
 			GetBlockchainInfo:          "getblockchaininfo",
