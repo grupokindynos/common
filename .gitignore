@@ -12,3 +12,4 @@
 *.out
 # Goland
 .idea
+.env
