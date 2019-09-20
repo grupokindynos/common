@@ -30,7 +30,7 @@ type RatesSource struct {
 
 // BlockchainInfo is a model to get information for a particular blockchain
 type BlockchainInfo struct {
-	BlockTime        float  // Time between blocks in minutes.
+	BlockTime        float64  // Time between blocks in minutes.
 	MinConfirmations int    // Minimum confirmations to mark a tx as usable.
 	ExternalSource   string // External source of information to double validate agains another trusted source
 }
