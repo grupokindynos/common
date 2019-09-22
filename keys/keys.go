@@ -41,8 +41,8 @@ type EnvironmentVars struct {
 	HestiaPrivKey   string
 	PlutusPubKey    string
 	PlutusPrivKey   string
-	LadonPubKey    string
-	LadonPrivKey   string
+	LadonPubKey     string
+	LadonPrivKey    string
 	CoinsVars       []CoinVar
 }
 
@@ -298,7 +298,7 @@ func main() {
 		"ADRESTIA_PUBLIC_KEY":  &NewVars.AdrestiaPubKey,
 		"TYCHE_PUBLIC_KEY":     &NewVars.TychePubKey,
 		"LADON_PUBLIC_KEY":     &NewVars.LadonPubKey,
-		"LADON_PRIVATE_KEY":     &NewVars.LadonPrivKey,
+		"LADON_PRIVATE_KEY":    &NewVars.LadonPrivKey,
 		"HESTIA_PUBLIC_KEY":    &NewVars.HestiaPubKey,
 		"PLUTUS_PUBLIC_KEY":    &NewVars.PlutusPubKey,
 	}
