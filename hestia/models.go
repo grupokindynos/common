@@ -35,7 +35,6 @@ type Balances struct {
 	Exchanges float64 `bson:"exchanges" json:"exchanges"`
 }
 
-
 type Payment struct {
 	Address       string `bson:"address" json:"address"`
 	Amount        string `bson:"amount" json:"amount"`
@@ -131,4 +130,14 @@ type Voucher struct {
 	RedeemCode        string  `bson:"redeem_code" json:"redeem_code"`
 	Status            string  `bson:"status" json:"status"`
 	Timestamp         string  `bson:"timestamp" json:"timestamp"`
+}
+
+type Deposit struct {
+	ID           string  `bson:"id" json:"id"`
+	UID          string  `bson:"uid" json:"uid"`
+	Payment      Payment `bson:"payment" json:"payment"`
+	AmountInPeso string  `bson:"amount_in_peso" json:"amount_in_peso"`
+	CardCode     string  `bson:"card_code" json:"card_code"`
+	Status       string  `bson:"status" json:"status"`
+	Timestamp    string  `bson:"timestamp" json:"timestamp"`
 }

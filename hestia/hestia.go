@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"time"
 )
+
 // ProductionURL is the current hestia production url
 var ProductionURL = "https://hestia.polispay.com"
 
@@ -16,7 +17,7 @@ var HttpClient = http.Client{
 
 // GetServiceProperties is a function to return hestia properties for multiple services
 func GetServiceProperties(adminFbToken string) (string, error) {
-	res, err := HttpClient.Get(ProductionURL + "/config" )
+	res, err := HttpClient.Get(ProductionURL + "/config")
 	if err != nil {
 	}
 	defer func() {
@@ -42,7 +43,7 @@ func GetServiceProperties(adminFbToken string) (string, error) {
 
 // GetCoinsAvailability is a function to return hestia properties for multiple crypto used on the environment
 func GetCoinsAvailability(adminFbToken string) (string, error) {
-	res, err := HttpClient.Get(ProductionURL + "/coins" )
+	res, err := HttpClient.Get(ProductionURL + "/coins")
 	if err != nil {
 	}
 	defer func() {
