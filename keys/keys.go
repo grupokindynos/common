@@ -295,7 +295,6 @@ func main() {
 	ladonAccess := map[string]*string{
 		"PLUTUS_AUTH_USERNAME": &NewVars.AuthUsername,
 		"PLUTUS_AUTH_PASSWORD": &NewVars.AuthPassword,
-		"ADRESTIA_PRIV_KEY":    &NewVars.AdrestiaPrivKey,
 		"ADRESTIA_PUBLIC_KEY":  &NewVars.AdrestiaPubKey,
 		"TYCHE_PUBLIC_KEY":     &NewVars.TychePubKey,
 		"LADON_PUBLIC_KEY":     &NewVars.LadonPubKey,
