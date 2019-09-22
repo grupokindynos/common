@@ -263,9 +263,6 @@ func main() {
 		"PLUTUS_AUTH_PASSWORD": &NewVars.AuthPassword,
 		"TYCHE_PRIV_KEY":       &NewVars.TychePrivKey,
 		"TYCHE_PUBLIC_KEY":     &NewVars.TychePubKey,
-		"LADON_PUBLIC_KEY":     &NewVars.LadonPubKey,
-		"ADRESTIA_PUBLIC_KEY":  &NewVars.AdrestiaPubKey,
-		"HESTIA_PUBLIC_KEY":    &NewVars.HestiaPubKey,
 		"PLUTUS_PUBLIC_KEY":    &NewVars.PlutusPubKey,
 	}
 	_, err = h.ConfigVarUpdate(context.Background(), "tyche-shift", tycheAccess)
@@ -278,12 +275,9 @@ func main() {
 	addrestiaAccess := map[string]*string{
 		"PLUTUS_AUTH_USERNAME": &NewVars.AuthUsername,
 		"PLUTUS_AUTH_PASSWORD": &NewVars.AuthPassword,
+		"PLUTUS_PUBLIC_KEY":    &NewVars.PlutusPubKey,
 		"ADRESTIA_PRIV_KEY":    &NewVars.AdrestiaPrivKey,
 		"ADRESTIA_PUBLIC_KEY":  &NewVars.AdrestiaPubKey,
-		"TYCHE_PUBLIC_KEY":     &NewVars.TychePubKey,
-		"LADON_PUBLIC_KEY":     &NewVars.LadonPubKey,
-		"HESTIA_PUBLIC_KEY":    &NewVars.HestiaPubKey,
-		"PLUTUS_PUBLIC_KEY":    &NewVars.PlutusPubKey,
 	}
 	_, err = h.ConfigVarUpdate(context.Background(), "adrestia-exchanges", addrestiaAccess)
 	if err != nil {
@@ -295,11 +289,8 @@ func main() {
 	ladonAccess := map[string]*string{
 		"PLUTUS_AUTH_USERNAME": &NewVars.AuthUsername,
 		"PLUTUS_AUTH_PASSWORD": &NewVars.AuthPassword,
-		"ADRESTIA_PUBLIC_KEY":  &NewVars.AdrestiaPubKey,
-		"TYCHE_PUBLIC_KEY":     &NewVars.TychePubKey,
 		"LADON_PUBLIC_KEY":     &NewVars.LadonPubKey,
 		"LADON_PRIVATE_KEY":    &NewVars.LadonPrivKey,
-		"HESTIA_PUBLIC_KEY":    &NewVars.HestiaPubKey,
 		"PLUTUS_PUBLIC_KEY":    &NewVars.PlutusPubKey,
 	}
 	_, err = h.ConfigVarUpdate(context.Background(), "ladon-vouchers", ladonAccess)
@@ -313,9 +304,9 @@ func main() {
 		"ADRESTIA_PUBLIC_KEY": &NewVars.AdrestiaPubKey,
 		"TYCHE_PUBLIC_KEY":    &NewVars.TychePubKey,
 		"LADON_PUBLIC_KEY":    &NewVars.LadonPubKey,
+		"PLUTUS_PUBLIC_KEY":   &NewVars.PlutusPubKey,
 		"HESTIA_PUBLIC_KEY":   &NewVars.HestiaPubKey,
 		"HESTIA_PRIVATE_KEY":  &NewVars.HestiaPrivKey,
-		"PLUTUS_PUBLIC_KEY":   &NewVars.PlutusPubKey,
 	}
 	_, err = h.ConfigVarUpdate(context.Background(), "hestia-database", hestiaAccess)
 	if err != nil {
