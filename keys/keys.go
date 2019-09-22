@@ -41,6 +41,8 @@ type EnvironmentVars struct {
 	HestiaPrivKey   string
 	PlutusPubKey    string
 	PlutusPrivKey   string
+	LadonPubKey    string
+	LadonPrivKey   string
 	CoinsVars       []CoinVar
 }
 
@@ -81,6 +83,7 @@ func (ev *EnvironmentVars) ToString() string {
 		"HEROKU_USERNAME=" + ev.HerokuUsername + "\n" +
 		"HEROKU_PASSWORD=" + ev.HerokuPassword + "\n" +
 		"TYCHE_PUBLIC_KEY=" + ev.TychePubKey + "\n" +
+		"LADON_PUBLIC_KEY=" + ev.LadonPubKey + "\n" +
 		"ADRESTIA_PUBLIC_KEY=" + ev.AdrestiaPubKey + "\n" +
 		"HESTIA_PUBLIC_KEY=" + ev.HestiaPubKey + "\n" +
 		"PLUTUS_PRIVATE_KEY=" + ev.AdrestiaPrivKey + "\n" +
@@ -222,6 +225,7 @@ func main() {
 		"AUTH_USERNAME":       &NewVars.AuthUsername,
 		"KEY_PASSWORD":        &NewVars.KeyPassword,
 		"TYCHE_PUBLIC_KEY":    &NewVars.TychePubKey,
+		"LADON_PUBLIC_KEY":    &NewVars.LadonPubKey,
 		"ADRESTIA_PUBLIC_KEY": &NewVars.AdrestiaPubKey,
 		"HESTIA_PUBLIC_KEY":   &NewVars.HestiaPubKey,
 		"PLUTUS_PUBLIC_KEY":   &NewVars.PlutusPubKey,
@@ -259,6 +263,7 @@ func main() {
 		"PLUTUS_AUTH_PASSWORD": &NewVars.AuthPassword,
 		"TYCHE_PRIV_KEY":       &NewVars.TychePrivKey,
 		"TYCHE_PUBLIC_KEY":     &NewVars.TychePubKey,
+		"LADON_PUBLIC_KEY":     &NewVars.LadonPubKey,
 		"ADRESTIA_PUBLIC_KEY":  &NewVars.AdrestiaPubKey,
 		"HESTIA_PUBLIC_KEY":    &NewVars.HestiaPubKey,
 		"PLUTUS_PUBLIC_KEY":    &NewVars.PlutusPubKey,
@@ -276,10 +281,29 @@ func main() {
 		"ADRESTIA_PRIV_KEY":    &NewVars.AdrestiaPrivKey,
 		"ADRESTIA_PUBLIC_KEY":  &NewVars.AdrestiaPubKey,
 		"TYCHE_PUBLIC_KEY":     &NewVars.TychePubKey,
+		"LADON_PUBLIC_KEY":     &NewVars.LadonPubKey,
 		"HESTIA_PUBLIC_KEY":    &NewVars.HestiaPubKey,
 		"PLUTUS_PUBLIC_KEY":    &NewVars.PlutusPubKey,
 	}
 	_, err = h.ConfigVarUpdate(context.Background(), "adrestia-exchanges", addrestiaAccess)
+	if err != nil {
+		panic("critical error, unable to update heroku variables")
+	}
+
+	// LADON
+	log.Println("Updating Plutus access to Ladon")
+	ladonAccess := map[string]*string{
+		"PLUTUS_AUTH_USERNAME": &NewVars.AuthUsername,
+		"PLUTUS_AUTH_PASSWORD": &NewVars.AuthPassword,
+		"ADRESTIA_PRIV_KEY":    &NewVars.AdrestiaPrivKey,
+		"ADRESTIA_PUBLIC_KEY":  &NewVars.AdrestiaPubKey,
+		"TYCHE_PUBLIC_KEY":     &NewVars.TychePubKey,
+		"LADON_PUBLIC_KEY":     &NewVars.LadonPubKey,
+		"LADON_PRIVATE_KEY":     &NewVars.LadonPrivKey,
+		"HESTIA_PUBLIC_KEY":    &NewVars.HestiaPubKey,
+		"PLUTUS_PUBLIC_KEY":    &NewVars.PlutusPubKey,
+	}
+	_, err = h.ConfigVarUpdate(context.Background(), "ladon-vouchers", ladonAccess)
 	if err != nil {
 		panic("critical error, unable to update heroku variables")
 	}
@@ -289,6 +313,7 @@ func main() {
 	hestiaAccess := map[string]*string{
 		"ADRESTIA_PUBLIC_KEY": &NewVars.AdrestiaPubKey,
 		"TYCHE_PUBLIC_KEY":    &NewVars.TychePubKey,
+		"LADON_PUBLIC_KEY":    &NewVars.LadonPubKey,
 		"HESTIA_PUBLIC_KEY":   &NewVars.HestiaPubKey,
 		"HESTIA_PRIVATE_KEY":  &NewVars.HestiaPrivKey,
 		"PLUTUS_PUBLIC_KEY":   &NewVars.PlutusPubKey,
@@ -379,6 +404,14 @@ func genNewVars() (EnvironmentVars, error) {
 	tychePubKeyBytes, _ := asn1.Marshal(newTychePair.PublicKey)
 	tychePrivKeyBytes := x509.MarshalPKCS1PrivateKey(newTychePair)
 
+	// Ladon KeyPair
+	newLadonPair, err := rsa.GenerateKey(rand.Reader, 4096)
+	if err != nil {
+		panic(err)
+	}
+	ladonPubKeyBytes, _ := asn1.Marshal(newLadonPair.PublicKey)
+	ladonPrivKeyBytes := x509.MarshalPKCS1PrivateKey(newLadonPair)
+
 	// Adrestia KeyPair
 	newAdrestiaKeyPair, err := rsa.GenerateKey(rand.Reader, 4096)
 	if err != nil {
@@ -411,6 +444,8 @@ func genNewVars() (EnvironmentVars, error) {
 		KeyPassword:     newDecryptionKey,
 		TychePrivKey:    base64.StdEncoding.EncodeToString(tychePrivKeyBytes),
 		TychePubKey:     base64.StdEncoding.EncodeToString(tychePubKeyBytes),
+		LadonPrivKey:    base64.StdEncoding.EncodeToString(ladonPrivKeyBytes),
+		LadonPubKey:     base64.StdEncoding.EncodeToString(ladonPubKeyBytes),
 		AdrestiaPrivKey: base64.StdEncoding.EncodeToString(addrestiaPrivKeyBytes),
 		AdrestiaPubKey:  base64.StdEncoding.EncodeToString(addrestiaPubKeyBytes),
 		PlutusPrivKey:   base64.StdEncoding.EncodeToString(plutusPrivKeyBytes),
@@ -445,7 +480,7 @@ func genNewVars() (EnvironmentVars, error) {
 }
 
 func saveNewVars() error {
-	err := ioutil.WriteFile("../../.env", []byte(NewVars.ToString()), 777)
+	err := ioutil.WriteFile("../.env", []byte(NewVars.ToString()), 777)
 	if err != nil {
 		return err
 	}
