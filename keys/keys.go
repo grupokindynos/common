@@ -16,7 +16,6 @@ import (
 	coinfactory "github.com/grupokindynos/common/coin-factory"
 	heroku "github.com/heroku/heroku-go/v5"
 	"github.com/joho/godotenv"
-	_ "github.com/joho/godotenv/autoload"
 	"github.com/sethvargo/go-password/password"
 	"golang.org/x/crypto/ssh"
 	"io/ioutil"
@@ -166,7 +165,7 @@ var (
 // Should only be used to recreate ssh keys and passwords
 func main() {
 	// First load the current .env
-	err := godotenv.Load("../../.env")
+	err := godotenv.Load("../.env")
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
@@ -186,7 +185,7 @@ func main() {
 	log.Println("Creating environment file...")
 	// Move current .env file to a backup file
 	date := time.Now().Format("2006-01-02")
-	err = os.Rename("../../.env", "../../old-env-backup-"+date)
+	err = os.Rename("../.env", "../old-env-backup-"+date)
 	if err != nil {
 		log.Fatal("Error moving .env file")
 	}
