@@ -69,8 +69,8 @@ func GetCoinsAvailability(adminFbToken string) (string, error) {
 }
 
 // VerifyToken ask hestia if a firebase token is valid
-func VerifyToken(jws string, service string) bool {
-	request := BodyReq{Payload: jws}
+func VerifyToken(bodyPayload string, headerSignature string) bool {
+	request := BodyReq{Payload: bodyPayload}
 	reqBytes, err := json.Marshal(request)
 	if err != nil {
 		return false
@@ -80,7 +80,7 @@ func VerifyToken(jws string, service string) bool {
 	if err != nil {
 		return false
 	}
-	req.Header.Set("service", service)
+	req.Header.Set("service", headerSignature)
 	client := http.Client{
 		Timeout: time.Second * 5,
 	}
