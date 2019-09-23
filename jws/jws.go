@@ -45,16 +45,7 @@ func DecodeJWS(token string, encodedPubKey string) ([]byte, error) {
 	return data, nil
 }
 
-func DecodeJWSNoVerify(token string, encodedPubKey string) ([]byte, error) {
-	pubKeyBytes, err := base64.StdEncoding.DecodeString(encodedPubKey)
-	if err != nil {
-		return nil, err
-	}
-	var rsaPubKey rsa.PublicKey
-	_, err = asn1.Unmarshal(pubKeyBytes, &rsaPubKey)
-	if err != nil {
-		return nil, err
-	}
+func DecodeJWSNoVerify(token string) ([]byte, error) {
 	object, err := jose.ParseSigned(token)
 	if err != nil {
 		return nil, err
