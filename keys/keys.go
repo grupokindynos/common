@@ -27,23 +27,23 @@ import (
 )
 
 type EnvironmentVars struct {
-	HerokuUsername  string
-	HerokuPassword  string
-	AuthUsername    string
-	AuthPassword    string
-	GinMode         string
-	KeyPassword     string
-	TychePubKey     string
-	TychePrivKey    string
-	AdrestiaPubKey  string
-	AdrestiaPrivKey string
-	HestiaPubKey    string
-	HestiaPrivKey   string
-	PlutusPubKey    string
-	PlutusPrivKey   string
-	LadonPubKey     string
-	LadonPrivKey    string
-	CoinsVars       []CoinVar
+	HerokuUsername     string
+	HerokuPassword     string
+	AuthUsername       string
+	AuthPassword       string
+	HestiaAuthUsername string
+	HestiaAuthPassword string
+	GinMode            string
+	KeyPassword        string
+	TychePubKey        string
+	TychePrivKey       string
+	AdrestiaPubKey     string
+	AdrestiaPrivKey    string
+	PlutusPubKey       string
+	PlutusPrivKey      string
+	LadonPubKey        string
+	LadonPrivKey       string
+	CoinsVars          []CoinVar
 }
 
 func (ev *EnvironmentVars) CheckVars() error {
@@ -65,6 +65,12 @@ func (ev *EnvironmentVars) CheckVars() error {
 	if ev.AuthPassword == "" {
 		return errors.New("missing auth password")
 	}
+	if ev.HestiaAuthPassword == "" {
+		return errors.New("missing hestia auth password")
+	}
+	if ev.HestiaAuthUsername == "" {
+		return errors.New("missing hestia auth username")
+	}
 	for _, coinVar := range ev.CoinsVars {
 		err := coinVar.CheckVars()
 		if err != nil {
@@ -78,6 +84,8 @@ func (ev *EnvironmentVars) ToString() string {
 	str := "" +
 		"AUTH_USERNAME=" + ev.AuthUsername + "\n" +
 		"AUTH_PASSWORD=" + ev.AuthPassword + "\n" +
+		"HESTIA_AUTH_USERNAME=" + ev.HestiaAuthUsername + "\n" +
+		"HESTIA_AUTH_PASSWORD=" + ev.HestiaAuthPassword + "\n" +
 		"KEY_PASSWORD=" + ev.KeyPassword + "\n" +
 		"GIN_MODE=" + ev.GinMode + "\n" +
 		"HEROKU_USERNAME=" + ev.HerokuUsername + "\n" +
@@ -85,7 +93,6 @@ func (ev *EnvironmentVars) ToString() string {
 		"TYCHE_PUBLIC_KEY=" + ev.TychePubKey + "\n" +
 		"LADON_PUBLIC_KEY=" + ev.LadonPubKey + "\n" +
 		"ADRESTIA_PUBLIC_KEY=" + ev.AdrestiaPubKey + "\n" +
-		"HESTIA_PUBLIC_KEY=" + ev.HestiaPubKey + "\n" +
 		"PLUTUS_PRIVATE_KEY=" + ev.AdrestiaPrivKey + "\n" +
 		"PLUTUS_PUBLIC_KEY=" + ev.PlutusPubKey + "\n"
 
@@ -227,7 +234,6 @@ func main() {
 		"TYCHE_PUBLIC_KEY":    &NewVars.TychePubKey,
 		"LADON_PUBLIC_KEY":    &NewVars.LadonPubKey,
 		"ADRESTIA_PUBLIC_KEY": &NewVars.AdrestiaPubKey,
-		"HESTIA_PUBLIC_KEY":   &NewVars.HestiaPubKey,
 		"PLUTUS_PUBLIC_KEY":   &NewVars.PlutusPubKey,
 		"PLUTUS_PRIVATE_KEY":  &NewVars.PlutusPrivKey,
 		"GIN_MODE":            &NewVars.GinMode,
@@ -261,6 +267,8 @@ func main() {
 	tycheAccess := map[string]*string{
 		"PLUTUS_AUTH_USERNAME": &NewVars.AuthUsername,
 		"PLUTUS_AUTH_PASSWORD": &NewVars.AuthPassword,
+		"HESTIA_AUTH_USERNAME": &NewVars.HestiaAuthUsername,
+		"HESTIA_AUTH_PASSWORD": &NewVars.HestiaAuthPassword,
 		"TYCHE_PRIV_KEY":       &NewVars.TychePrivKey,
 		"TYCHE_PUBLIC_KEY":     &NewVars.TychePubKey,
 		"PLUTUS_PUBLIC_KEY":    &NewVars.PlutusPubKey,
@@ -289,6 +297,8 @@ func main() {
 	ladonAccess := map[string]*string{
 		"PLUTUS_AUTH_USERNAME": &NewVars.AuthUsername,
 		"PLUTUS_AUTH_PASSWORD": &NewVars.AuthPassword,
+		"HESTIA_AUTH_USERNAME": &NewVars.HestiaAuthUsername,
+		"HESTIA_AUTH_PASSWORD": &NewVars.HestiaAuthPassword,
 		"LADON_PUBLIC_KEY":     &NewVars.LadonPubKey,
 		"LADON_PRIVATE_KEY":    &NewVars.LadonPrivKey,
 		"PLUTUS_PUBLIC_KEY":    &NewVars.PlutusPubKey,
@@ -305,8 +315,6 @@ func main() {
 		"TYCHE_PUBLIC_KEY":    &NewVars.TychePubKey,
 		"LADON_PUBLIC_KEY":    &NewVars.LadonPubKey,
 		"PLUTUS_PUBLIC_KEY":   &NewVars.PlutusPubKey,
-		"HESTIA_PUBLIC_KEY":   &NewVars.HestiaPubKey,
-		"HESTIA_PRIVATE_KEY":  &NewVars.HestiaPrivKey,
 	}
 	_, err = h.ConfigVarUpdate(context.Background(), "hestia-database", hestiaAccess)
 	if err != nil {
@@ -385,6 +393,8 @@ func getOldVars() (EnvironmentVars, error) {
 func genNewVars() (EnvironmentVars, error) {
 	newAuthUsername := generateRandomPassword(128)
 	newAuthPassword := generateRandomPassword(128)
+	newHestiaAuthUsername := generateRandomPassword(128)
+	newHestiaAuthPassword := generateRandomPassword(128)
 	newDecryptionKey := generateRandomPassword(32)
 	// Tyche KeyPair
 	newTychePair, err := rsa.GenerateKey(rand.Reader, 4096)
@@ -410,14 +420,6 @@ func genNewVars() (EnvironmentVars, error) {
 	addrestiaPubKeyBytes, _ := asn1.Marshal(newAdrestiaKeyPair.PublicKey)
 	addrestiaPrivKeyBytes := x509.MarshalPKCS1PrivateKey(newAdrestiaKeyPair)
 
-	// Hestia KeyPair
-	newHestiaKeyPair, err := rsa.GenerateKey(rand.Reader, 4096)
-	if err != nil {
-		panic(err)
-	}
-	hestiaPubKeyBytes, _ := asn1.Marshal(newHestiaKeyPair.PublicKey)
-	hestiaPrivKeyBytes := x509.MarshalPKCS1PrivateKey(newHestiaKeyPair)
-
 	// Plutus KeyPair
 	newPlutusKeyPair, err := rsa.GenerateKey(rand.Reader, 4096)
 	if err != nil {
@@ -426,23 +428,23 @@ func genNewVars() (EnvironmentVars, error) {
 	plutusPubKeyBytes, _ := asn1.Marshal(newPlutusKeyPair.PublicKey)
 	plutusPrivKeyBytes := x509.MarshalPKCS1PrivateKey(newPlutusKeyPair)
 	Vars := EnvironmentVars{
-		HerokuUsername:  os.Getenv("HEROKU_USERNAME"),
-		HerokuPassword:  os.Getenv("HEROKU_PASSWORD"),
-		AuthUsername:    newAuthUsername,
-		AuthPassword:    newAuthPassword,
-		GinMode:         os.Getenv("GIN_MODE"),
-		KeyPassword:     newDecryptionKey,
-		TychePrivKey:    base64.StdEncoding.EncodeToString(tychePrivKeyBytes),
-		TychePubKey:     base64.StdEncoding.EncodeToString(tychePubKeyBytes),
-		LadonPrivKey:    base64.StdEncoding.EncodeToString(ladonPrivKeyBytes),
-		LadonPubKey:     base64.StdEncoding.EncodeToString(ladonPubKeyBytes),
-		AdrestiaPrivKey: base64.StdEncoding.EncodeToString(addrestiaPrivKeyBytes),
-		AdrestiaPubKey:  base64.StdEncoding.EncodeToString(addrestiaPubKeyBytes),
-		PlutusPrivKey:   base64.StdEncoding.EncodeToString(plutusPrivKeyBytes),
-		PlutusPubKey:    base64.StdEncoding.EncodeToString(plutusPubKeyBytes),
-		HestiaPubKey:    base64.StdEncoding.EncodeToString(hestiaPubKeyBytes),
-		HestiaPrivKey:   base64.StdEncoding.EncodeToString(hestiaPrivKeyBytes),
-		CoinsVars:       nil,
+		HerokuUsername:     os.Getenv("HEROKU_USERNAME"),
+		HerokuPassword:     os.Getenv("HEROKU_PASSWORD"),
+		AuthUsername:       newAuthUsername,
+		AuthPassword:       newAuthPassword,
+		HestiaAuthUsername: newHestiaAuthUsername,
+		HestiaAuthPassword: newHestiaAuthPassword,
+		GinMode:            os.Getenv("GIN_MODE"),
+		KeyPassword:        newDecryptionKey,
+		TychePrivKey:       base64.StdEncoding.EncodeToString(tychePrivKeyBytes),
+		TychePubKey:        base64.StdEncoding.EncodeToString(tychePubKeyBytes),
+		LadonPrivKey:       base64.StdEncoding.EncodeToString(ladonPrivKeyBytes),
+		LadonPubKey:        base64.StdEncoding.EncodeToString(ladonPubKeyBytes),
+		AdrestiaPrivKey:    base64.StdEncoding.EncodeToString(addrestiaPrivKeyBytes),
+		AdrestiaPubKey:     base64.StdEncoding.EncodeToString(addrestiaPubKeyBytes),
+		PlutusPrivKey:      base64.StdEncoding.EncodeToString(plutusPrivKeyBytes),
+		PlutusPubKey:       base64.StdEncoding.EncodeToString(plutusPubKeyBytes),
+		CoinsVars:          nil,
 	}
 	for key := range coinfactory.Coins {
 		log.Println("Creating vars for " + strings.ToUpper(key))
