@@ -145,3 +145,8 @@ type Deposit struct {
 type BodyReq struct {
 	Payload string `json:"payload"`
 }
+
+type TokenVerification struct {
+	Valid bool   `json:"valid"`
+	UID   string `json:"uid"`
+}

@@ -1,6 +1,7 @@
 package mrt
 
 import (
+	"encoding/json"
 	"github.com/grupokindynos/common/jwt"
 )
 
@@ -42,6 +43,19 @@ func createMRTTokenBody(payload interface{}, masterpassword string) (string, err
 }
 
 // VerifyMRTToken is a utility function to verify and decrypt a MVT tokens
-func VerifyMRTToken() (valid bool, payload interface{}) {
-	return true, nil
+func VerifyMRTToken(tokenHeader string, tokenBody []byte, askedServicePubKey string, masterPassword string) (valid bool, payload []byte) {
+	_, err := jwt.DecodeJWS(tokenHeader, askedServicePubKey)
+	if err != nil {
+		return false, nil
+	}
+	var token string
+	err = json.Unmarshal(tokenBody, &token)
+	if err != nil {
+		return false, nil
+	}
+	payload, err = jwt.DecryptJWE(masterPassword, token)
+	if err != nil {
+		return false, nil
+	}
+	return true, payload
 }

@@ -1,8 +1,9 @@
 package hestia
 
 import (
-	"bytes"
 	"encoding/json"
+	"github.com/grupokindynos/common/tokens/mrt"
+	"github.com/grupokindynos/common/tokens/mvt"
 	"io/ioutil"
 	"net/http"
 	"time"
@@ -68,43 +69,29 @@ func GetCoinsAvailability(adminFbToken string) (string, error) {
 	return jwe, nil
 }
 
-// VerifyToken ask hestia if a firebase token is valid
-func VerifyToken(bodyPayload string, headerSignature string) bool {
-	request := BodyReq{Payload: bodyPayload}
-	reqBytes, err := json.Marshal(request)
-	if err != nil {
-		return false
-	}
-	reqBuff := bytes.NewBuffer(reqBytes)
-	req, err := http.NewRequest("POST", ProductionURL+"/validate/token", reqBuff)
-	if err != nil {
-		return false
-	}
-	req.Header.Set("service", headerSignature)
+// VerifyToken ask Hestia if a firebase token is valid
+func VerifyToken(service string, masterPassword string, fbToken string, hestiaAuthUser string, hestiaAuthPass string, servicePrivKey string, hestiaPubKey string) (valid bool, uid string) {
+	req, err := mvt.CreateMVTToken("POST", ProductionURL+"/validate/token", service, masterPassword, fbToken, hestiaAuthUser, hestiaAuthPass, servicePrivKey)
 	client := http.Client{
 		Timeout: time.Second * 5,
 	}
 	res, err := client.Do(req)
 	if err != nil {
-		return false
+		return false, ""
 	}
 	defer func() {
 		_ = res.Body.Close()
 	}()
+	headerSignature := res.Header.Get("service")
+	if headerSignature != "" {
+		return false, ""
+	}
 	contents, _ := ioutil.ReadAll(res.Body)
-	var response Response
-	err = json.Unmarshal(contents, &response)
+	valid, data := mrt.VerifyMRTToken(headerSignature, contents, hestiaPubKey, masterPassword)
+	var hestiaTokenRes TokenVerification
+	err = json.Unmarshal(data, &hestiaTokenRes)
 	if err != nil {
-		return false
+		return false, ""
 	}
-	var valid bool
-	resBytes, err := json.Marshal(response.Data)
-	if err != nil {
-		return false
-	}
-	err = json.Unmarshal(resBytes, &valid)
-	if err != nil {
-		return false
-	}
-	return valid
+	return hestiaTokenRes.Valid, hestiaTokenRes.UID
 }
