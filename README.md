@@ -1,5 +1,10 @@
 # Kindynos Tools
 
+![Actions](https://github.com/grupokindynos/common/workflows/Common/badge.svg)
+[![codecov](https://codecov.io/gh/grupokindynos/common/branch/master/graph/badge.svg)](https://codecov.io/gh/grupokindynos/common)
+[![Go Report](https://goreportcard.com/badge/github.com/grupokindynos/common)](https://goreportcard.com/report/github.com/grupokindynos/common) 
+[![GoDocs](https://godoc.org/github.com/grupokindynos/common?status.svg)](http://godoc.org/github.com/grupokindynos/common)
+
 > Common tools for Kindynos microservices
 
 # Tools
