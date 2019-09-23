@@ -141,3 +141,7 @@ type Deposit struct {
 	Status       string  `bson:"status" json:"status"`
 	Timestamp    string  `bson:"timestamp" json:"timestamp"`
 }
+
+type BodyReq struct {
+	Payload string `json:"payload"`
+}
