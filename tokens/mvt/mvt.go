@@ -67,7 +67,7 @@ func createMVTTokenBody(payload interface{}, masterpassword string) ([]byte, err
 }
 
 // VerifyMVTToken is a utility function to verify and decrypt a MVT tokens
-func VerifyMVTToken(tokenHeader string, tokenBody []byte, servicePubKey string, masterPassword string) (valid bool, payload interface{}) {
+func VerifyMVTToken(tokenHeader string, tokenBody []byte, servicePubKey string, masterPassword string) (valid bool, payload []byte) {
 	_, err := jwt.DecodeJWS(tokenHeader, servicePubKey)
 	if err != nil {
 		return false, nil
