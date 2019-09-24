@@ -56,14 +56,16 @@ func VerifyPPATToken(service, masterpassword string, tokenHeader string, tokenBo
 	if !valid {
 		return false, nil
 	}
-	var token string
-	err := json.Unmarshal(tokenBody, &token)
-	if err != nil {
-		return false, nil
-	}
-	payload, err = jwt.DecryptJWE(uid, token)
-	if err != nil {
-		return false, nil
+	if len(tokenBody) > 0 {
+		var token string
+		err := json.Unmarshal(tokenBody, &token)
+		if err != nil {
+			return false, nil
+		}
+		payload, err = jwt.DecryptJWE(uid, token)
+		if err != nil {
+			return false, nil
+		}
 	}
 	return true, payload
 }
