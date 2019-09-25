@@ -39,10 +39,13 @@ type EnvironmentVars struct {
 	TychePrivKey       string
 	AdrestiaPubKey     string
 	AdrestiaPrivKey    string
+	HestiaPubKey       string
+	HestiaPrivKey      string
 	PlutusPubKey       string
 	PlutusPrivKey      string
 	LadonPubKey        string
 	LadonPrivKey       string
+	MasterPassword     string
 	CoinsVars          []CoinVar
 }
 
@@ -52,24 +55,6 @@ func (ev *EnvironmentVars) CheckVars() error {
 	}
 	if ev.HerokuUsername == "" {
 		return errors.New("missing heroku username")
-	}
-	if ev.GinMode == "" {
-		return errors.New("missing gin mode")
-	}
-	if ev.KeyPassword == "" {
-		return errors.New("missing key password")
-	}
-	if ev.AuthUsername == "" {
-		return errors.New("missing auth username")
-	}
-	if ev.AuthPassword == "" {
-		return errors.New("missing auth password")
-	}
-	if ev.HestiaAuthPassword == "" {
-		return errors.New("missing hestia auth password")
-	}
-	if ev.HestiaAuthUsername == "" {
-		return errors.New("missing hestia auth username")
 	}
 	for _, coinVar := range ev.CoinsVars {
 		err := coinVar.CheckVars()
@@ -82,13 +67,14 @@ func (ev *EnvironmentVars) CheckVars() error {
 
 func (ev *EnvironmentVars) ToString() string {
 	str := "" +
-		"AUTH_USERNAME=" + ev.AuthUsername + "\n" +
-		"AUTH_PASSWORD=" + ev.AuthPassword + "\n" +
+		"PLUTUS_AUTH_USERNAME=" + ev.AuthUsername + "\n" +
+		"PLUTUS_AUTH_PASSWORD=" + ev.AuthPassword + "\n" +
 		"HESTIA_AUTH_USERNAME=" + ev.HestiaAuthUsername + "\n" +
 		"HESTIA_AUTH_PASSWORD=" + ev.HestiaAuthPassword + "\n" +
 		"KEY_PASSWORD=" + ev.KeyPassword + "\n" +
 		"GIN_MODE=" + ev.GinMode + "\n" +
 		"HEROKU_USERNAME=" + ev.HerokuUsername + "\n" +
+		"MASTER_PASSWORD=" + ev.MasterPassword + "\n" +
 		"HEROKU_PASSWORD=" + ev.HerokuPassword + "\n" +
 		"TYCHE_PUBLIC_KEY=" + ev.TychePubKey + "\n" +
 		"LADON_PUBLIC_KEY=" + ev.LadonPubKey + "\n" +
@@ -228,15 +214,16 @@ func main() {
 	log.Println("Updating heroku deployment variables...")
 	// Create environment map
 	envMap := map[string]*string{
-		"AUTH_PASSWORD":       &NewVars.AuthPassword,
-		"AUTH_USERNAME":       &NewVars.AuthUsername,
-		"KEY_PASSWORD":        &NewVars.KeyPassword,
-		"TYCHE_PUBLIC_KEY":    &NewVars.TychePubKey,
-		"LADON_PUBLIC_KEY":    &NewVars.LadonPubKey,
-		"ADRESTIA_PUBLIC_KEY": &NewVars.AdrestiaPubKey,
-		"PLUTUS_PUBLIC_KEY":   &NewVars.PlutusPubKey,
-		"PLUTUS_PRIVATE_KEY":  &NewVars.PlutusPrivKey,
-		"GIN_MODE":            &NewVars.GinMode,
+		"PLUTUS_AUTH_PASSWORD": &NewVars.AuthPassword,
+		"PLUTUS_AUTH_USERNAME": &NewVars.AuthUsername,
+		"PLUTUS_PUBLIC_KEY":    &NewVars.PlutusPubKey,
+		"PLUTUS_PRIVATE_KEY":   &NewVars.PlutusPrivKey,
+		"KEY_PASSWORD":         &NewVars.KeyPassword,
+		"MASTER_PASSWORD":      &NewVars.MasterPassword,
+		"TYCHE_PUBLIC_KEY":     &NewVars.TychePubKey,
+		"LADON_PUBLIC_KEY":     &NewVars.LadonPubKey,
+		"ADRESTIA_PUBLIC_KEY":  &NewVars.AdrestiaPubKey,
+		"GIN_MODE":             &NewVars.GinMode,
 	}
 	// First update main variables
 	log.Println("Updating main heroku deployment variables...")
@@ -267,11 +254,13 @@ func main() {
 	tycheAccess := map[string]*string{
 		"PLUTUS_AUTH_USERNAME": &NewVars.AuthUsername,
 		"PLUTUS_AUTH_PASSWORD": &NewVars.AuthPassword,
+		"PLUTUS_PUBLIC_KEY":    &NewVars.PlutusPubKey,
 		"HESTIA_AUTH_USERNAME": &NewVars.HestiaAuthUsername,
 		"HESTIA_AUTH_PASSWORD": &NewVars.HestiaAuthPassword,
+		"HESTIA_PUBLIC_KEY":    &NewVars.HestiaPubKey,
+		"MASTER_PASSWORD":      &NewVars.MasterPassword,
 		"TYCHE_PRIV_KEY":       &NewVars.TychePrivKey,
 		"TYCHE_PUBLIC_KEY":     &NewVars.TychePubKey,
-		"PLUTUS_PUBLIC_KEY":    &NewVars.PlutusPubKey,
 	}
 	_, err = h.ConfigVarUpdate(context.Background(), "tyche-shift", tycheAccess)
 	if err != nil {
@@ -284,8 +273,12 @@ func main() {
 		"PLUTUS_AUTH_USERNAME": &NewVars.AuthUsername,
 		"PLUTUS_AUTH_PASSWORD": &NewVars.AuthPassword,
 		"PLUTUS_PUBLIC_KEY":    &NewVars.PlutusPubKey,
+		"HESTIA_AUTH_USERNAME": &NewVars.HestiaAuthUsername,
+		"HESTIA_AUTH_PASSWORD": &NewVars.HestiaAuthPassword,
+		"HESTIA_PUBLIC_KEY":    &NewVars.HestiaPubKey,
 		"ADRESTIA_PRIV_KEY":    &NewVars.AdrestiaPrivKey,
 		"ADRESTIA_PUBLIC_KEY":  &NewVars.AdrestiaPubKey,
+		"MASTER_PASSWORD":      &NewVars.MasterPassword,
 	}
 	_, err = h.ConfigVarUpdate(context.Background(), "adrestia-exchanges", addrestiaAccess)
 	if err != nil {
@@ -297,11 +290,13 @@ func main() {
 	ladonAccess := map[string]*string{
 		"PLUTUS_AUTH_USERNAME": &NewVars.AuthUsername,
 		"PLUTUS_AUTH_PASSWORD": &NewVars.AuthPassword,
+		"PLUTUS_PUBLIC_KEY":    &NewVars.PlutusPubKey,
 		"HESTIA_AUTH_USERNAME": &NewVars.HestiaAuthUsername,
 		"HESTIA_AUTH_PASSWORD": &NewVars.HestiaAuthPassword,
+		"HESTIA_PUBLIC_KEY":    &NewVars.HestiaPubKey,
 		"LADON_PUBLIC_KEY":     &NewVars.LadonPubKey,
 		"LADON_PRIVATE_KEY":    &NewVars.LadonPrivKey,
-		"PLUTUS_PUBLIC_KEY":    &NewVars.PlutusPubKey,
+		"MASTER_PASSWORD":      &NewVars.MasterPassword,
 	}
 	_, err = h.ConfigVarUpdate(context.Background(), "ladon-vouchers", ladonAccess)
 	if err != nil {
@@ -311,10 +306,14 @@ func main() {
 	// HESTIA
 	log.Println("Updating Hestia keys")
 	hestiaAccess := map[string]*string{
-		"ADRESTIA_PUBLIC_KEY": &NewVars.AdrestiaPubKey,
-		"TYCHE_PUBLIC_KEY":    &NewVars.TychePubKey,
-		"LADON_PUBLIC_KEY":    &NewVars.LadonPubKey,
-		"PLUTUS_PUBLIC_KEY":   &NewVars.PlutusPubKey,
+		"HESTIA_AUTH_USERNAME": &NewVars.HestiaAuthUsername,
+		"HESTIA_AUTH_PASSWORD": &NewVars.HestiaAuthPassword,
+		"HESTIA_PUBLIC_KEY":    &NewVars.HestiaPubKey,
+		"HESTIA_PRIVATE_KEY":   &NewVars.HestiaPrivKey,
+		"ADRESTIA_PUBLIC_KEY":  &NewVars.AdrestiaPubKey,
+		"TYCHE_PUBLIC_KEY":     &NewVars.TychePubKey,
+		"LADON_PUBLIC_KEY":     &NewVars.LadonPubKey,
+		"MASTER_PASSWORD":      &NewVars.MasterPassword,
 	}
 	_, err = h.ConfigVarUpdate(context.Background(), "hestia-database", hestiaAccess)
 	if err != nil {
@@ -395,7 +394,9 @@ func genNewVars() (EnvironmentVars, error) {
 	newAuthPassword := generateRandomPassword(128)
 	newHestiaAuthUsername := generateRandomPassword(128)
 	newHestiaAuthPassword := generateRandomPassword(128)
+	newMasterPassword := generateRandomPassword(128)
 	newDecryptionKey := generateRandomPassword(32)
+
 	// Tyche KeyPair
 	newTychePair, err := rsa.GenerateKey(rand.Reader, 4096)
 	if err != nil {
@@ -420,6 +421,14 @@ func genNewVars() (EnvironmentVars, error) {
 	addrestiaPubKeyBytes, _ := asn1.Marshal(newAdrestiaKeyPair.PublicKey)
 	addrestiaPrivKeyBytes := x509.MarshalPKCS1PrivateKey(newAdrestiaKeyPair)
 
+	// Hestia KeyPair
+	newHestiaKeyPair, err := rsa.GenerateKey(rand.Reader, 4096)
+	if err != nil {
+		panic(err)
+	}
+	hestiaPubKeyBytes, _ := asn1.Marshal(newHestiaKeyPair.PublicKey)
+	hestiaPrivKeyBytes := x509.MarshalPKCS1PrivateKey(newHestiaKeyPair)
+
 	// Plutus KeyPair
 	newPlutusKeyPair, err := rsa.GenerateKey(rand.Reader, 4096)
 	if err != nil {
@@ -432,10 +441,13 @@ func genNewVars() (EnvironmentVars, error) {
 		HerokuPassword:     os.Getenv("HEROKU_PASSWORD"),
 		AuthUsername:       newAuthUsername,
 		AuthPassword:       newAuthPassword,
+		MasterPassword:     newMasterPassword,
 		HestiaAuthUsername: newHestiaAuthUsername,
 		HestiaAuthPassword: newHestiaAuthPassword,
 		GinMode:            os.Getenv("GIN_MODE"),
 		KeyPassword:        newDecryptionKey,
+		HestiaPubKey:       base64.StdEncoding.EncodeToString(hestiaPubKeyBytes),
+		HestiaPrivKey:      base64.StdEncoding.EncodeToString(hestiaPrivKeyBytes),
 		TychePrivKey:       base64.StdEncoding.EncodeToString(tychePrivKeyBytes),
 		TychePubKey:        base64.StdEncoding.EncodeToString(tychePubKeyBytes),
 		LadonPrivKey:       base64.StdEncoding.EncodeToString(ladonPrivKeyBytes),
