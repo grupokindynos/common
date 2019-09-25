@@ -1,8 +1,8 @@
 package responses
 
 import (
+	"errors"
 	"github.com/gin-gonic/gin"
-	"github.com/grupokindynos/common/errors"
 )
 
 // GlobalResponseError is used to wrap all the errored API responses under the same model.
@@ -18,7 +18,7 @@ func GlobalResponseError(result interface{}, err error, c *gin.Context) *gin.Con
 
 // GlobalResponseNoAuth is used to wrap all non-auth API responses under the same model.
 func GlobalResponseNoAuth(c *gin.Context) *gin.Context {
-	c.JSON(401, gin.H{"message": "Error", "error": errors.ErrorNoAuth.Error(), "status": -1})
+	c.JSON(401, gin.H{"message": "Error", "error": errors.New("you are not authorized"), "status": -1})
 	return c
 }
 
