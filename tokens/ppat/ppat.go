@@ -4,9 +4,10 @@ import (
 	"bytes"
 	"encoding/json"
 	"errors"
+	"net/http"
+
 	"github.com/grupokindynos/common/hestia"
 	"github.com/grupokindynos/common/jwt"
-	"net/http"
 )
 
 // PPAT token refers to PolisPay Authentication Token.
@@ -52,7 +53,7 @@ func createPPATTokenBody(payload interface{}, uid string) ([]byte, error) {
 
 // VerifyPPATToken is a utility function to verify and decrypt a PPAT token (only must be used for external microservices, Hestia can verify itself)
 func VerifyPPATToken(service, masterpassword string, tokenHeader string, tokenBody []byte, hestiaAuthUser string, hestiaAuthPassword string, serviceSigningPrivKey string, hestiaPubKey string) (valid bool, payload []byte) {
-	valid, uid := hestia.VerifyToken(service, masterpassword, tokenHeader, hestiaAuthUser, hestiaAuthPassword, serviceSigningPrivKey, hestiaPubKey)
+	valid, uid, _ := hestia.VerifyToken(service, masterpassword, tokenHeader, hestiaAuthUser, hestiaAuthPassword, serviceSigningPrivKey, hestiaPubKey)
 	if !valid {
 		return false, nil
 	}
