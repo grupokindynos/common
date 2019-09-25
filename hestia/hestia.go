@@ -2,11 +2,12 @@ package hestia
 
 import (
 	"encoding/json"
-	"github.com/grupokindynos/common/tokens/mrt"
-	"github.com/grupokindynos/common/tokens/mvt"
 	"io/ioutil"
 	"net/http"
 	"time"
+
+	"github.com/grupokindynos/common/tokens/mrt"
+	"github.com/grupokindynos/common/tokens/mvt"
 )
 
 // ProductionURL is the current hestia production url
@@ -70,28 +71,28 @@ func GetCoinsAvailability(adminFbToken string) (string, error) {
 }
 
 // VerifyToken ask Hestia if a firebase token is valid
-func VerifyToken(service string, masterPassword string, fbToken string, hestiaAuthUser string, hestiaAuthPass string, servicePrivKey string, hestiaPubKey string) (valid bool, uid string) {
+func VerifyToken(service string, masterPassword string, fbToken string, hestiaAuthUser string, hestiaAuthPass string, servicePrivKey string, hestiaPubKey string) (valid bool, uid string, err error) {
 	req, err := mvt.CreateMVTToken("POST", ProductionURL+"/validate/token", service, masterPassword, fbToken, hestiaAuthUser, hestiaAuthPass, servicePrivKey)
 	client := http.Client{
 		Timeout: time.Second * 5,
 	}
 	res, err := client.Do(req)
 	if err != nil {
-		return false, ""
+		return false, "", err
 	}
 	defer func() {
 		_ = res.Body.Close()
 	}()
 	headerSignature := res.Header.Get("service")
 	if headerSignature != "" {
-		return false, ""
+		return false, "", err
 	}
 	contents, _ := ioutil.ReadAll(res.Body)
 	valid, data := mrt.VerifyMRTToken(headerSignature, contents, hestiaPubKey, masterPassword)
 	var hestiaTokenRes TokenVerification
 	err = json.Unmarshal(data, &hestiaTokenRes)
 	if err != nil {
-		return false, ""
+		return false, "", err
 	}
-	return hestiaTokenRes.Valid, hestiaTokenRes.UID
+	return hestiaTokenRes.Valid, hestiaTokenRes.UID, err
 }
