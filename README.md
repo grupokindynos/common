@@ -20,4 +20,5 @@
 * `obol`: common methods and models for Obol microservice 
 * `plutus`: common methods and models for Plutus microservice 
 * `tokens`: a library to easily create/verify PPAT, MVT and MRT tokens
- 
+* `errors`: commonly used error responses
+* `responses`: GIN wrappers for common used responses
