@@ -85,3 +85,17 @@ func VerifyMVTToken(tokenHeader string, tokenBody []byte, servicePubKey string, 
 	}
 	return true, payload
 }
+
+// GetServiceNameFromHeaderToken returns the announce service name from a JWS without verificating the signature
+func GetServiceNameFromHeaderToken(tokenHeader string) (string, error) {
+	tokenBytes, err := jwt.DecodeJWSNoVerify(tokenHeader)
+	if err != nil {
+		return "", err
+	}
+	var serviceStr string
+	err = json.Unmarshal(tokenBytes, &serviceStr)
+	if err != nil {
+		return "", err
+	}
+	return serviceStr, nil
+}
