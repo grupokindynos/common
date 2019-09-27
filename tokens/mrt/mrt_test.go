@@ -60,7 +60,7 @@ func TestCreateMRTTokenWithNilBody(t *testing.T) {
 func TestVerifyMRTToken(t *testing.T) {
 	header, body, err := CreateMRTToken(TestService, TestMasterPass, TestPayload, TestSignPrivKey)
 	assert.Nil(t, err)
-	valid, payload := VerifyMRTToken(header, []byte(body), TestSignPubKey, TestMasterPass)
+	valid, payload := VerifyMRTToken(header, body, TestSignPubKey, TestMasterPass)
 	assert.Equal(t, true, valid)
 	var bodyFormat []string
 	err = json.Unmarshal(payload, &bodyFormat)
@@ -71,7 +71,7 @@ func TestVerifyMRTToken(t *testing.T) {
 func TestVerifyMRTTokenWithNilBody(t *testing.T) {
 	header, body, err := CreateMRTToken(TestService, TestMasterPass, nil, TestSignPrivKey)
 	assert.Nil(t, err)
-	valid, payload := VerifyMRTToken(header, []byte(body), TestSignPubKey, TestMasterPass)
+	valid, payload := VerifyMRTToken(header, body, TestSignPubKey, TestMasterPass)
 	assert.Equal(t, true, valid)
 	assert.Equal(t, []byte(nil), payload)
 }

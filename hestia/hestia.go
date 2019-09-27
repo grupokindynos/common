@@ -88,7 +88,12 @@ func VerifyToken(service string, masterPassword string, fbToken string, hestiaAu
 		return false, "", err
 	}
 	contents, _ := ioutil.ReadAll(res.Body)
-	valid, data := mrt.VerifyMRTToken(headerSignature, contents, hestiaPubKey, masterPassword)
+	var contentStr string
+	err = json.Unmarshal(contents, &contentStr)
+	if err != nil {
+		return false, "", err
+	}
+	valid, data := mrt.VerifyMRTToken(headerSignature, contentStr, hestiaPubKey, masterPassword)
 	var hestiaTokenRes TokenVerification
 	err = json.Unmarshal(data, &hestiaTokenRes)
 	if err != nil {

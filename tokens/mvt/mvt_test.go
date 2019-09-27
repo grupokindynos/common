@@ -76,7 +76,10 @@ func TestVerifyMVTPOSTToken(t *testing.T) {
 	headerSignature := req.Header.Get("service")
 	body, err := ioutil.ReadAll(req.Body)
 	assert.Nil(t, err)
-	valid, payload := VerifyMVTToken(headerSignature, body, TestSignPubKey, TestMasterPass)
+	var bodyStr string
+	err = json.Unmarshal(body, &bodyStr)
+	assert.Nil(t, err)
+	valid, payload := VerifyMVTToken(headerSignature, bodyStr, TestSignPubKey, TestMasterPass)
 	assert.Equal(t, true, valid)
 	var bodyFormat []string
 	err = json.Unmarshal(payload, &bodyFormat)
@@ -89,7 +92,7 @@ func TestVerifyMVTGETToken(t *testing.T) {
 	assert.Nil(t, err)
 	headerSignature := req.Header.Get("service")
 	assert.Nil(t, err)
-	valid, payload := VerifyMVTToken(headerSignature, nil, TestSignPubKey, TestMasterPass)
+	valid, payload := VerifyMVTToken(headerSignature, "", TestSignPubKey, TestMasterPass)
 	assert.Equal(t, true, valid)
 	assert.Equal(t, []byte(nil), payload)
 }
