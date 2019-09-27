@@ -84,7 +84,7 @@ func VerifyToken(service string, masterPassword string, fbToken string, hestiaAu
 		_ = res.Body.Close()
 	}()
 	headerSignature := res.Header.Get("service")
-	if headerSignature != "" {
+	if headerSignature == "" {
 		return false, "", err
 	}
 	contents, _ := ioutil.ReadAll(res.Body)
