@@ -22,7 +22,7 @@ var (
 	TestPayload = []string{"string1", "string2"}
 )
 
-func TestCreateMVTToken(t *testing.T) {
+func TestCreateMVTPOSTToken(t *testing.T) {
 	req, err := CreateMVTToken("POST", TestURL, TestService, TestMasterPass, TestPayload, TestAuthUser, TestAuthPassword, TestSignPrivKey)
 	assert.Nil(t, err)
 	url := req.URL
@@ -51,6 +51,45 @@ func TestCreateMVTToken(t *testing.T) {
 	assert.Equal(t, TestPayload, bodyFormat)
 }
 
-func TestVerifyMVTToken(t *testing.T) {
+func TestCreateMVTGETToken(t *testing.T) {
+	req, err := CreateMVTToken("GET", TestURL, TestService, TestMasterPass, TestPayload, TestAuthUser, TestAuthPassword, TestSignPrivKey)
+	assert.Nil(t, err)
+	url := req.URL
+	assert.Equal(t, TestURL, url.Path)
+	headerSignature := req.Header.Get("service")
+	headerSignatureBytes, err := jwt.DecodeJWSNoVerify(headerSignature)
+	assert.Nil(t, err)
+	var serviceStr string
+	err = json.Unmarshal(headerSignatureBytes, &serviceStr)
+	assert.Nil(t, err)
+	assert.Equal(t, TestService, serviceStr)
+	var serviceStrValidating string
+	headerSignatureBytesVerified, err := jwt.DecodeJWS(headerSignature, TestSignPubKey)
+	assert.Nil(t, err)
+	err = json.Unmarshal(headerSignatureBytesVerified, &serviceStrValidating)
+	assert.Nil(t, err)
+}
 
+func TestVerifyMVTPOSTToken(t *testing.T) {
+	req, err := CreateMVTToken("POST", TestURL, TestService, TestMasterPass, TestPayload, TestAuthUser, TestAuthPassword, TestSignPrivKey)
+	assert.Nil(t, err)
+	headerSignature := req.Header.Get("service")
+	body, err := ioutil.ReadAll(req.Body)
+	assert.Nil(t, err)
+	valid, payload := VerifyMVTToken(headerSignature, body, TestSignPubKey, TestMasterPass)
+	assert.Equal(t, true, valid)
+	var bodyFormat []string
+	err = json.Unmarshal(payload, &bodyFormat)
+	assert.Nil(t, err)
+	assert.Equal(t, TestPayload, bodyFormat)
+}
+
+func TestVerifyMVTGETToken(t *testing.T) {
+	req, err := CreateMVTToken("GET", TestURL, TestService, TestMasterPass, nil, TestAuthUser, TestAuthPassword, TestSignPrivKey)
+	assert.Nil(t, err)
+	headerSignature := req.Header.Get("service")
+	assert.Nil(t, err)
+	valid, payload := VerifyMVTToken(headerSignature, nil, TestSignPubKey, TestMasterPass)
+	assert.Equal(t, true, valid)
+	assert.Equal(t, []byte(nil), payload)
 }

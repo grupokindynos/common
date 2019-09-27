@@ -40,6 +40,38 @@ func TestCreateMRTToken(t *testing.T) {
 	assert.Equal(t, TestPayload, bodyFormat)
 }
 
-func TestVerifyMRTToken(t *testing.T) {
+func TestCreateMRTTokenWithNilBody(t *testing.T) {
+	header, body, err := CreateMRTToken(TestService, TestMasterPass, nil, TestSignPrivKey)
+	assert.Nil(t, err)
+	headerSignatureBytes, err := jwt.DecodeJWSNoVerify(header)
+	assert.Nil(t, err)
+	var serviceStr string
+	err = json.Unmarshal(headerSignatureBytes, &serviceStr)
+	assert.Nil(t, err)
+	assert.Equal(t, TestService, serviceStr)
+	var serviceStrValidating string
+	headerSignatureBytesVerified, err := jwt.DecodeJWS(header, TestSignPubKey)
+	assert.Nil(t, err)
+	err = json.Unmarshal(headerSignatureBytesVerified, &serviceStrValidating)
+	assert.Nil(t, err)
+	assert.Equal(t, "", body)
+}
 
+func TestVerifyMRTToken(t *testing.T) {
+	header, body, err := CreateMRTToken(TestService, TestMasterPass, TestPayload, TestSignPrivKey)
+	assert.Nil(t, err)
+	valid, payload := VerifyMRTToken(header, []byte(body), TestSignPubKey, TestMasterPass)
+	assert.Equal(t, true, valid)
+	var bodyFormat []string
+	err = json.Unmarshal(payload, &bodyFormat)
+	assert.Nil(t, err)
+	assert.Equal(t, TestPayload, bodyFormat)
+}
+
+func TestVerifyMRTTokenWithNilBody(t *testing.T) {
+	header, body, err := CreateMRTToken(TestService, TestMasterPass, nil, TestSignPrivKey)
+	assert.Nil(t, err)
+	valid, payload := VerifyMRTToken(header, []byte(body), TestSignPubKey, TestMasterPass)
+	assert.Equal(t, true, valid)
+	assert.Equal(t, []byte(nil), payload)
 }

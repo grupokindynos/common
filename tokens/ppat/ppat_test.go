@@ -18,7 +18,7 @@ var (
 	TestPayload = []string{"string1", "string2"}
 )
 
-func TestCreatePPATToken(t *testing.T) {
+func TestCreatePPATPOSTToken(t *testing.T) {
 	req, err := CreatePPATToken("POST", TestURL, TestFBToken, TestMasterPass, TestPayload)
 	assert.Nil(t, err)
 	token := req.Header.Get("token")
@@ -35,4 +35,13 @@ func TestCreatePPATToken(t *testing.T) {
 	err = json.Unmarshal(decryptedBody, &bodyFormat)
 	assert.Nil(t, err)
 	assert.Equal(t, TestPayload, bodyFormat)
+}
+
+func TestCreatePPATGETToken(t *testing.T) {
+	req, err := CreatePPATToken("GET", TestURL, TestFBToken, TestMasterPass, nil)
+	assert.Nil(t, err)
+	token := req.Header.Get("token")
+	url := req.URL
+	assert.Equal(t, TestFBToken, token)
+	assert.Equal(t, TestURL, url.Path)
 }

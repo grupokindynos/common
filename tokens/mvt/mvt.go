@@ -74,7 +74,7 @@ func VerifyMVTToken(tokenHeader string, tokenBody []byte, servicePubKey string, 
 	}
 	if len(tokenBody) > 0 {
 		var token string
-		err = json.Unmarshal(tokenBody, &token)
+		err := json.Unmarshal(tokenBody, &token)
 		if err != nil {
 			return false, nil
 		}

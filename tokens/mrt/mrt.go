@@ -1,7 +1,6 @@
 package mrt
 
 import (
-	"encoding/json"
 	"github.com/grupokindynos/common/jwt"
 )
 
@@ -19,9 +18,11 @@ func CreateMRTToken(service string, masterPassword string, payload interface{}, 
 	if err != nil {
 		return "", "", err
 	}
-	body, err = createMRTTokenBody(payload, masterPassword)
-	if err != nil {
-		return "", "", err
+	if payload != nil {
+		body, err = createMRTTokenBody(payload, masterPassword)
+		if err != nil {
+			return "", "", err
+		}
 	}
 	return header, body, nil
 }
@@ -49,11 +50,7 @@ func VerifyMRTToken(tokenHeader string, tokenBody []byte, askedServicePubKey str
 		return false, nil
 	}
 	if len(tokenBody) > 0 {
-		var token string
-		err = json.Unmarshal(tokenBody, &token)
-		if err != nil {
-			return false, nil
-		}
+		token := string(tokenBody)
 		payload, err = jwt.DecryptJWE(masterPassword, token)
 		if err != nil {
 			return false, nil
