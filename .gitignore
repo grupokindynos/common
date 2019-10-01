@@ -14,3 +14,6 @@
 .idea
 .env
 *-env-*
+
+#File used for tests
+main.go
