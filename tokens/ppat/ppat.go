@@ -58,7 +58,18 @@ func VerifyPPATToken(service, masterpassword string, tokenHeader string, tokenBo
 		return false, nil, "", err
 	}
 	if tokenBody != "" {
-		payload, err = jwt.DecryptJWE(uid, tokenBody)
+		decryptPayload, err := jwt.DecryptJWE(masterpassword, tokenBody)
+		if err != nil {
+			return false, nil, "", errors.New("unable to decrypt token with master password")
+		}
+
+		var decryptStr string
+		err = json.Unmarshal(decryptPayload, &decryptStr)
+		if err != nil {
+			return false, nil, "", errors.New("unable to unmarshall byte array into string")
+		}
+
+		payload, err = jwt.DecryptJWE(uid, decryptStr)
 		if err != nil {
 			return false, nil, "", errors.New("unable to decrypt token")
 		}
