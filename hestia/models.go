@@ -36,11 +36,12 @@ type Balances struct {
 }
 
 type Payment struct {
-	Address       string `firestore:"address" json:"address"`
-	Amount        string `firestore:"amount" json:"amount"`
-	Coin          string `firestore:"coin" json:"coin"`
-	Txid          string `firestore:"txid" json:"txid"`
-	Confirmations string `firestore:"confirmations" json:"confirmations"`
+	Address       string  `firestore:"address" json:"address"`
+	Amount        float64 `firestore:"amount" json:"amount"`
+	Coin          string  `firestore:"coin" json:"coin"`
+	RawTx         string  `firestore:"rawtx" json:"rawtx"`
+	Txid          string  `firestore:"txid" json:"txid"`
+	Confirmations int32   `firestore:"confirmations" json:"confirmations"`
 }
 
 type Properties struct {
@@ -121,9 +122,9 @@ type KYCInformation struct{}
 type Voucher struct {
 	ID                string  `firestore:"id" json:"id"`
 	UID               string  `firestore:"uid" json:"uid"`
-	VoucherID         string  `firestore:"voucher_id" json:"voucher_id"`
+	VoucherID         int     `firestore:"voucher_id" json:"voucher_id"`
 	VariantID         string  `firestore:"variant_id" json:"variant_id"`
-	FiatAmount        string  `firestore:"fiat_amount" json:"fiat_amount"`
+	FiatAmount        float64 `firestore:"fiat_amount" json:"fiat_amount"`
 	Name              string  `firestore:"name" json:"name"`
 	PaymentData       Payment `firestore:"payment_data" json:"payment_data"`
 	BitcouPaymentData Payment `firestore:"bitcou_payment_data" json:"bitcou_payment_data"`
