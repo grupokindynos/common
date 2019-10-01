@@ -52,8 +52,8 @@ func createPPATTokenBody(payload interface{}, uid string) ([]byte, error) {
 }
 
 // VerifyPPATToken is a utility function to verify and decrypt a PPAT token (only must be used for external microservices, Hestia can verify itself)
-func VerifyPPATToken(service, masterpassword string, tokenHeader string, tokenBody string, hestiaAuthUser string, hestiaAuthPassword string, serviceSigningPrivKey string, hestiaPubKey string) (valid bool, payload []byte, uid string, err error) {
-	valid, uid, err = hestia.VerifyToken(service, masterpassword, tokenHeader, hestiaAuthUser, hestiaAuthPassword, serviceSigningPrivKey, hestiaPubKey)
+func VerifyPPATToken(productionURL string, service string, masterpassword string, tokenHeader string, tokenBody string, hestiaAuthUser string, hestiaAuthPassword string, serviceSigningPrivKey string, hestiaPubKey string) (valid bool, payload []byte, uid string, err error) {
+	valid, uid, err = hestia.VerifyToken(productionURL, service, masterpassword, tokenHeader, hestiaAuthUser, hestiaAuthPassword, serviceSigningPrivKey, hestiaPubKey)
 	if !valid {
 		return false, nil, "", err
 	}
