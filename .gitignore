@@ -16,5 +16,6 @@
 .env
 *-env-*
 
+
 # File used for testing purposes
 main.go
