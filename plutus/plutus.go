@@ -3,7 +3,6 @@ package plutus
 import (
 	"encoding/json"
 	"errors"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 	"time"
@@ -27,24 +26,24 @@ func GetWalletAddress(productionURL string, coin string, signature string, servi
 	var resStr string
 	err = json.Unmarshal(res, &resStr)
 	if err != nil {
-		return "", errors.New("unable to unmarshal response")
+		return address, errors.New("unable to unmarshal response")
 	}
 
 	valid, payload := mrt.VerifyMRTToken(header, resStr, plutusKey, masterPass)
 	if !valid {
-		return "", errors.New("could not validate signature")
+		return address, errors.New("could not validate signature")
 	}
 
 	err = json.Unmarshal(payload, &address)
 	if err != nil {
-		return "", errors.New("unable to unmarshal response")
+		return address, errors.New("unable to unmarshal response")
 	}
 
 	return address, err
 }
 
 //GetWalletInfo gets all the information from a given coin
-func GetWalletInfo(productionURL string, coin string, signature string, service string, username string, password string, plutusKey string, masterPass string) (address string, err error) {
+func GetWalletInfo(productionURL string, coin string, signature string, service string, username string, password string, plutusKey string, masterPass string) (info PlutusInfo, err error) {
 	requestURL := productionURL + "/status/" + coin
 	signMessage, err := jwt.EncodeJWS(service, signature)
 
@@ -53,23 +52,20 @@ func GetWalletInfo(productionURL string, coin string, signature string, service 
 	var resStr string
 	err = json.Unmarshal(res, &resStr)
 	if err != nil {
-		return "", errors.New("unable to unmarshal response")
+		return info, errors.New("unable to unmarshal response")
 	}
 
 	valid, payload := mrt.VerifyMRTToken(header, resStr, plutusKey, masterPass)
 	if !valid {
-		return "", errors.New("could not validate signature")
+		return info, errors.New("could not validate signature")
 	}
 
-	fmt.Println(string(payload))
-	/*
-		err = json.Unmarshal(payload, &address)
-		if err != nil {
-			return "", errors.New("unable to unmarshal response")
-		}
-	*/
+	err = json.Unmarshal(payload, &info)
+	if err != nil {
+		return info, errors.New("unable to unmarshal response")
+	}
 
-	return address, err
+	return info, err
 }
 
 //GetPlutusData makes a GET request to the plutus API and returns the data as a json array

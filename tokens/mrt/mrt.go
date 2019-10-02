@@ -45,15 +45,18 @@ func createMRTTokenBody(payload interface{}, masterpassword string) (string, err
 
 // VerifyMRTToken is a utility function to verify and decrypt a MVT tokens
 func VerifyMRTToken(tokenHeader string, tokenBody string, askedServicePubKey string, masterPassword string) (valid bool, payload []byte) {
+
 	_, err := jwt.DecodeJWS(tokenHeader, askedServicePubKey)
 	if err != nil {
 		return false, nil
 	}
+
 	if tokenBody != "" {
 		payload, err = jwt.DecryptJWE(masterPassword, tokenBody)
 		if err != nil {
 			return false, nil
 		}
 	}
+
 	return true, payload
 }
