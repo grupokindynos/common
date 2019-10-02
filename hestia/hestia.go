@@ -10,17 +10,14 @@ import (
 	"github.com/grupokindynos/common/tokens/mvt"
 )
 
-// ProductionURL is the current hestia production url
-var ProductionURL = "https://hestia.polispay.com"
-
 // HttpClient a usable client with hardcoded timeout
 var HttpClient = http.Client{
 	Timeout: time.Second * 5,
 }
 
 // GetServiceProperties is a function to return hestia properties for multiple services
-func GetServiceProperties(adminFbToken string) (string, error) {
-	res, err := HttpClient.Get(ProductionURL + "/config")
+func GetServiceProperties(productionURL string, adminFbToken string) (string, error) {
+	res, err := HttpClient.Get(productionURL + "/config")
 	if err != nil {
 	}
 	defer func() {
@@ -45,8 +42,8 @@ func GetServiceProperties(adminFbToken string) (string, error) {
 }
 
 // GetCoinsAvailability is a function to return hestia properties for multiple crypto used on the environment
-func GetCoinsAvailability(adminFbToken string) (string, error) {
-	res, err := HttpClient.Get(ProductionURL + "/coins")
+func GetCoinsAvailability(productionURL string, adminFbToken string) (string, error) {
+	res, err := HttpClient.Get(productionURL + "/coins")
 	if err != nil {
 	}
 	defer func() {
@@ -71,8 +68,8 @@ func GetCoinsAvailability(adminFbToken string) (string, error) {
 }
 
 // VerifyToken ask Hestia if a firebase token is valid
-func VerifyToken(service string, masterPassword string, fbToken string, hestiaAuthUser string, hestiaAuthPass string, servicePrivKey string, hestiaPubKey string) (valid bool, uid string, err error) {
-	req, err := mvt.CreateMVTToken("POST", ProductionURL+"/validate/token", service, masterPassword, fbToken, hestiaAuthUser, hestiaAuthPass, servicePrivKey)
+func VerifyToken(productionURL string, service string, masterPassword string, fbToken string, hestiaAuthUser string, hestiaAuthPass string, servicePrivKey string, hestiaPubKey string) (valid bool, uid string, err error) {
+	req, err := mvt.CreateMVTToken("POST", productionURL+"/validate/token", service, masterPassword, fbToken, hestiaAuthUser, hestiaAuthPass, servicePrivKey)
 	client := http.Client{
 		Timeout: time.Second * 5,
 	}

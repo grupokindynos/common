@@ -10,9 +10,12 @@
 
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
+
 # Goland
 .idea
 .env
 *-env-*
 
+
+# File used for testing purposes
 main.go
