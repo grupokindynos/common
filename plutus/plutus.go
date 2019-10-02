@@ -3,7 +3,6 @@ package plutus
 import (
 	"encoding/json"
 	"errors"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 	"time"
@@ -37,8 +36,6 @@ func GetWalletTX(productionURL string, coin string, tx string, signature string,
 	if err != nil {
 		return transaction, errors.New("unable to unmarshal response")
 	}
-
-	fmt.Println(transaction)
 
 	return transaction, err
 }
