@@ -3,6 +3,7 @@ package plutus
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"time"
@@ -11,53 +12,48 @@ import (
 	"github.com/grupokindynos/common/tokens/mrt"
 )
 
-// HttpClient a usable client with hardcoded timeout
-var HttpClient = http.Client{
+// HTTPClient a usable client with hardcoded timeout
+var HTTPClient = http.Client{
 	Timeout: time.Second * 15,
 }
 
-//GetWalletAddress gets a deposit address from a given coin
-func GetWalletAddress(productionURL string, coin string, signature string, service string, username string, password string, plutusKey string, masterPass string) (address string, err error) {
-	requestURL := productionURL + "/address/" + coin
-	signMessage, err := jwt.EncodeJWS(service, signature)
+//GetWalletBalance gets an address from a given coin
+func GetWalletBalance(productionURL string, coin string, signature string, service string, username string, password string, plutusKey string, masterPass string) (info Info, err error) {
+	requestURL := productionURL + "/balance/" + coin
+	signMessage, _ := jwt.EncodeJWS(service, signature)
 
 	res, header, err := getPlutusData(requestURL, username, password, signMessage)
-
-	var resStr string
-	err = json.Unmarshal(res, &resStr)
 	if err != nil {
-		return address, errors.New("unable to unmarshal response")
+		return info, err
 	}
 
-	valid, payload := mrt.VerifyMRTToken(header, resStr, plutusKey, masterPass)
-	if !valid {
-		return address, errors.New("could not validate signature")
-	}
-
-	err = json.Unmarshal(payload, &address)
+	payload, err := parsePlutusData(res, header, plutusKey, masterPass)
 	if err != nil {
-		return address, errors.New("unable to unmarshal response")
+		return info, err
 	}
 
-	return address, err
-}
-
-//GetWalletInfo gets all the information from a given coin
-func GetWalletInfo(productionURL string, coin string, signature string, service string, username string, password string, plutusKey string, masterPass string) (info PlutusInfo, err error) {
-	requestURL := productionURL + "/status/" + coin
-	signMessage, err := jwt.EncodeJWS(service, signature)
-
-	res, header, err := getPlutusData(requestURL, username, password, signMessage)
-
-	var resStr string
-	err = json.Unmarshal(res, &resStr)
+	fmt.Println(string(payload))
+	err = json.Unmarshal(payload, &info)
 	if err != nil {
 		return info, errors.New("unable to unmarshal response")
 	}
 
-	valid, payload := mrt.VerifyMRTToken(header, resStr, plutusKey, masterPass)
-	if !valid {
-		return info, errors.New("could not validate signature")
+	return info, err
+}
+
+//GetWalletInfo gets an address from a given coin
+func GetWalletInfo(productionURL string, coin string, signature string, service string, username string, password string, plutusKey string, masterPass string) (info Info, err error) {
+	requestURL := productionURL + "/info/" + coin
+	signMessage, _ := jwt.EncodeJWS(service, signature)
+
+	res, header, err := getPlutusData(requestURL, username, password, signMessage)
+	if err != nil {
+		return info, err
+	}
+
+	payload, err := parsePlutusData(res, header, plutusKey, masterPass)
+	if err != nil {
+		return info, err
 	}
 
 	err = json.Unmarshal(payload, &info)
@@ -68,13 +64,73 @@ func GetWalletInfo(productionURL string, coin string, signature string, service 
 	return info, err
 }
 
-//GetPlutusData makes a GET request to the plutus API and returns the data as a json array
+//GetWalletAddress gets an address from a given coin
+func GetWalletAddress(productionURL string, coin string, signature string, service string, username string, password string, plutusKey string, masterPass string) (address string, err error) {
+	requestURL := productionURL + "/address/" + coin
+	signMessage, _ := jwt.EncodeJWS(service, signature)
+
+	res, header, err := getPlutusData(requestURL, username, password, signMessage)
+	if err != nil {
+		return address, err
+	}
+
+	payload, err := parsePlutusData(res, header, plutusKey, masterPass)
+	if err != nil {
+		return address, err
+	}
+
+	err = json.Unmarshal(payload, &address)
+	if err != nil {
+		return address, errors.New("unable to unmarshal response")
+	}
+
+	return address, err
+}
+
+//GetWalletStatus gets all the information from a given coin
+func GetWalletStatus(productionURL string, coin string, signature string, service string, username string, password string, plutusKey string, masterPass string) (status Status, err error) {
+	requestURL := productionURL + "/status/" + coin
+	signMessage, _ := jwt.EncodeJWS(service, signature)
+
+	res, header, err := getPlutusData(requestURL, username, password, signMessage)
+	if err != nil {
+		return status, err
+	}
+
+	payload, err := parsePlutusData(res, header, plutusKey, masterPass)
+	if err != nil {
+		return status, err
+	}
+
+	err = json.Unmarshal(payload, &status)
+	if err != nil {
+		return status, errors.New("unable to unmarshal response")
+	}
+
+	return status, err
+}
+
+func parsePlutusData(res []byte, header string, plutusKey string, masterPass string) (payload []byte, err error) {
+	var resStr string
+	err = json.Unmarshal(res, &resStr)
+	if err != nil {
+		return payload, errors.New("unable to unmarshal response")
+	}
+
+	valid, payload := mrt.VerifyMRTToken(header, resStr, plutusKey, masterPass)
+	if !valid {
+		return payload, errors.New("could not validate signature")
+	}
+
+	return payload, nil
+}
+
 func getPlutusData(requestURL string, username string, password string, signMessage string) (data []byte, header string, err error) {
 	req, _ := http.NewRequest("GET", requestURL, nil)
 	req.Header.Set("service", signMessage)
 	req.SetBasicAuth(username, password)
 
-	res, err := HttpClient.Do(req)
+	res, err := HTTPClient.Do(req)
 
 	if err != nil {
 		return data, header, errors.New("request timed out")
