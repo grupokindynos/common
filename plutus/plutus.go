@@ -17,28 +17,53 @@ var HTTPClient = http.Client{
 	Timeout: time.Second * 15,
 }
 
+//GetWalletTX gets a transaction info from the wallets
+func GetWalletTX(productionURL string, coin string, tx string, signature string, service string, username string, password string, plutusKey string, masterPass string) (transaction Transaction, err error) {
+	requestURL := productionURL + "/tx/" + coin + "/" + tx
+	signMessage, _ := jwt.EncodeJWS(service, signature)
+
+	res, header, err := getPlutusData(requestURL, username, password, signMessage)
+	if err != nil {
+		return transaction, err
+	}
+
+	payload, err := parsePlutusData(res, header, plutusKey, masterPass)
+	if err != nil {
+		return transaction, err
+	}
+
+	err = json.Unmarshal(payload, &transaction)
+
+	if err != nil {
+		return transaction, errors.New("unable to unmarshal response")
+	}
+
+	fmt.Println(transaction)
+
+	return transaction, err
+}
+
 //GetWalletBalance gets an address from a given coin
-func GetWalletBalance(productionURL string, coin string, signature string, service string, username string, password string, plutusKey string, masterPass string) (info Info, err error) {
+func GetWalletBalance(productionURL string, coin string, signature string, service string, username string, password string, plutusKey string, masterPass string) (balance Balance, err error) {
 	requestURL := productionURL + "/balance/" + coin
 	signMessage, _ := jwt.EncodeJWS(service, signature)
 
 	res, header, err := getPlutusData(requestURL, username, password, signMessage)
 	if err != nil {
-		return info, err
+		return balance, err
 	}
 
 	payload, err := parsePlutusData(res, header, plutusKey, masterPass)
 	if err != nil {
-		return info, err
+		return balance, err
 	}
 
-	fmt.Println(string(payload))
-	err = json.Unmarshal(payload, &info)
+	err = json.Unmarshal(payload, &balance)
 	if err != nil {
-		return info, errors.New("unable to unmarshal response")
+		return balance, errors.New("unable to unmarshal response")
 	}
 
-	return info, err
+	return balance, err
 }
 
 //GetWalletInfo gets an address from a given coin
