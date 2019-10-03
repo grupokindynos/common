@@ -7,6 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/grupokindynos/common/errors"
 	"github.com/grupokindynos/common/jwt"
+	"io/ioutil"
 	"net/http"
 	"os"
 )
@@ -85,11 +86,6 @@ func VerifyMVTToken(tokenHeader string, tokenBody string, servicePubKey string, 
 
 // VerifyRequest is a wrapper around VerifyMRTToken to get information correctly from the GIN context
 func VerifyRequest(c *gin.Context) (payload []byte, err error) {
-	var reqBody string
-	err = c.BindJSON(&reqBody)
-	if err != nil {
-		return nil, errors.ErrorUnmarshal
-	}
 	headerSignature := c.GetHeader("service")
 	if headerSignature == "" {
 		return nil, errors.ErrorNoHeaderSignature
@@ -115,7 +111,15 @@ func VerifyRequest(c *gin.Context) (payload []byte, err error) {
 	default:
 		return nil, errors.ErrorWrongMessage
 	}
-	valid, payload := VerifyMVTToken(headerSignature, reqBody, pubKey, os.Getenv("MASTER_PASSWORD"))
+	reqBody, _ := ioutil.ReadAll(c.Request.Body)
+	var reqToken string
+	if len(reqBody) > 0 {
+		err := json.Unmarshal(reqBody, &reqToken)
+		if err != nil {
+			return nil, errors.ErrorUnmarshal
+		}
+	}
+	valid, payload := VerifyMVTToken(headerSignature, reqToken, pubKey, os.Getenv("MASTER_PASSWORD"))
 	if !valid {
 		return nil, errors.ErrorInvalidPassword
 	}
