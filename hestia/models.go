@@ -37,7 +37,7 @@ type Balances struct {
 
 type Payment struct {
 	Address       string  `firestore:"address" json:"address"`
-	Amount        float64 `firestore:"amount" json:"amount"`
+	Amount        int32 `firestore:"amount" json:"amount"`
 	Coin          string  `firestore:"coin" json:"coin"`
 	RawTx         string  `firestore:"rawtx" json:"rawtx"`
 	Txid          string  `firestore:"txid" json:"txid"`
@@ -124,7 +124,7 @@ type Voucher struct {
 	UID               string  `firestore:"uid" json:"uid"`
 	VoucherID         int     `firestore:"voucher_id" json:"voucher_id"`
 	VariantID         string  `firestore:"variant_id" json:"variant_id"`
-	FiatAmount        float64 `firestore:"fiat_amount" json:"fiat_amount"`
+	FiatAmount        int32 `firestore:"fiat_amount" json:"fiat_amount"`
 	Name              string  `firestore:"name" json:"name"`
 	PaymentData       Payment `firestore:"payment_data" json:"payment_data"`
 	BitcouPaymentData Payment `firestore:"bitcou_payment_data" json:"bitcou_payment_data"`
