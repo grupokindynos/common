@@ -85,7 +85,11 @@ func VerifyMVTToken(tokenHeader string, tokenBody string, servicePubKey string, 
 
 // VerifyRequest is a wrapper around VerifyMRTToken to get information correctly from the GIN context
 func VerifyRequest(c *gin.Context) (payload []byte, err error) {
-	reqBody, _ := c.GetRawData()
+	var reqBody string
+	err = c.BindJSON(&reqBody)
+	if err != nil {
+		return nil, errors.ErrorUnmarshal
+	}
 	headerSignature := c.GetHeader("service")
 	if headerSignature == "" {
 		return nil, errors.ErrorNoHeaderSignature
