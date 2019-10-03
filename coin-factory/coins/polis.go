@@ -20,6 +20,7 @@ var Polis = Coin{
 		SendToAddress:              "sendtoaddress",
 		ValidateAddress:            "validateaddress",
 		GetRawTransaction:          "getrawtransaction",
+		DecodeRawTransaction:       "decoderawtransaction",
 		GetRawTransactionVerbosity: true,
 	},
 }

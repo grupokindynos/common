@@ -43,6 +43,7 @@ type RPCMethods struct {
 	GetNewAddress              string      // Get a new address to pay to the hot-wallets
 	SendToAddress              string      // Send a tx.
 	ValidateAddress            string      // Validate an address to see if is ours.
+	DecodeRawTransaction       string      // Get all the information of a raw transaction.
 	GetRawTransaction          string      // Command to get a transaction
 	GetRawTransactionVerbosity interface{} // Variable to get it encoded or decoded.
 }

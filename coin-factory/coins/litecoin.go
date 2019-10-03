@@ -20,6 +20,7 @@ var Litecoin = Coin{
 		SendToAddress:              "sendtoaddress",
 		ValidateAddress:            "getaddressinfo",
 		GetRawTransaction:          "getrawtransaction",
+		DecodeRawTransaction:       "decoderawtransaction",
 		GetRawTransactionVerbosity: "1",
 	},
 }
