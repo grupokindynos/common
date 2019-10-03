@@ -115,12 +115,7 @@ func VerifyRequest(c *gin.Context) (payload []byte, err error) {
 	default:
 		return nil, errors.ErrorWrongMessage
 	}
-	var reqToken string
-	err = json.Unmarshal(reqBody, &reqToken)
-	if err != nil {
-		return nil, errors.ErrorUnmarshal
-	}
-	valid, payload := VerifyMVTToken(headerSignature, reqToken, pubKey, os.Getenv("MASTER_PASSWORD"))
+	valid, payload := VerifyMVTToken(headerSignature, reqBody, pubKey, os.Getenv("MASTER_PASSWORD"))
 	if !valid {
 		return nil, errors.ErrorInvalidPassword
 	}
