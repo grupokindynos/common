@@ -20,3 +20,9 @@ func TestNoCoin(t *testing.T) {
 	assert.Equal(t, "coin not available", err.Error())
 	assert.Nil(t, newCoin)
 }
+
+func TestCoinArray(t *testing.T) {
+	allCoins, err := GetCoins()
+	assert.Nil(t, err)
+	assert.Equal(t, len(Coins), len(allCoins))
+}
