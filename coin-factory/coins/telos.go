@@ -8,7 +8,7 @@ var Telos = Coin{
 		FallBackExchange: "southxchange",
 	},
 	BlockchainInfo: BlockchainInfo{
-		ExternalSource:   "telos.polispay.org",
+		ExternalSource:   "telos.polispay.com",
 		BlockTime:        1,
 		MinConfirmations: 6,
 	},
