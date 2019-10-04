@@ -12,6 +12,7 @@ import (
 	"encoding/pem"
 	"errors"
 	"fmt"
+	"github.com/bwmarrin/discordgo"
 	"github.com/grupokindynos/common/aes"
 	coinfactory "github.com/grupokindynos/common/coin-factory"
 	heroku "github.com/heroku/heroku-go/v5"
@@ -27,6 +28,8 @@ import (
 )
 
 type EnvironmentVars struct {
+	KindynosBotToken   string
+	KindynosChannel    string
 	HerokuUsername     string
 	HerokuPassword     string
 	AuthUsername       string
@@ -67,6 +70,8 @@ func (ev *EnvironmentVars) CheckVars() error {
 
 func (ev *EnvironmentVars) ToString() string {
 	str := "" +
+		"KINDYNOS_BOT_TOKEN=" + ev.KindynosBotToken + "\n" +
+		"KINDYNOS_NOTIFICATION_CHANNEL=" + ev.KindynosChannel + "\n" +
 		"PLUTUS_AUTH_USERNAME=" + ev.AuthUsername + "\n" +
 		"PLUTUS_AUTH_PASSWORD=" + ev.AuthPassword + "\n" +
 		"HESTIA_AUTH_USERNAME=" + ev.HestiaAuthUsername + "\n" +
@@ -160,6 +165,7 @@ var (
 // This script will only work with a full set of environment variables.
 // Should only be used to recreate ssh keys and passwords
 func main() {
+
 	// First load the current .env
 	err := godotenv.Load("../.env")
 	if err != nil {
@@ -325,6 +331,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
+	sendMessage()
 }
 
 func updateRemoteKey(coinVars CoinVar, newCoinPubKey string) error {
@@ -362,13 +370,15 @@ func updateRemoteKey(coinVars CoinVar, newCoinPubKey string) error {
 
 func getOldVars() (EnvironmentVars, error) {
 	Vars := EnvironmentVars{
-		HerokuUsername: os.Getenv("HEROKU_USERNAME"),
-		HerokuPassword: os.Getenv("HEROKU_PASSWORD"),
-		AuthUsername:   os.Getenv("AUTH_USERNAME"),
-		AuthPassword:   os.Getenv("AUTH_PASSWORD"),
-		GinMode:        os.Getenv("GIN_MODE"),
-		KeyPassword:    os.Getenv("KEY_PASSWORD"),
-		CoinsVars:      nil,
+		HerokuUsername:   os.Getenv("HEROKU_USERNAME"),
+		HerokuPassword:   os.Getenv("HEROKU_PASSWORD"),
+		KindynosBotToken: os.Getenv("KINDYNOS_BOT_TOKEN"),
+		KindynosChannel:  os.Getenv("KINDYNOS_NOTIFICATION_CHANNEL"),
+		AuthUsername:     os.Getenv("AUTH_USERNAME"),
+		AuthPassword:     os.Getenv("AUTH_PASSWORD"),
+		GinMode:          os.Getenv("GIN_MODE"),
+		KeyPassword:      os.Getenv("KEY_PASSWORD"),
+		CoinsVars:        nil,
 	}
 	for key := range coinfactory.Coins {
 		coinVars := CoinVar{
@@ -444,6 +454,8 @@ func genNewVars() (EnvironmentVars, error) {
 		MasterPassword:     newMasterPassword,
 		HestiaAuthUsername: newHestiaAuthUsername,
 		HestiaAuthPassword: newHestiaAuthPassword,
+		KindynosBotToken:   os.Getenv("KINDYNOS_BOT_TOKEN"),
+		KindynosChannel:    os.Getenv("KINDYNOS_NOTIFICATION_CHANNEL"),
 		GinMode:            os.Getenv("GIN_MODE"),
 		KeyPassword:        newDecryptionKey,
 		HestiaPubKey:       base64.StdEncoding.EncodeToString(hestiaPubKeyBytes),
@@ -549,4 +561,17 @@ func parsePrivKey(privKey string, encryptionKey string) (ssh.AuthMethod, error) 
 		return nil, err
 	}
 	return ssh.PublicKeys(key), nil
+}
+
+func sendMessage() {
+	discord, err := discordgo.New("Bot " + os.Getenv("KINDYNOS_BOT_TOKEN"))
+
+	if err != nil {
+		log.Fatal(err)
+	}
+	_, err = discord.ChannelMessageSend(os.Getenv("KINDYNOS_NOTIFICATION_CHANNEL"), "@everyone \n Services Keys Updated! \n Please update `.env` files")
+	if err != nil {
+		fmt.Println("error opening connection,", err)
+		return
+	}
 }
