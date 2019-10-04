@@ -20,6 +20,7 @@ var Coins = map[string]*coins.Coin{
 	"ONION": &coins.DeepOnion,
 	"MNP":   &coins.MNPCoin,
 	"XSG":   &coins.Snowgem,
+	"TELOS": &coins.Telos,
 }
 
 // GetCoin is the safe way to check if a coin exists and retrieve the coin data
