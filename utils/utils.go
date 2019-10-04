@@ -8,7 +8,6 @@ import (
 var seededRand *rand.Rand = rand.New(
 	rand.NewSource(time.Now().UnixNano()))
 
-
 func Contains(a []string, x string) bool {
 	for _, n := range a {
 		if x == n {
@@ -27,4 +26,3 @@ func RandomString() string {
 	}
 	return string(b)
 }
-

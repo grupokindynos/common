@@ -37,7 +37,7 @@ type Balances struct {
 
 type Payment struct {
 	Address       string `firestore:"address" json:"address"`
-	Amount        int32  `firestore:"amount" json:"amount"`
+	Amount        int64  `firestore:"amount" json:"amount"`
 	Coin          string `firestore:"coin" json:"coin"`
 	RawTx         string `firestore:"rawtx" json:"rawtx"`
 	Txid          string `firestore:"txid" json:"txid"`
