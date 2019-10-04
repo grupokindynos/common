@@ -60,3 +60,32 @@ type Transaction struct {
 		ValueSat int64   `json:"valueSat"`
 	} `json:"vout"`
 }
+
+//DecodedRawTX is the model for the verify RAW transaction
+type DecodedRawTX struct {
+	Locktime int    `json:"locktime"`
+	Size     int    `json:"size"`
+	Txid     string `json:"txid"`
+	Version  int    `json:"version"`
+	Vin      []struct {
+		ScriptSig struct {
+			Asm string `json:"asm"`
+			Hex string `json:"hex"`
+		} `json:"scriptSig"`
+		Sequence int64  `json:"sequence"`
+		Txid     string `json:"txid"`
+		Vout     int    `json:"vout"`
+	} `json:"vin"`
+	Vout []struct {
+		N            int `json:"n"`
+		ScriptPubKey struct {
+			Addresses []string `json:"addresses"`
+			Asm       string   `json:"asm"`
+			Hex       string   `json:"hex"`
+			ReqSigs   int      `json:"reqSigs"`
+			Type      string   `json:"type"`
+		} `json:"scriptPubKey"`
+		Value    float64 `json:"value"`
+		ValueSat int     `json:"valueSat"`
+	} `json:"vout"`
+}

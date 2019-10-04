@@ -9,6 +9,7 @@ import (
 
 	"github.com/grupokindynos/common/jwt"
 	"github.com/grupokindynos/common/tokens/mrt"
+	"github.com/grupokindynos/common/tokens/mvt"
 )
 
 // HTTPClient a usable client with hardcoded timeout
@@ -132,6 +133,29 @@ func GetWalletStatus(productionURL string, coin string, signature string, servic
 	return status, err
 }
 
+//DecodeRawTX gets all the information from a given coin
+func DecodeRawTX(productionURL string, payload []byte, coin string, signature string, service string, username string, password string, plutusKey string, masterPass string) (rawTX DecodedRawTX, err error) {
+
+	requestURL := productionURL + "/decode/" + coin
+	signMessage, _ := jwt.EncodeJWS(service, signature)
+
+	res, header, err := postPlutusData(requestURL, service, masterPass, payload, username, password, signMessage, signature)
+	if err != nil {
+		return rawTX, err
+	}
+	parsedRes, err := parsePlutusData(res, header, plutusKey, masterPass)
+
+	if err != nil {
+		return rawTX, err
+	}
+
+	err = json.Unmarshal(parsedRes, &rawTX)
+	if err != nil {
+		return rawTX, errors.New("unable to unmarshal response")
+	}
+	return rawTX, err
+}
+
 func parsePlutusData(res []byte, header string, plutusKey string, masterPass string) (payload []byte, err error) {
 	var resStr string
 	err = json.Unmarshal(res, &resStr)
@@ -154,6 +178,27 @@ func getPlutusData(requestURL string, username string, password string, signMess
 
 	res, err := HTTPClient.Do(req)
 
+	if err != nil {
+		return data, header, errors.New("request timed out")
+	}
+	defer func() {
+		_ = res.Body.Close()
+	}()
+	header = res.Header.Get("service")
+
+	data, err = ioutil.ReadAll(res.Body)
+	if err != nil {
+		return data, header, err
+	}
+
+	return data, header, err
+
+}
+
+func postPlutusData(requestURL string, service string, masterPass string, payload []byte, username string, password string, signMessage string, signKey string) (data []byte, header string, err error) {
+	req, _ := mvt.CreateMVTToken("POST", requestURL, service, masterPass, string(payload), username, password, signKey)
+
+	res, err := HTTPClient.Do(req)
 	if err != nil {
 		return data, header, errors.New("request timed out")
 	}
