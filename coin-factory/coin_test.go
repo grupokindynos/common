@@ -21,6 +21,7 @@ func TestNoCoin(t *testing.T) {
 	assert.Nil(t, newCoin)
 }
 
+// Tests GetCoins function returns all added coins without issues
 func TestCoinArray(t *testing.T) {
 	allCoins, err := GetCoins()
 	assert.Nil(t, err)
