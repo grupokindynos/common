@@ -22,6 +22,14 @@ var Coins = map[string]*coins.Coin{
 	"XSG":   &coins.Snowgem,
 }
 
+func GetCoins() ([]string, error) {
+	var allCoins []string
+	for _, coin := range Coins {
+		allCoins = append(allCoins, coin.Tag)
+	}
+	return allCoins, nil
+}
+
 // GetCoin is the safe way to check if a coin exists and retrieve the coin data
 func GetCoin(tag string) (*coins.Coin, error) {
 	coin, ok := Coins[strings.ToUpper(tag)]
