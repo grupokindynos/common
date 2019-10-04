@@ -4,13 +4,14 @@ import (
 	"bytes"
 	"encoding/base64"
 	"encoding/json"
-	"errors"
-	"github.com/grupokindynos/common/jwt"
+	"net/http"
+
+	"io/ioutil"
+	"os"
+
 	"github.com/gin-gonic/gin"
 	"github.com/grupokindynos/common/errors"
 	"github.com/grupokindynos/common/jwt"
-	"io/ioutil"
-	"os"
 )
 
 // MVT token refers to Microservice Verification Token
