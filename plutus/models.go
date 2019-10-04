@@ -1,5 +1,10 @@
 package plutus
 
+//Address is the model for the GET plutus address validation method
+type Address struct {
+	Valid bool `json:"valid"`
+}
+
 //Status is the model for the GET plutus status method
 type Status struct {
 	Blocks          int  `json:"node_blocks"`

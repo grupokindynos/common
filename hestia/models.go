@@ -36,12 +36,12 @@ type Balances struct {
 }
 
 type Payment struct {
-	Address       string  `firestore:"address" json:"address"`
-	Amount        float64 `firestore:"amount" json:"amount"`
-	Coin          string  `firestore:"coin" json:"coin"`
-	RawTx         string  `firestore:"rawtx" json:"rawtx"`
-	Txid          string  `firestore:"txid" json:"txid"`
-	Confirmations int32   `firestore:"confirmations" json:"confirmations"`
+	Address       string `firestore:"address" json:"address"`
+	Amount        int64  `firestore:"amount" json:"amount"`
+	Coin          string `firestore:"coin" json:"coin"`
+	RawTx         string `firestore:"rawtx" json:"rawtx"`
+	Txid          string `firestore:"txid" json:"txid"`
+	Confirmations int32  `firestore:"confirmations" json:"confirmations"`
 }
 
 type Properties struct {
@@ -61,6 +61,7 @@ type Order struct {
 	UID                 string                     `firestore:"uid" json:"uid"`
 	Status              string                     `firestore:"status" json:"status"`
 	PaymentInfo         Payment                    `firestore:"payment_info" json:"payment_info"`
+	FeePayment          Payment                    `firestore:"fee_payment" json:"fee_payment"`
 	AddressInfo         AddressInformation         `firestore:"address_info" json:"address_info"`
 	Delivery            DeliveryOption             `firestore:"delivery" json:"delivery"`
 	PersonalizationData PersonalizationInformation `firestore:"personalization_data" json:"personalization_data"`
@@ -102,6 +103,7 @@ type Shift struct {
 	Status     string  `firestore:"status" json:"status"`
 	Timestamp  string  `firestore:"timestamp" json:"timestamp"`
 	Payment    Payment `firestore:"payment" json:"payment"`
+	FeePayment Payment `firestore:"fee_payment" json:"fee_payment"`
 	Conversion Payment `firestore:"conversion" json:"conversion"`
 }
 
@@ -124,9 +126,10 @@ type Voucher struct {
 	UID               string  `firestore:"uid" json:"uid"`
 	VoucherID         int     `firestore:"voucher_id" json:"voucher_id"`
 	VariantID         string  `firestore:"variant_id" json:"variant_id"`
-	FiatAmount        float64 `firestore:"fiat_amount" json:"fiat_amount"`
+	FiatAmount        int32   `firestore:"fiat_amount" json:"fiat_amount"`
 	Name              string  `firestore:"name" json:"name"`
 	PaymentData       Payment `firestore:"payment_data" json:"payment_data"`
+	FeePayment        Payment `firestore:"fee_payment" json:"fee_payment"`
 	BitcouPaymentData Payment `firestore:"bitcou_payment_data" json:"bitcou_payment_data"`
 	RedeemCode        string  `firestore:"redeem_code" json:"redeem_code"`
 	Status            string  `firestore:"status" json:"status"`
@@ -137,6 +140,7 @@ type Deposit struct {
 	ID           string  `firestore:"id" json:"id"`
 	UID          string  `firestore:"uid" json:"uid"`
 	Payment      Payment `firestore:"payment" json:"payment"`
+	FeePayment   Payment `firestore:"fee_payment" json:"fee_payment"`
 	AmountInPeso string  `firestore:"amount_in_peso" json:"amount_in_peso"`
 	CardCode     string  `firestore:"card_code" json:"card_code"`
 	Status       string  `firestore:"status" json:"status"`

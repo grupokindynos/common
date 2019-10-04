@@ -5,9 +5,12 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"errors"
-	"net/http"
-
 	"github.com/grupokindynos/common/jwt"
+	"github.com/gin-gonic/gin"
+	"github.com/grupokindynos/common/errors"
+	"github.com/grupokindynos/common/jwt"
+	"io/ioutil"
+	"os"
 )
 
 // MVT token refers to Microservice Verification Token
@@ -41,7 +44,7 @@ func CreateMVTToken(method string, reqUrl string, service string, masterPassword
 			return nil, err
 		}
 	default:
-		return nil, errors.New("missing known method, currently support are GET and POST")
+		return nil, errors.ErrorUnknownMethod
 	}
 	req.Header.Add("Authorization", "Basic "+base64.StdEncoding.EncodeToString([]byte(basicUser+":"+basicPassword)))
 	headerSig, err := createMVTHeaderSignature(service, signingKey)
@@ -84,16 +87,44 @@ func VerifyMVTToken(tokenHeader string, tokenBody string, servicePubKey string, 
 	return true, payload
 }
 
-// GetServiceNameFromHeaderToken returns the announce service name from a JWS without verificating the signature
-func GetServiceNameFromHeaderToken(tokenHeader string) (string, error) {
-	tokenBytes, err := jwt.DecodeJWSNoVerify(tokenHeader)
+// VerifyRequest is a wrapper around VerifyMRTToken to get information correctly from the GIN context
+func VerifyRequest(c *gin.Context) (payload []byte, err error) {
+	headerSignature := c.GetHeader("service")
+	if headerSignature == "" {
+		return nil, errors.ErrorNoHeaderSignature
+	}
+	decodedHeader, err := jwt.DecodeJWSNoVerify(headerSignature)
 	if err != nil {
-		return "", err
+		return nil, errors.ErrorSignatureParse
 	}
 	var serviceStr string
-	err = json.Unmarshal(tokenBytes, &serviceStr)
+	err = json.Unmarshal(decodedHeader, &serviceStr)
 	if err != nil {
-		return "", err
+		return nil, errors.ErrorUnmarshal
 	}
-	return serviceStr, nil
+	// Check which service the request is announcing
+	var pubKey string
+	switch serviceStr {
+	case "ladon":
+		pubKey = os.Getenv("LADON_PUBLIC_KEY")
+	case "tyche":
+		pubKey = os.Getenv("TYCHE_PUBLIC_KEY")
+	case "adrestia":
+		pubKey = os.Getenv("ADRESTIA_PUBLIC_KEY")
+	default:
+		return nil, errors.ErrorWrongMessage
+	}
+	reqBody, _ := ioutil.ReadAll(c.Request.Body)
+	var reqToken string
+	if len(reqBody) > 0 {
+		err := json.Unmarshal(reqBody, &reqToken)
+		if err != nil {
+			return nil, errors.ErrorUnmarshal
+		}
+	}
+	valid, payload := VerifyMVTToken(headerSignature, reqToken, pubKey, os.Getenv("MASTER_PASSWORD"))
+	if !valid {
+		return nil, errors.ErrorInvalidPassword
+	}
+	return payload, nil
 }
