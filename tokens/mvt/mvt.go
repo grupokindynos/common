@@ -4,12 +4,14 @@ import (
 	"bytes"
 	"encoding/base64"
 	"encoding/json"
+	"net/http"
+
+	"io/ioutil"
+	"os"
+
 	"github.com/gin-gonic/gin"
 	"github.com/grupokindynos/common/errors"
 	"github.com/grupokindynos/common/jwt"
-	"io/ioutil"
-	"net/http"
-	"os"
 )
 
 // MVT token refers to Microservice Verification Token
@@ -33,6 +35,7 @@ func CreateMVTToken(method string, reqUrl string, service string, masterPassword
 		}
 	case "POST":
 		tokenBytes, err := createMVTTokenBody(payload, masterPassword)
+
 		if err != nil {
 			return nil, err
 		}
@@ -75,6 +78,7 @@ func VerifyMVTToken(tokenHeader string, tokenBody string, servicePubKey string, 
 	if err != nil {
 		return false, nil
 	}
+
 	if tokenBody != "" {
 		payload, err = jwt.DecryptJWE(masterPassword, tokenBody)
 		if err != nil {
