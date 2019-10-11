@@ -97,6 +97,15 @@ type AddressInformation struct {
 	Street     string `firestore:"street" json:"street"`
 }
 
+type Rate struct {
+	Rate     float64 `firestore:"rate" json:"rate"`
+	FromCoin string  `firestore:"fromcoin" json:"fromcoin"`
+	ToCoin   string  `firestore:"tocoin" json:"tocoin"`
+	Amount   int64   `firestore:"amount" json:"amount"`
+	Fee      int64   `firestore:"fee" json:"fee"`
+	Address  string  `firestore:"address" json:"address"`
+}
+
 type Shift struct {
 	ID         string  `firestore:"id" json:"id"`
 	UID        string  `firestore:"uid" json:"uid"`
@@ -104,7 +113,7 @@ type Shift struct {
 	Timestamp  string  `firestore:"timestamp" json:"timestamp"`
 	Payment    Payment `firestore:"payment" json:"payment"`
 	FeePayment Payment `firestore:"fee_payment" json:"fee_payment"`
-	Conversion Payment `firestore:"conversion" json:"conversion"`
+	Rate       Rate    `firestore:"rate" json:"rate"`
 }
 
 type User struct {
