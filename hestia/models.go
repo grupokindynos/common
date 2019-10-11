@@ -97,13 +97,17 @@ type AddressInformation struct {
 	Street     string `firestore:"street" json:"street"`
 }
 
+//Rate is the model for storing rates in the cache
 type Rate struct {
-	Rate     float64 `firestore:"rate" json:"rate"`
-	FromCoin string  `firestore:"fromcoin" json:"fromcoin"`
-	ToCoin   string  `firestore:"tocoin" json:"tocoin"`
-	Amount   int64   `firestore:"amount" json:"amount"`
-	Fee      int64   `firestore:"fee" json:"fee"`
-	Address  string  `firestore:"address" json:"address"`
+	Rate          float64 `json:"rate"`
+	FromCoin      string  `json:"fromcoin"`
+	ToCoin        string  `json:"tocoin"`
+	FeeCoin       string  `json:"feecoin"`
+	Amount        int64   `json:"amount"`
+	Fee           int64   `json:"fee"`
+	Address       string  `json:"address"`
+	AddressFee    string  `json:"address_fee"`
+	ReceiveAmount int64   `json:"receive"`
 }
 
 type Shift struct {
