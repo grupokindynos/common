@@ -98,26 +98,26 @@ type AddressInformation struct {
 }
 
 //Rate is the model for storing rates in the cache
-type Rate struct {
-	Rate          float64 `json:"rate"`
-	FromCoin      string  `json:"fromcoin"`
-	ToCoin        string  `json:"tocoin"`
-	FeeCoin       string  `json:"feecoin"`
-	Amount        int64   `json:"amount"`
-	Fee           int64   `json:"fee"`
-	Address       string  `json:"address"`
-	AddressFee    string  `json:"address_fee"`
-	ReceiveAmount int64   `json:"receive"`
+type ShiftRate struct {
+	Rate       float64 `json:"rate"`
+	FromCoin   string  `json:"from_coin"`
+	FromAmount int64   `json:"amount"`
+	ToCoin     string  `json:"to_coin"`
+	ToAmount   int64   `json:"to_amount"`
+	ToAddress  string  `json:"to_address"`
+	FeeCoin    string  `json:"fee_coin"`
+	FeeAmount  int64   `json:"fee_amount"`
+	FeeAddress string  `json:"fee_address"`
 }
 
 type Shift struct {
-	ID         string  `firestore:"id" json:"id"`
-	UID        string  `firestore:"uid" json:"uid"`
-	Status     string  `firestore:"status" json:"status"`
-	Timestamp  string  `firestore:"timestamp" json:"timestamp"`
-	Payment    Payment `firestore:"payment" json:"payment"`
-	FeePayment Payment `firestore:"fee_payment" json:"fee_payment"`
-	Rate       Rate    `firestore:"rate" json:"rate"`
+	ID         string    `firestore:"id" json:"id"`
+	UID        string    `firestore:"uid" json:"uid"`
+	Status     string    `firestore:"status" json:"status"`
+	Timestamp  string    `firestore:"timestamp" json:"timestamp"`
+	Payment    Payment   `firestore:"payment" json:"payment"`
+	FeePayment Payment   `firestore:"fee_payment" json:"fee_payment"`
+	Rate       ShiftRate `firestore:"shift_rate" json:"shift_rate"`
 }
 
 type User struct {
