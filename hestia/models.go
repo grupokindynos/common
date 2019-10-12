@@ -146,7 +146,7 @@ type Voucher struct {
 	BitcouPaymentData Payment `firestore:"bitcou_payment_data" json:"bitcou_payment_data"`
 	RedeemCode        string  `firestore:"redeem_code" json:"redeem_code"`
 	Status            string  `firestore:"status" json:"status"`
-	Timestamp         string  `firestore:"timestamp" json:"timestamp"`
+	Timestamp         int64   `firestore:"timestamp" json:"timestamp"`
 }
 
 type Deposit struct {
