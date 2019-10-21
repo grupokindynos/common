@@ -2,7 +2,6 @@ package hestia
 
 type AdrestiaOrder struct {
 	ID              string  `firestore:"id" json:"id"`
-	UID             string  `firestore:"uid" json:"uid"`
 	Exchange        string  `firestore:"exchange" json:"exchange"`
 	Time            int64   `firestore:"time" json:"time"`
 	Status          string  `firestore:"status" json:"status"`
@@ -11,6 +10,11 @@ type AdrestiaOrder struct {
 	ToCoin          string  `firestore:"to_coin" json:"to_coin"`
 	WithdrawAddress string  `firestore:"withdraw_address" json:"withdraw_address"`
 	Message         string  `firestore:"message" json:"message"`
+}
+
+type AdrestiaOrderUpdate struct {
+	ID string `firestore:"id" json:"id"`
+	Status string `firestore:"status" json:"status"`
 }
 
 type AdrestiaStatus int
