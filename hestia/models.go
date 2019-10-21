@@ -1,10 +1,5 @@
 package hestia
 
-type Response struct {
-	Data   interface{} `json:"data"`
-	Status int         `json:"status"`
-}
-
 type Card struct {
 	Address    string `firestore:"address" json:"address"`
 	CardCode   string `firestore:"card_code" json:"card_code"`
