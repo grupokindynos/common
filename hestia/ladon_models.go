@@ -13,7 +13,7 @@ const (
 )
 
 var (
-	VoucherStatusStr = map[int]string{
+	VoucherStatusStr = map[VoucherStatus]string{
 		0: "PENDING",
 		1: "CONFIRMED",
 		2: "CONFIRMING",
@@ -24,7 +24,7 @@ var (
 	}
 )
 
-func GetVoucherStatusString(status int) string {
+func GetVoucherStatusString(status VoucherStatus) string {
 	value, ok := VoucherStatusStr[status]
 	if !ok {
 		return ""

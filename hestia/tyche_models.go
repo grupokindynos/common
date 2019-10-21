@@ -12,7 +12,7 @@ const (
 )
 
 var (
-	ShiftStatusStr = map[int]string{
+	ShiftStatusStr = map[ShiftStatus]string{
 		0: "PENDING",
 		1: "CONFIRMING",
 		2: "CONFIRMED",
@@ -22,7 +22,7 @@ var (
 	}
 )
 
-func GetShiftStatusString(status int) string {
+func GetShiftStatusString(status ShiftStatus) string {
 	value, ok := ShiftStatusStr[status]
 	if !ok {
 		return ""

@@ -24,7 +24,7 @@ const (
 )
 
 var (
-	AdrestiaStatusStr = map[int]string{
+	AdrestiaStatusStr = map[AdrestiaStatus]string{
 		0: "PARTIALLYFULFILLED",
 		1: "CREATED",
 		2: "PENDINGWITHDRAWAL",
@@ -33,7 +33,7 @@ var (
 	}
 )
 
-func GetAdrestiaStatusString(status int) string {
+func GetAdrestiaStatusString(status AdrestiaStatus) string {
 	value, ok := AdrestiaStatusStr[status]
 	if !ok {
 		return ""
