@@ -16,8 +16,8 @@ var HttpClient = http.Client{
 }
 
 // GetCoinRates is a function to return obol simple rates for a coin
-func GetCoinRates(coin string) ([]Rate, error) {
-	res, err := HttpClient.Get(ProductionURL + "/simple/" + coin)
+func GetCoinRates(obolURL string, coin string) ([]Rate, error) {
+	res, err := HttpClient.Get(obolURL + "/simple/" + coin)
 	if err != nil {
 		return []Rate{}, err
 	}
@@ -43,8 +43,8 @@ func GetCoinRates(coin string) ([]Rate, error) {
 }
 
 // GetCoin2CoinRates is a function to return obol complex rates between 2 coins
-func GetCoin2CoinRates(fromcoin string, tocoin string) (float64, error) {
-	res, err := HttpClient.Get(ProductionURL + "/complex/" + fromcoin + "/" + tocoin)
+func GetCoin2CoinRates(obolURL string, fromcoin string, tocoin string) (float64, error) {
+	res, err := HttpClient.Get(obolURL + "/complex/" + fromcoin + "/" + tocoin)
 	if err != nil {
 		return 0, err
 	}
@@ -70,8 +70,8 @@ func GetCoin2CoinRates(fromcoin string, tocoin string) (float64, error) {
 }
 
 // GetCoin2CoinRatesWithAmmount is a function to return obol complex rates between 2 coins with a hardcoded amount
-func GetCoin2CoinRatesWithAmmount(fromcoin string, tocoin string, amount string) (float64, error) {
-	res, err := HttpClient.Get(ProductionURL + "/complex/" + fromcoin + "/" + tocoin + "?amount=" + amount)
+func GetCoin2CoinRatesWithAmmount(obolURL string, fromcoin string, tocoin string, amount string) (float64, error) {
+	res, err := HttpClient.Get(obolURL + "/complex/" + fromcoin + "/" + tocoin + "?amount=" + amount)
 	if err != nil {
 		return 0, err
 	}

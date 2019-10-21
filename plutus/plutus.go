@@ -12,6 +12,9 @@ import (
 	"github.com/grupokindynos/common/tokens/mvt"
 )
 
+// ProductionURL is the current plutus production url
+var ProductionURL = "https://plutus.polispay.com"
+
 // HTTPClient a usable client with hardcoded timeout
 var HTTPClient = http.Client{
 	Timeout: time.Second * 15,

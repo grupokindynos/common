@@ -10,6 +10,9 @@ import (
 	"github.com/grupokindynos/common/tokens/mvt"
 )
 
+// ProductionURL is the current hestia production url
+var ProductionURL = "https://hestia.polispay.com"
+
 // HttpClient a usable client with hardcoded timeout
 var HttpClient = http.Client{
 	Timeout: time.Second * 5,
