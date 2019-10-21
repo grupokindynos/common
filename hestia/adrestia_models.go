@@ -3,6 +3,7 @@ package hestia
 import "errors"
 
 type AdrestiaOrder struct {
+	ID              string  `firestore:"id" json:"id"`
 	UID             string  `firestore:"uid" json:"uid"`
 	Exchange        string  `firestore:"exchange" json:"exchange"`
 	Time            int64   `firestore:"time" json:"time"`
