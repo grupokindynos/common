@@ -156,6 +156,11 @@ type Deposit struct {
 	Timestamp    string  `firestore:"timestamp" json:"timestamp"`
 }
 
+type Response struct {
+	Data   interface{} `json:"data"`
+	Status int         `json:"status"`
+}
+
 type BodyReq struct {
 	Payload string `json:"payload"`
 }
