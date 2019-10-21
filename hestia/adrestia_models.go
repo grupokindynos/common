@@ -1,7 +1,5 @@
 package hestia
 
-import "errors"
-
 type AdrestiaOrder struct {
 	ID              string  `firestore:"id" json:"id"`
 	UID             string  `firestore:"uid" json:"uid"`
@@ -35,10 +33,10 @@ var (
 	}
 )
 
-func GetAdrestiaStatusString(status int) (string, error) {
+func GetAdrestiaStatusString(status int) string {
 	value, ok := AdrestiaStatusStr[status]
 	if !ok {
-		return "", errors.New("unknown status")
+		return ""
 	}
-	return value, nil
+	return value
 }

@@ -1,7 +1,5 @@
 package hestia
 
-import "errors"
-
 type VoucherStatus int
 
 const (
@@ -26,10 +24,10 @@ var (
 	}
 )
 
-func GetVoucherStatusString(status int) (string, error) {
+func GetVoucherStatusString(status int) string {
 	value, ok := VoucherStatusStr[status]
 	if !ok {
-		return "", errors.New("unknown status")
+		return ""
 	}
-	return value, nil
+	return value
 }

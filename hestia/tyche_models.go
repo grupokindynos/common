@@ -1,7 +1,5 @@
 package hestia
 
-import "errors"
-
 type ShiftStatus int
 
 const (
@@ -24,10 +22,10 @@ var (
 	}
 )
 
-func GetShiftStatusString(status int) (string, error) {
+func GetShiftStatusString(status int) string {
 	value, ok := ShiftStatusStr[status]
 	if !ok {
-		return "", errors.New("unknown status")
+		return ""
 	}
-	return value, nil
+	return value
 }
