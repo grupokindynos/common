@@ -19,6 +19,7 @@ var HttpClient = http.Client{
 func GetCoinRates(coin string) ([]Rate, error) {
 	res, err := HttpClient.Get(ProductionURL + "/simple/" + coin)
 	if err != nil {
+		return []Rate{}, err
 	}
 	defer func() {
 		_ = res.Body.Close()
@@ -45,6 +46,7 @@ func GetCoinRates(coin string) ([]Rate, error) {
 func GetCoin2CoinRates(fromcoin string, tocoin string) (float64, error) {
 	res, err := HttpClient.Get(ProductionURL + "/complex/" + fromcoin + "/" + tocoin)
 	if err != nil {
+		return 0, err
 	}
 	defer func() {
 		_ = res.Body.Close()
@@ -71,6 +73,7 @@ func GetCoin2CoinRates(fromcoin string, tocoin string) (float64, error) {
 func GetCoin2CoinRatesWithAmmount(fromcoin string, tocoin string, amount string) (float64, error) {
 	res, err := HttpClient.Get(ProductionURL + "/complex/" + fromcoin + "/" + tocoin + "?amount=" + amount)
 	if err != nil {
+		return 0, err
 	}
 	defer func() {
 		_ = res.Body.Close()
