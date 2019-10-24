@@ -106,13 +106,13 @@ type ShiftRate struct {
 }
 
 type Shift struct {
-	ID         string    `firestore:"id" json:"id"`
-	UID        string    `firestore:"uid" json:"uid"`
-	Status     string    `firestore:"status" json:"status"`
-	Timestamp  string    `firestore:"timestamp" json:"timestamp"`
-	Payment    Payment   `firestore:"payment" json:"payment"`
-	FeePayment Payment   `firestore:"fee_payment" json:"fee_payment"`
-	Rate       ShiftRate `firestore:"shift_rate" json:"shift_rate"`
+	ID         string      `firestore:"id" json:"id"`
+	UID        string      `firestore:"uid" json:"uid"`
+	Status     ShiftStatus `firestore:"status" json:"status"`
+	Timestamp  string      `firestore:"timestamp" json:"timestamp"`
+	Payment    Payment     `firestore:"payment" json:"payment"`
+	FeePayment Payment     `firestore:"fee_payment" json:"fee_payment"`
+	Rate       ShiftRate   `firestore:"shift_rate" json:"shift_rate"`
 }
 
 type User struct {
@@ -130,19 +130,19 @@ type User struct {
 type KYCInformation struct{}
 
 type Voucher struct {
-	ID                string  `firestore:"id" json:"id"`
-	UID               string  `firestore:"uid" json:"uid"`
-	VoucherID         int     `firestore:"voucher_id" json:"voucher_id"`
-	VariantID         string  `firestore:"variant_id" json:"variant_id"`
-	FiatAmount        int32   `firestore:"fiat_amount" json:"fiat_amount"`
-	Name              string  `firestore:"name" json:"name"`
-	PaymentData       Payment `firestore:"payment_data" json:"payment_data"`
-	FeePayment        Payment `firestore:"fee_payment" json:"fee_payment"`
-	BitcouPaymentData Payment `firestore:"bitcou_payment_data" json:"bitcou_payment_data"`
-	RedeemCode        string  `firestore:"redeem_code" json:"redeem_code"`
-	Status            string  `firestore:"status" json:"status"`
-	Timestamp         int64   `firestore:"timestamp" json:"timestamp"`
-	RedeemTimestamp   int64   `firestore:"redeem_timestamp" json:"redeem_timestamp"`
+	ID                string        `firestore:"id" json:"id"`
+	UID               string        `firestore:"uid" json:"uid"`
+	VoucherID         int           `firestore:"voucher_id" json:"voucher_id"`
+	VariantID         string        `firestore:"variant_id" json:"variant_id"`
+	FiatAmount        int32         `firestore:"fiat_amount" json:"fiat_amount"`
+	Name              string        `firestore:"name" json:"name"`
+	PaymentData       Payment       `firestore:"payment_data" json:"payment_data"`
+	FeePayment        Payment       `firestore:"fee_payment" json:"fee_payment"`
+	BitcouPaymentData Payment       `firestore:"bitcou_payment_data" json:"bitcou_payment_data"`
+	RedeemCode        string        `firestore:"redeem_code" json:"redeem_code"`
+	Status            VoucherStatus `firestore:"status" json:"status"`
+	Timestamp         int64         `firestore:"timestamp" json:"timestamp"`
+	RedeemTimestamp   int64         `firestore:"redeem_timestamp" json:"redeem_timestamp"`
 }
 
 type Deposit struct {
