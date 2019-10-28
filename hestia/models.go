@@ -113,6 +113,7 @@ type Shift struct {
 	Payment    Payment     `firestore:"payment" json:"payment"`
 	FeePayment Payment     `firestore:"fee_payment" json:"fee_payment"`
 	Rate       ShiftRate   `firestore:"shift_rate" json:"shift_rate"`
+	PayAddress string      `firestore:"pay_address" json:"pay_address"`
 }
 
 type User struct {
