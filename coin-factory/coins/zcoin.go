@@ -23,4 +23,5 @@ var Zcoin = Coin{
 		DecodeRawTransaction:       "decoderawtransaction",
 		GetRawTransactionVerbosity: true,
 	},
+	BlockExplorer: "https://xzc.polispay.com",
 }

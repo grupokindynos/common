@@ -23,4 +23,5 @@ var DeepOnion = Coin{
 		DecodeRawTransaction:       "decoderawtransaction",
 		GetRawTransactionVerbosity: true,
 	},
+	BlockExplorer: "https://onion.polispay.com",
 }

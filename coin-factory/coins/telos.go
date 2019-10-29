@@ -23,4 +23,5 @@ var Telos = Coin{
 		DecodeRawTransaction:       "decoderawtransaction",
 		GetRawTransactionVerbosity: true,
 	},
+	BlockExplorer: "https://telos.polispay.com",
 }

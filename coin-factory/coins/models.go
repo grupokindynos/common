@@ -9,6 +9,7 @@ type Coin struct {
 	RpcMethods     RPCMethods
 	Keys           Keys
 	ColdAddress    string
+	BlockExplorer  string
 }
 
 // Keys is the struct to wrap all credentials to hot-wallets

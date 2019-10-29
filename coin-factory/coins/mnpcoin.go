@@ -23,4 +23,5 @@ var MNPCoin = Coin{
 		DecodeRawTransaction:       "decoderawtransaction",
 		GetRawTransactionVerbosity: true,
 	},
+	BlockExplorer: "https://mnp.polispay.com",
 }

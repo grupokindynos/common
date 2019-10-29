@@ -23,4 +23,5 @@ var Polis = Coin{
 		DecodeRawTransaction:       "decoderawtransaction",
 		GetRawTransactionVerbosity: true,
 	},
+	BlockExplorer: "https://blockbook.polispay.com",
 }

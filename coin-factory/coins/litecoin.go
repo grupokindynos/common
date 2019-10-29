@@ -23,4 +23,5 @@ var Litecoin = Coin{
 		DecodeRawTransaction:       "decoderawtransaction",
 		GetRawTransactionVerbosity: "1",
 	},
+	BlockExplorer: "https://ltc2.trezor.io",
 }
