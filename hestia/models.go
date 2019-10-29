@@ -108,7 +108,7 @@ type ShiftRate struct {
 type Shift struct {
 	ID         string      `firestore:"id" json:"id"`
 	UID        string      `firestore:"uid" json:"uid"`
-	Status     ShiftStatus `firestore:"status" json:"status"`
+	Status     string `firestore:"status" json:"status"`
 	Timestamp  string      `firestore:"timestamp" json:"timestamp"`
 	Payment    Payment     `firestore:"payment" json:"payment"`
 	FeePayment Payment     `firestore:"fee_payment" json:"fee_payment"`
@@ -141,7 +141,7 @@ type Voucher struct {
 	FeePayment        Payment       `firestore:"fee_payment" json:"fee_payment"`
 	BitcouPaymentData Payment       `firestore:"bitcou_payment_data" json:"bitcou_payment_data"`
 	RedeemCode        string        `firestore:"redeem_code" json:"redeem_code"`
-	Status            VoucherStatus `firestore:"status" json:"status"`
+	Status            string `firestore:"status" json:"status"`
 	Timestamp         int64         `firestore:"timestamp" json:"timestamp"`
 	RedeemTimestamp   int64         `firestore:"redeem_timestamp" json:"redeem_timestamp"`
 }
