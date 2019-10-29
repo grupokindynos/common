@@ -46,6 +46,7 @@ func GetCoin(tag string) (*coins.Coin, error) {
 		RpcMethods:     coin.RpcMethods,
 		ColdAddress:    os.Getenv(strings.ToUpper(tag) + "_COLD_ADDRESS"),
 		Keys:           coinKeys,
+		BlockExplorer:  coin.BlockExplorer,
 	}
 	return coin, nil
 }
