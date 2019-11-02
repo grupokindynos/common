@@ -10,6 +10,9 @@ type Coin struct {
 	Keys           Keys
 	ColdAddress    string
 	BlockExplorer  string
+	Token          bool
+	TokenNetwork   string
+	Contract       string
 }
 
 // Keys is the struct to wrap all credentials to hot-wallets

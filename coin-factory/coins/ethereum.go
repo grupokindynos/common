@@ -24,5 +24,6 @@ var Ethereum = Coin{
 		DecodeRawTransaction:       "",
 		GetRawTransactionVerbosity: "",
 	},
+	Token:         false,
 	BlockExplorer: "https://eth1.trezor.io",
 }

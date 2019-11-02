@@ -23,5 +23,6 @@ var Digibyte = Coin{
 		DecodeRawTransaction:       "decoderawtransaction",
 		GetRawTransactionVerbosity: "1",
 	},
+	Token:         false,
 	BlockExplorer: "https://dgb2.trezor.io",
 }

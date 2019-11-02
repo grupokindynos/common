@@ -23,5 +23,6 @@ var Dash = Coin{
 		DecodeRawTransaction:       "decoderawtransaction",
 		GetRawTransactionVerbosity: true,
 	},
+	Token:         false,
 	BlockExplorer: "https://dash2.trezor.io",
 }
