@@ -22,10 +22,9 @@ var Coins = map[string]*coins.Coin{
 	"XSG":   &coins.Snowgem,
 	"TELOS": &coins.Telos,
 	"ETH":   &coins.Ethereum,
-	"GUSD":  &coins.Geminidollar,
 	"TUSD":  &coins.TrueUSD,
 	"USDT":  &coins.Tether,
-	"DAI":   &coins.Dai,
+	"USDC":  &coins.USDCoin,
 }
 
 // GetCoin is the safe way to check if a coin exists and retrieve the coin data
