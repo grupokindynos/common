@@ -3,7 +3,7 @@ package coins
 // Ethereum coinfactory information
 var Ethereum = Coin{
 	Tag:  "ETH",
-	Name: "etherem",
+	Name: "ethereum",
 	Rates: RatesSource{
 		Exchange:         "binance",
 		FallBackExchange: "",
