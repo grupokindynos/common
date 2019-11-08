@@ -18,7 +18,6 @@ var Coins = map[string]*coins.Coin{
 	"GRS":   &coins.Groestlcoin,
 	"COLX":  &coins.Colossus,
 	"ONION": &coins.DeepOnion,
-	"MNP":   &coins.MNPCoin,
 	"XSG":   &coins.Snowgem,
 	"TELOS": &coins.Telos,
 	"ETH":   &coins.Ethereum,
