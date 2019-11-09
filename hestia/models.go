@@ -46,8 +46,8 @@ type Payment struct {
 }
 
 type Properties struct {
-	FeePercentage float64 `firestore:"fee_percentage" json:"fee_percentage"`
-	Available     bool    `firestore:"available" json:"available"`
+	FeePercentage int  `firestore:"fee_percentage" json:"fee_percentage"`
+	Available     bool `firestore:"available" json:"available"`
 }
 
 type Config struct {
