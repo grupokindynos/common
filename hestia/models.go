@@ -17,13 +17,17 @@ type Pin struct {
 }
 
 type Coin struct {
-	Ticker         string        `firestore:"ticker" json:"ticker"`
-	Shift          Properties    `firestore:"shift" json:"shift"`
-	Deposits       Properties    `firestore:"deposits" json:"deposits"`
-	Vouchers       Properties    `firestore:"vouchers" json:"vouchers"`
-	Orders         Properties    `firestore:"orders" json:"orders"`
-	Balances       BalanceLimits `firestore:"balances" json:"balances"`
-	CurrentBalance float64       `firestore:"current_balance" json:"current_balance"`
+	Ticker   string        `firestore:"ticker" json:"ticker"`
+	Shift    Properties    `firestore:"shift" json:"shift"`
+	Deposits Properties    `firestore:"deposits" json:"deposits"`
+	Vouchers Properties    `firestore:"vouchers" json:"vouchers"`
+	Orders   Properties    `firestore:"orders" json:"orders"`
+	Balances BalanceLimits `firestore:"balances" json:"balances"`
+}
+
+type CoinBalances struct {
+	Ticker  string  `firestore:"ticker" json:"ticker"`
+	Balance float64 `firestore:"balance" json:"balance"`
 }
 
 type BalanceLimits struct {
