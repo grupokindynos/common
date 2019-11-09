@@ -17,12 +17,13 @@ type Pin struct {
 }
 
 type Coin struct {
-	Ticker            string   `firestore:"ticker" json:"ticker"`
-	ShiftAvailable    bool     `firestore:"shift_available" json:"shift_available"`
-	DepositAvailable  bool     `firestore:"deposit_available" json:"deposit_available"`
-	VouchersAvailable bool     `firestore:"vouchers_available" json:"vouchers_available"`
-	OrdersAvailable   bool     `firestore:"orders_available" json:"orders_available"`
-	Balances          Balances `firestore:"balances" json:"balances"`
+	Ticker         string     `firestore:"ticker" json:"ticker"`
+	Shift          Properties `firestore:"shift" json:"shift"`
+	Deposits       Properties `firestore:"deposits" json:"deposits"`
+	Vouchers       Properties `firestore:"vouchers" json:"vouchers"`
+	Orders         Properties `firestore:"orders" json:"orders"`
+	Balances       Balances   `firestore:"balances" json:"balances"`
+	CurrentBalance float64    `firestore:"current_balance" json:"current_balance"`
 }
 
 type Balances struct {
@@ -45,10 +46,10 @@ type Properties struct {
 }
 
 type Config struct {
-	Shift    Properties `firestore:"shift" json:"shift"`
-	Deposits Properties `firestore:"deposits" json:"deposits"`
-	Vouchers Properties `firestore:"vouchers" json:"vouchers"`
-	Orders   Properties `firestore:"orders" json:"orders"`
+	Shift    bool `firestore:"shift" json:"shift"`
+	Deposits bool `firestore:"deposits" json:"deposits"`
+	Vouchers bool `firestore:"vouchers" json:"vouchers"`
+	Orders   bool `firestore:"orders" json:"orders"`
 }
 
 type Order struct {
@@ -92,7 +93,6 @@ type AddressInformation struct {
 	Street     string `firestore:"street" json:"street"`
 }
 
-//Rate is the model for storing rates in the cache
 type ShiftRate struct {
 	Rate       float64 `json:"rate"`
 	FromCoin   string  `json:"from_coin"`
