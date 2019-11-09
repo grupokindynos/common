@@ -28,6 +28,7 @@ type Coin struct {
 type CoinBalances struct {
 	Ticker  string  `firestore:"ticker" json:"ticker"`
 	Balance float64 `firestore:"balance" json:"balance"`
+	Status  string  `firestore:"status" json:"status"`
 }
 
 type BalanceLimits struct {
