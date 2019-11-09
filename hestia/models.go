@@ -22,11 +22,10 @@ type Coin struct {
 	Deposits       Properties `firestore:"deposits" json:"deposits"`
 	Vouchers       Properties `firestore:"vouchers" json:"vouchers"`
 	Orders         Properties `firestore:"orders" json:"orders"`
-	Balances       Balances   `firestore:"balances" json:"balances"`
-	CurrentBalance float64    `firestore:"current_balance" json:"current_balance"`
+	Balances       BalanceLimits   `firestore:"balances" json:"balances"`
 }
 
-type Balances struct {
+type BalanceLimits struct {
 	HotWallet float64 `firestore:"hot_wallet" json:"hot_wallet"`
 	Exchanges float64 `firestore:"exchanges" json:"exchanges"`
 }
