@@ -17,12 +17,12 @@ type Pin struct {
 }
 
 type Coin struct {
-	Ticker         string     `firestore:"ticker" json:"ticker"`
-	Shift          Properties `firestore:"shift" json:"shift"`
-	Deposits       Properties `firestore:"deposits" json:"deposits"`
-	Vouchers       Properties `firestore:"vouchers" json:"vouchers"`
-	Orders         Properties `firestore:"orders" json:"orders"`
-	Balances       BalanceLimits   `firestore:"balances" json:"balances"`
+	Ticker   string        `firestore:"ticker" json:"ticker"`
+	Shift    Properties    `firestore:"shift" json:"shift"`
+	Deposits Properties    `firestore:"deposits" json:"deposits"`
+	Vouchers Properties    `firestore:"vouchers" json:"vouchers"`
+	Orders   Properties    `firestore:"orders" json:"orders"`
+	Balances BalanceLimits `firestore:"balances" json:"balances"`
 }
 
 type BalanceLimits struct {
@@ -45,10 +45,14 @@ type Properties struct {
 }
 
 type Config struct {
-	Shift    bool `firestore:"shift" json:"shift"`
-	Deposits bool `firestore:"deposits" json:"deposits"`
-	Vouchers bool `firestore:"vouchers" json:"vouchers"`
-	Orders   bool `firestore:"orders" json:"orders"`
+	Shift    Available `firestore:"shift" json:"shift"`
+	Deposits Available `firestore:"deposits" json:"deposits"`
+	Vouchers Available `firestore:"vouchers" json:"vouchers"`
+	Orders   Available `firestore:"orders" json:"orders"`
+}
+
+type Available struct {
+	Available bool `firestore:"available" json:"available"`
 }
 
 type Order struct {
