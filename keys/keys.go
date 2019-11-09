@@ -32,8 +32,8 @@ type EnvironmentVars struct {
 	KindynosChannel    string
 	HerokuUsername     string
 	HerokuPassword     string
-	AuthUsername       string
-	AuthPassword       string
+	PlutusAuthUsername string
+	PlutusAuthPassword string
 	HestiaAuthUsername string
 	HestiaAuthPassword string
 	GinMode            string
@@ -72,8 +72,8 @@ func (ev *EnvironmentVars) ToString() string {
 	str := "" +
 		"KINDYNOS_BOT_TOKEN=" + ev.KindynosBotToken + "\n" +
 		"KINDYNOS_NOTIFICATION_CHANNEL=" + ev.KindynosChannel + "\n" +
-		"PLUTUS_AUTH_USERNAME=" + ev.AuthUsername + "\n" +
-		"PLUTUS_AUTH_PASSWORD=" + ev.AuthPassword + "\n" +
+		"PLUTUS_AUTH_USERNAME=" + ev.PlutusAuthUsername + "\n" +
+		"PLUTUS_AUTH_PASSWORD=" + ev.PlutusAuthPassword + "\n" +
 		"HESTIA_AUTH_USERNAME=" + ev.HestiaAuthUsername + "\n" +
 		"HESTIA_AUTH_PASSWORD=" + ev.HestiaAuthPassword + "\n" +
 		"KEY_PASSWORD=" + ev.KeyPassword + "\n" +
@@ -220,8 +220,8 @@ func main() {
 	log.Println("Updating heroku deployment variables...")
 	// Create environment map
 	envMap := map[string]*string{
-		"PLUTUS_AUTH_PASSWORD": &NewVars.AuthPassword,
-		"PLUTUS_AUTH_USERNAME": &NewVars.AuthUsername,
+		"PLUTUS_AUTH_PASSWORD": &NewVars.PlutusAuthPassword,
+		"PLUTUS_AUTH_USERNAME": &NewVars.PlutusAuthUsername,
 		"PLUTUS_PUBLIC_KEY":    &NewVars.PlutusPubKey,
 		"PLUTUS_PRIVATE_KEY":   &NewVars.PlutusPrivKey,
 		"KEY_PASSWORD":         &NewVars.KeyPassword,
@@ -258,8 +258,8 @@ func main() {
 	// TYCHE
 	log.Println("Updating Plutus access to Tyche")
 	tycheAccess := map[string]*string{
-		"PLUTUS_AUTH_USERNAME": &NewVars.AuthUsername,
-		"PLUTUS_AUTH_PASSWORD": &NewVars.AuthPassword,
+		"PLUTUS_AUTH_USERNAME": &NewVars.PlutusAuthUsername,
+		"PLUTUS_AUTH_PASSWORD": &NewVars.PlutusAuthPassword,
 		"PLUTUS_PUBLIC_KEY":    &NewVars.PlutusPubKey,
 		"HESTIA_AUTH_USERNAME": &NewVars.HestiaAuthUsername,
 		"HESTIA_AUTH_PASSWORD": &NewVars.HestiaAuthPassword,
@@ -276,8 +276,8 @@ func main() {
 	// ADRESTIA
 	log.Println("Updating Plutus access to Adrestia")
 	addrestiaAccess := map[string]*string{
-		"PLUTUS_AUTH_USERNAME": &NewVars.AuthUsername,
-		"PLUTUS_AUTH_PASSWORD": &NewVars.AuthPassword,
+		"PLUTUS_AUTH_USERNAME": &NewVars.PlutusAuthUsername,
+		"PLUTUS_AUTH_PASSWORD": &NewVars.PlutusAuthPassword,
 		"PLUTUS_PUBLIC_KEY":    &NewVars.PlutusPubKey,
 		"HESTIA_AUTH_USERNAME": &NewVars.HestiaAuthUsername,
 		"HESTIA_AUTH_PASSWORD": &NewVars.HestiaAuthPassword,
@@ -294,8 +294,8 @@ func main() {
 	// LADON
 	log.Println("Updating Plutus access to Ladon")
 	ladonAccess := map[string]*string{
-		"PLUTUS_AUTH_USERNAME": &NewVars.AuthUsername,
-		"PLUTUS_AUTH_PASSWORD": &NewVars.AuthPassword,
+		"PLUTUS_AUTH_USERNAME": &NewVars.PlutusAuthUsername,
+		"PLUTUS_AUTH_PASSWORD": &NewVars.PlutusAuthPassword,
 		"PLUTUS_PUBLIC_KEY":    &NewVars.PlutusPubKey,
 		"HESTIA_AUTH_USERNAME": &NewVars.HestiaAuthUsername,
 		"HESTIA_AUTH_PASSWORD": &NewVars.HestiaAuthPassword,
@@ -314,6 +314,8 @@ func main() {
 	hestiaAccess := map[string]*string{
 		"HESTIA_AUTH_USERNAME": &NewVars.HestiaAuthUsername,
 		"HESTIA_AUTH_PASSWORD": &NewVars.HestiaAuthPassword,
+		"PLUTUS_AUTH_USERNAME": &NewVars.PlutusAuthUsername,
+		"PLUTUS_AUTH_PASSWORD": &NewVars.PlutusAuthPassword,
 		"HESTIA_PUBLIC_KEY":    &NewVars.HestiaPubKey,
 		"HESTIA_PRIVATE_KEY":   &NewVars.HestiaPrivKey,
 		"ADRESTIA_PUBLIC_KEY":  &NewVars.AdrestiaPubKey,
@@ -370,15 +372,15 @@ func updateRemoteKey(coinVars CoinVar, newCoinPubKey string) error {
 
 func getOldVars() (EnvironmentVars, error) {
 	Vars := EnvironmentVars{
-		HerokuUsername:   os.Getenv("HEROKU_USERNAME"),
-		HerokuPassword:   os.Getenv("HEROKU_PASSWORD"),
-		KindynosBotToken: os.Getenv("KINDYNOS_BOT_TOKEN"),
-		KindynosChannel:  os.Getenv("KINDYNOS_NOTIFICATION_CHANNEL"),
-		AuthUsername:     os.Getenv("AUTH_USERNAME"),
-		AuthPassword:     os.Getenv("AUTH_PASSWORD"),
-		GinMode:          os.Getenv("GIN_MODE"),
-		KeyPassword:      os.Getenv("KEY_PASSWORD"),
-		CoinsVars:        nil,
+		HerokuUsername:     os.Getenv("HEROKU_USERNAME"),
+		HerokuPassword:     os.Getenv("HEROKU_PASSWORD"),
+		KindynosBotToken:   os.Getenv("KINDYNOS_BOT_TOKEN"),
+		KindynosChannel:    os.Getenv("KINDYNOS_NOTIFICATION_CHANNEL"),
+		PlutusAuthUsername: os.Getenv("PLUTUS_AUTH_USERNAME"),
+		PlutusAuthPassword: os.Getenv("PLUTUS_AUTH_PASSWORD"),
+		GinMode:            os.Getenv("GIN_MODE"),
+		KeyPassword:        os.Getenv("KEY_PASSWORD"),
+		CoinsVars:          nil,
 	}
 	for key := range coinfactory.Coins {
 		coinVars := CoinVar{
@@ -449,8 +451,8 @@ func genNewVars() (EnvironmentVars, error) {
 	Vars := EnvironmentVars{
 		HerokuUsername:     os.Getenv("HEROKU_USERNAME"),
 		HerokuPassword:     os.Getenv("HEROKU_PASSWORD"),
-		AuthUsername:       newAuthUsername,
-		AuthPassword:       newAuthPassword,
+		PlutusAuthUsername: newAuthUsername,
+		PlutusAuthPassword: newAuthPassword,
 		MasterPassword:     newMasterPassword,
 		HestiaAuthUsername: newHestiaAuthUsername,
 		HestiaAuthPassword: newHestiaAuthPassword,
