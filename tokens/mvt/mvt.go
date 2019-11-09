@@ -112,6 +112,8 @@ func VerifyRequest(c *gin.Context) (payload []byte, err error) {
 		pubKey = os.Getenv("TYCHE_PUBLIC_KEY")
 	case "adrestia":
 		pubKey = os.Getenv("ADRESTIA_PUBLIC_KEY")
+	case "hestia":
+		pubKey = os.Getenv("HESTIA_PUBLIC_KEY")
 	default:
 		return nil, errors.ErrorWrongMessage
 	}
