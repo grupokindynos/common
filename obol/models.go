@@ -13,6 +13,6 @@ type Response struct {
 
 // CoinToCoinWithAmountResponse is the response of a CoinToCoinWithAmount result
 type CoinToCoinWithAmountResponse struct {
-	Rates        map[float64]float64 `json:"rates"`
+	Rates        [][]float64 `json:"rates"`
 	AveragePrice float64             `json:"average_price"`
 }
