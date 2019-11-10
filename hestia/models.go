@@ -102,27 +102,16 @@ type AddressInformation struct {
 	Street     string `firestore:"street" json:"street"`
 }
 
-type ShiftRate struct {
-	Rate       float64 `json:"rate"`
-	FromCoin   string  `json:"from_coin"`
-	FromAmount int64   `json:"amount"`
-	ToCoin     string  `json:"to_coin"`
-	ToAmount   int64   `json:"to_amount"`
-	ToAddress  string  `json:"to_address"`
-	FeeCoin    string  `json:"fee_coin"`
-	FeeAmount  int64   `json:"fee_amount"`
-	FeeAddress string  `json:"fee_address"`
-}
-
 type Shift struct {
-	ID         string    `firestore:"id" json:"id"`
-	UID        string    `firestore:"uid" json:"uid"`
-	Status     string    `firestore:"status" json:"status"`
-	Timestamp  string    `firestore:"timestamp" json:"timestamp"`
-	Payment    Payment   `firestore:"payment" json:"payment"`
-	FeePayment Payment   `firestore:"fee_payment" json:"fee_payment"`
-	Rate       ShiftRate `firestore:"shift_rate" json:"shift_rate"`
-	PayAddress string    `firestore:"pay_address" json:"pay_address"`
+	ID         string  `firestore:"id" json:"id"`
+	UID        string  `firestore:"uid" json:"uid"`
+	Status     string  `firestore:"status" json:"status"`
+	Timestamp  int64   `firestore:"timestamp" json:"timestamp"`
+	Payment    Payment `firestore:"payment" json:"payment"`
+	FeePayment Payment `firestore:"fee_payment" json:"fee_payment"`
+	ToCoin     string  `firestore:"to_coin" json:"to_coin"`
+	ToAmount   int64   `firestore:"to_amount" json:"to_amount"`
+	ToAddress  string  `firestore:"pay_address" json:"pay_address"`
 }
 
 type User struct {
