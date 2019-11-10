@@ -69,11 +69,11 @@ func GetCoin2CoinRates(obolURL string, fromcoin string, tocoin string) (float64,
 	return rate, nil
 }
 
-// GetCoin2CoinRatesWithAmmount is a function to return obol complex rates between 2 coins with a hardcoded amount
-func GetCoin2CoinRatesWithAmmount(obolURL string, fromcoin string, tocoin string, amount string) (float64, error) {
+// GetCoin2CoinRatesWithAmount is a function to return obol complex rates between 2 coins with a hardcoded amount
+func GetCoin2CoinRatesWithAmount(obolURL string, fromcoin string, tocoin string, amount string) (CoinToCoinWithAmountResponse, error) {
 	res, err := HttpClient.Get(obolURL + "/complex/" + fromcoin + "/" + tocoin + "?amount=" + amount)
 	if err != nil {
-		return 0, err
+		return CoinToCoinWithAmountResponse{}, err
 	}
 	defer func() {
 		_ = res.Body.Close()
@@ -82,16 +82,16 @@ func GetCoin2CoinRatesWithAmmount(obolURL string, fromcoin string, tocoin string
 	var response Response
 	err = json.Unmarshal(contents, &response)
 	if err != nil {
-		return 0, err
+		return CoinToCoinWithAmountResponse{}, err
 	}
-	var rate float64
+	var rate CoinToCoinWithAmountResponse
 	rateByte, err := json.Marshal(response.Data)
 	if err != nil {
-		return 0, err
+		return CoinToCoinWithAmountResponse{}, err
 	}
 	err = json.Unmarshal(rateByte, &rate)
 	if err != nil {
-		return 0, err
+		return CoinToCoinWithAmountResponse{}, err
 	}
 	return rate, nil
 }
