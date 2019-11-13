@@ -10,6 +10,7 @@ type AdrestiaOrder struct {
 	ToCoin          string  `firestore:"to_coin" json:"to_coin"`
 	WithdrawAddress string  `firestore:"withdraw_address" json:"withdraw_address"`
 	Message         string  `firestore:"message" json:"message"`
+	OrderId         string  `firestore:"order_id" json:"order_id"`
 }
 
 type AdrestiaOrderUpdate struct {
