@@ -18,10 +18,12 @@ var Coins = map[string]*coins.Coin{
 	"GRS":   &coins.Groestlcoin,
 	"COLX":  &coins.Colossus,
 	"ONION": &coins.DeepOnion,
-	"MNP":   &coins.MNPCoin,
 	"XSG":   &coins.Snowgem,
 	"TELOS": &coins.Telos,
-	"ETH": &coins.Ethereum,
+	"ETH":   &coins.Ethereum,
+	"TUSD":  &coins.TrueUSD,
+	"USDT":  &coins.Tether,
+	"USDC":  &coins.USDCoin,
 }
 
 // GetCoin is the safe way to check if a coin exists and retrieve the coin data
@@ -48,6 +50,9 @@ func GetCoin(tag string) (*coins.Coin, error) {
 		ColdAddress:    os.Getenv(strings.ToUpper(tag) + "_COLD_ADDRESS"),
 		Keys:           coinKeys,
 		BlockExplorer:  coin.BlockExplorer,
+		Token:          coin.Token,
+		TokenNetwork:   coin.TokenNetwork,
+		Contract:       coin.Contract,
 	}
 	return coin, nil
 }

@@ -17,15 +17,21 @@ type Pin struct {
 }
 
 type Coin struct {
-	Ticker            string   `firestore:"ticker" json:"ticker"`
-	ShiftAvailable    bool     `firestore:"shift_available" json:"shift_available"`
-	DepositAvailable  bool     `firestore:"deposit_available" json:"deposit_available"`
-	VouchersAvailable bool     `firestore:"vouchers_available" json:"vouchers_available"`
-	OrdersAvailable   bool     `firestore:"orders_available" json:"orders_available"`
-	Balances          Balances `firestore:"balances" json:"balances"`
+	Ticker   string        `firestore:"ticker" json:"ticker"`
+	Shift    Properties    `firestore:"shift" json:"shift"`
+	Deposits Properties    `firestore:"deposits" json:"deposits"`
+	Vouchers Properties    `firestore:"vouchers" json:"vouchers"`
+	Orders   Properties    `firestore:"orders" json:"orders"`
+	Balances BalanceLimits `firestore:"balances" json:"balances"`
 }
 
-type Balances struct {
+type CoinBalances struct {
+	Ticker  string  `firestore:"ticker" json:"ticker"`
+	Balance float64 `firestore:"balance" json:"balance"`
+	Status  string  `firestore:"status" json:"status"`
+}
+
+type BalanceLimits struct {
 	HotWallet float64 `firestore:"hot_wallet" json:"hot_wallet"`
 	Exchanges float64 `firestore:"exchanges" json:"exchanges"`
 }
@@ -40,15 +46,19 @@ type Payment struct {
 }
 
 type Properties struct {
-	FeePercentage float64 `firestore:"fee_percentage" json:"fee_percentage"`
-	Available     bool    `firestore:"available" json:"available"`
+	FeePercentage int  `firestore:"fee_percentage" json:"fee_percentage"`
+	Available     bool `firestore:"available" json:"available"`
 }
 
 type Config struct {
-	Shift    Properties `firestore:"shift" json:"shift"`
-	Deposits Properties `firestore:"deposits" json:"deposits"`
-	Vouchers Properties `firestore:"vouchers" json:"vouchers"`
-	Orders   Properties `firestore:"orders" json:"orders"`
+	Shift    Available `firestore:"shift" json:"shift"`
+	Deposits Available `firestore:"deposits" json:"deposits"`
+	Vouchers Available `firestore:"vouchers" json:"vouchers"`
+	Orders   Available `firestore:"orders" json:"orders"`
+}
+
+type Available struct {
+	Available bool `firestore:"available" json:"available"`
 }
 
 type Order struct {
@@ -92,28 +102,16 @@ type AddressInformation struct {
 	Street     string `firestore:"street" json:"street"`
 }
 
-//Rate is the model for storing rates in the cache
-type ShiftRate struct {
-	Rate       float64 `json:"rate"`
-	FromCoin   string  `json:"from_coin"`
-	FromAmount int64   `json:"amount"`
-	ToCoin     string  `json:"to_coin"`
-	ToAmount   int64   `json:"to_amount"`
-	ToAddress  string  `json:"to_address"`
-	FeeCoin    string  `json:"fee_coin"`
-	FeeAmount  int64   `json:"fee_amount"`
-	FeeAddress string  `json:"fee_address"`
-}
-
 type Shift struct {
-	ID         string    `firestore:"id" json:"id"`
-	UID        string    `firestore:"uid" json:"uid"`
-	Status     string    `firestore:"status" json:"status"`
-	Timestamp  string    `firestore:"timestamp" json:"timestamp"`
-	Payment    Payment   `firestore:"payment" json:"payment"`
-	FeePayment Payment   `firestore:"fee_payment" json:"fee_payment"`
-	Rate       ShiftRate `firestore:"shift_rate" json:"shift_rate"`
-	PayAddress string    `firestore:"pay_address" json:"pay_address"`
+	ID         string  `firestore:"id" json:"id"`
+	UID        string  `firestore:"uid" json:"uid"`
+	Status     string  `firestore:"status" json:"status"`
+	Timestamp  int64   `firestore:"timestamp" json:"timestamp"`
+	Payment    Payment `firestore:"payment" json:"payment"`
+	FeePayment Payment `firestore:"fee_payment" json:"fee_payment"`
+	ToCoin     string  `firestore:"to_coin" json:"to_coin"`
+	ToAmount   int64   `firestore:"to_amount" json:"to_amount"`
+	ToAddress  string  `firestore:"pay_address" json:"pay_address"`
 }
 
 type User struct {

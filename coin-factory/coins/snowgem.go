@@ -23,5 +23,6 @@ var Snowgem = Coin{
 		DecodeRawTransaction:       "decoderawtransaction",
 		GetRawTransactionVerbosity: true,
 	},
+	Token:         false,
 	BlockExplorer: "https://xsg.polispay.com",
 }

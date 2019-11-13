@@ -23,5 +23,6 @@ var Groestlcoin = Coin{
 		DecodeRawTransaction:       "decoderawtransaction",
 		GetRawTransactionVerbosity: "1",
 	},
+	Token:         false,
 	BlockExplorer: "https://grs.polispay.com",
 }

@@ -23,5 +23,6 @@ var Colossus = Coin{
 		DecodeRawTransaction:       "decoderawtransaction",
 		GetRawTransactionVerbosity: true,
 	},
+	Token:         false,
 	BlockExplorer: "https://colx.polispay.com",
 }

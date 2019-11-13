@@ -10,3 +10,9 @@ type Response struct {
 	Data   interface{} `json:"data"`
 	Status int         `json:"status"`
 }
+
+// CoinToCoinWithAmountResponse is the response of a CoinToCoinWithAmount result
+type CoinToCoinWithAmountResponse struct {
+	Rates        [][]float64 `json:"rates"`
+	AveragePrice float64             `json:"average_price"`
+}

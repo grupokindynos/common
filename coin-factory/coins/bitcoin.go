@@ -24,5 +24,6 @@ var Bitcoin = Coin{
 		DecodeRawTransaction:       "decoderawtransaction",
 		GetRawTransactionVerbosity: "1",
 	},
+	Token:         false,
 	BlockExplorer: "https://btc1.trezor.io",
 }
