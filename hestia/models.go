@@ -129,20 +129,21 @@ type User struct {
 type KYCInformation struct{}
 
 type Voucher struct {
-	ID                string  `firestore:"id" json:"id"`
-	UID               string  `firestore:"uid" json:"uid"`
-	VoucherID         int     `firestore:"voucher_id" json:"voucher_id"`
-	VariantID         string  `firestore:"variant_id" json:"variant_id"`
-	FiatAmount        int32   `firestore:"fiat_amount" json:"fiat_amount"`
-	Name              string  `firestore:"name" json:"name"`
-	PaymentData       Payment `firestore:"payment_data" json:"payment_data"`
-	FeePayment        Payment `firestore:"fee_payment" json:"fee_payment"`
-	BitcouPaymentData Payment `firestore:"bitcou_payment_data" json:"bitcou_payment_data"`
-	BitcouID          string  `firestore:"bitcou_id" json:"bitcou_id"`
-	RedeemCode        string  `firestore:"redeem_code" json:"redeem_code"`
-	Status            string  `firestore:"status" json:"status"`
-	Timestamp         int64   `firestore:"timestamp" json:"timestamp"`
-	RedeemTimestamp   int64   `firestore:"redeem_timestamp" json:"redeem_timestamp"`
+	ID                   string  `firestore:"id" json:"id"`
+	UID                  string  `firestore:"uid" json:"uid"`
+	VoucherID            int     `firestore:"voucher_id" json:"voucher_id"`
+	VariantID            string  `firestore:"variant_id" json:"variant_id"`
+	FiatAmount           int32   `firestore:"fiat_amount" json:"fiat_amount"`
+	Name                 string  `firestore:"name" json:"name"`
+	PaymentData          Payment `firestore:"payment_data" json:"payment_data"`
+	FeePayment           Payment `firestore:"fee_payment" json:"fee_payment"`
+	BitcouPaymentData    Payment `firestore:"bitcou_payment_data" json:"bitcou_payment_data"`
+	BitcouFeePaymentData Payment `firestore:"bitcou_fee_payment_data" json:"bitcou_fee_payment_data"`
+	BitcouID             string  `firestore:"bitcou_id" json:"bitcou_id"`
+	RedeemCode           string  `firestore:"redeem_code" json:"redeem_code"`
+	Status               string  `firestore:"status" json:"status"`
+	Timestamp            int64   `firestore:"timestamp" json:"timestamp"`
+	RedeemTimestamp      int64   `firestore:"redeem_timestamp" json:"redeem_timestamp"`
 }
 
 type Deposit struct {
