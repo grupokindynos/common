@@ -59,11 +59,13 @@ func GetCoin(tag string) (*coins.Coin, error) {
 
 func CheckCoinKeys(coin *coins.Coin) error {
 	keys := coin.Keys
-	if keys.RpcUser == "" {
-		return errors.New("missing rpc username")
-	}
-	if keys.RpcPass == "" {
-		return errors.New("missing rpc password")
+	if coin.Name != "ETH" {
+		if keys.RpcUser == "" {
+			return errors.New("missing rpc username")
+		}
+		if keys.RpcPass == "" {
+			return errors.New("missing rpc password")
+		}
 	}
 	if keys.RpcPort == "" {
 		return errors.New("missing rpc port")
