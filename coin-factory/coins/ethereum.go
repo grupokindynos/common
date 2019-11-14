@@ -18,7 +18,7 @@ var Ethereum = Coin{
 		GetWalletAccounts: 			"eth_accounts",
 		GetBlockchainInfo:          "",
 		GetNetworkInfo:             "",
-		GetNewAddress:              "",
+		GetNewAddress:              "personal_newAccount",
 		SendToAddress:              "",
 		ValidateAddress:            "",
 		GetRawTransaction:          "",
