@@ -58,6 +58,9 @@ func GetCoin(tag string) (*coins.Coin, error) {
 }
 
 func CheckCoinKeys(coin *coins.Coin) error {
+	if coin.Token {
+		return nil
+	}
 	keys := coin.Keys
 	if coin.Tag != "ETH" {
 		if keys.RpcUser == "" {
