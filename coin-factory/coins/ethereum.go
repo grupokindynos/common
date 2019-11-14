@@ -14,7 +14,8 @@ var Ethereum = Coin{
 		ExternalSource:   "eth1.trezor.io",
 	},
 	RpcMethods: RPCMethods{
-		GetWalletInfo:              "",
+		GetWalletInfo:              "eth_getBalance",
+		GetWalletAccounts: 			"eth_accounts",
 		GetBlockchainInfo:          "",
 		GetNetworkInfo:             "",
 		GetNewAddress:              "",

@@ -42,6 +42,7 @@ type BlockchainInfo struct {
 // RPCMethods is a model to wrap possible RPC commands for different coins
 type RPCMethods struct {
 	GetWalletInfo              string      // Get wallet information for balances.
+	GetWalletAccounts          string      // Specific ETH method for accounts in wallet.
 	GetBlockchainInfo          string      // Get blockchain information for sync status.
 	GetNetworkInfo             string      // Get network information to know how many peers are connected.
 	GetNewAddress              string      // Get a new address to pay to the hot-wallets

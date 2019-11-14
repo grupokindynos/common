@@ -59,6 +59,12 @@ func (ev *EnvironmentVars) CheckVars() error {
 	if ev.HerokuUsername == "" {
 		return errors.New("missing heroku username")
 	}
+	if ev.KindynosBotToken == "" {
+		return errors.New("missing kindynos bot token")
+	}
+	if ev.KindynosChannel == "" {
+		return errors.New("missing kindynos bot password")
+	}
 	for _, coinVar := range ev.CoinsVars {
 		err := coinVar.CheckVars()
 		if err != nil {
@@ -110,11 +116,13 @@ func (cv *CoinVar) CheckVars() error {
 	if cv.Coin == "" {
 		return errors.New("missing coin tag")
 	}
-	if cv.RpcUser == "" {
-		return errors.New("missing rpc user for " + cv.Coin)
-	}
-	if cv.RpcPass == "" {
-		return errors.New("missing rpc pass for " + cv.Coin)
+	if cv.Coin != "ETH" {
+		if cv.RpcUser == "" {
+			return errors.New("missing rpc user for " + cv.Coin)
+		}
+		if cv.RpcPass == "" {
+			return errors.New("missing rpc pass for " + cv.Coin)
+		}
 	}
 	if cv.RpcPort == "" {
 		return errors.New("missing rpc port for " + cv.Coin)
@@ -383,6 +391,9 @@ func getOldVars() (EnvironmentVars, error) {
 		CoinsVars:          nil,
 	}
 	for key := range coinfactory.Coins {
+		if key == "USDC" || key == "USDT" || key == "TUSD" {
+			continue
+		}
 		coinVars := CoinVar{
 			Coin:       strings.ToUpper(key),
 			RpcUser:    os.Getenv(strings.ToUpper(key) + "_RPC_USER"),
@@ -473,6 +484,9 @@ func genNewVars() (EnvironmentVars, error) {
 		CoinsVars:          nil,
 	}
 	for key := range coinfactory.Coins {
+		if key == "USDC" || key == "USDT" || key == "TUSD" {
+			continue
+		}
 		log.Println("Creating vars for " + strings.ToUpper(key))
 		keyPair := genPrivKeyPair()
 		encryptedPrivKey, err := aes.Encrypt([]byte(newDecryptionKey), keyPair.Private)
