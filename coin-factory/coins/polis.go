@@ -10,7 +10,7 @@ var Polis = Coin{
 	BlockchainInfo: BlockchainInfo{
 		ExternalSource:   "blockbook.polispay.org",
 		BlockTime:        2,
-		MinConfirmations: 6,
+		MinConfirmations: 2,
 	},
 	RpcMethods: RPCMethods{
 		GetWalletInfo:              "getwalletinfo",
