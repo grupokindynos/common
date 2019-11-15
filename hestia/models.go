@@ -112,7 +112,7 @@ type Shift struct {
 	RefundAddr     string  `firestore:"refund_addr" json:"refund_addr"`
 	ToCoin         string  `firestore:"to_coin" json:"to_coin"`
 	ToAmount       int64   `firestore:"to_amount" json:"to_amount"`
-	ToAddress      string  `firestore:"pay_address" json:"pay_address"`
+	ToAddress      string  `firestore:"to_address" json:"to_address"`
 	PaymentProof   string  `firestore:"payment_proof" json:"payment_proof"`
 	ProofTimestamp int64   `firestore:"proof_timestamp" json:"proof_timestamp"`
 }
