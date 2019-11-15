@@ -7,6 +7,7 @@ const (
 	ShiftStatusConfirming
 	ShiftStatusConfirmed
 	ShiftStatusError
+	ShiftStatusRefund
 	ShiftStatusRefunded
 	ShiftStatusComplete
 )
@@ -17,8 +18,9 @@ var (
 		1: "CONFIRMING",
 		2: "CONFIRMED",
 		3: "ERROR",
-		4: "REFUNDED",
-		5: "COMPLETE",
+		4: "REFUND",
+		5: "REFUNDED",
+		6: "COMPLETE",
 	}
 )
 
