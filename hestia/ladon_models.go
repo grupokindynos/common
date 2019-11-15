@@ -9,9 +9,10 @@ const (
 	VoucherStatusAwaitingProvider
 	VoucherStatusError
 	VoucherStatusComplete
-	VoucherStatusRefunded
 	VoucherStatusRefundTotal
 	VoucherStatusRefundFee
+	VoucherStatusRefundedPartially
+	VoucherStatusRefunded
 )
 
 var (
@@ -22,9 +23,10 @@ var (
 		3: "AWAITING PROVIDER",
 		4: "ERROR",
 		5: "COMPLETE",
-		6: "REFUNDED",
-		7: "REFUND_TOTAL",
-		8: "REFUND_FEE",
+		6: "REFUND_TOTAL",
+		7: "REFUND_FEE",
+		8: "REFUNDED",
+		9: "REFUNDED_PARTIALLY",
 	}
 )
 
