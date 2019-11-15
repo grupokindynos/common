@@ -237,6 +237,7 @@ func main() {
 		"TYCHE_PUBLIC_KEY":     &NewVars.TychePubKey,
 		"LADON_PUBLIC_KEY":     &NewVars.LadonPubKey,
 		"ADRESTIA_PUBLIC_KEY":  &NewVars.AdrestiaPubKey,
+		"HESTIA_PUBLIC_KEY":    &NewVars.HestiaPubKey,
 		"GIN_MODE":             &NewVars.GinMode,
 	}
 	// First update main variables
@@ -329,6 +330,7 @@ func main() {
 		"ADRESTIA_PUBLIC_KEY":  &NewVars.AdrestiaPubKey,
 		"TYCHE_PUBLIC_KEY":     &NewVars.TychePubKey,
 		"LADON_PUBLIC_KEY":     &NewVars.LadonPubKey,
+		"PLUTUS_PUBLIC_KEY":    &NewVars.PlutusPubKey,
 		"MASTER_PASSWORD":      &NewVars.MasterPassword,
 	}
 	_, err = h.ConfigVarUpdate(context.Background(), "hestia-database", hestiaAccess)
