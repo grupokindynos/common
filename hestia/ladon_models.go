@@ -10,6 +10,7 @@ const (
 	VoucherStatusError
 	VoucherStatusComplete
 	VoucherStatusRefunded
+	VoucherStatusRefund
 )
 
 var (
@@ -21,6 +22,7 @@ var (
 		4: "ERROR",
 		5: "COMPLETE",
 		6: "REFUNDED",
+		7: "REFUND",
 	}
 )
 
