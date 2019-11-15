@@ -141,6 +141,7 @@ type Voucher struct {
 	FeePayment           Payment `firestore:"fee_payment" json:"fee_payment"`
 	BitcouPaymentData    Payment `firestore:"bitcou_payment_data" json:"bitcou_payment_data"`
 	BitcouFeePaymentData Payment `firestore:"bitcou_fee_payment_data" json:"bitcou_fee_payment_data"`
+	RefundFeeAddr        string  `firestore:"refund_fee_addr" json:"refund_fee_addr"`
 	RefundAddr           string  `firestore:"refund_addr" json:"refund_addr"`
 	BitcouID             string  `firestore:"bitcou_id" json:"bitcou_id"`
 	RedeemCode           string  `firestore:"redeem_code" json:"redeem_code"`
