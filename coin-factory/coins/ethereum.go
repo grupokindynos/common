@@ -15,7 +15,7 @@ var Ethereum = Coin{
 	},
 	RpcMethods: RPCMethods{
 		GetWalletInfo:              "eth_getBalance",
-		GetWalletAccounts: 			"eth_accounts",
+		GetWalletAccounts:          "eth_accounts",
 		GetBlockchainInfo:          "",
 		GetNetworkInfo:             "",
 		GetNewAddress:              "personal_newAccount",

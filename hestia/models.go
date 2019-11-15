@@ -40,14 +40,13 @@ type Payment struct {
 	Address       string `firestore:"address" json:"address"`
 	Amount        int64  `firestore:"amount" json:"amount"`
 	Coin          string `firestore:"coin" json:"coin"`
-	RawTx         string `firestore:"rawtx" json:"rawtx"`
 	Txid          string `firestore:"txid" json:"txid"`
 	Confirmations int32  `firestore:"confirmations" json:"confirmations"`
 }
 
 type Properties struct {
-	FeePercentage float64  `firestore:"fee_percentage" json:"fee_percentage"`
-	Available     bool `firestore:"available" json:"available"`
+	FeePercentage float64 `firestore:"fee_percentage" json:"fee_percentage"`
+	Available     bool    `firestore:"available" json:"available"`
 }
 
 type Config struct {
@@ -58,7 +57,8 @@ type Config struct {
 }
 
 type Available struct {
-	Available bool `firestore:"available" json:"available"`
+	Service   bool `firestore:"service" json:"service"`
+	Processor bool `firestore:"processor" json:"processor"`
 }
 
 type Order struct {
