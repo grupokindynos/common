@@ -109,6 +109,7 @@ type Shift struct {
 	Timestamp  int64   `firestore:"timestamp" json:"timestamp"`
 	Payment    Payment `firestore:"payment" json:"payment"`
 	FeePayment Payment `firestore:"fee_payment" json:"fee_payment"`
+	RefundAddr string  `firestore:"refund_addr" json:"refund_addr"`
 	ToCoin     string  `firestore:"to_coin" json:"to_coin"`
 	ToAmount   int64   `firestore:"to_amount" json:"to_amount"`
 	ToAddress  string  `firestore:"pay_address" json:"pay_address"`
@@ -138,6 +139,7 @@ type Voucher struct {
 	FeePayment           Payment `firestore:"fee_payment" json:"fee_payment"`
 	BitcouPaymentData    Payment `firestore:"bitcou_payment_data" json:"bitcou_payment_data"`
 	BitcouFeePaymentData Payment `firestore:"bitcou_fee_payment_data" json:"bitcou_fee_payment_data"`
+	RefundAddr           string  `firestore:"refund_addr" json:"refund_addr"`
 	BitcouID             string  `firestore:"bitcou_id" json:"bitcou_id"`
 	RedeemCode           string  `firestore:"redeem_code" json:"redeem_code"`
 	Status               string  `firestore:"status" json:"status"`
