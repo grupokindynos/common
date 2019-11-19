@@ -11,6 +11,8 @@ type AdrestiaOrder struct {
 	WithdrawAddress string  `firestore:"withdraw_address" json:"withdraw_address"`
 	Message         string  `firestore:"message" json:"message"`
 	OrderId         string  `firestore:"order_id" json:"order_id"`
+	TxId            string  `firestore:"tx_id" json:"tx_id"`
+	ExchangeAddress string  `firestore:"exchange_address" json:"exchange_address"`
 }
 
 type AdrestiaOrderUpdate struct {
