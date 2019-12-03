@@ -11,8 +11,8 @@ const (
 	VoucherStatusComplete
 	VoucherStatusRefundTotal
 	VoucherStatusRefundFee
-	VoucherStatusRefundedPartially
 	VoucherStatusRefunded
+	VoucherStatusRefundedPartially
 )
 
 var (
