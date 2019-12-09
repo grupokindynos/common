@@ -41,6 +41,7 @@ func GetCoin(tag string) (*coins.Coin, error) {
 		Token:          coin.Token,
 		TokenNetwork:   coin.TokenNetwork,
 		Contract:       coin.Contract,
+		NetParams:      coin.NetParams,
 		Mnemonic:       os.Getenv("MNEMONIC_" + strings.ToUpper(tag)),
 	}
 	return coin, nil
