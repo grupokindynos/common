@@ -33,28 +33,30 @@ type Status struct {
 }
 
 type Xpub struct {
-	Address     string `json:"address"`
-	Balance     string `json:"balance"`
-	ItemsOnPage int    `json:"itemsOnPage"`
-	Page        int    `json:"page"`
-	Tokens      []struct {
-		Balance       string `json:"balance"`
-		Decimals      int    `json:"decimals"`
-		Name          string `json:"name"`
-		Path          string `json:"path"`
-		TotalReceived string `json:"totalReceived"`
-		TotalSent     string `json:"totalSent"`
-		Transfers     int    `json:"transfers"`
-		Type          string `json:"type"`
-	} `json:"tokens"`
-	TotalPages         int    `json:"totalPages"`
-	TotalReceived      string `json:"totalReceived"`
-	TotalSent          string `json:"totalSent"`
-	Transactions       []Tx   `json:"transactions"`
-	Txs                int    `json:"txs"`
-	UnconfirmedBalance string `json:"unconfirmedBalance"`
-	UnconfirmedTxs     int    `json:"unconfirmedTxs"`
-	UsedTokens         int    `json:"usedTokens"`
+	Address            string   `json:"address"`
+	Balance            string   `json:"balance"`
+	ItemsOnPage        int      `json:"itemsOnPage"`
+	Page               int      `json:"page"`
+	Tokens             []Tokens `json:"tokens"`
+	TotalPages         int      `json:"totalPages"`
+	TotalReceived      string   `json:"totalReceived"`
+	TotalSent          string   `json:"totalSent"`
+	Transactions       []Tx     `json:"transactions"`
+	Txs                int      `json:"txs"`
+	UnconfirmedBalance string   `json:"unconfirmedBalance"`
+	UnconfirmedTxs     int      `json:"unconfirmedTxs"`
+	UsedTokens         int      `json:"usedTokens"`
+}
+
+type Tokens struct {
+	Balance       string `json:"balance"`
+	Decimals      int    `json:"decimals"`
+	Name          string `json:"name"`
+	Path          string `json:"path"`
+	TotalReceived string `json:"totalReceived"`
+	TotalSent     string `json:"totalSent"`
+	Transfers     int    `json:"transfers"`
+	Type          string `json:"type"`
 }
 
 type Utxo struct {
@@ -102,62 +104,28 @@ type Tx struct {
 }
 
 type EthAddr struct {
-	Address     string `json:"address"`
-	Balance     string `json:"balance"`
-	ItemsOnPage int    `json:"itemsOnPage"`
-	NonTokenTxs int    `json:"nonTokenTxs"`
-	Nonce       string `json:"nonce"`
-	Page        int    `json:"page"`
-	Tokens      []struct {
-		Balance   *string `json:"balance"`
-		Contract  string  `json:"contract"`
-		Decimals  *int    `json:"decimals"`
-		Name      string  `json:"name"`
-		Symbol    *string `json:"symbol"`
-		Transfers int     `json:"transfers"`
-		Type      string  `json:"type"`
-	} `json:"tokens"`
-	TotalPages   int `json:"totalPages"`
-	Transactions []struct {
-		BlockHash        string `json:"blockHash"`
-		BlockHeight      int    `json:"blockHeight"`
-		BlockTime        int    `json:"blockTime"`
-		Confirmations    int    `json:"confirmations"`
-		EthereumSpecific struct {
-			GasLimit int    `json:"gasLimit"`
-			GasPrice string `json:"gasPrice"`
-			GasUsed  int    `json:"gasUsed"`
-			Nonce    int    `json:"nonce"`
-			Status   int    `json:"status"`
-		} `json:"ethereumSpecific"`
-		Fees           string `json:"fees"`
-		TokenTransfers []struct {
-			Decimals int    `json:"decimals"`
-			From     string `json:"from"`
-			Name     string `json:"name"`
-			Symbol   string `json:"symbol"`
-			To       string `json:"to"`
-			Token    string `json:"token"`
-			Type     string `json:"type"`
-			Value    string `json:"value"`
-		} `json:"tokenTransfers"`
-		Txid  string `json:"txid"`
-		Value string `json:"value"`
-		Vin   []struct {
-			Addresses []string `json:"addresses"`
-			IsAddress bool     `json:"isAddress"`
-			N         int      `json:"n"`
-		} `json:"vin"`
-		Vout []struct {
-			Addresses []string `json:"addresses"`
-			IsAddress bool     `json:"isAddress"`
-			N         int      `json:"n"`
-			Value     string   `json:"value"`
-		} `json:"vout"`
-	} `json:"transactions"`
-	Txs                int    `json:"txs"`
-	UnconfirmedBalance string `json:"unconfirmedBalance"`
-	UnconfirmedTxs     int    `json:"unconfirmedTxs"`
+	Address            string      `json:"address"`
+	Balance            string      `json:"balance"`
+	ItemsOnPage        int         `json:"itemsOnPage"`
+	NonTokenTxs        int         `json:"nonTokenTxs"`
+	Nonce              string      `json:"nonce"`
+	Page               int         `json:"page"`
+	Tokens             []EthTokens `json:"tokens"`
+	TotalPages         int         `json:"totalPages"`
+	Transactions       []EthTx     `json:"transactions"`
+	Txs                int         `json:"txs"`
+	UnconfirmedBalance string      `json:"unconfirmedBalance"`
+	UnconfirmedTxs     int         `json:"unconfirmedTxs"`
+}
+
+type EthTokens struct {
+	Balance   string `json:"balance"`
+	Contract  string `json:"contract"`
+	Decimals  int    `json:"decimals"`
+	Name      string `json:"name"`
+	Symbol    string `json:"symbol"`
+	Transfers int    `json:"transfers"`
+	Type      string `json:"type"`
 }
 
 type EthTxVin struct {
@@ -200,4 +168,11 @@ type EthTx struct {
 	Value string      `json:"value"`
 	Vin   []EthTxVin  `json:"vin"`
 	Vout  []EthTxVout `json:"vout"`
+}
+
+type SendTx struct {
+	Error struct {
+		Message string `json:"message"`
+	} `json:"error"`
+	Result string `json:"result"`
 }

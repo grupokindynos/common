@@ -43,18 +43,38 @@ func (b *BlockBook) GetTx(txid string) (response Tx, err error) {
 
 // Methods for Ethereum
 
-func (b *BlockBook) GetEthAddress(addr string) {
-
+func (b *BlockBook) GetEthAddress(addr string) (response EthAddr, err error) {
+	data, err := b.callWrapper("address/" + addr + "?details=txs")
+	if err != nil {
+		return response, nil
+	}
+	err = json.Unmarshal(data, &response)
+	return
 }
 
-func (b *BlockBook) GetTxEth(txid string) {
-
+func (b *BlockBook) GetTxEth(txid string) (response EthTx, err error) {
+	data, err := b.callWrapper("tx/" + txid)
+	if err != nil {
+		return response, nil
+	}
+	err = json.Unmarshal(data, &response)
+	return
 }
 
 // Methods for all coins
 
-func (b *BlockBook) SendTx(txid string) {
-
+func (b *BlockBook) SendTx(rawTx string) (response string, err error) {
+	data, err := b.callWrapper("sendtx/" + rawTx)
+	if err != nil {
+		return response, nil
+	}
+	var blockbookAnswer SendTx
+	err = json.Unmarshal(data, &blockbookAnswer)
+	if blockbookAnswer.Result != "" {
+		return blockbookAnswer.Result, nil
+	} else {
+		return "", errors.New(blockbookAnswer.Error.Message)
+	}
 }
 
 func (b *BlockBook) checkBlockStatus() bool {

@@ -1,6 +1,6 @@
 package blockbook
 
-type blockBookInterface interface {
+type BlockBookInterface interface {
 	GetXpub(url string, xpub string)
 	GetEthAddress(url string, addr string)
 	GetUtxo(url string, xpub string)
