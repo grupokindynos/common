@@ -16,9 +16,11 @@ var Ethereum = Coin{
 		ExternalSource:   "eth1.trezor.io",
 	},
 	NetParams: &chaincfg.Params{
-		HDPrivateKeyID: [4]byte{0x04, 0x88, 0xAD, 0xE4},
-		HDPublicKeyID:  [4]byte{0x04, 0x88, 0xB2, 0x1E},
-		HDCoinType:     60,
+		// TODO this is created different
+		PubKeyHashAddrID: 0,
+		HDPrivateKeyID:   [4]byte{0x04, 0x88, 0xAD, 0xE4},
+		HDPublicKeyID:    [4]byte{0x04, 0x88, 0xB2, 0x1E},
+		HDCoinType:       60,
 	},
 	Token:         false,
 	BlockExplorer: "https://eth1.trezor.io",

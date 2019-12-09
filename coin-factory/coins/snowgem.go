@@ -15,9 +15,11 @@ var Snowgem = Coin{
 		MinConfirmations: 12,
 	},
 	NetParams: &chaincfg.Params{
-		HDPrivateKeyID: [4]byte{0x04, 0x88, 0xAD, 0xE4},
-		HDPublicKeyID:  [4]byte{0x04, 0x88, 0xB2, 0x1E},
-		HDCoinType:     410,
+		// TODO this is created different
+		PubKeyHashAddrID: 0,
+		HDPrivateKeyID:   [4]byte{0x04, 0x88, 0xAD, 0xE4},
+		HDPublicKeyID:    [4]byte{0x04, 0x88, 0xB2, 0x1E},
+		HDCoinType:       410,
 	},
 	Token:         false,
 	BlockExplorer: "https://xsg.polispay.com",

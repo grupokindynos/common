@@ -16,9 +16,10 @@ var Bitcoin = Coin{
 		ExternalSource:   "btc2.trezor.io",
 	},
 	NetParams: &chaincfg.Params{
-		HDPrivateKeyID: [4]byte{0x04, 0x88, 0xAD, 0xE4},
-		HDPublicKeyID:  [4]byte{0x04, 0x88, 0xB2, 0x1E},
-		HDCoinType:     0,
+		PubKeyHashAddrID: 0,
+		HDPrivateKeyID:   [4]byte{0x04, 0x88, 0xAD, 0xE4},
+		HDPublicKeyID:    [4]byte{0x04, 0x88, 0xB2, 0x1E},
+		HDCoinType:       0,
 	},
 	Token:         false,
 	BlockExplorer: "https://btc1.trezor.io",
