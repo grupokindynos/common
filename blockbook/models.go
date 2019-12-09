@@ -33,84 +33,171 @@ type Status struct {
 }
 
 type Xpub struct {
-	Address		string	`json:"address"`
-	Balance		string	`json:"balance"`
-	ItemsOnPage	int	`json:"itemsOnPage"`
-	Page		int	`json:"page"`
-	Tokens		[]struct {
-		Balance		string	`json:"balance"`
-		Decimals	int	`json:"decimals"`
-		Name		string	`json:"name"`
-		Path		string	`json:"path"`
-		TotalReceived	string	`json:"totalReceived"`
-		TotalSent	string	`json:"totalSent"`
-		Transfers	int	`json:"transfers"`
-		Type		string	`json:"type"`
-	}	`json:"tokens"`
-	TotalPages	int	`json:"totalPages"`
-	TotalReceived	string	`json:"totalReceived"`
-	TotalSent	string	`json:"totalSent"`
-	Transactions	[]struct {
-		BlockHash	string	`json:"blockHash"`
-		BlockHeight	int	`json:"blockHeight"`
-		BlockTime	int	`json:"blockTime"`
-		Confirmations	int	`json:"confirmations"`
-		Fees		string	`json:"fees"`
-		Hex		string	`json:"hex"`
-		LockTime	*int	`json:"lockTime,omitempty"`
-		Txid		string	`json:"txid"`
-		Value		string	`json:"value"`
-		ValueIn		string	`json:"valueIn"`
-		Version		int	`json:"version"`
-		Vin		[]struct {
-			Addresses	[]string	`json:"addresses"`
-			Hex		*string		`json:"hex,omitempty"`
-			N		int		`json:"n"`
-			Sequence	int		`json:"sequence"`
-			Txid		string		`json:"txid"`
-			Value		string		`json:"value"`
-			Vout		*int		`json:"vout,omitempty"`
-		}	`json:"vin"`
-		Vout	[]struct {
-			Addresses	[]string	`json:"addresses"`
-			Hex		string		`json:"hex"`
-			N		int		`json:"n"`
-			Spent		*bool		`json:"spent,omitempty"`
-			Value		string		`json:"value"`
-		}	`json:"vout"`
-	}	`json:"transactions"`
-	Txs			int	`json:"txs"`
-	UnconfirmedBalance	string	`json:"unconfirmedBalance"`
-	UnconfirmedTxs		int	`json:"unconfirmedTxs"`
-	UsedTokens		int	`json:"usedTokens"`
+	Address     string `json:"address"`
+	Balance     string `json:"balance"`
+	ItemsOnPage int    `json:"itemsOnPage"`
+	Page        int    `json:"page"`
+	Tokens      []struct {
+		Balance       string `json:"balance"`
+		Decimals      int    `json:"decimals"`
+		Name          string `json:"name"`
+		Path          string `json:"path"`
+		TotalReceived string `json:"totalReceived"`
+		TotalSent     string `json:"totalSent"`
+		Transfers     int    `json:"transfers"`
+		Type          string `json:"type"`
+	} `json:"tokens"`
+	TotalPages         int    `json:"totalPages"`
+	TotalReceived      string `json:"totalReceived"`
+	TotalSent          string `json:"totalSent"`
+	Transactions       []Tx   `json:"transactions"`
+	Txs                int    `json:"txs"`
+	UnconfirmedBalance string `json:"unconfirmedBalance"`
+	UnconfirmedTxs     int    `json:"unconfirmedTxs"`
+	UsedTokens         int    `json:"usedTokens"`
 }
 
+type Utxo struct {
+	Coinbase      bool   `json:"coinbase"`
+	Confirmations int    `json:"confirmations"`
+	Height        int    `json:"height"`
+	LockTime      int    `json:"lockTime"`
+	Txid          string `json:"txid"`
+	Value         string `json:"value"`
+	Vout          int    `json:"vout"`
+}
+
+type TxVin struct {
+	Addresses []string `json:"addresses"`
+	Hex       string   `json:"hex"`
+	N         int      `json:"n"`
+	Sequence  int      `json:"sequence"`
+	Txid      string   `json:"txid"`
+	Value     string   `json:"value"`
+	Vout      int      `json:"vout"`
+}
+
+type TxVout struct {
+	Addresses []string `json:"addresses"`
+	Hex       string   `json:"hex"`
+	N         int      `json:"n"`
+	Spent     bool     `json:"spent"`
+	Value     string   `json:"value"`
+}
 
 type Tx struct {
-	BlockHash	string	`json:"blockHash"`
-	BlockHeight	int	`json:"blockHeight"`
-	BlockTime	int	`json:"blockTime"`
-	Confirmations	int	`json:"confirmations"`
-	Fees		string	`json:"fees"`
-	Hex		string	`json:"hex"`
-	LockTime	int	`json:"lockTime"`
-	Txid		string	`json:"txid"`
-	Value		string	`json:"value"`
-	ValueIn		string	`json:"valueIn"`
-	Version		int	`json:"version"`
-	Vin		[]struct {
-		Addresses	[]string	`json:"addresses"`
-		Hex		string		`json:"hex"`
-		N		int		`json:"n"`
-		Sequence	int		`json:"sequence"`
-		Txid		string		`json:"txid"`
-		Value		string		`json:"value"`
-	}	`json:"vin"`
-	Vout	[]struct {
-		Addresses	[]string	`json:"addresses"`
-		Hex		string		`json:"hex"`
-		N		int		`json:"n"`
-		Spent		bool		`json:"spent"`
-		Value		string		`json:"value"`
-	}	`json:"vout"`
+	BlockHash     string   `json:"blockHash"`
+	BlockHeight   int      `json:"blockHeight"`
+	BlockTime     int      `json:"blockTime"`
+	Confirmations int      `json:"confirmations"`
+	Fees          string   `json:"fees"`
+	Hex           string   `json:"hex"`
+	LockTime      int      `json:"lockTime"`
+	Txid          string   `json:"txid"`
+	Value         string   `json:"value"`
+	ValueIn       string   `json:"valueIn"`
+	Version       int      `json:"version"`
+	Vin           []TxVin  `json:"vin"`
+	Vout          []TxVout `json:"vout"`
+}
+
+type EthAddr struct {
+	Address     string `json:"address"`
+	Balance     string `json:"balance"`
+	ItemsOnPage int    `json:"itemsOnPage"`
+	NonTokenTxs int    `json:"nonTokenTxs"`
+	Nonce       string `json:"nonce"`
+	Page        int    `json:"page"`
+	Tokens      []struct {
+		Balance   *string `json:"balance"`
+		Contract  string  `json:"contract"`
+		Decimals  *int    `json:"decimals"`
+		Name      string  `json:"name"`
+		Symbol    *string `json:"symbol"`
+		Transfers int     `json:"transfers"`
+		Type      string  `json:"type"`
+	} `json:"tokens"`
+	TotalPages   int `json:"totalPages"`
+	Transactions []struct {
+		BlockHash        string `json:"blockHash"`
+		BlockHeight      int    `json:"blockHeight"`
+		BlockTime        int    `json:"blockTime"`
+		Confirmations    int    `json:"confirmations"`
+		EthereumSpecific struct {
+			GasLimit int    `json:"gasLimit"`
+			GasPrice string `json:"gasPrice"`
+			GasUsed  int    `json:"gasUsed"`
+			Nonce    int    `json:"nonce"`
+			Status   int    `json:"status"`
+		} `json:"ethereumSpecific"`
+		Fees           string `json:"fees"`
+		TokenTransfers []struct {
+			Decimals int    `json:"decimals"`
+			From     string `json:"from"`
+			Name     string `json:"name"`
+			Symbol   string `json:"symbol"`
+			To       string `json:"to"`
+			Token    string `json:"token"`
+			Type     string `json:"type"`
+			Value    string `json:"value"`
+		} `json:"tokenTransfers"`
+		Txid  string `json:"txid"`
+		Value string `json:"value"`
+		Vin   []struct {
+			Addresses []string `json:"addresses"`
+			IsAddress bool     `json:"isAddress"`
+			N         int      `json:"n"`
+		} `json:"vin"`
+		Vout []struct {
+			Addresses []string `json:"addresses"`
+			IsAddress bool     `json:"isAddress"`
+			N         int      `json:"n"`
+			Value     string   `json:"value"`
+		} `json:"vout"`
+	} `json:"transactions"`
+	Txs                int    `json:"txs"`
+	UnconfirmedBalance string `json:"unconfirmedBalance"`
+	UnconfirmedTxs     int    `json:"unconfirmedTxs"`
+}
+
+type EthTxVin struct {
+	Addresses []string `json:"addresses"`
+	IsAddress bool     `json:"isAddress"`
+	N         int      `json:"n"`
+}
+
+type EthTxVout struct {
+	Addresses []string `json:"addresses"`
+	IsAddress bool     `json:"isAddress"`
+	N         int      `json:"n"`
+	Value     string   `json:"value"`
+}
+
+type EthTx struct {
+	BlockHash        string `json:"blockHash"`
+	BlockHeight      int    `json:"blockHeight"`
+	BlockTime        int    `json:"blockTime"`
+	Confirmations    int    `json:"confirmations"`
+	EthereumSpecific struct {
+		GasLimit int    `json:"gasLimit"`
+		GasPrice string `json:"gasPrice"`
+		GasUsed  int    `json:"gasUsed"`
+		Nonce    int    `json:"nonce"`
+		Status   int    `json:"status"`
+	} `json:"ethereumSpecific"`
+	Fees           string `json:"fees"`
+	TokenTransfers []struct {
+		Decimals int    `json:"decimals"`
+		From     string `json:"from"`
+		Name     string `json:"name"`
+		Symbol   string `json:"symbol"`
+		To       string `json:"to"`
+		Token    string `json:"token"`
+		Type     string `json:"type"`
+		Value    string `json:"value"`
+	} `json:"tokenTransfers"`
+	Txid  string      `json:"txid"`
+	Value string      `json:"value"`
+	Vin   []EthTxVin  `json:"vin"`
+	Vout  []EthTxVout `json:"vout"`
 }

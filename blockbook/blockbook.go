@@ -14,16 +14,31 @@ type BlockBook struct {
 
 // Methods for Bitcoin-like coins.
 
-func (b *BlockBook) GetXpub(xpub string) {
-
+func (b *BlockBook) GetXpub(xpub string) (response Xpub, err error) {
+	data, err := b.callWrapper("xpub/" + xpub + "?details=txs")
+	if err != nil {
+		return response, nil
+	}
+	err = json.Unmarshal(data, &response)
+	return
 }
 
-func (b *BlockBook) GetUtxo(addr string) {
-
+func (b *BlockBook) GetUtxo(xpub string) (response []Utxo, err error) {
+	data, err := b.callWrapper("utxo/" + xpub + "?confirmed=true")
+	if err != nil {
+		return response, nil
+	}
+	err = json.Unmarshal(data, &response)
+	return
 }
 
-func (b *BlockBook) GetTx(txid string) {
-
+func (b *BlockBook) GetTx(txid string) (response Tx, err error) {
+	data, err := b.callWrapper("tx/" + txid)
+	if err != nil {
+		return response, nil
+	}
+	err = json.Unmarshal(data, &response)
+	return
 }
 
 // Methods for Ethereum
