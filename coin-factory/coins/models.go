@@ -1,5 +1,9 @@
 package coins
 
+import (
+	"github.com/btcsuite/btcd/chaincfg"
+)
+
 // Coin is the basic coin structure to get the correct properties for each coin.
 type Coin struct {
 	Tag            string
@@ -7,7 +11,7 @@ type Coin struct {
 	Rates          RatesSource
 	BlockchainInfo BlockchainInfo
 	Mnemonic       string
-	ColdAddress    string
+	NetParams      *chaincfg.Params
 	BlockExplorer  string
 	Token          bool
 	TokenNetwork   string

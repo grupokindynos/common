@@ -37,7 +37,6 @@ func GetCoin(tag string) (*coins.Coin, error) {
 		Name:           coin.Name,
 		BlockchainInfo: coin.BlockchainInfo,
 		Rates:          coin.Rates,
-		ColdAddress:    os.Getenv(strings.ToUpper(tag) + "_COLD_ADDRESS"),
 		BlockExplorer:  coin.BlockExplorer,
 		Token:          coin.Token,
 		TokenNetwork:   coin.TokenNetwork,
