@@ -17,6 +17,14 @@ var HttpClient = http.Client{
 
 type ObolRequest struct{}
 
+func (o *ObolRequest) GetProductionURL() (string, error) {
+	return ProductionURL, nil
+}
+
+func (o *ObolRequest) GetHTTPClient() (http.Client, error) {
+	return HttpClient, nil
+}
+
 // GetCoinRates is a function to return obol simple rates for a coin
 func (o *ObolRequest) GetCoinRates(obolURL string, coin string) ([]Rate, error) {
 	res, err := HttpClient.Get(obolURL + "/simple/" + coin)
