@@ -12,17 +12,6 @@ var DeepOnion = Coin{
 		BlockTime:        4,
 		MinConfirmations: 20,
 	},
-	RpcMethods: RPCMethods{
-		GetWalletInfo:              "getwalletinfo",
-		GetBlockchainInfo:          "getblockchaininfo",
-		GetNetworkInfo:             "getnetworkinfo",
-		GetNewAddress:              "getnewaddress",
-		SendToAddress:              "sendtoaddress",
-		ValidateAddress:            "validateaddress",
-		GetRawTransaction:          "getrawtransaction",
-		DecodeRawTransaction:       "decoderawtransaction",
-		GetRawTransactionVerbosity: true,
-	},
 	Token:         false,
 	BlockExplorer: "https://onion.polispay.com",
 }

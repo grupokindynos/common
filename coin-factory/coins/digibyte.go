@@ -12,17 +12,7 @@ var Digibyte = Coin{
 		BlockTime:        0.25,
 		MinConfirmations: 25,
 	},
-	RpcMethods: RPCMethods{
-		GetWalletInfo:              "getwalletinfo",
-		GetBlockchainInfo:          "getblockchaininfo",
-		GetNetworkInfo:             "getnetworkinfo",
-		GetNewAddress:              "getnewaddress",
-		SendToAddress:              "sendtoaddress",
-		ValidateAddress:            "getaddressinfo",
-		GetRawTransaction:          "getrawtransaction",
-		DecodeRawTransaction:       "decoderawtransaction",
-		GetRawTransactionVerbosity: "1",
-	},
+
 	Token:         false,
 	BlockExplorer: "https://dgb2.trezor.io",
 }

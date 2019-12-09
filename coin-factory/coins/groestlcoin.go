@@ -12,17 +12,6 @@ var Groestlcoin = Coin{
 		BlockTime:        10,
 		MinConfirmations: 2,
 	},
-	RpcMethods: RPCMethods{
-		GetWalletInfo:              "getwalletinfo",
-		GetBlockchainInfo:          "getblockchaininfo",
-		GetNetworkInfo:             "getnetworkinfo",
-		GetNewAddress:              "getnewaddress",
-		SendToAddress:              "sendtoaddress",
-		ValidateAddress:            "getaddressinfo",
-		GetRawTransaction:          "getrawtransaction",
-		DecodeRawTransaction:       "decoderawtransaction",
-		GetRawTransactionVerbosity: "1",
-	},
 	Token:         false,
 	BlockExplorer: "https://grs.polispay.com",
 }

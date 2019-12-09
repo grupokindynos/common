@@ -12,17 +12,6 @@ var Snowgem = Coin{
 		BlockTime:        1,
 		MinConfirmations: 12,
 	},
-	RpcMethods: RPCMethods{
-		GetWalletInfo:              "getwalletinfo",
-		GetBlockchainInfo:          "getblockchaininfo",
-		GetNetworkInfo:             "getnetworkinfo",
-		GetNewAddress:              "getnewaddress",
-		SendToAddress:              "sendtoaddress",
-		ValidateAddress:            "validateaddress",
-		GetRawTransaction:          "getrawtransaction",
-		DecodeRawTransaction:       "decoderawtransaction",
-		GetRawTransactionVerbosity: true,
-	},
 	Token:         false,
 	BlockExplorer: "https://xsg.polispay.com",
 }

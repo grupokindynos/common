@@ -13,18 +13,6 @@ var Ethereum = Coin{
 		MinConfirmations: 8,
 		ExternalSource:   "eth1.trezor.io",
 	},
-	RpcMethods: RPCMethods{
-		GetWalletInfo:              "eth_getBalance",
-		GetWalletAccounts:          "eth_accounts",
-		GetBlockchainInfo:          "",
-		GetNetworkInfo:             "",
-		GetNewAddress:              "personal_newAccount",
-		SendToAddress:              "",
-		ValidateAddress:            "",
-		GetRawTransaction:          "",
-		DecodeRawTransaction:       "",
-		GetRawTransactionVerbosity: "",
-	},
 	Token:         false,
 	BlockExplorer: "https://eth1.trezor.io",
 }

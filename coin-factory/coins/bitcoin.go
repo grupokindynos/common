@@ -13,17 +13,6 @@ var Bitcoin = Coin{
 		MinConfirmations: 1,
 		ExternalSource:   "btc2.trezor.io",
 	},
-	RpcMethods: RPCMethods{
-		GetWalletInfo:              "getwalletinfo",
-		GetBlockchainInfo:          "getblockchaininfo",
-		GetNetworkInfo:             "getnetworkinfo",
-		GetNewAddress:              "getnewaddress",
-		SendToAddress:              "sendtoaddress",
-		ValidateAddress:            "getaddressinfo",
-		GetRawTransaction:          "getrawtransaction",
-		DecodeRawTransaction:       "decoderawtransaction",
-		GetRawTransactionVerbosity: "1",
-	},
 	Token:         false,
 	BlockExplorer: "https://btc1.trezor.io",
 }

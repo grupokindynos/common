@@ -12,17 +12,6 @@ var Dash = Coin{
 		BlockTime:        2.5,
 		MinConfirmations: 2,
 	},
-	RpcMethods: RPCMethods{
-		GetWalletInfo:              "getwalletinfo",
-		GetBlockchainInfo:          "getblockchaininfo",
-		GetNetworkInfo:             "getnetworkinfo",
-		GetNewAddress:              "getnewaddress",
-		SendToAddress:              "sendtoaddress",
-		ValidateAddress:            "validateaddress",
-		GetRawTransaction:          "getrawtransaction",
-		DecodeRawTransaction:       "decoderawtransaction",
-		GetRawTransactionVerbosity: true,
-	},
 	Token:         false,
 	BlockExplorer: "https://dash2.trezor.io",
 }

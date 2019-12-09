@@ -12,17 +12,6 @@ var Colossus = Coin{
 		BlockTime:        1,
 		MinConfirmations: 30,
 	},
-	RpcMethods: RPCMethods{
-		GetWalletInfo:              "getwalletinfo",
-		GetBlockchainInfo:          "getblockchaininfo",
-		GetNetworkInfo:             "getnetworkinfo",
-		GetNewAddress:              "getnewaddress",
-		SendToAddress:              "sendtoaddress",
-		ValidateAddress:            "validateaddress",
-		GetRawTransaction:          "getrawtransaction",
-		DecodeRawTransaction:       "decoderawtransaction",
-		GetRawTransactionVerbosity: true,
-	},
 	Token:         false,
 	BlockExplorer: "https://colx.polispay.com",
 }
