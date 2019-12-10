@@ -60,10 +60,10 @@ type Tokens struct {
 }
 
 type Utxo struct {
-	Coinbase      bool   `json:"coinbase"`
+	Address       string `json:"address"`
 	Confirmations int    `json:"confirmations"`
 	Height        int    `json:"height"`
-	LockTime      int    `json:"lockTime"`
+	Path          string `json:"path"`
 	Txid          string `json:"txid"`
 	Value         string `json:"value"`
 	Vout          int    `json:"vout"`
@@ -101,6 +101,10 @@ type Tx struct {
 	Version       int      `json:"version"`
 	Vin           []TxVin  `json:"vin"`
 	Vout          []TxVout `json:"vout"`
+}
+
+type Fee struct {
+	Result string `json:"result"`
 }
 
 type EthAddr struct {

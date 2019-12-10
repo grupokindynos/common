@@ -1,5 +1,7 @@
 package coins
 
+import "github.com/btcsuite/btcd/chaincfg"
+
 var Litecoin = Coin{
 	Tag:  "LTC",
 	Name: "litecoin",
@@ -12,16 +14,11 @@ var Litecoin = Coin{
 		BlockTime:        2.5,
 		MinConfirmations: 20,
 	},
-	RpcMethods: RPCMethods{
-		GetWalletInfo:              "getwalletinfo",
-		GetBlockchainInfo:          "getblockchaininfo",
-		GetNetworkInfo:             "getnetworkinfo",
-		GetNewAddress:              "getnewaddress",
-		SendToAddress:              "sendtoaddress",
-		ValidateAddress:            "getaddressinfo",
-		GetRawTransaction:          "getrawtransaction",
-		DecodeRawTransaction:       "decoderawtransaction",
-		GetRawTransactionVerbosity: "1",
+	NetParams: &chaincfg.Params{
+		PubKeyHashAddrID: 48,
+		HDPrivateKeyID:   [4]byte{0x04, 0x88, 0xAD, 0xE4},
+		HDPublicKeyID:    [4]byte{0x04, 0x88, 0xB2, 0x1E},
+		HDCoinType:       2,
 	},
 	Token:         false,
 	BlockExplorer: "https://ltc2.trezor.io",
