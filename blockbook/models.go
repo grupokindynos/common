@@ -103,6 +103,10 @@ type Tx struct {
 	Vout          []TxVout `json:"vout"`
 }
 
+type Fee struct {
+	Result string `json:"result"`
+}
+
 type EthAddr struct {
 	Address            string      `json:"address"`
 	Balance            string      `json:"balance"`

@@ -15,7 +15,7 @@ type BlockBook struct {
 // Methods for Bitcoin-like coins.
 
 func (b *BlockBook) GetXpub(xpub string) (response Xpub, err error) {
-	data, err := b.callWrapper("xpub/" + xpub + "?details=txs")
+	data, err := b.callWrapper("xpub/"+xpub+"?details=txs", 2)
 	if err != nil {
 		return response, nil
 	}
@@ -24,7 +24,7 @@ func (b *BlockBook) GetXpub(xpub string) (response Xpub, err error) {
 }
 
 func (b *BlockBook) GetUtxo(xpub string) (response []Utxo, err error) {
-	data, err := b.callWrapper("utxo/" + xpub + "?confirmed=true")
+	data, err := b.callWrapper("utxo/"+xpub+"?confirmed=true", 2)
 	if err != nil {
 		return response, nil
 	}
@@ -33,7 +33,16 @@ func (b *BlockBook) GetUtxo(xpub string) (response []Utxo, err error) {
 }
 
 func (b *BlockBook) GetTx(txid string) (response Tx, err error) {
-	data, err := b.callWrapper("tx/" + txid)
+	data, err := b.callWrapper("tx/"+txid, 2)
+	if err != nil {
+		return response, nil
+	}
+	err = json.Unmarshal(data, &response)
+	return
+}
+
+func (b *BlockBook) GetFee(nBlocks string) (response Fee, err error) {
+	data, err := b.callWrapper("estimatefee/"+nBlocks, 1)
 	if err != nil {
 		return response, nil
 	}
@@ -44,7 +53,7 @@ func (b *BlockBook) GetTx(txid string) (response Tx, err error) {
 // Methods for Ethereum
 
 func (b *BlockBook) GetEthAddress(addr string) (response EthAddr, err error) {
-	data, err := b.callWrapper("address/" + addr + "?details=txs")
+	data, err := b.callWrapper("address/"+addr+"?details=txs", 2)
 	if err != nil {
 		return response, nil
 	}
@@ -53,7 +62,7 @@ func (b *BlockBook) GetEthAddress(addr string) (response EthAddr, err error) {
 }
 
 func (b *BlockBook) GetTxEth(txid string) (response EthTx, err error) {
-	data, err := b.callWrapper("tx/" + txid)
+	data, err := b.callWrapper("tx/"+txid, 2)
 	if err != nil {
 		return response, nil
 	}
@@ -64,7 +73,7 @@ func (b *BlockBook) GetTxEth(txid string) (response EthTx, err error) {
 // Methods for all coins
 
 func (b *BlockBook) SendTx(rawTx string) (response string, err error) {
-	data, err := b.callWrapper("sendtx/" + rawTx)
+	data, err := b.callWrapper("sendtx/"+rawTx, 2)
 	if err != nil {
 		return response, nil
 	}
@@ -78,7 +87,7 @@ func (b *BlockBook) SendTx(rawTx string) (response string, err error) {
 }
 
 func (b *BlockBook) checkBlockStatus() bool {
-	data, err := b.callWrapper("status")
+	data, err := b.callWrapper("status", 2)
 	if err != nil {
 		return false
 	}
@@ -93,8 +102,17 @@ func (b *BlockBook) checkBlockStatus() bool {
 	return false
 }
 
-func (b *BlockBook) callWrapper(route string) ([]byte, error) {
-	resp, err := http.Get(b.Url + "/api/v2/" + route)
+func (b *BlockBook) callWrapper(route string, version int) ([]byte, error) {
+	var versionStr string
+	switch version {
+	case 1:
+		versionStr = "/api/v1/"
+	case 2:
+		versionStr = "/api/v2/"
+	default:
+		versionStr = "/api/"
+	}
+	resp, err := http.Get(b.Url + versionStr + route)
 	if err != nil {
 		return nil, err
 	}
