@@ -15,6 +15,8 @@ var Litecoin = Coin{
 		MinConfirmations: 20,
 	},
 	NetParams: &chaincfg.Params{
+		Bech32HRPSegwit: "ltc",
+		ScriptHashAddrID: 50,
 		PubKeyHashAddrID: 48,
 		HDPrivateKeyID:   [4]byte{0x04, 0x88, 0xAD, 0xE4},
 		HDPublicKeyID:    [4]byte{0x04, 0x88, 0xB2, 0x1E},

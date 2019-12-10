@@ -15,6 +15,8 @@ var Polis = Coin{
 		MinConfirmations: 2,
 	},
 	NetParams: &chaincfg.Params{
+		Bech32HRPSegwit: "",
+		ScriptHashAddrID: 56,
 		PubKeyHashAddrID: 55,
 		HDPrivateKeyID:   [4]byte{0x03, 0xE2, 0x59, 0x45},
 		HDPublicKeyID:    [4]byte{0x03, 0xE2, 0x5D, 0x7E},
