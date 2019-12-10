@@ -104,7 +104,7 @@ type SendAddressBodyReq struct {
 type ValidateRawTxReq struct {
 	Coin    string  `json:"coin"`
 	RawTx   string  `json:"raw_tx"`
-	Amount  float64 `json:"amount"`
+	Amount  int64 `json:"amount"`
 	Address string  `json:"address"`
 }
 
