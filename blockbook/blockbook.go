@@ -23,8 +23,14 @@ func (b *BlockBook) GetXpub(xpub string) (response Xpub, err error) {
 	return
 }
 
-func (b *BlockBook) GetUtxo(xpub string) (response []Utxo, err error) {
-	data, err := b.callWrapper("utxo/"+xpub+"?confirmed=true", 2)
+func (b *BlockBook) GetUtxo(xpub string, confirmed bool) (response []Utxo, err error) {
+	var url string
+	if confirmed {
+		url = "utxo/"+xpub+"?confirmed=true"
+	} else {
+		url = "utxo/"+xpub
+	}
+	data, err := b.callWrapper(url, 2)
 	if err != nil {
 		return response, nil
 	}
