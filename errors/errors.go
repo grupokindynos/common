@@ -15,7 +15,7 @@ var (
 	ErrorDBStore           = errors.New("unable to store information to database")
 	ErrorNotFound          = errors.New("information not found")
 	ErrorAlreadyExists     = errors.New("object already exists")
-	ErrorVoucherLimit 	   = errors.New("user daily voucher purchase exceeded")
+	ErrorVoucherLimit      = errors.New("user daily voucher purchase exceeded")
 
 	ErrorWrongMessage      = errors.New("signed message is not on known hosts")
 	ErrorInvalidPassword   = errors.New("could not decrypt using master password")
