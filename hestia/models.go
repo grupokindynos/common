@@ -148,6 +148,8 @@ type Voucher struct {
 	Status               string  `firestore:"status" json:"status"`
 	Timestamp            int64   `firestore:"timestamp" json:"timestamp"`
 	RedeemTimestamp      int64   `firestore:"redeem_timestamp" json:"redeem_timestamp"`
+	AmountEuro 			 int64   `firestore:"amount_euro" json:"amount_euro"`
+	AmountFeeEuro		 int64   `firestore:"amount_fee_euro" json:"amount_fee_euro"`
 }
 
 type Deposit struct {
