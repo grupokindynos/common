@@ -12,7 +12,7 @@ var Digibyte = Coin{
 	BlockchainInfo: BlockchainInfo{
 		ExternalSource:   "dgb2.trezor.io",
 		BlockTime:        0.25,
-		MinConfirmations: 25,
+		MinConfirmations: 10,
 	},
 	NetParams: &chaincfg.Params{
 		Bech32HRPSegwit: "dgb",
