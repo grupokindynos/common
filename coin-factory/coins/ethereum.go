@@ -1,7 +1,5 @@
 package coins
 
-import "github.com/btcsuite/btcd/chaincfg"
-
 // Ethereum coinfactory information
 var Ethereum = Coin{
 	Tag:  "ETH",
@@ -15,13 +13,17 @@ var Ethereum = Coin{
 		MinConfirmations: 8,
 		ExternalSource:   "eth1.trezor.io",
 	},
-	NetParams: &chaincfg.Params{
-		// TODO this is created different
-		Bech32HRPSegwit: "",
-		PubKeyHashAddrID: 0,
-		HDPrivateKeyID:   [4]byte{0x04, 0x88, 0xAD, 0xE4},
-		HDPublicKeyID:    [4]byte{0x04, 0x88, 0xB2, 0x1E},
-		HDCoinType:       60,
+	RpcMethods: RPCMethods{
+		GetWalletInfo:              "eth_getBalance",
+		GetWalletAccounts:          "eth_accounts",
+		GetBlockchainInfo:          "",
+		GetNetworkInfo:             "",
+		GetNewAddress:              "personal_newAccount",
+		SendToAddress:              "",
+		ValidateAddress:            "",
+		GetRawTransaction:          "",
+		DecodeRawTransaction:       "",
+		GetRawTransactionVerbosity: "",
 	},
 	Token:         false,
 	BlockExplorer: "https://eth1.trezor.io",

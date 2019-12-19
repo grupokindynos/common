@@ -9,7 +9,6 @@
 
 # Tools
 
-* `blockbook`: API wrapper for blockbook.
 * `jwt`: Used for jwt encryption/decription encoding/decoding 
 * `utils`: For common slices uses. 
 * `keys`: A script to change all the keys on microservices. 

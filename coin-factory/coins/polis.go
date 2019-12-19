@@ -1,7 +1,5 @@
 package coins
 
-import "github.com/btcsuite/btcd/chaincfg"
-
 var Polis = Coin{
 	Tag:  "POLIS",
 	Name: "polis",
@@ -14,13 +12,16 @@ var Polis = Coin{
 		BlockTime:        2,
 		MinConfirmations: 2,
 	},
-	NetParams: &chaincfg.Params{
-		Bech32HRPSegwit: "",
-		ScriptHashAddrID: 56,
-		PubKeyHashAddrID: 55,
-		HDPrivateKeyID:   [4]byte{0x03, 0xE2, 0x59, 0x45},
-		HDPublicKeyID:    [4]byte{0x03, 0xE2, 0x5D, 0x7E},
-		HDCoinType:       1997,
+	RpcMethods: RPCMethods{
+		GetWalletInfo:              "getwalletinfo",
+		GetBlockchainInfo:          "getblockchaininfo",
+		GetNetworkInfo:             "getnetworkinfo",
+		GetNewAddress:              "getnewaddress",
+		SendToAddress:              "sendtoaddress",
+		ValidateAddress:            "validateaddress",
+		GetRawTransaction:          "getrawtransaction",
+		DecodeRawTransaction:       "decoderawtransaction",
+		GetRawTransactionVerbosity: true,
 	},
 	Token:         false,
 	BlockExplorer: "https://blockbook.polispay.org",
