@@ -7,7 +7,6 @@ package mocks
 import (
 	gomock "github.com/golang/mock/gomock"
 	obol "github.com/grupokindynos/common/obol"
-	http "net/http"
 	reflect "reflect"
 )
 
@@ -35,76 +34,46 @@ func (m *MockObolService) EXPECT() *MockObolServiceMockRecorder {
 }
 
 // GetCoin2CoinRates mocks base method
-func (m *MockObolService) GetCoin2CoinRates(arg0, arg1, arg2 string) (float64, error) {
+func (m *MockObolService) GetCoin2CoinRates(arg0, arg1 string) (float64, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetCoin2CoinRates", arg0, arg1, arg2)
+	ret := m.ctrl.Call(m, "GetCoin2CoinRates", arg0, arg1)
 	ret0, _ := ret[0].(float64)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
 // GetCoin2CoinRates indicates an expected call of GetCoin2CoinRates
-func (mr *MockObolServiceMockRecorder) GetCoin2CoinRates(arg0, arg1, arg2 interface{}) *gomock.Call {
+func (mr *MockObolServiceMockRecorder) GetCoin2CoinRates(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetCoin2CoinRates", reflect.TypeOf((*MockObolService)(nil).GetCoin2CoinRates), arg0, arg1, arg2)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetCoin2CoinRates", reflect.TypeOf((*MockObolService)(nil).GetCoin2CoinRates), arg0, arg1)
 }
 
 // GetCoin2CoinRatesWithAmount mocks base method
-func (m *MockObolService) GetCoin2CoinRatesWithAmount(arg0, arg1, arg2, arg3 string) (obol.CoinToCoinWithAmountResponse, error) {
+func (m *MockObolService) GetCoin2CoinRatesWithAmount(arg0, arg1, arg2 string) (obol.CoinToCoinWithAmountResponse, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetCoin2CoinRatesWithAmount", arg0, arg1, arg2, arg3)
+	ret := m.ctrl.Call(m, "GetCoin2CoinRatesWithAmount", arg0, arg1, arg2)
 	ret0, _ := ret[0].(obol.CoinToCoinWithAmountResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
 // GetCoin2CoinRatesWithAmount indicates an expected call of GetCoin2CoinRatesWithAmount
-func (mr *MockObolServiceMockRecorder) GetCoin2CoinRatesWithAmount(arg0, arg1, arg2, arg3 interface{}) *gomock.Call {
+func (mr *MockObolServiceMockRecorder) GetCoin2CoinRatesWithAmount(arg0, arg1, arg2 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetCoin2CoinRatesWithAmount", reflect.TypeOf((*MockObolService)(nil).GetCoin2CoinRatesWithAmount), arg0, arg1, arg2, arg3)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetCoin2CoinRatesWithAmount", reflect.TypeOf((*MockObolService)(nil).GetCoin2CoinRatesWithAmount), arg0, arg1, arg2)
 }
 
 // GetCoinRates mocks base method
-func (m *MockObolService) GetCoinRates(arg0, arg1 string) ([]obol.Rate, error) {
+func (m *MockObolService) GetCoinRates(arg0 string) ([]obol.Rate, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetCoinRates", arg0, arg1)
+	ret := m.ctrl.Call(m, "GetCoinRates", arg0)
 	ret0, _ := ret[0].([]obol.Rate)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
 // GetCoinRates indicates an expected call of GetCoinRates
-func (mr *MockObolServiceMockRecorder) GetCoinRates(arg0, arg1 interface{}) *gomock.Call {
+func (mr *MockObolServiceMockRecorder) GetCoinRates(arg0 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetCoinRates", reflect.TypeOf((*MockObolService)(nil).GetCoinRates), arg0, arg1)
-}
-
-// GetHTTPClient mocks base method
-func (m *MockObolService) GetHTTPClient() (http.Client, error) {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetHTTPClient")
-	ret0, _ := ret[0].(http.Client)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
-}
-
-// GetHTTPClient indicates an expected call of GetHTTPClient
-func (mr *MockObolServiceMockRecorder) GetHTTPClient() *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetHTTPClient", reflect.TypeOf((*MockObolService)(nil).GetHTTPClient))
-}
-
-// GetProductionURL mocks base method
-func (m *MockObolService) GetProductionURL() (string, error) {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetProductionURL")
-	ret0, _ := ret[0].(string)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
-}
-
-// GetProductionURL indicates an expected call of GetProductionURL
-func (mr *MockObolServiceMockRecorder) GetProductionURL() *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetProductionURL", reflect.TypeOf((*MockObolService)(nil).GetProductionURL))
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetCoinRates", reflect.TypeOf((*MockObolService)(nil).GetCoinRates), arg0)
 }

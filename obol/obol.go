@@ -7,27 +7,18 @@ import (
 	"time"
 )
 
-// ProductionURL is the current obol production url
-var ProductionURL = "https://obol.polispay.com"
-
 // HttpClient a usable client with hardcoded timeout
 var HttpClient = http.Client{
 	Timeout: time.Second * 5,
 }
 
-type ObolRequest struct{}
-
-func (o *ObolRequest) GetProductionURL() (string, error) {
-	return ProductionURL, nil
-}
-
-func (o *ObolRequest) GetHTTPClient() (http.Client, error) {
-	return HttpClient, nil
+type ObolRequest struct {
+	ObolURL string
 }
 
 // GetCoinRates is a function to return obol simple rates for a coin
-func (o *ObolRequest) GetCoinRates(obolURL string, coin string) ([]Rate, error) {
-	res, err := HttpClient.Get(obolURL + "/simple/" + coin)
+func (o *ObolRequest) GetCoinRates(coin string) ([]Rate, error) {
+	res, err := HttpClient.Get(o.ObolURL + "/simple/" + coin)
 	if err != nil {
 		return []Rate{}, err
 	}
@@ -53,8 +44,8 @@ func (o *ObolRequest) GetCoinRates(obolURL string, coin string) ([]Rate, error) 
 }
 
 // GetCoin2CoinRates is a function to return obol complex rates between 2 coins
-func (o *ObolRequest) GetCoin2CoinRates(obolURL string, fromcoin string, tocoin string) (float64, error) {
-	res, err := HttpClient.Get(obolURL + "/complex/" + fromcoin + "/" + tocoin)
+func (o *ObolRequest) GetCoin2CoinRates(fromCoin string, toCoin string) (float64, error) {
+	res, err := HttpClient.Get(o.ObolURL + "/complex/" + fromCoin + "/" + toCoin)
 	if err != nil {
 		return 0, err
 	}
@@ -80,8 +71,8 @@ func (o *ObolRequest) GetCoin2CoinRates(obolURL string, fromcoin string, tocoin 
 }
 
 // GetCoin2CoinRatesWithAmount is a function to return obol complex rates between 2 coins with a hardcoded amount
-func (o *ObolRequest) GetCoin2CoinRatesWithAmount(obolURL string, fromcoin string, tocoin string, amount string) (CoinToCoinWithAmountResponse, error) {
-	res, err := HttpClient.Get(obolURL + "/complex/" + fromcoin + "/" + tocoin + "?amount=" + amount)
+func (o *ObolRequest) GetCoin2CoinRatesWithAmount(fromCoin string, toCoin string, amount string) (CoinToCoinWithAmountResponse, error) {
+	res, err := HttpClient.Get(o.ObolURL + "/complex/" + fromCoin + "/" + toCoin + "?amount=" + amount)
 	if err != nil {
 		return CoinToCoinWithAmountResponse{}, err
 	}
