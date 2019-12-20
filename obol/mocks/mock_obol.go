@@ -10,7 +10,7 @@ import (
 	reflect "reflect"
 )
 
-// MockObolService is a mock of ObolService interface
+// MockObolService is a mock of ObolService interface.go
 type MockObolService struct {
 	ctrl     *gomock.Controller
 	recorder *MockObolServiceMockRecorder

@@ -3,6 +3,7 @@ module github.com/grupokindynos/common
 go 1.13
 
 require (
+	github.com/btcsuite/btcd v0.20.1-beta
 	github.com/bwmarrin/discordgo v0.19.0
 	github.com/gin-gonic/gin v1.4.0
 	github.com/golang/mock v1.3.1

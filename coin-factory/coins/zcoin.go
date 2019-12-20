@@ -1,5 +1,7 @@
 package coins
 
+import "github.com/btcsuite/btcd/chaincfg"
+
 var Zcoin = Coin{
 	Tag:  "XZC",
 	Name: "zcoin",
@@ -10,18 +12,15 @@ var Zcoin = Coin{
 	BlockchainInfo: BlockchainInfo{
 		ExternalSource:   "xzc.polispay.com",
 		BlockTime:        5,
-		MinConfirmations: 5,
+		MinConfirmations: 2,
 	},
-	RpcMethods: RPCMethods{
-		GetWalletInfo:              "getwalletinfo",
-		GetBlockchainInfo:          "getblockchaininfo",
-		GetNetworkInfo:             "getnetworkinfo",
-		GetNewAddress:              "getnewaddress",
-		SendToAddress:              "sendtoaddress",
-		ValidateAddress:            "validateaddress",
-		GetRawTransaction:          "getrawtransaction",
-		DecodeRawTransaction:       "decoderawtransaction",
-		GetRawTransactionVerbosity: true,
+	NetParams: &chaincfg.Params{
+		Bech32HRPSegwit:  "",
+		ScriptHashAddrID: 7,
+		PubKeyHashAddrID: 82,
+		HDPrivateKeyID:   [4]byte{0x04, 0x88, 0xAD, 0xE4},
+		HDPublicKeyID:    [4]byte{0x04, 0x88, 0xB2, 0x1E},
+		HDCoinType:       136,
 	},
 	Token:         false,
 	BlockExplorer: "https://xzc.polispay.com",

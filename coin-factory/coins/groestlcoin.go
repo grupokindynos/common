@@ -1,5 +1,7 @@
 package coins
 
+import "github.com/btcsuite/btcd/chaincfg"
+
 var Groestlcoin = Coin{
 	Tag:  "GRS",
 	Name: "groestlcoin",
@@ -12,16 +14,14 @@ var Groestlcoin = Coin{
 		BlockTime:        10,
 		MinConfirmations: 2,
 	},
-	RpcMethods: RPCMethods{
-		GetWalletInfo:              "getwalletinfo",
-		GetBlockchainInfo:          "getblockchaininfo",
-		GetNetworkInfo:             "getnetworkinfo",
-		GetNewAddress:              "getnewaddress",
-		SendToAddress:              "sendtoaddress",
-		ValidateAddress:            "getaddressinfo",
-		GetRawTransaction:          "getrawtransaction",
-		DecodeRawTransaction:       "decoderawtransaction",
-		GetRawTransactionVerbosity: "1",
+	NetParams: &chaincfg.Params{
+		// TODO this is created different
+		Bech32HRPSegwit:  "grs",
+		ScriptHashAddrID: 5,
+		PubKeyHashAddrID: 24,
+		HDPrivateKeyID:   [4]byte{0x04, 0x88, 0xAD, 0xE4},
+		HDPublicKeyID:    [4]byte{0x04, 0x88, 0xB2, 0x1E},
+		HDCoinType:       17,
 	},
 	Token:         false,
 	BlockExplorer: "https://grs.polispay.com",
