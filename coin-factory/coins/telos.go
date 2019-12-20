@@ -15,7 +15,7 @@ var Telos = Coin{
 		MinConfirmations: 6,
 	},
 	NetParams: &chaincfg.Params{
-		Bech32HRPSegwit: "",
+		Bech32HRPSegwit:  "",
 		ScriptHashAddrID: 138,
 		PubKeyHashAddrID: 38,
 		HDPrivateKeyID:   [4]byte{0x04, 0x88, 0xAD, 0xE4},

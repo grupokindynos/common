@@ -16,7 +16,7 @@ var Groestlcoin = Coin{
 	},
 	NetParams: &chaincfg.Params{
 		// TODO this is created different
-		Bech32HRPSegwit: "grs",
+		Bech32HRPSegwit:  "grs",
 		ScriptHashAddrID: 5,
 		PubKeyHashAddrID: 24,
 		HDPrivateKeyID:   [4]byte{0x04, 0x88, 0xAD, 0xE4},
