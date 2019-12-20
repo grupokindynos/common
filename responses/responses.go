@@ -12,7 +12,9 @@ func GlobalResponseError(result interface{}, err error, c *gin.Context) *gin.Con
 	if err != nil {
 		switch err {
 		case commonErrors.ErrorVoucherLimit:
-			c.JSON(202, gin.H{"message": "voucher daily limit exceeded", "error": err.Error(), "status":407})
+			c.JSON(202, gin.H{"message": "voucher daily limit exceeded", "error": err.Error(), "status": 407})
+		case commonErrors.ErrorNotFound:
+			c.JSON(404, gin.H{"message": "element not found in database", "error": err.Error(), "status": 1})
 		default:
 			c.JSON(500, gin.H{"message": "Error", "error": err.Error(), "status": -1})
 		}
