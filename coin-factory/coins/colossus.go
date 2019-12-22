@@ -6,8 +6,8 @@ var Colossus = Coin{
 	Tag:  "COLX",
 	Name: "colossus",
 	Rates: RatesSource{
-		Exchange:         "cryptobridge",
-		FallBackExchange: "novaexchange",
+		Exchange:         "crex24",
+		FallBackExchange: "",
 	},
 	BlockchainInfo: BlockchainInfo{
 		ExternalSource:   "colx.polispay.com",
