@@ -16,6 +16,7 @@ var (
 	ErrorNotFound          = errors.New("information not found")
 	ErrorAlreadyExists     = errors.New("object already exists")
 	ErrorVoucherLimit      = errors.New("user daily voucher purchase exceeded")
+	ErrorNotEnoughDash     = errors.New("not enough dash to pay vouchers")
 
 	ErrorWrongMessage      = errors.New("signed message is not on known hosts")
 	ErrorInvalidPassword   = errors.New("could not decrypt using master password")

@@ -7,7 +7,7 @@ var Polis = Coin{
 	Name: "polis",
 	Rates: RatesSource{
 		Exchange:         "southxchange",
-		FallBackExchange: "cryptobridge",
+		FallBackExchange: "crex24",
 	},
 	BlockchainInfo: BlockchainInfo{
 		ExternalSource:   "blockbook.polispay.org",
