@@ -23,22 +23,26 @@ type AdrestiaOrderUpdate struct {
 type AdrestiaStatus int
 
 const (
-	AdrestiaStatusSentAmount AdrestiaStatus = iota
-	AdrestiaStatusCreated
-	AdrestiaStatusPartiallyFulfilled
-	AdrestiaStatusPendingWidthdrawal
+	AdrestiaStatusCreated AdrestiaStatus = iota
+	AdrestiaStatusFirstExchange
+	AdrestiaStatusFirstConversion
+	AdrestiaStatusSecondExchange
+	AdrestiaStatusSecondConversion
+	AdrestiaStatusExchangeComplete
 	AdrestiaStatusCompleted
 	AdrestiaStatusError
 )
 
 var (
 	AdrestiaStatusStr = map[AdrestiaStatus]string{
-		0: "SENTAMOUNT",
-		1: "CREATED",
-		2: "PARTIALLYFULFILLED",
-		3: "PENDINGWITHDRAWAL",
-		4: "COMPLETED",
-		5: "ERROR",
+		0: "CREATED",
+		1: "FIRST_EXCHANGE",
+		2: "FIRST_CONVERSION",
+		3: "SECOND_EXCHANGE",
+		4: "SECOND_CONVERSION",
+		5: "EXCHANGE_COMPLETE",
+		6: "COMPLETED",
+		7: "ERROR",
 	}
 )
 
