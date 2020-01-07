@@ -1,6 +1,6 @@
 package hestia
 
-import "github.com/grupokindynos/olympus-utils/amount"
+import "github.com/grupokindynos/ogen-utils/amount"
 
 type Outputs struct {
 	Address string
