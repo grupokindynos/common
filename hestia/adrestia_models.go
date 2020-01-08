@@ -1,18 +1,35 @@
 package hestia
 
 type AdrestiaOrder struct {
-	ID              string  `firestore:"id" json:"id"`
-	Exchange        string  `firestore:"exchange" json:"exchange"`
-	Time            int64   `firestore:"time" json:"time"`
-	Status          string  `firestore:"status" json:"status"`
-	Amount          float64 `firestore:"amount" json:"amount"`
-	FromCoin        string  `firestore:"from_coin" json:"from_coin"`
-	ToCoin          string  `firestore:"to_coin" json:"to_coin"`
-	WithdrawAddress string  `firestore:"withdraw_address" json:"withdraw_address"`
-	Message         string  `firestore:"message" json:"message"`
-	OrderId         string  `firestore:"order_id" json:"order_id"`
-	TxId            string  `firestore:"tx_id" json:"tx_id"`
-	ExchangeAddress string  `firestore:"exchange_address" json:"exchange_address"`
+	ID           string         `firestore:"id" json:"id"`
+	DualExchange bool           `firestore:"id" json:"dual_exchange"`
+	Time         int64          `firestore:"time" json:"time"`
+	Status       AdrestiaStatus `firestore:"status" json:"status"`
+	Amount       float64        `firestore:"amount" json:"amount"`
+	BtcRate      float64        `firestore:"btc_rate" json:"btc_rate"`
+	FromCoin     string         `firestore:"from_coin" json:"from_coin"`
+	ToCoin       string         `firestore:"to_coin" json:"to_coin"`
+
+	Message string `firestore:"message" json:"message"`
+
+	FistOrder  ExchangeOrder `firestore:"first_order" json:"first_order"`
+	FinalOrder ExchangeOrder `firestore:"final_order" json:"final_order"`
+
+	HETxId          string `firestore:"tx_id" json:"he_tx_id"`
+	EETxId          string `firestore:"tx_id" json:"ee_tx_id"`
+	EHTxId          string `firestore:"tx_id" json:"eh_tx_id"`
+	FirstExAddress  string `firestore:"exchange_address" json:"f_ex_address"`
+	SecondExAddress string `firestore:"exchange_address" json:"s_ex_address"`
+	WithdrawAddress string `firestore:"withdraw_address" json:"withdraw_address"`
+}
+
+type ExchangeOrder struct {
+	OrderId   string  `firestore:"order_id" json:"order_id"`
+	Symbol    string  `firestore:"symbol" json:"symbol"`
+	Side      string  `firestore:"side" json:"side"`
+	Amount    float64 `firestore:"amount" json:"amount"`
+	Timestamp int64   `firestore:"time" json:"time"`
+	Exchange  string  `firestore:"exchange" json:"exchange"`
 }
 
 type AdrestiaOrderUpdate struct {
