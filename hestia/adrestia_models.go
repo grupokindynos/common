@@ -21,6 +21,7 @@ type AdrestiaOrderUpdate struct {
 }
 
 type AdrestiaStatus int
+type ExchangeStatus int
 
 const (
 	AdrestiaStatusCreated AdrestiaStatus = iota
@@ -46,8 +47,30 @@ var (
 	}
 )
 
+const (
+	ExchangeStatusOpen ExchangeStatus = iota
+	ExchangeStatusCompleted
+	ExchangeStatusError
+)
+
+var (
+	ExchangeStatusStr = map[ExchangeStatus]string{
+		0: "OPEN",
+		1: "COMPLETED",
+		2: "ERROR",
+	}
+)
+
 func GetAdrestiaStatusString(status AdrestiaStatus) string {
 	value, ok := AdrestiaStatusStr[status]
+	if !ok {
+		return ""
+	}
+	return value
+}
+
+func GetExchangeStatusString(status ExchangeStatus) string {
+	value, ok := ExchangeStatusStr[status]
 	if !ok {
 		return ""
 	}
