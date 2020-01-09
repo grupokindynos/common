@@ -12,14 +12,14 @@ type AdrestiaOrder struct {
 
 	Message string `firestore:"message" json:"message"`
 
-	FistOrder  ExchangeOrder `firestore:"first_order" json:"first_order"`
+	FirstOrder ExchangeOrder `firestore:"first_order" json:"first_order"`
 	FinalOrder ExchangeOrder `firestore:"final_order" json:"final_order"`
 
-	HETxId          string `firestore:"tx_id" json:"he_tx_id"`
-	EETxId          string `firestore:"tx_id" json:"ee_tx_id"`
-	EHTxId          string `firestore:"tx_id" json:"eh_tx_id"`
-	FirstExAddress  string `firestore:"exchange_address" json:"f_ex_address"`
-	SecondExAddress string `firestore:"exchange_address" json:"s_ex_address"`
+	HETxId          string `firestore:"he_tx_id" json:"he_tx_id"`
+	EETxId          string `firestore:"ee_tx_id" json:"ee_tx_id"`
+	EHTxId          string `firestore:"eh_tx_id" json:"eh_tx_id"`
+	FirstExAddress  string `firestore:"f_ex_address" json:"f_ex_address"`
+	SecondExAddress string `firestore:"s_ex_address" json:"s_ex_address"`
 	WithdrawAddress string `firestore:"withdraw_address" json:"withdraw_address"`
 }
 
