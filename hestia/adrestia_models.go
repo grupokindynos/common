@@ -24,12 +24,14 @@ type AdrestiaOrder struct {
 }
 
 type ExchangeOrder struct {
-	OrderId   string  `firestore:"order_id" json:"order_id"`
-	Symbol    string  `firestore:"symbol" json:"symbol"`
-	Side      string  `firestore:"side" json:"side"`
-	Amount    float64 `firestore:"amount" json:"amount"`
-	Timestamp int64   `firestore:"time" json:"time"`
-	Exchange  string  `firestore:"exchange" json:"exchange"`
+	OrderId           string  `firestore:"order_id" json:"order_id"`
+	Symbol            string  `firestore:"symbol" json:"symbol"`
+	Side              string  `firestore:"side" json:"side"`
+	Amount            float64 `firestore:"amount" json:"amount"`
+	Timestamp         int64   `firestore:"time" json:"time"`
+	Exchange          string  `firestore:"exchange" json:"exchange"`
+	ListingCurrency   string  `firestore:"listingCurrency" json:"listingCurrency"`
+	ReferenceCurrency string  `firestore:"referenceCurrency" json:"referenceCurrency"`
 }
 
 type AdrestiaOrderUpdate struct {
