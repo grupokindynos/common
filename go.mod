@@ -16,7 +16,7 @@ require (
 	github.com/joho/godotenv v1.3.0
 	github.com/json-iterator/go v1.1.7 // indirect
 	github.com/kr/pretty v0.1.0 // indirect
-	github.com/martinboehm/btcd v0.0.0-20190104121910-8e7c0427fee5 // indirect
+	github.com/martinboehm/btcd v0.0.0-20190104121910-8e7c0427fee5
 	github.com/martinboehm/btcutil v0.0.0-20191023112652-a3d2b8457b77
 	github.com/mattn/go-isatty v0.0.8 // indirect
 	github.com/sethvargo/go-password v0.1.2

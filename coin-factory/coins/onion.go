@@ -1,6 +1,9 @@
 package coins
 
-import "github.com/martinboehm/btcutil/chaincfg"
+import (
+	coinfactory "github.com/grupokindynos/common/coin-factory"
+	"github.com/martinboehm/btcutil/chaincfg"
+)
 
 var DeepOnion = Coin{
 	Tag:  "ONION",
@@ -21,6 +24,7 @@ var DeepOnion = Coin{
 		HDPrivateKeyID:   [4]byte{0x04, 0x88, 0xAD, 0xE4},
 		HDPublicKeyID:    [4]byte{0x04, 0x88, 0xB2, 0x1E},
 		HDCoinType:       305,
+		Net:              coinfactory.BtcNet,
 	},
 	Token:         false,
 	BlockExplorer: "https://onion.polispay.com",

@@ -1,6 +1,9 @@
 package coins
 
-import "github.com/martinboehm/btcutil/chaincfg"
+import (
+	coinfactory "github.com/grupokindynos/common/coin-factory"
+	"github.com/martinboehm/btcutil/chaincfg"
+)
 
 var Dash = Coin{
 	Tag:  "DASH",
@@ -21,6 +24,7 @@ var Dash = Coin{
 		HDPrivateKeyID:   [4]byte{0x04, 0x88, 0xAD, 0xE4},
 		HDPublicKeyID:    [4]byte{0x04, 0x88, 0xB2, 0x1E},
 		HDCoinType:       5,
+		Net:              coinfactory.BtcNet,
 	},
 	Token:         false,
 	BlockExplorer: "https://dash2.trezor.io",

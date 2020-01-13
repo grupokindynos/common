@@ -1,6 +1,9 @@
 package coins
 
-import "github.com/martinboehm/btcutil/chaincfg"
+import (
+	coinfactory "github.com/grupokindynos/common/coin-factory"
+	"github.com/martinboehm/btcutil/chaincfg"
+)
 
 var Polis = Coin{
 	Tag:  "POLIS",
@@ -21,6 +24,7 @@ var Polis = Coin{
 		HDPrivateKeyID:   [4]byte{0x03, 0xE2, 0x59, 0x45},
 		HDPublicKeyID:    [4]byte{0x03, 0xE2, 0x5D, 0x7E},
 		HDCoinType:       1997,
+		Net:              coinfactory.PolisNet,
 	},
 	Token:         false,
 	BlockExplorer: "https://blockbook.polispay.org",
