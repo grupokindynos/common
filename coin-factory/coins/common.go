@@ -1,7 +1,15 @@
 package coins
 
 import (
+	"github.com/martinboehm/btcd/wire"
 	"github.com/martinboehm/btcutil/chaincfg"
+)
+
+// This network params are just an override around the wire net information to make sure HD wallet prefixes are
+// registered. For BTC defaults (all coins except Polis) just use the BtcNet param.
+var (
+	BtcNet   wire.BitcoinNet = 1
+	PolisNet wire.BitcoinNet = 2
 )
 
 // Coin is the basic coin structure to get the correct properties for each coin.

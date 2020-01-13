@@ -1,7 +1,6 @@
 package coins
 
 import (
-	coinfactory "github.com/grupokindynos/common/coin-factory"
 	"github.com/martinboehm/btcutil/chaincfg"
 )
 
@@ -24,7 +23,7 @@ var Digibyte = Coin{
 		HDPrivateKeyID:   [4]byte{0x04, 0x88, 0xAD, 0xE4},
 		HDPublicKeyID:    [4]byte{0x04, 0x88, 0xB2, 0x1E},
 		HDCoinType:       20,
-		Net:              coinfactory.BtcNet,
+		Net:              BtcNet,
 	},
 	Token:         false,
 	BlockExplorer: "https://dgb2.trezor.io",

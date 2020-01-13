@@ -3,16 +3,8 @@ package coinfactory
 import (
 	"errors"
 	"github.com/grupokindynos/common/coin-factory/coins"
-	"github.com/martinboehm/btcd/wire"
 	"os"
 	"strings"
-)
-
-// This network params are just an override around the wire net information to make sure HD wallet prefixes are
-// registered. For BTC defaults (all coins except Polis) just use the BtcNet param.
-var (
-	BtcNet wire.BitcoinNet = 1
-	PolisNet wire.BitcoinNet = 2
 )
 
 // Coins refers to the coins that are being used on the API instance
