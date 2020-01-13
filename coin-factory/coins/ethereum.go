@@ -1,6 +1,7 @@
 package coins
 
 import (
+	"github.com/martinboehm/btcutil/base58"
 	"github.com/martinboehm/btcutil/chaincfg"
 )
 
@@ -19,12 +20,13 @@ var Ethereum = Coin{
 	},
 	NetParams: &chaincfg.Params{
 		// TODO this is created different
-		Bech32HRPSegwit:  "",
-		PubKeyHashAddrID: []byte{0},
-		HDPrivateKeyID:   [4]byte{0x04, 0x88, 0xAD, 0xE4},
-		HDPublicKeyID:    [4]byte{0x04, 0x88, 0xB2, 0x1E},
-		HDCoinType:       60,
-		Net:              BtcNet,
+		Bech32HRPSegwit:   "",
+		PubKeyHashAddrID:  []byte{0},
+		HDPrivateKeyID:    [4]byte{0x04, 0x88, 0xAD, 0xE4},
+		HDPublicKeyID:     [4]byte{0x04, 0x88, 0xB2, 0x1E},
+		HDCoinType:        60,
+		Base58CksumHasher: base58.Sha256D,
+		Net:               BtcNet,
 	},
 	Token:         false,
 	BlockExplorer: "https://eth1.trezor.io",
