@@ -1,7 +1,7 @@
 package coins
 
 import (
-	"github.com/btcsuite/btcd/chaincfg"
+	"github.com/martinboehm/btcutil/chaincfg"
 )
 
 // Coin is the basic coin structure to get the correct properties for each coin.

@@ -1,3 +1,5 @@
+github.com/Groestlcoin/go-groestl-hash v0.0.0-20181012171753-790653ac190c h1:8bYNmjELeCj7DEh/dN7zFzkJ0upK3GkbOC/0u1HMQ5s=
+github.com/Groestlcoin/go-groestl-hash v0.0.0-20181012171753-790653ac190c/go.mod h1:DwgC62sAn4RgH4L+O8REgcE7f0XplHPNeRYFy+ffy1M=
 github.com/aead/siphash v1.0.1/go.mod h1:Nywa3cDsYNNK3gaciGTWPwHt0wlpNV15vwmswBAUSII=
 github.com/btcsuite/btcd v0.20.1-beta h1:Ik4hyJqN8Jfyv3S4AGBOmyouMsYE3EdYODkMbQjwPGw=
 github.com/btcsuite/btcd v0.20.1-beta/go.mod h1:wVuoA8VJLEcwgqHBwHmzLRazpKxTv13Px/pDuV7OomQ=
@@ -18,6 +20,8 @@ github.com/davecgh/go-spew v1.1.0 h1:ZDRjVQ15GmhC3fiQ8ni8+OwkZQO4DARzQgrnXU1Liz8
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
+github.com/dchest/blake256 v1.1.0 h1:4AuEhGPT/3TTKFhTfBpZ8hgZE7wJpawcYaEawwsbtqM=
+github.com/dchest/blake256 v1.1.0/go.mod h1:xXNWCE1jsAP8DAjP+rKw2MbeqLczjI3TRx2VK+9OEYY=
 github.com/dlespiau/covertool v0.0.0-20180314162135-b0c4c6d0583a/go.mod h1:/eQMcW3eA1bzKx23ZYI2H3tXPdJB5JWYTHzoUPBvQY4=
 github.com/fsnotify/fsnotify v1.4.7/go.mod h1:jwhsz4b93w/PPRr/qN1Yymfu8t87LnFCMoQvtojpjFo=
 github.com/gin-contrib/sse v0.0.0-20190301062529-5545eab6dad3 h1:t8FVkw33L+wilf2QiWkw0UV77qRpcH/JHPKGpKa2E8g=
@@ -61,6 +65,11 @@ github.com/kr/pretty v0.1.0/go.mod h1:dAy3ld7l9f0ibDNOQOHHMYYIIbhfbHSm3C4ZsoJORN
 github.com/kr/pty v1.1.1/go.mod h1:pFQYn66WHrOpPYNljwOMqo10TkYh1fy3cYio2l3bCsQ=
 github.com/kr/text v0.1.0 h1:45sCR5RtlFHMR4UwH9sdQ5TC8v0qDQCHnXt+kaKSTVE=
 github.com/kr/text v0.1.0/go.mod h1:4Jbv+DJW3UT/LiOwJeYQe1efqtUx/iVham/4vfdArNI=
+github.com/martinboehm/btcd v0.0.0-20190104121910-8e7c0427fee5 h1:uy0KRypmdHQOcMK+J3boprGlFIMP+c1LHmoEo/Lb0QI=
+github.com/martinboehm/btcd v0.0.0-20190104121910-8e7c0427fee5/go.mod h1:rKQj/jGwFruYjpM6vN+syReFoR0DsLQaajhyH/5mwUE=
+github.com/martinboehm/btcutil v0.0.0-20180706230648-ab6388e0c60a/go.mod h1:NIviPmxe43yBgIB4HGB4w4kv9/s5kaDa/pi+wZAAxQo=
+github.com/martinboehm/btcutil v0.0.0-20191023112652-a3d2b8457b77 h1:7zz+af5/g+BniyVlRcECDhVT9qK9sIgw0obqRgwhmbE=
+github.com/martinboehm/btcutil v0.0.0-20191023112652-a3d2b8457b77/go.mod h1:NIviPmxe43yBgIB4HGB4w4kv9/s5kaDa/pi+wZAAxQo=
 github.com/mattn/go-isatty v0.0.7 h1:UvyT9uN+3r7yLEYSlJsbQGdsaB/a0DlgWP3pql6iwOc=
 github.com/mattn/go-isatty v0.0.7/go.mod h1:Iq45c/XA43vh69/j3iqttzPXn0bhXyGjM0Hdxcsrc5s=
 github.com/mattn/go-isatty v0.0.8 h1:HLtExJ+uU2HOZ+wI0Tt5DtUDrx8yhUqDcp7fYERX4CE=

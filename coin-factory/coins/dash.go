@@ -1,6 +1,6 @@
 package coins
 
-import "github.com/btcsuite/btcd/chaincfg"
+import "github.com/martinboehm/btcutil/chaincfg"
 
 var Dash = Coin{
 	Tag:  "DASH",
@@ -16,8 +16,8 @@ var Dash = Coin{
 	},
 	NetParams: &chaincfg.Params{
 		Bech32HRPSegwit:  "",
-		PubKeyHashAddrID: 76,
-		ScriptHashAddrID: 16,
+		PubKeyHashAddrID: []byte{76},
+		ScriptHashAddrID: []byte{16},
 		HDPrivateKeyID:   [4]byte{0x04, 0x88, 0xAD, 0xE4},
 		HDPublicKeyID:    [4]byte{0x04, 0x88, 0xB2, 0x1E},
 		HDCoinType:       5,
