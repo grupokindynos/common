@@ -36,8 +36,8 @@ type ExchangeOrder struct {
 }
 
 type AdrestiaOrderUpdate struct {
-	ID     string `firestore:"id" json:"id"`
-	Status string `firestore:"status" json:"status"`
+	ID     string         `firestore:"id" json:"id"`
+	Status AdrestiaStatus `firestore:"status" json:"status"`
 }
 
 type AdrestiaStatus int
