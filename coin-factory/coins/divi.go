@@ -29,7 +29,7 @@ var Divi = Coin{
 		// HD Coin Slip44 https://github.com/satoshilabs/slips/blob/master/slip-0044.md
 		HDCoinType:        301,
 		Base58CksumHasher: base58.Sha256D,
-		Net:               BtcNet,
+		Net:               5, // Make sure doesn't collide with any other coin.
 	},
 	Token:         false,
 	BlockExplorer: "https://divi.polispay.com",

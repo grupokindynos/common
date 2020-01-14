@@ -25,7 +25,7 @@ var Polis = Coin{
 		HDPublicKeyID:     [4]byte{0x03, 0xE2, 0x5D, 0x7E},
 		HDCoinType:        1997,
 		Base58CksumHasher: base58.Sha256D,
-		Net:               PolisNet,
+		Net:               10, // Make sure doesn't collide with any other coin.
 	},
 	Token:         false,
 	BlockExplorer: "https://blockbook.polispay.org",

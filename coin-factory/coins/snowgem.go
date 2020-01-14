@@ -26,7 +26,7 @@ var Snowgem = Coin{
 		HDPublicKeyID:     [4]byte{0x04, 0x88, 0xB2, 0x1E},
 		HDCoinType:        410,
 		Base58CksumHasher: base58.Sha256D,
-		Net:               BtcNet,
+		Net:               11, // Make sure doesn't collide with any other coin.
 	},
 	Token:         false,
 	BlockExplorer: "https://xsg.polispay.com",

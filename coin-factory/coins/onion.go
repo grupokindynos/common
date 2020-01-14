@@ -25,7 +25,7 @@ var DeepOnion = Coin{
 		HDPublicKeyID:     [4]byte{0x04, 0x88, 0xB2, 0x1E},
 		HDCoinType:        305,
 		Base58CksumHasher: base58.Sha256D,
-		Net:               BtcNet,
+		Net:               9, // Make sure doesn't collide with any other coin.
 	},
 	Token:         false,
 	BlockExplorer: "https://onion.polispay.com",
