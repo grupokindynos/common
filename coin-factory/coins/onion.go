@@ -26,6 +26,7 @@ var DeepOnion = Coin{
 		HDCoinType:        305,
 		Base58CksumHasher: base58.Sha256D,
 		Net:               9, // Make sure doesn't collide with any other coin.
+		AddressMagicLen:   1,
 	},
 	Token:         false,
 	BlockExplorer: "https://onion.polispay.com",

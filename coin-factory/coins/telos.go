@@ -26,6 +26,7 @@ var Telos = Coin{
 		HDCoinType:        424,
 		Base58CksumHasher: base58.Sha256D,
 		Net:               12, // Make sure doesn't collide with any other coin.
+		AddressMagicLen:   1,
 	},
 	Token:         false,
 	BlockExplorer: "https://telos.polispay.com",

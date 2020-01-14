@@ -30,6 +30,7 @@ var Divi = Coin{
 		HDCoinType:        301,
 		Base58CksumHasher: base58.Sha256D,
 		Net:               5, // Make sure doesn't collide with any other coin.
+		AddressMagicLen:   1,
 	},
 	Token:         false,
 	BlockExplorer: "https://divi.polispay.com",

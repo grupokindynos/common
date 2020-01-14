@@ -26,6 +26,7 @@ var Polis = Coin{
 		HDCoinType:        1997,
 		Base58CksumHasher: base58.Sha256D,
 		Net:               10, // Make sure doesn't collide with any other coin.
+		AddressMagicLen:   1,
 	},
 	Token:         false,
 	BlockExplorer: "https://blockbook.polispay.org",

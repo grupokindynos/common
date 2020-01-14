@@ -26,6 +26,7 @@ var Dash = Coin{
 		HDCoinType:        5,
 		Base58CksumHasher: base58.Sha256D,
 		Net:               3,  // Make sure doesn't collide with any other coin.
+		AddressMagicLen:   1,
 	},
 	Token:         false,
 	BlockExplorer: "https://dash2.trezor.io",

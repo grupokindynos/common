@@ -26,6 +26,7 @@ var Groestlcoin = Coin{
 		HDPublicKeyID:     [4]byte{0x04, 0x88, 0xB2, 0x1E},
 		HDCoinType:        17,
 		Net:               7, // Make sure doesn't collide with any other coin.
+		AddressMagicLen:   1,
 	},
 	Token:         false,
 	BlockExplorer: "https://grs.polispay.com",

@@ -27,6 +27,7 @@ var Bitcoin = Coin{
 		HDCoinType:        0,
 		Base58CksumHasher: base58.Sha256D,
 		Net:               1, // Make sure doesn't collide with any other coin.
+		AddressMagicLen:   1,
 	},
 	Token:         false,
 	BlockExplorer: "https://btc1.trezor.io",
