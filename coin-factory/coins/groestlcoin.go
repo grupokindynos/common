@@ -1,6 +1,9 @@
 package coins
 
-import "github.com/btcsuite/btcd/chaincfg"
+import (
+	"github.com/martinboehm/btcutil/base58"
+	"github.com/martinboehm/btcutil/chaincfg"
+)
 
 var Groestlcoin = Coin{
 	Tag:  "GRS",
@@ -15,13 +18,14 @@ var Groestlcoin = Coin{
 		MinConfirmations: 2,
 	},
 	NetParams: &chaincfg.Params{
-		// TODO this is created different
-		Bech32HRPSegwit:  "grs",
-		ScriptHashAddrID: 5,
-		PubKeyHashAddrID: 24,
-		HDPrivateKeyID:   [4]byte{0x04, 0x88, 0xAD, 0xE4},
-		HDPublicKeyID:    [4]byte{0x04, 0x88, 0xB2, 0x1E},
-		HDCoinType:       17,
+		Bech32HRPSegwit:   "grs",
+		ScriptHashAddrID:  []byte{5},
+		PubKeyHashAddrID:  []byte{36},
+		Base58CksumHasher: base58.Groestl512D,
+		HDPrivateKeyID:    [4]byte{0x04, 0x88, 0xAD, 0xE4},
+		HDPublicKeyID:     [4]byte{0x04, 0x88, 0xB2, 0x1E},
+		HDCoinType:        17,
+		Net:               7, // Make sure doesn't collide with any other coin.
 	},
 	Token:         false,
 	BlockExplorer: "https://grs.polispay.com",

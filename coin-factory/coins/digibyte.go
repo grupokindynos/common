@@ -1,6 +1,9 @@
 package coins
 
-import "github.com/btcsuite/btcd/chaincfg"
+import (
+	"github.com/martinboehm/btcutil/base58"
+	"github.com/martinboehm/btcutil/chaincfg"
+)
 
 var Digibyte = Coin{
 	Tag:  "DGB",
@@ -15,12 +18,14 @@ var Digibyte = Coin{
 		MinConfirmations: 10,
 	},
 	NetParams: &chaincfg.Params{
-		Bech32HRPSegwit:  "dgb",
-		PubKeyHashAddrID: 30,
-		ScriptHashAddrID: 63,
-		HDPrivateKeyID:   [4]byte{0x04, 0x88, 0xAD, 0xE4},
-		HDPublicKeyID:    [4]byte{0x04, 0x88, 0xB2, 0x1E},
-		HDCoinType:       20,
+		Bech32HRPSegwit:   "dgb",
+		PubKeyHashAddrID:  []byte{30},
+		ScriptHashAddrID:  []byte{63},
+		HDPrivateKeyID:    [4]byte{0x04, 0x88, 0xAD, 0xE4},
+		HDPublicKeyID:     [4]byte{0x04, 0x88, 0xB2, 0x1E},
+		HDCoinType:        20,
+		Base58CksumHasher: base58.Sha256D,
+		Net:               4, // Make sure doesn't collide with any other coin.
 	},
 	Token:         false,
 	BlockExplorer: "https://dgb2.trezor.io",

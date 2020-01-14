@@ -1,6 +1,9 @@
 package coins
 
-import "github.com/btcsuite/btcd/chaincfg"
+import (
+	"github.com/martinboehm/btcutil/base58"
+	"github.com/martinboehm/btcutil/chaincfg"
+)
 
 var Telos = Coin{
 	Tag:  "TELOS",
@@ -15,12 +18,14 @@ var Telos = Coin{
 		MinConfirmations: 6,
 	},
 	NetParams: &chaincfg.Params{
-		Bech32HRPSegwit:  "",
-		ScriptHashAddrID: 138,
-		PubKeyHashAddrID: 38,
-		HDPrivateKeyID:   [4]byte{0x04, 0x88, 0xAD, 0xE4},
-		HDPublicKeyID:    [4]byte{0x04, 0x88, 0xB2, 0x1E},
-		HDCoinType:       424,
+		Bech32HRPSegwit:   "",
+		ScriptHashAddrID:  []byte{138},
+		PubKeyHashAddrID:  []byte{38},
+		HDPrivateKeyID:    [4]byte{0x04, 0x88, 0xAD, 0xE4},
+		HDPublicKeyID:     [4]byte{0x04, 0x88, 0xB2, 0x1E},
+		HDCoinType:        424,
+		Base58CksumHasher: base58.Sha256D,
+		Net:               12, // Make sure doesn't collide with any other coin.
 	},
 	Token:         false,
 	BlockExplorer: "https://telos.polispay.com",
