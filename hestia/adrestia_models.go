@@ -2,7 +2,7 @@ package hestia
 
 type AdrestiaOrder struct {
 	ID           string         `firestore:"id" json:"id"`
-	DualExchange bool           `firestore:"id" json:"dual_exchange"`
+	DualExchange bool           `firestore:"dual_exchange" json:"dual_exchange"`
 	Time         int64          `firestore:"time" json:"time"`
 	Status       AdrestiaStatus `firestore:"status" json:"status"`
 	Amount       float64        `firestore:"amount" json:"amount"`
