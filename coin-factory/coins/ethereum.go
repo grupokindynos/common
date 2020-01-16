@@ -7,6 +7,7 @@ import (
 	"github.com/martinboehm/btcutil/chaincfg"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 )
 
 // Ethereum coinfactory information
@@ -62,7 +63,11 @@ var Ethereum = Coin{
 }
 
 func NewEthereumInfo() *Coin {
-	f, err := os.Open("coins/icons/ethereum.png")
+	path, err := filepath.Abs("coins/icons/ethereum.png")
+	if err != nil {
+		return nil
+	}
+	f, err := os.Open(path)
 	if err != nil {
 		return nil
 	}

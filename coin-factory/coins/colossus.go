@@ -7,6 +7,7 @@ import (
 	"github.com/martinboehm/btcutil/chaincfg"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 )
 
 var Colossus = Coin{
@@ -61,7 +62,11 @@ var Colossus = Coin{
 }
 
 func NewColossusInfo() *Coin {
-	f, err := os.Open("coins/icons/colossus.png")
+	path, err := filepath.Abs("coins/icons/colossus.png")
+	if err != nil {
+		return nil
+	}
+	f, err := os.Open(path)
 	if err != nil {
 		return nil
 	}

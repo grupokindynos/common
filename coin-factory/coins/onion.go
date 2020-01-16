@@ -7,6 +7,7 @@ import (
 	"github.com/martinboehm/btcutil/chaincfg"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 )
 
 var DeepOnion = Coin{
@@ -61,7 +62,11 @@ var DeepOnion = Coin{
 }
 
 func NewOnionInfo() *Coin {
-	f, err := os.Open("coins/icons/deeponion.png")
+	path, err := filepath.Abs("coins/icons/deeponion.png")
+	if err != nil {
+		return nil
+	}
+	f, err := os.Open(path)
 	if err != nil {
 		return nil
 	}

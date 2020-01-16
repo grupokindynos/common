@@ -7,6 +7,7 @@ import (
 	"github.com/martinboehm/btcutil/chaincfg"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 )
 
 // Divi coinfactory information
@@ -65,7 +66,11 @@ var Divi = Coin{
 }
 
 func NewDiviInfo() *Coin {
-	f, err := os.Open("coins/icons/divi.png")
+	path, err := filepath.Abs("coins/icons/divi.png")
+	if err != nil {
+		return nil
+	}
+	f, err := os.Open(path)
 	if err != nil {
 		return nil
 	}

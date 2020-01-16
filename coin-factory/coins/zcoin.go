@@ -7,6 +7,7 @@ import (
 	"github.com/martinboehm/btcutil/chaincfg"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 )
 
 var Zcoin = Coin{
@@ -61,7 +62,11 @@ var Zcoin = Coin{
 }
 
 func NewZcoinInfo() *Coin {
-	f, err := os.Open("coins/icons/zcoin.png")
+	path, err := filepath.Abs("coins/icons/zcoin.png")
+	if err != nil {
+		return nil
+	}
+	f, err := os.Open(path)
 	if err != nil {
 		return nil
 	}

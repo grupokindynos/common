@@ -5,6 +5,7 @@ import (
 	"encoding/base64"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 )
 
 // TrueUSD coinfactory information
@@ -27,7 +28,11 @@ var TrueUSD = Coin{
 }
 
 func NewTrueUSDInfo() *Coin {
-	f, err := os.Open("coins/icons/trueusd.png")
+	path, err := filepath.Abs("coins/icons/trueusd.png")
+	if err != nil {
+		return nil
+	}
+	f, err := os.Open(path)
 	if err != nil {
 		return nil
 	}

@@ -7,6 +7,7 @@ import (
 	"github.com/martinboehm/btcutil/chaincfg"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 )
 
 var Snowgem = Coin{
@@ -62,7 +63,11 @@ var Snowgem = Coin{
 }
 
 func NewSnowGemInfo() *Coin {
-	f, err := os.Open("coins/icons/snowgem.png")
+	path, err := filepath.Abs("coins/icons/snowgem.png")
+	if err != nil {
+		return nil
+	}
+	f, err := os.Open(path)
 	if err != nil {
 		return nil
 	}

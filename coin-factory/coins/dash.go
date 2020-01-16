@@ -7,6 +7,7 @@ import (
 	"github.com/martinboehm/btcutil/chaincfg"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 )
 
 var Dash = Coin{
@@ -61,7 +62,11 @@ var Dash = Coin{
 }
 
 func NewDashInfo() *Coin {
-	f, err := os.Open("coins/icons/dash.png")
+	path, err := filepath.Abs("coins/icons/dash.png")
+	if err != nil {
+		return nil
+	}
+	f, err := os.Open(path)
 	if err != nil {
 		return nil
 	}

@@ -5,6 +5,7 @@ import (
 	"encoding/base64"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 )
 
 // Tether coinfactory information
@@ -27,7 +28,11 @@ var Tether = Coin{
 }
 
 func NewTetherInfo() *Coin {
-	f, err := os.Open("coins/icons/tether.png")
+	path, err := filepath.Abs("coins/icons/tether.png")
+	if err != nil {
+		return nil
+	}
+	f, err := os.Open(path)
 	if err != nil {
 		return nil
 	}

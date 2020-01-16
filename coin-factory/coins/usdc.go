@@ -5,6 +5,7 @@ import (
 	"encoding/base64"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 )
 
 // USDCoin coinfactory information
@@ -27,7 +28,11 @@ var USDCoin = Coin{
 }
 
 func NewUSDCoinInfo() *Coin {
-	f, err := os.Open("coins/icons/usdcoin.png")
+	path, err := filepath.Abs("coins/icons/usdcoin.png")
+	if err != nil {
+		return nil
+	}
+	f, err := os.Open(path)
 	if err != nil {
 		return nil
 	}

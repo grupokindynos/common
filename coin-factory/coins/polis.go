@@ -7,6 +7,7 @@ import (
 	"github.com/martinboehm/btcutil/chaincfg"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 )
 
 var Polis = Coin{
@@ -61,7 +62,11 @@ var Polis = Coin{
 }
 
 func NewPolisInfo() *Coin {
-	f, err := os.Open("coins/icons/polis.png")
+	path, err := filepath.Abs("coins/icons/polis.png")
+	if err != nil {
+		return nil
+	}
+	f, err := os.Open(path)
 	if err != nil {
 		return nil
 	}

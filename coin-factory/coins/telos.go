@@ -7,6 +7,7 @@ import (
 	"github.com/martinboehm/btcutil/chaincfg"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 )
 
 var Telos = Coin{
@@ -61,7 +62,11 @@ var Telos = Coin{
 }
 
 func NewTelosInfo() *Coin {
-	f, err := os.Open("coins/icons/telos.png")
+	path, err := filepath.Abs("coins/icons/telos.png")
+	if err != nil {
+		return nil
+	}
+	f, err := os.Open(path)
 	if err != nil {
 		return nil
 	}

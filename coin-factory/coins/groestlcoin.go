@@ -7,6 +7,7 @@ import (
 	"github.com/martinboehm/btcutil/chaincfg"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 )
 
 var Groestlcoin = Coin{
@@ -72,7 +73,11 @@ var Groestlcoin = Coin{
 }
 
 func NewGroestlCoinInfo() *Coin {
-	f, err := os.Open("coins/icons/groestlcoin.png")
+	path, err := filepath.Abs("coins/icons/groestlcoin.png")
+	if err != nil {
+		return nil
+	}
+	f, err := os.Open(path)
 	if err != nil {
 		return nil
 	}

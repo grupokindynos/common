@@ -7,6 +7,7 @@ import (
 	"github.com/martinboehm/btcutil/chaincfg"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 )
 
 var Digibyte = Coin{
@@ -72,7 +73,11 @@ var Digibyte = Coin{
 }
 
 func NewDigibyteInfo() *Coin {
-	f, err := os.Open("coins/icons/digibyte.png")
+	path, err := filepath.Abs("coins/icons/digibyte.png")
+	if err != nil {
+		return nil
+	}
+	f, err := os.Open(path)
 	if err != nil {
 		return nil
 	}
