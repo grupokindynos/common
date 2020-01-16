@@ -35,6 +35,11 @@ type ExchangeOrder struct {
 	ReferenceCurrency string  `firestore:"referenceCurrency" json:"referenceCurrency"`
 }
 
+type OrderStatus struct {
+	Status          ExchangeStatus
+	AvailableAmount float64
+}
+
 type AdrestiaOrderUpdate struct {
 	ID     string         `firestore:"id" json:"id"`
 	Status AdrestiaStatus `firestore:"status" json:"status"`
