@@ -9,43 +9,23 @@ import (
 	"os"
 )
 
-var icnOnion string
-
-func init() {
-	f, _ := os.Open("../icons/deeponion.png")
-	reader := bufio.NewReader(f)
-	content, _ := ioutil.ReadAll(reader)
-	icnOnion = base64.StdEncoding.EncodeToString(content)
-}
-
 var DeepOnion = Coin{
 	Info: CoinInfo{
-		Icon:        icnOnion,
-		Tag:         "BTC",
-		Name:        "Bitcoin (BTC)",
-		Trezor:      true,
-		Ledger:      true,
-		Segwit:      true,
+		Tag:         "ONION",
+		Name:        "DeepOnion (ONION)",
+		Trezor:      false,
+		Ledger:      false,
+		Segwit:      false,
 		Masternodes: false,
 		Token:       false,
-		Blockbook:   "https://btc2.trezor.io",
-		Protocol:    "bitcoin",
+		Blockbook:   "https://onion.polispay.com",
+		Protocol:    "onion",
 		TxVersion:   1,
 		TxBuilder:   "bitcoinjs",
-		HDIndex:     0,
+
+		HDIndex: 0,
 		Networks: map[string]CoinNetworkInfo{
-			"P2SHInP2WPKH": {
-				MessagePrefix: "\x18Bitcoin Signed Message:\n",
-				Bech32:        "bc",
-				Bip32: CoinNetWorkBip32Info{
-					Public:  0x049d7cb2,
-					Private: 0x049d7878,
-				},
-				PubKeyHash: 0x00,
-				ScriptHash: 0x05,
-				Wif:        0x80,
-			},
-			"P2WPKH": {
+			"P2PKH": {
 				MessagePrefix: "\x18Bitcoin Signed Message:\n",
 				Bech32:        "bc",
 				Bip32: CoinNetWorkBip32Info{
@@ -78,4 +58,18 @@ var DeepOnion = Coin{
 		Net:               9, // Make sure doesn't collide with any other coin.
 		AddressMagicLen:   1,
 	},
+}
+
+func NewOnionInfo() *Coin {
+	f, err := os.Open("../icons/deeponion.png")
+	if err != nil {
+		return nil
+	}
+	reader := bufio.NewReader(f)
+	content, err := ioutil.ReadAll(reader)
+	if err != nil {
+		return nil
+	}
+	DeepOnion.Info.Icon = base64.StdEncoding.EncodeToString(content)
+	return &DeepOnion
 }

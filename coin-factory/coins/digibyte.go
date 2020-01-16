@@ -9,30 +9,21 @@ import (
 	"os"
 )
 
-var icnDgb string
-
-func init() {
-	f, _ := os.Open("../icons/digibyte.png")
-	reader := bufio.NewReader(f)
-	content, _ := ioutil.ReadAll(reader)
-	icnDgb = base64.StdEncoding.EncodeToString(content)
-}
-
 var Digibyte = Coin{
 	Info: CoinInfo{
-		Icon:        icnDgb,
-		Tag:         "BTC",
-		Name:        "Bitcoin (BTC)",
+		Tag:         "DGB",
+		Name:        "DigiByte (DGB)",
 		Trezor:      true,
 		Ledger:      true,
 		Segwit:      true,
 		Masternodes: false,
 		Token:       false,
-		Blockbook:   "https://btc2.trezor.io",
-		Protocol:    "bitcoin",
+		Blockbook:   "https://dgb1.trezor.io",
+		Protocol:    "dgb",
 		TxVersion:   1,
 		TxBuilder:   "bitcoinjs",
-		HDIndex:     0,
+
+		HDIndex: 0,
 		Networks: map[string]CoinNetworkInfo{
 			"P2SHInP2WPKH": {
 				MessagePrefix: "\x18Bitcoin Signed Message:\n",
@@ -78,4 +69,18 @@ var Digibyte = Coin{
 		Net:               4, // Make sure doesn't collide with any other coin.
 		AddressMagicLen:   1,
 	},
+}
+
+func NewDigibyteInfo() *Coin {
+	f, err := os.Open("../icons/digibyte.png")
+	if err != nil {
+		return nil
+	}
+	reader := bufio.NewReader(f)
+	content, err := ioutil.ReadAll(reader)
+	if err != nil {
+		return nil
+	}
+	Digibyte.Info.Icon = base64.StdEncoding.EncodeToString(content)
+	return &Digibyte
 }

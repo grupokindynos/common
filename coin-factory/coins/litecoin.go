@@ -9,30 +9,21 @@ import (
 	"os"
 )
 
-var icnLtc string
-
-func init() {
-	f, _ := os.Open("../icons/litecoin.png")
-	reader := bufio.NewReader(f)
-	content, _ := ioutil.ReadAll(reader)
-	icnLtc = base64.StdEncoding.EncodeToString(content)
-}
-
 var Litecoin = Coin{
 	Info: CoinInfo{
-		Icon:        icnLtc,
-		Tag:         "BTC",
-		Name:        "Bitcoin (BTC)",
+		Tag:         "LTC",
+		Name:        "Litecoin (LTC)",
 		Trezor:      true,
 		Ledger:      true,
 		Segwit:      true,
 		Masternodes: false,
 		Token:       false,
-		Blockbook:   "https://btc2.trezor.io",
-		Protocol:    "bitcoin",
+		Blockbook:   "https://ltc1.trezor.io",
+		Protocol:    "ltc",
 		TxVersion:   1,
 		TxBuilder:   "bitcoinjs",
-		HDIndex:     0,
+
+		HDIndex: 0,
 		Networks: map[string]CoinNetworkInfo{
 			"P2SHInP2WPKH": {
 				MessagePrefix: "\x18Bitcoin Signed Message:\n",
@@ -78,4 +69,18 @@ var Litecoin = Coin{
 		Net:               8, // Make sure doesn't collide with any other coin.
 		AddressMagicLen:   1,
 	},
+}
+
+func NewLitecoinInfo() *Coin {
+	f, err := os.Open("../icons/litecoin.png")
+	if err != nil {
+		return nil
+	}
+	reader := bufio.NewReader(f)
+	content, err := ioutil.ReadAll(reader)
+	if err != nil {
+		return nil
+	}
+	Litecoin.Info.Icon = base64.StdEncoding.EncodeToString(content)
+	return &Litecoin
 }

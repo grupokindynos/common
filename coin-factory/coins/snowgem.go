@@ -9,43 +9,23 @@ import (
 	"os"
 )
 
-var icnSnowGem string
-
-func init() {
-	f, _ := os.Open("../icons/snowgem.png")
-	reader := bufio.NewReader(f)
-	content, _ := ioutil.ReadAll(reader)
-	icnSnowGem = base64.StdEncoding.EncodeToString(content)
-}
-
 var Snowgem = Coin{
 	Info: CoinInfo{
-		Icon:        icnSnowGem,
-		Tag:         "BTC",
-		Name:        "Bitcoin (BTC)",
-		Trezor:      true,
-		Ledger:      true,
-		Segwit:      true,
-		Masternodes: false,
+		Tag:         "XSG",
+		Name:        "SnowGem (XSG)",
+		Trezor:      false,
+		Ledger:      false,
+		Segwit:      false,
+		Masternodes: true,
 		Token:       false,
-		Blockbook:   "https://btc2.trezor.io",
-		Protocol:    "bitcoin",
+		Blockbook:   "https://xsg.polispay.com",
+		Protocol:    "xsg",
 		TxVersion:   1,
-		TxBuilder:   "bitcoinjs",
-		HDIndex:     0,
+
+		TxBuilder: "bitcoinjs",
+		HDIndex:   0,
 		Networks: map[string]CoinNetworkInfo{
-			"P2SHInP2WPKH": {
-				MessagePrefix: "\x18Bitcoin Signed Message:\n",
-				Bech32:        "bc",
-				Bip32: CoinNetWorkBip32Info{
-					Public:  0x049d7cb2,
-					Private: 0x049d7878,
-				},
-				PubKeyHash: 0x00,
-				ScriptHash: 0x05,
-				Wif:        0x80,
-			},
-			"P2WPKH": {
+			"P2PKH": {
 				MessagePrefix: "\x18Bitcoin Signed Message:\n",
 				Bech32:        "bc",
 				Bip32: CoinNetWorkBip32Info{
@@ -79,4 +59,18 @@ var Snowgem = Coin{
 		Net:               11, // Make sure doesn't collide with any other coin.
 		AddressMagicLen:   2,
 	},
+}
+
+func NewSnowGemInfo() *Coin {
+	f, err := os.Open("../icons/snowgem.png")
+	if err != nil {
+		return nil
+	}
+	reader := bufio.NewReader(f)
+	content, err := ioutil.ReadAll(reader)
+	if err != nil {
+		return nil
+	}
+	Snowgem.Info.Icon = base64.StdEncoding.EncodeToString(content)
+	return &Snowgem
 }

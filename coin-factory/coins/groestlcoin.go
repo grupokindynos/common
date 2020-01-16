@@ -9,30 +9,21 @@ import (
 	"os"
 )
 
-var icnGrs string
-
-func init() {
-	f, _ := os.Open("../icons/groestlcoin.png")
-	reader := bufio.NewReader(f)
-	content, _ := ioutil.ReadAll(reader)
-	icnGrs = base64.StdEncoding.EncodeToString(content)
-}
-
 var Groestlcoin = Coin{
 	Info: CoinInfo{
-		Icon:        icnGrs,
-		Tag:         "BTC",
-		Name:        "Bitcoin (BTC)",
+		Tag:         "GRS",
+		Name:        "GroestlCoin (GRS)",
 		Trezor:      true,
 		Ledger:      true,
 		Segwit:      true,
 		Masternodes: false,
 		Token:       false,
-		Blockbook:   "https://btc2.trezor.io",
-		Protocol:    "bitcoin",
+		Blockbook:   "https://grs.polispay.com",
+		Protocol:    "grs",
 		TxVersion:   1,
-		TxBuilder:   "bitcoinjs",
-		HDIndex:     0,
+		TxBuilder:   "groestlcoinjs",
+
+		HDIndex: 0,
 		Networks: map[string]CoinNetworkInfo{
 			"P2SHInP2WPKH": {
 				MessagePrefix: "\x18Bitcoin Signed Message:\n",
@@ -78,4 +69,18 @@ var Groestlcoin = Coin{
 		Net:               7, // Make sure doesn't collide with any other coin.
 		AddressMagicLen:   1,
 	},
+}
+
+func NewGroestlCoinInfo() *Coin {
+	f, err := os.Open("../icons/groestlcoin.png")
+	if err != nil {
+		return nil
+	}
+	reader := bufio.NewReader(f)
+	content, err := ioutil.ReadAll(reader)
+	if err != nil {
+		return nil
+	}
+	Groestlcoin.Info.Icon = base64.StdEncoding.EncodeToString(content)
+	return &Groestlcoin
 }

@@ -12,7 +12,6 @@ import (
 // Bitcoin coinfactory information
 var Bitcoin = Coin{
 	Info: CoinInfo{
-		Icon:        "",
 		Tag:         "BTC",
 		Name:        "Bitcoin (BTC)",
 		Trezor:      true,
@@ -25,6 +24,7 @@ var Bitcoin = Coin{
 		TxVersion:   1,
 		TxBuilder:   "bitcoinjs",
 		HDIndex:     0,
+
 		Networks: map[string]CoinNetworkInfo{
 			"P2SHInP2WPKH": {
 				MessagePrefix: "\x18Bitcoin Signed Message:\n",
@@ -73,9 +73,15 @@ var Bitcoin = Coin{
 }
 
 func NewBitcoinInfo() *Coin {
-	f, _ := os.Open("../icons/bitcoin.png")
+	f, err := os.Open("../icons/bitcoin.png")
+	if err != nil {
+		return nil
+	}
 	reader := bufio.NewReader(f)
-	content, _ := ioutil.ReadAll(reader)
+	content, err := ioutil.ReadAll(reader)
+	if err != nil {
+		return nil
+	}
 	Bitcoin.Info.Icon = base64.StdEncoding.EncodeToString(content)
 	return &Bitcoin
 }
