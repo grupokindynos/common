@@ -62,7 +62,7 @@ var Ethereum = Coin{
 }
 
 func NewEthereumInfo() *Coin {
-	f, err := os.Open("./icons/ethereum.png")
+	f, err := os.Open("coins/icons/ethereum.png")
 	if err != nil {
 		return nil
 	}

@@ -61,7 +61,7 @@ var Polis = Coin{
 }
 
 func NewPolisInfo() *Coin {
-	f, err := os.Open("./icons/polis.png")
+	f, err := os.Open("coins/icons/polis.png")
 	if err != nil {
 		return nil
 	}

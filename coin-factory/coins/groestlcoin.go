@@ -72,7 +72,7 @@ var Groestlcoin = Coin{
 }
 
 func NewGroestlCoinInfo() *Coin {
-	f, err := os.Open("./icons/groestlcoin.png")
+	f, err := os.Open("coins/icons/groestlcoin.png")
 	if err != nil {
 		return nil
 	}

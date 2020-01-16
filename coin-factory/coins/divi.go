@@ -65,7 +65,7 @@ var Divi = Coin{
 }
 
 func NewDiviInfo() *Coin {
-	f, err := os.Open("./icons/divi.png")
+	f, err := os.Open("coins/icons/divi.png")
 	if err != nil {
 		return nil
 	}

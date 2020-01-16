@@ -4,7 +4,6 @@ go 1.13
 
 require (
 	github.com/Groestlcoin/go-groestl-hash v0.0.0-20181012171753-790653ac190c // indirect
-	github.com/btcsuite/btcd v0.20.1-beta
 	github.com/bwmarrin/discordgo v0.19.0
 	github.com/dchest/blake256 v1.1.0 // indirect
 	github.com/gin-gonic/gin v1.4.0
@@ -16,7 +15,7 @@ require (
 	github.com/joho/godotenv v1.3.0
 	github.com/json-iterator/go v1.1.7 // indirect
 	github.com/kr/pretty v0.1.0 // indirect
-	github.com/martinboehm/btcd v0.0.0-20190104121910-8e7c0427fee5
+	github.com/martinboehm/btcd v0.0.0-20190104121910-8e7c0427fee5 // indirect
 	github.com/martinboehm/btcutil v0.0.0-20191023112652-a3d2b8457b77
 	github.com/mattn/go-isatty v0.0.8 // indirect
 	github.com/sethvargo/go-password v0.1.2

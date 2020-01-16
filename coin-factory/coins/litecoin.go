@@ -72,7 +72,7 @@ var Litecoin = Coin{
 }
 
 func NewLitecoinInfo() *Coin {
-	f, err := os.Open("./icons/litecoin.png")
+	f, err := os.Open("coins/icons/litecoin.png")
 	if err != nil {
 		return nil
 	}
