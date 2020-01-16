@@ -8,7 +8,7 @@ import (
 
 func TestCoinFactory(t *testing.T) {
 	for _, coin := range Coins {
-		newCoin, err := GetCoin(coin.Tag)
+		newCoin, err := GetCoin(coin.Info.Tag)
 		assert.Nil(t, err)
 		assert.IsType(t, &coins.Coin{}, newCoin)
 	}

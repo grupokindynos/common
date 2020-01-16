@@ -1,14 +1,64 @@
 package coins
 
+import (
+	"bufio"
+	"encoding/base64"
+	"io/ioutil"
+	"os"
+)
+
+var icnTusd string
+
+func init() {
+	f, _ := os.Open("../icons/tusd.png")
+	reader := bufio.NewReader(f)
+	content, _ := ioutil.ReadAll(reader)
+	icnTusd = base64.StdEncoding.EncodeToString(content)
+}
+
 // TrueUSD coinfactory information
 var TrueUSD = Coin{
-	Tag:  "TUSD",
-	Name: "trueusd",
+	Info: CoinInfo{
+		Icon:        icnTusd,
+		Tag:         "BTC",
+		Name:        "Bitcoin (BTC)",
+		Trezor:      true,
+		Ledger:      true,
+		Segwit:      true,
+		Masternodes: false,
+		Token:       false,
+		Blockbook:   "https://btc2.trezor.io",
+		Protocol:    "bitcoin",
+		TxVersion:   1,
+		TxBuilder:   "bitcoinjs",
+		HDIndex:     0,
+		Networks: map[string]CoinNetworkInfo{
+			"P2SHInP2WPKH": {
+				MessagePrefix: "\x18Bitcoin Signed Message:\n",
+				Bech32:        "bc",
+				Bip32: CoinNetWorkBip32Info{
+					Public:  0x049d7cb2,
+					Private: 0x049d7878,
+				},
+				PubKeyHash: 0x00,
+				ScriptHash: 0x05,
+				Wif:        0x80,
+			},
+			"P2WPKH": {
+				MessagePrefix: "\x18Bitcoin Signed Message:\n",
+				Bech32:        "bc",
+				Bip32: CoinNetWorkBip32Info{
+					Public:  0x04b24746,
+					Private: 0x04b2430c,
+				},
+				PubKeyHash: 0x00,
+				ScriptHash: 0x05,
+				Wif:        0x80,
+			},
+		},
+	},
 	Rates: RatesSource{
 		Exchange:         "binance",
 		FallBackExchange: "",
 	},
-	TokenNetwork: "ethereum",
-	Token:        true,
-	Contract:     "0x0000000000085d4780B73119b644AE5ecd22b376",
 }

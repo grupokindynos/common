@@ -34,16 +34,14 @@ func GetCoin(tag string) (*coins.Coin, error) {
 		return nil, errors.New("coin not available")
 	}
 	coin = &coins.Coin{
-		Tag:            coin.Tag,
-		Name:           coin.Name,
 		BlockchainInfo: coin.BlockchainInfo,
 		Rates:          coin.Rates,
-		BlockExplorer:  coin.BlockExplorer,
-		Token:          coin.Token,
-		TokenNetwork:   coin.TokenNetwork,
-		Contract:       coin.Contract,
 		NetParams:      coin.NetParams,
 		Mnemonic:       os.Getenv("MNEMONIC_" + strings.ToUpper(tag)),
 	}
 	return coin, nil
+}
+
+func loadIcons() {
+
 }

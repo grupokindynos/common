@@ -1,29 +1,47 @@
 package coins
 
-import (
-	"github.com/martinboehm/btcd/wire"
-	"github.com/martinboehm/btcutil/chaincfg"
-)
+import "github.com/martinboehm/btcutil/chaincfg"
 
-// This network params are just an override around the wire net information to make sure HD wallet prefixes are
-// registered. For BTC defaults (all coins except Polis) just use the BtcNet param.
-var (
-	BtcNet   wire.BitcoinNet = 1
-	PolisNet wire.BitcoinNet = 2
-)
+type CoinNetWorkBip32Info struct {
+	Public  int `json:"public"`
+	Private int `json:"private"`
+}
+
+type CoinNetworkInfo struct {
+	MessagePrefix string               `json:"messagePrefix"`
+	Bech32        string               `json:"bech32"`
+	Bip32         CoinNetWorkBip32Info `json:"bip32"`
+	PubKeyHash    int                  `json:"pubKeyHash"`
+	ScriptHash    int                  `json:"scriptHash"`
+	Wif           int                  `json:"wif"`
+}
+
+type CoinInfo struct {
+	Icon         string                     `json:"icon"`
+	Tag          string                     `json:"tag"`
+	Name         string                     `json:"name"`
+	Trezor       bool                       `json:"trezor"`
+	Ledger       bool                       `json:"ledger"`
+	Segwit       bool                       `json:"segwit"`
+	Masternodes  bool                       `json:"masternodes"`
+	Token        bool                       `json:"token"`
+	TokenNetwork string                     `json:"token_network,omitempty"`
+	Contract     string                     `json:"contract,omitempty"`
+	Blockbook    string                     `json:"blockbook"`
+	Protocol     string                     `json:"protocol"`
+	TxVersion    int                        `json:"tx_version"`
+	TxBuilder    string                     `json:"tx_builder"`
+	HDIndex      int                        `json:"hd_index"`
+	Networks     map[string]CoinNetworkInfo `json:"networks"`
+}
 
 // Coin is the basic coin structure to get the correct properties for each coin.
 type Coin struct {
-	Tag            string
-	Name           string
+	Info           CoinInfo `json:"info"`
 	Rates          RatesSource
 	BlockchainInfo BlockchainInfo
 	Mnemonic       string
 	NetParams      *chaincfg.Params
-	BlockExplorer  string
-	Token          bool
-	TokenNetwork   string
-	Contract       string
 }
 
 // RatesSource is the prefered source of exchange for rates
