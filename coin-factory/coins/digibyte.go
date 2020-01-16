@@ -72,7 +72,7 @@ var Digibyte = Coin{
 }
 
 func NewDigibyteInfo() *Coin {
-	f, err := os.Open("../icons/digibyte.png")
+	f, err := os.Open("./icons/digibyte.png")
 	if err != nil {
 		return nil
 	}

@@ -61,7 +61,7 @@ var DeepOnion = Coin{
 }
 
 func NewOnionInfo() *Coin {
-	f, err := os.Open("../icons/deeponion.png")
+	f, err := os.Open("./icons/deeponion.png")
 	if err != nil {
 		return nil
 	}

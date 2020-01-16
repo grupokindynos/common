@@ -61,7 +61,7 @@ var Zcoin = Coin{
 }
 
 func NewZcoinInfo() *Coin {
-	f, err := os.Open("../icons/zcoin.png")
+	f, err := os.Open("./icons/zcoin.png")
 	if err != nil {
 		return nil
 	}

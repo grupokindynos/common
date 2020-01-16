@@ -61,7 +61,7 @@ var Telos = Coin{
 }
 
 func NewTelosInfo() *Coin {
-	f, err := os.Open("../icons/telos.png")
+	f, err := os.Open("./icons/telos.png")
 	if err != nil {
 		return nil
 	}

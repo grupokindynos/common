@@ -27,7 +27,7 @@ var Tether = Coin{
 }
 
 func NewTetherInfo() *Coin {
-	f, err := os.Open("../icons/tether.png")
+	f, err := os.Open("./icons/tether.png")
 	if err != nil {
 		return nil
 	}

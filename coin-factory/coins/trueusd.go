@@ -27,7 +27,7 @@ var TrueUSD = Coin{
 }
 
 func NewTrueUSDInfo() *Coin {
-	f, err := os.Open("../icons/trueusd.png")
+	f, err := os.Open("./icons/trueusd.png")
 	if err != nil {
 		return nil
 	}

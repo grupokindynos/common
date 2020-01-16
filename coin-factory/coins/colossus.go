@@ -61,7 +61,7 @@ var Colossus = Coin{
 }
 
 func NewColossusInfo() *Coin {
-	f, err := os.Open("../icons/colossus.png")
+	f, err := os.Open("./icons/colossus.png")
 	if err != nil {
 		return nil
 	}

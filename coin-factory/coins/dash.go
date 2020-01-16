@@ -61,7 +61,7 @@ var Dash = Coin{
 }
 
 func NewDashInfo() *Coin {
-	f, err := os.Open("../icons/dash.png")
+	f, err := os.Open("./icons/dash.png")
 	if err != nil {
 		return nil
 	}

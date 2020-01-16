@@ -62,7 +62,7 @@ var Snowgem = Coin{
 }
 
 func NewSnowGemInfo() *Coin {
-	f, err := os.Open("../icons/snowgem.png")
+	f, err := os.Open("./icons/snowgem.png")
 	if err != nil {
 		return nil
 	}

@@ -27,7 +27,7 @@ var USDCoin = Coin{
 }
 
 func NewUSDCoinInfo() *Coin {
-	f, err := os.Open("../icons/usdcoin.png")
+	f, err := os.Open("./icons/usdcoin.png")
 	if err != nil {
 		return nil
 	}

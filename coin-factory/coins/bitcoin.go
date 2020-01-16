@@ -73,7 +73,7 @@ var Bitcoin = Coin{
 }
 
 func NewBitcoinInfo() *Coin {
-	f, err := os.Open("../icons/bitcoin.png")
+	f, err := os.Open("./icons/bitcoin.png")
 	if err != nil {
 		return nil
 	}
