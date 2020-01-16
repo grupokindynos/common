@@ -12,7 +12,7 @@ var Tether = Coin{
 		Masternodes:  false,
 		Token:        true,
 		TokenNetwork: "ethereum",
-		Contract:     "",
+		Contract:     "0xdac17f958d2ee523a2206206994597c13d831ec7",
 	},
 	Rates: RatesSource{
 		Exchange:         "binance",

@@ -21,15 +21,14 @@ var Ethereum = Coin{
 		Protocol:     "eth",
 		TxVersion:    1,
 		TxBuilder:    "ethereum",
-
-		HDIndex: 0,
+		HDIndex:      60,
 		Networks: map[string]CoinNetworkInfo{
 			"ETHEREUM": {
-				MessagePrefix: "\x18Bitcoin Signed Message:\n",
-				Bech32:        "bc",
+				MessagePrefix: "\x18Ethereum Signed Message:\n",
+				Bech32:        "",
 				Bip32: CoinNetWorkBip32Info{
-					Public:  0x04b24746,
-					Private: 0x04b2430c,
+					Public:  0x488b21e,
+					Private: 0x488ade4,
 				},
 				PubKeyHash: 0x00,
 				ScriptHash: 0x05,

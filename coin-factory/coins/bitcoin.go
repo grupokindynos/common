@@ -21,7 +21,6 @@ var Bitcoin = Coin{
 		TxVersion:   1,
 		TxBuilder:   "bitcoinjs",
 		HDIndex:     0,
-
 		Networks: map[string]CoinNetworkInfo{
 			"P2SHInP2WPKH": {
 				MessagePrefix: "\x18Bitcoin Signed Message:\n",

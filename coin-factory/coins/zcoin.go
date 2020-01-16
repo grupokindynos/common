@@ -19,19 +19,18 @@ var Zcoin = Coin{
 		Protocol:    "xzc",
 		TxVersion:   1,
 		TxBuilder:   "bitcoinjs",
-
-		HDIndex: 0,
+		HDIndex:     136,
 		Networks: map[string]CoinNetworkInfo{
 			"P2PKH": {
-				MessagePrefix: "\x18Bitcoin Signed Message:\n",
-				Bech32:        "bc",
+				MessagePrefix: "\x18ZCoin Signed Message:\n",
+				Bech32:        "",
 				Bip32: CoinNetWorkBip32Info{
-					Public:  0x04b24746,
-					Private: 0x04b2430c,
+					Public:  0x488b21e,
+					Private: 0x488ade4,
 				},
-				PubKeyHash: 0x00,
-				ScriptHash: 0x05,
-				Wif:        0x80,
+				PubKeyHash: 82,
+				ScriptHash: 7,
+				Wif:        210,
 			},
 		},
 	},

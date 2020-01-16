@@ -18,19 +18,18 @@ var Snowgem = Coin{
 		Blockbook:   "https://xsg.polispay.com",
 		Protocol:    "xsg",
 		TxVersion:   1,
-
-		TxBuilder: "bitcoinjs",
-		HDIndex:   0,
+		TxBuilder:   "bitgo",
+		HDIndex:     1994,
 		Networks: map[string]CoinNetworkInfo{
 			"P2PKH": {
-				MessagePrefix: "\x18Bitcoin Signed Message:\n",
-				Bech32:        "bc",
+				MessagePrefix: "\x18SnowGem Signed Message:\n",
+				Bech32:        "",
 				Bip32: CoinNetWorkBip32Info{
-					Public:  0x04b24746,
-					Private: 0x04b2430c,
+					Public:  0x0488b21e,
+					Private: 0x0488ade4,
 				},
-				PubKeyHash: 0x00,
-				ScriptHash: 0x05,
+				PubKeyHash: 0x1c28, // TODO fix this
+				ScriptHash: 0x1c2d, // TODO fix this
 				Wif:        0x80,
 			},
 		},
