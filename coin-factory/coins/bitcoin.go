@@ -9,19 +9,10 @@ import (
 	"os"
 )
 
-var icnBtc string
-
-func init() {
-	f, _ := os.Open("../icons/bitcoin.png")
-	reader := bufio.NewReader(f)
-	content, _ := ioutil.ReadAll(reader)
-	icnBtc = base64.StdEncoding.EncodeToString(content)
-}
-
 // Bitcoin coinfactory information
 var Bitcoin = Coin{
 	Info: CoinInfo{
-		Icon:        icnBtc,
+		Icon:        "",
 		Tag:         "BTC",
 		Name:        "Bitcoin (BTC)",
 		Trezor:      true,
@@ -79,4 +70,12 @@ var Bitcoin = Coin{
 		Net:               1, // Make sure doesn't collide with any other coin.
 		AddressMagicLen:   1,
 	},
+}
+
+func NewBitcoinInfo() *Coin {
+	f, _ := os.Open("../icons/bitcoin.png")
+	reader := bufio.NewReader(f)
+	content, _ := ioutil.ReadAll(reader)
+	Bitcoin.Info.Icon = base64.StdEncoding.EncodeToString(content)
+	return &Bitcoin
 }
