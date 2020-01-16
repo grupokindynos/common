@@ -9,23 +9,22 @@ import (
 
 // Coins refers to the coins that are being used on the API instance
 var Coins = map[string]*coins.Coin{
-	"BTC": coins.NewBitcoinInfo(),
-
-	"POLIS": &coins.Polis,
-	"DGB":   &coins.Digibyte,
-	"XZC":   &coins.Zcoin,
-	"LTC":   &coins.Litecoin,
-	"DASH":  &coins.Dash,
-	"DIVI":  &coins.Divi,
-	"GRS":   &coins.Groestlcoin,
-	"COLX":  &coins.Colossus,
-	"ONION": &coins.DeepOnion,
-	"XSG":   &coins.Snowgem,
-	"TELOS": &coins.Telos,
-	"ETH":   &coins.Ethereum,
-	"TUSD":  &coins.TrueUSD,
-	"USDT":  &coins.Tether,
-	"USDC":  &coins.USDCoin,
+	"BTC":   coins.NewBitcoinInfo(),
+	"COLX":  coins.NewColossusInfo(),
+	"DASH":  coins.NewDashInfo(),
+	"DGB":   coins.NewDigibyteInfo(),
+	"DIVI":  coins.NewDiviInfo(),
+	"ETH":   coins.NewEthereumInfo(),
+	"GRS":   coins.NewGroestlCoinInfo(),
+	"LTC":   coins.NewLitecoinInfo(),
+	"ONION": coins.NewOnionInfo(),
+	"POLIS": coins.NewPolisInfo(),
+	"XSG":   coins.NewSnowGemInfo(),
+	"TELOS": coins.NewTelosInfo(),
+	"USDT":  coins.NewTetherInfo(),
+	"TUSD":  coins.NewTrueUSDInfo(),
+	"USDC":  coins.NewUSDCoinInfo(),
+	"XZC":   coins.NewZcoinInfo(),
 }
 
 // GetCoin is the safe way to check if a coin exists and retrieve the coin data
