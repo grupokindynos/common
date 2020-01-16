@@ -34,6 +34,7 @@ func GetCoin(tag string) (*coins.Coin, error) {
 		return nil, errors.New("coin not available")
 	}
 	coin = &coins.Coin{
+		Info:           coin.Info,
 		BlockchainInfo: coin.BlockchainInfo,
 		Rates:          coin.Rates,
 		NetParams:      coin.NetParams,
