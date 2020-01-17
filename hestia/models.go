@@ -23,6 +23,7 @@ type Coin struct {
 	Vouchers Properties    `firestore:"vouchers" json:"vouchers"`
 	Orders   Properties    `firestore:"orders" json:"orders"`
 	Balances BalanceLimits `firestore:"balances" json:"balances"`
+	Adrestia bool          `firestore:"adrestia" json:"adrestia"`
 }
 
 type CoinBalances struct {
