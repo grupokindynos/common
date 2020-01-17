@@ -15,7 +15,7 @@ var Polis = Coin{
 		Segwit:      false,
 		Masternodes: true,
 		Token:       false,
-		Blockbook:   "https://blockbook.polispay.orgr",
+		Blockbook:   "https://blockbook.polispay.org",
 		Protocol:    "polis",
 		TxVersion:   2,
 		TxBuilder:   "bitcoinjs",
