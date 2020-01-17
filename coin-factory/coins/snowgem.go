@@ -53,6 +53,6 @@ var Snowgem = Coin{
 		HDCoinType:        410,
 		Base58CksumHasher: base58.Sha256D,
 		Net:               11, // Make sure doesn't collide with any other coin.
-		AddressMagicLen:   2,
+		AddressMagicLen:   1,
 	},
 }
