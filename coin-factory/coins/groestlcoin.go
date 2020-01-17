@@ -58,11 +58,10 @@ var Groestlcoin = Coin{
 		Bech32HRPSegwit:   "grs",
 		ScriptHashAddrID:  []byte{5},
 		PubKeyHashAddrID:  []byte{36},
+		PrivateKeyID:      []byte{80},
 		Base58CksumHasher: base58.Groestl512D,
 		HDPrivateKeyID:    [4]byte{0x04, 0x88, 0xAD, 0xE4},
 		HDPublicKeyID:     [4]byte{0x04, 0x88, 0xB2, 0x1E},
 		HDCoinType:        17,
-		Net:               7, // Make sure doesn't collide with any other coin.
-		AddressMagicLen:   1,
 	},
 }

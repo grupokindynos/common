@@ -47,11 +47,10 @@ var Polis = Coin{
 		Bech32HRPSegwit:   "",
 		ScriptHashAddrID:  []byte{56},
 		PubKeyHashAddrID:  []byte{55},
+		PrivateKeyID:      []byte{60},
 		HDPrivateKeyID:    [4]byte{0x03, 0xE2, 0x59, 0x45},
 		HDPublicKeyID:     [4]byte{0x03, 0xE2, 0x5D, 0x7E},
 		HDCoinType:        1997,
 		Base58CksumHasher: base58.Sha256D,
-		Net:               10, // Make sure doesn't collide with any other coin.
-		AddressMagicLen:   1,
 	},
 }

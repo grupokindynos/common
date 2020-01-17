@@ -47,11 +47,10 @@ var Dash = Coin{
 		Bech32HRPSegwit:   "",
 		PubKeyHashAddrID:  []byte{76},
 		ScriptHashAddrID:  []byte{16},
+		PrivateKeyID:      []byte{204},
 		HDPrivateKeyID:    [4]byte{0x04, 0x88, 0xAD, 0xE4},
 		HDPublicKeyID:     [4]byte{0x04, 0x88, 0xB2, 0x1E},
 		HDCoinType:        5,
 		Base58CksumHasher: base58.Sha256D,
-		Net:               3, // Make sure doesn't collide with any other coin.
-		AddressMagicLen:   1,
 	},
 }

@@ -58,11 +58,10 @@ var Litecoin = Coin{
 		Bech32HRPSegwit:   "ltc",
 		ScriptHashAddrID:  []byte{50},
 		PubKeyHashAddrID:  []byte{48},
+		PrivateKeyID:      []byte{176},
 		HDPrivateKeyID:    [4]byte{0x04, 0x88, 0xAD, 0xE4},
 		HDPublicKeyID:     [4]byte{0x04, 0x88, 0xB2, 0x1E},
 		HDCoinType:        2,
 		Base58CksumHasher: base58.Sha256D,
-		Net:               8, // Make sure doesn't collide with any other coin.
-		AddressMagicLen:   1,
 	},
 }

@@ -47,11 +47,10 @@ var Zcoin = Coin{
 		Bech32HRPSegwit:   "",
 		ScriptHashAddrID:  []byte{7},
 		PubKeyHashAddrID:  []byte{82},
+		PrivateKeyID:      []byte{210},
 		HDPrivateKeyID:    [4]byte{0x04, 0x88, 0xAD, 0xE4},
 		HDPublicKeyID:     [4]byte{0x04, 0x88, 0xB2, 0x1E},
 		HDCoinType:        136,
 		Base58CksumHasher: base58.Sha256D,
-		Net:               13, // Make sure doesn't collide with any other coin.
-		AddressMagicLen:   1,
 	},
 }

@@ -49,13 +49,13 @@ var Divi = Coin{
 		Bech32HRPSegwit:  "",
 		PubKeyHashAddrID: []byte{30},
 		ScriptHashAddrID: []byte{13},
+		PrivateKeyID:     []byte{212},
+
 		// Bitcoin defaults
 		HDPrivateKeyID: [4]byte{0x04, 0x88, 0xAD, 0xE4},
 		HDPublicKeyID:  [4]byte{0x04, 0x88, 0xB2, 0x1E},
 		// HD Coin Slip44 https://github.com/satoshilabs/slips/blob/master/slip-0044.md
 		HDCoinType:        301,
 		Base58CksumHasher: base58.Sha256D,
-		Net:               5, // Make sure doesn't collide with any other coin.
-		AddressMagicLen:   1,
 	},
 }

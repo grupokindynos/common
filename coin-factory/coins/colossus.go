@@ -47,11 +47,10 @@ var Colossus = Coin{
 		Bech32HRPSegwit:   "",
 		PubKeyHashAddrID:  []byte{0x1e},
 		ScriptHashAddrID:  []byte{0xd},
+		PrivateKeyID:      []byte{0xd4},
 		HDPrivateKeyID:    [4]byte{0x04, 0x88, 0xAD, 0xE4},
 		HDPublicKeyID:     [4]byte{0x04, 0x88, 0xB2, 0x1E},
 		HDCoinType:        1999,
 		Base58CksumHasher: base58.Sha256D,
-		Net:               2, // Make sure doesn't collide with any other coin.
-		AddressMagicLen:   1,
 	},
 }
