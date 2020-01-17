@@ -127,7 +127,7 @@ func (b *BlockBook) callWrapper(route string, version int) ([]byte, error) {
 	return body, err
 }
 
-func NewBlockBookWrapper(url string) (*BlockBook, error) {
+func NewBlockBookWrapper(url string) *BlockBook {
 	bb := &BlockBook{
 		Url: url,
 		client: &http.Client{
@@ -137,9 +137,5 @@ func NewBlockBookWrapper(url string) (*BlockBook, error) {
 			Timeout:       30,
 		},
 	}
-	if bb.checkBlockStatus() {
-		return bb, nil
-	} else {
-		return nil, errors.New("blockbook not available or not synced")
-	}
+	return bb
 }
