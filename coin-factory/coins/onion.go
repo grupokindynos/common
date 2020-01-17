@@ -1,8 +1,7 @@
 package coins
 
 import (
-	"github.com/martinboehm/btcutil/base58"
-	"github.com/martinboehm/btcutil/chaincfg"
+	"github.com/eabz/blockbook/bchain/coins/deeponion"
 )
 
 var DeepOnion = Coin{
@@ -43,14 +42,5 @@ var DeepOnion = Coin{
 		BlockTime:        4,
 		MinConfirmations: 20,
 	},
-	NetParams: &chaincfg.Params{
-		Bech32HRPSegwit:   "",
-		ScriptHashAddrID:  []byte{0x4e},
-		PubKeyHashAddrID:  []byte{0x1f},
-		PrivateKeyID:      []byte{0x9f},
-		HDPrivateKeyID:    [4]byte{0x04, 0x88, 0xAD, 0xE4},
-		HDPublicKeyID:     [4]byte{0x04, 0x88, 0xB2, 0x1E},
-		HDCoinType:        305,
-		Base58CksumHasher: base58.Sha256D,
-	},
+	NetParams: &deeponion.MainNetParams,
 }
