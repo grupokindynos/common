@@ -1,7 +1,8 @@
 package coins
 
 import (
-	"github.com/eabz/blockbook/bchain/coins/telos"
+	"github.com/martinboehm/btcutil/base58"
+	"github.com/martinboehm/btcutil/chaincfg"
 )
 
 var Telos = Coin{
@@ -42,5 +43,14 @@ var Telos = Coin{
 		BlockTime:        1,
 		MinConfirmations: 6,
 	},
-	NetParams: &telos.MainNetParams,
+	NetParams: &chaincfg.Params{
+		Bech32HRPSegwit:   "",
+		ScriptHashAddrID:  []byte{138},
+		PubKeyHashAddrID:  []byte{38},
+		PrivateKeyID:      []byte{98},
+		HDPrivateKeyID:    [4]byte{0x04, 0x88, 0xAD, 0xE4},
+		HDPublicKeyID:     [4]byte{0x04, 0x88, 0xB2, 0x1E},
+		HDCoinType:        424,
+		Base58CksumHasher: base58.Sha256D,
+	},
 }

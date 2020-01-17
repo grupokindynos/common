@@ -1,7 +1,6 @@
 package coins
 
 import (
-	"github.com/eabz/blockbook/bchain/coins/polis"
 	"github.com/martinboehm/btcutil/base58"
 	"github.com/martinboehm/btcutil/chaincfg"
 )
@@ -44,5 +43,14 @@ var Polis = Coin{
 		BlockTime:        2,
 		MinConfirmations: 2,
 	},
-	NetParams: &polis.MainNetParams,
+	NetParams: &chaincfg.Params{
+		Bech32HRPSegwit:   "",
+		ScriptHashAddrID:  []byte{56},
+		PubKeyHashAddrID:  []byte{55},
+		PrivateKeyID:      []byte{60},
+		HDPrivateKeyID:    [4]byte{0x03, 0xE2, 0x59, 0x45},
+		HDPublicKeyID:     [4]byte{0x03, 0xE2, 0x5D, 0x7E},
+		HDCoinType:        1997,
+		Base58CksumHasher: base58.Sha256D,
+	},
 }

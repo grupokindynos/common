@@ -1,7 +1,8 @@
 package coins
 
 import (
-	"github.com/eabz/blockbook/bchain/coins/digibyte"
+	"github.com/martinboehm/btcutil/base58"
+	"github.com/martinboehm/btcutil/chaincfg"
 )
 
 var Digibyte = Coin{
@@ -53,5 +54,14 @@ var Digibyte = Coin{
 		BlockTime:        0.25,
 		MinConfirmations: 10,
 	},
-	NetParams: &digibyte.MainNetParams,
+	NetParams: &chaincfg.Params{
+		Bech32HRPSegwit:   "dgb",
+		PubKeyHashAddrID:  []byte{30},
+		ScriptHashAddrID:  []byte{63},
+		PrivateKeyID:      []byte{128},
+		HDPrivateKeyID:    [4]byte{0x04, 0x88, 0xAD, 0xE4},
+		HDPublicKeyID:     [4]byte{0x04, 0x88, 0xB2, 0x1E},
+		HDCoinType:        20,
+		Base58CksumHasher: base58.Sha256D,
+	},
 }
