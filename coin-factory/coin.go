@@ -19,7 +19,6 @@ var Coins = map[string]*coins.Coin{
 	"LTC":   &coins.Litecoin,
 	"ONION": &coins.DeepOnion,
 	"POLIS": &coins.Polis,
-	"XSG":   &coins.Snowgem,
 	"TELOS": &coins.Telos,
 	"USDT":  &coins.Tether,
 	"TUSD":  &coins.TrueUSD,
