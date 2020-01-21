@@ -41,7 +41,7 @@ var DeepOnion = Coin{
 	BlockchainInfo: BlockchainInfo{
 		ExternalSource:   "",
 		BlockTime:        4,
-		MinConfirmations: 20,
+		MinConfirmations: 1,
 	},
 	NetParams: &chaincfg.Params{
 		Bech32HRPSegwit:   "",

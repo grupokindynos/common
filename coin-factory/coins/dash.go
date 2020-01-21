@@ -41,7 +41,7 @@ var Dash = Coin{
 	BlockchainInfo: BlockchainInfo{
 		ExternalSource:   "dash2.trezor.io",
 		BlockTime:        2.5,
-		MinConfirmations: 2,
+		MinConfirmations: 1,
 	},
 	NetParams: &chaincfg.Params{
 		Bech32HRPSegwit:   "",

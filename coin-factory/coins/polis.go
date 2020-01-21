@@ -41,7 +41,7 @@ var Polis = Coin{
 	BlockchainInfo: BlockchainInfo{
 		ExternalSource:   "blockbook.polispay.org",
 		BlockTime:        2,
-		MinConfirmations: 2,
+		MinConfirmations: 1,
 	},
 	NetParams: &chaincfg.Params{
 		Bech32HRPSegwit:   "",

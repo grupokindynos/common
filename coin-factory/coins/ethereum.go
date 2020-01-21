@@ -42,7 +42,7 @@ var Ethereum = Coin{
 	},
 	BlockchainInfo: BlockchainInfo{
 		BlockTime:        1,
-		MinConfirmations: 8,
+		MinConfirmations: 1,
 		ExternalSource:   "eth1.trezor.io",
 	},
 	NetParams: &chaincfg.Params{

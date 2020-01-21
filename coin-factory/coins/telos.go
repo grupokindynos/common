@@ -41,7 +41,7 @@ var Telos = Coin{
 	BlockchainInfo: BlockchainInfo{
 		ExternalSource:   "telos.polispay.com",
 		BlockTime:        1,
-		MinConfirmations: 6,
+		MinConfirmations: 1,
 	},
 	NetParams: &chaincfg.Params{
 		Bech32HRPSegwit:   "",

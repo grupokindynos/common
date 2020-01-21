@@ -52,7 +52,7 @@ var Groestlcoin = Coin{
 	BlockchainInfo: BlockchainInfo{
 		ExternalSource:   "grs.polispay.com",
 		BlockTime:        10,
-		MinConfirmations: 2,
+		MinConfirmations: 1,
 	},
 	NetParams: &chaincfg.Params{
 		Bech32HRPSegwit:   "grs",

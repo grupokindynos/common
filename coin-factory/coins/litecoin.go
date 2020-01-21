@@ -52,7 +52,7 @@ var Litecoin = Coin{
 	BlockchainInfo: BlockchainInfo{
 		ExternalSource:   "ltc2.trezor.io",
 		BlockTime:        2.5,
-		MinConfirmations: 4,
+		MinConfirmations: 1,
 	},
 	NetParams: &chaincfg.Params{
 		Bech32HRPSegwit:   "ltc",

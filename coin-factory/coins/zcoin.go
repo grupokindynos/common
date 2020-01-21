@@ -41,7 +41,7 @@ var Zcoin = Coin{
 	BlockchainInfo: BlockchainInfo{
 		ExternalSource:   "xzc.polispay.com",
 		BlockTime:        5,
-		MinConfirmations: 2,
+		MinConfirmations: 1,
 	},
 	NetParams: &chaincfg.Params{
 		Bech32HRPSegwit:   "",

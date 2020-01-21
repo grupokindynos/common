@@ -41,7 +41,7 @@ var Divi = Coin{
 	},
 	BlockchainInfo: BlockchainInfo{
 		BlockTime:        2,
-		MinConfirmations: 6,
+		MinConfirmations: 1,
 		ExternalSource:   "divi.polispay.com",
 	},
 	NetParams: &chaincfg.Params{

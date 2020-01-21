@@ -41,7 +41,7 @@ var Colossus = Coin{
 	BlockchainInfo: BlockchainInfo{
 		ExternalSource:   "colx.polispay.com",
 		BlockTime:        1,
-		MinConfirmations: 30,
+		MinConfirmations: 1,
 	},
 	NetParams: &chaincfg.Params{
 		Bech32HRPSegwit:   "",
