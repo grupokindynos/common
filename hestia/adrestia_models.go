@@ -1,14 +1,15 @@
 package hestia
 
 type AdrestiaOrder struct {
-	ID           string         `firestore:"id" json:"id"`
-	DualExchange bool           `firestore:"dual_exchange" json:"dual_exchange"`
-	Time         int64          `firestore:"time" json:"time"`
-	Status       AdrestiaStatus `firestore:"status" json:"status"`
-	Amount       float64        `firestore:"amount" json:"amount"`
-	BtcRate      float64        `firestore:"btc_rate" json:"btc_rate"`
-	FromCoin     string         `firestore:"from_coin" json:"from_coin"`
-	ToCoin       string         `firestore:"to_coin" json:"to_coin"`
+	ID            string         `firestore:"id" json:"id"`
+	DualExchange  bool           `firestore:"dual_exchange" json:"dual_exchange"`
+	CreatedTime   int64          `firestore:"createdTime" json:"createdTime"`
+	FulfilledTime int64          `firestore:"fulfilledTime" json:"fulfilledTime"`
+	Status        AdrestiaStatus `firestore:"status" json:"status"`
+	Amount        float64        `firestore:"amount" json:"amount"`
+	BtcRate       float64        `firestore:"btc_rate" json:"btc_rate"`
+	FromCoin      string         `firestore:"from_coin" json:"from_coin"`
+	ToCoin        string         `firestore:"to_coin" json:"to_coin"`
 
 	Message string `firestore:"message" json:"message"`
 
@@ -24,15 +25,16 @@ type AdrestiaOrder struct {
 }
 
 type ExchangeOrder struct {
-	OrderId           string  `firestore:"order_id" json:"order_id"`
-	Symbol            string  `firestore:"symbol" json:"symbol"`
-	Side              string  `firestore:"side" json:"side"`
-	Amount            float64 `firestore:"amount" json:"amount"`
-	ReceivedAmount    float64 `firestore:"receivedAmount" json:"receivedAmount"`
-	Timestamp         int64   `firestore:"time" json:"time"`
-	Exchange          string  `firestore:"exchange" json:"exchange"`
-	ReceivedCurrency  string  `firestore:"receivedCurrency" json:"receivedCurrency"`
-	SoldCurrency      string  `firestore:"soldCurrency" json:"soldCurrency"`
+	OrderId          string  `firestore:"order_id" json:"order_id"`
+	Symbol           string  `firestore:"symbol" json:"symbol"`
+	Side             string  `firestore:"side" json:"side"`
+	Amount           float64 `firestore:"amount" json:"amount"`
+	ReceivedAmount   float64 `firestore:"receivedAmount" json:"receivedAmount"`
+	CreatedTime      int64   `firestore:"createdTime" json:"createdTime"`
+	FulfilledTime    int64   `firestore:"fulfilledTime" json:"fulfilledTime"`
+	Exchange         string  `firestore:"exchange" json:"exchange"`
+	ReceivedCurrency string  `firestore:"receivedCurrency" json:"receivedCurrency"`
+	SoldCurrency     string  `firestore:"soldCurrency" json:"soldCurrency"`
 }
 
 type OrderStatus struct {
