@@ -17,9 +17,12 @@ type BlockBook struct {
 func (b *BlockBook) GetXpub(xpub string) (response Xpub, err error) {
 	data, err := b.callWrapper("xpub/"+xpub+"?details=txs", 2)
 	if err != nil {
-		return response, nil
+		return response, err
 	}
 	err = json.Unmarshal(data, &response)
+	if err != nil {
+		return response, err
+	}
 	return
 }
 
@@ -32,27 +35,36 @@ func (b *BlockBook) GetUtxo(xpub string, confirmed bool) (response []Utxo, err e
 	}
 	data, err := b.callWrapper(url, 2)
 	if err != nil {
-		return response, nil
+		return response, err
 	}
 	err = json.Unmarshal(data, &response)
+	if err != nil {
+		return response, err
+	}
 	return
 }
 
 func (b *BlockBook) GetTx(txid string) (response Tx, err error) {
 	data, err := b.callWrapper("tx/"+txid, 2)
 	if err != nil {
-		return response, nil
+		return response, err
 	}
 	err = json.Unmarshal(data, &response)
+	if err != nil {
+		return response, err
+	}
 	return
 }
 
 func (b *BlockBook) GetFee(nBlocks string) (response Fee, err error) {
 	data, err := b.callWrapper("estimatefee/"+nBlocks, 1)
 	if err != nil {
-		return response, nil
+		return response, err
 	}
 	err = json.Unmarshal(data, &response)
+	if err != nil {
+		return response, err
+	}
 	return
 }
 
@@ -61,18 +73,24 @@ func (b *BlockBook) GetFee(nBlocks string) (response Fee, err error) {
 func (b *BlockBook) GetEthAddress(addr string) (response EthAddr, err error) {
 	data, err := b.callWrapper("address/"+addr+"?details=txs", 2)
 	if err != nil {
-		return response, nil
+		return response, err
 	}
 	err = json.Unmarshal(data, &response)
+	if err != nil {
+		return response, err
+	}
 	return
 }
 
 func (b *BlockBook) GetTxEth(txid string) (response EthTx, err error) {
 	data, err := b.callWrapper("tx/"+txid, 2)
 	if err != nil {
-		return response, nil
+		return response, err
 	}
 	err = json.Unmarshal(data, &response)
+	if err != nil {
+		return response, err
+	}
 	return
 }
 
@@ -81,31 +99,18 @@ func (b *BlockBook) GetTxEth(txid string) (response EthTx, err error) {
 func (b *BlockBook) SendTx(rawTx string) (response string, err error) {
 	data, err := b.callWrapper("sendtx/"+rawTx, 2)
 	if err != nil {
-		return response, nil
+		return response, err
 	}
 	var blockbookAnswer SendTx
 	err = json.Unmarshal(data, &blockbookAnswer)
+	if err != nil {
+		return response, err
+	}
 	if blockbookAnswer.Result != "" {
 		return blockbookAnswer.Result, nil
 	} else {
 		return "", errors.New(blockbookAnswer.Error.Message)
 	}
-}
-
-func (b *BlockBook) checkBlockStatus() bool {
-	data, err := b.callWrapper("status", 2)
-	if err != nil {
-		return false
-	}
-	var StatusInfo Status
-	err = json.Unmarshal(data, &StatusInfo)
-	if err != nil {
-		return false
-	}
-	if !StatusInfo.Blockbook.InitialSync {
-		return true
-	}
-	return false
 }
 
 func (b *BlockBook) callWrapper(route string, version int) ([]byte, error) {
@@ -127,7 +132,7 @@ func (b *BlockBook) callWrapper(route string, version int) ([]byte, error) {
 	return body, err
 }
 
-func NewBlockBookWrapper(url string) (*BlockBook, error) {
+func NewBlockBookWrapper(url string) *BlockBook {
 	bb := &BlockBook{
 		Url: url,
 		client: &http.Client{
@@ -137,9 +142,5 @@ func NewBlockBookWrapper(url string) (*BlockBook, error) {
 			Timeout:       30,
 		},
 	}
-	if bb.checkBlockStatus() {
-		return bb, nil
-	} else {
-		return nil, errors.New("blockbook not available or not synced")
-	}
+	return bb
 }

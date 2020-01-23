@@ -23,6 +23,7 @@ type Coin struct {
 	Vouchers Properties    `firestore:"vouchers" json:"vouchers"`
 	Orders   Properties    `firestore:"orders" json:"orders"`
 	Balances BalanceLimits `firestore:"balances" json:"balances"`
+	Adrestia bool          `firestore:"adrestia" json:"adrestia"`
 }
 
 type CoinBalances struct {
@@ -150,6 +151,7 @@ type Voucher struct {
 	RedeemTimestamp      int64   `firestore:"redeem_timestamp" json:"redeem_timestamp"`
 	AmountEuro           string  `firestore:"amount_euro" json:"amount_euro"`
 	AmountFeeEuro        string  `firestore:"amount_fee_euro" json:"amount_fee_euro"`
+	Image                string  `firestore:"image" json:"image"`
 }
 
 type Deposit struct {

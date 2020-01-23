@@ -1,6 +1,6 @@
 package coins
 
-import "github.com/martinboehm/btcutil/chaincfg"
+import "github.com/eabz/btcutil/chaincfg"
 
 type CoinNetWorkBip32Info struct {
 	Public  int `json:"public"`
