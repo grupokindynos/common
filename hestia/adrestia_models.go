@@ -28,11 +28,11 @@ type ExchangeOrder struct {
 	Symbol            string  `firestore:"symbol" json:"symbol"`
 	Side              string  `firestore:"side" json:"side"`
 	Amount            float64 `firestore:"amount" json:"amount"`
-	ListingAmount     float64 `firestore:"listingAmount" json:"listingAmount"`
+	ReceivedAmount    float64 `firestore:"receivedAmount" json:"receivedAmount"`
 	Timestamp         int64   `firestore:"time" json:"time"`
 	Exchange          string  `firestore:"exchange" json:"exchange"`
-	ListingCurrency   string  `firestore:"listingCurrency" json:"listingCurrency"`
-	ReferenceCurrency string  `firestore:"referenceCurrency" json:"referenceCurrency"`
+	ReceivedCurrency  string  `firestore:"receivedCurrency" json:"receivedCurrency"`
+	SoldCurrency      string  `firestore:"soldCurrency" json:"soldCurrency"`
 }
 
 type OrderStatus struct {
