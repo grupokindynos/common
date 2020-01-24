@@ -44,6 +44,17 @@ func CreateMVTToken(method string, reqUrl string, service string, masterPassword
 		if err != nil {
 			return nil, err
 		}
+	case "PUT":
+		tokenBytes, err := createMVTTokenBody(payload, masterPassword)
+
+		if err != nil {
+			return nil, err
+		}
+		payload := bytes.NewBuffer(tokenBytes)
+		req, err = http.NewRequest(method, reqUrl, payload)
+		if err != nil {
+			return nil, err
+		}
 	default:
 		return nil, errors.ErrorUnknownMethod
 	}
