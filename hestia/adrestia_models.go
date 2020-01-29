@@ -88,6 +88,15 @@ var (
 	}
 )
 
+// Returns listing and reference currencies
+func (eo *ExchangeOrder) GetTradingPair() (string, string) {
+	if eo.Side == "buy" {
+		return eo.ReceivedCurrency, eo.SoldCurrency
+	} else {
+		return eo.SoldCurrency, eo.ReceivedCurrency
+	}
+}
+
 func GetAdrestiaStatusString(status AdrestiaStatus) string {
 	value, ok := AdrestiaStatusStr[status]
 	if !ok {
