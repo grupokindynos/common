@@ -10,6 +10,7 @@ import (
 // Coins refers to the coins that are being used on the API instance
 var Coins = map[string]*coins.Coin{
 	"BTC":   &coins.Bitcoin,
+	"BITG":  &coins.Bitgreen,
 	"COLX":  &coins.Colossus,
 	"DASH":  &coins.Dash,
 	"DGB":   &coins.Digibyte,
