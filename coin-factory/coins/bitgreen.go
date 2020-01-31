@@ -13,18 +13,29 @@ var Bitgreen = Coin{
 		Name:        "Bitgreen (BITG)",
 		Trezor:      false,
 		Ledger:      false,
-		Segwit:      false,
+		Segwit:      true,
 		Masternodes: true,
 		Token:       false,
 		Blockbook:   "https://bitg.polispay.com",
 		Protocol:    "bitg",
 		TxVersion:   1,
 		TxBuilder:   "bitcoinjs",
-		HDIndex:     0,
+		HDIndex:     222,
 		Networks: map[string]CoinNetworkInfo{
-			"P2PKH": {
+			"P2SHInP2WPKH": {
 				MessagePrefix: "\x18Bitgreen Signed Message:\n",
-				Bech32:        "",
+				Bech32:        "bg",
+				Bip32: CoinNetWorkBip32Info{
+					Public:  0x049d7cb2,
+					Private: 0x049d7878,
+				},
+				PubKeyHash: 38,
+				ScriptHash: 6,
+				Wif:        46,
+			},
+			"P2WPKH": {
+				MessagePrefix: "\x18Bitgreen Signed Message:\n",
+				Bech32:        "bg",
 				Bip32: CoinNetWorkBip32Info{
 					Public:  0x04b24746,
 					Private: 0x04b2430c,
