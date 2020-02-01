@@ -36,7 +36,7 @@ var Bitgreen = Coin{
 		},
 	},
 	Rates: RatesSource{
-		Exchange:         "probit",
+		Exchange:         "crex24",
 		FallBackExchange: "sistemkoin",
 	},
 	BlockchainInfo: BlockchainInfo{
