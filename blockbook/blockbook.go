@@ -1,12 +1,12 @@
 package blockbook
 
 import (
-	"bytes"
-	"encoding/hex"
 	"encoding/json"
 	"errors"
+	"io"
 	"io/ioutil"
 	"net/http"
+	"strings"
 	"time"
 )
 
@@ -100,8 +100,7 @@ func (b *BlockBook) GetTxEth(txid string) (response EthTx, err error) {
 // Methods for all coins
 
 func (b *BlockBook) SendTx(rawTx string) (response string, err error) {
-	rawTxHex, err := hex.DecodeString(rawTx)
-	data, err := b.callWrapper("POST", "sendtx", 2, rawTxHex)
+	data, err := b.callWrapper("POST", "sendtx", 2, strings.NewReader(rawTx))
 	if err != nil {
 		return response, err
 	}
@@ -117,7 +116,7 @@ func (b *BlockBook) SendTx(rawTx string) (response string, err error) {
 	}
 }
 
-func (b *BlockBook) callWrapper(method string, route string, version int, body []byte) (response []byte, err error) {
+func (b *BlockBook) callWrapper(method string, route string, version int, body io.Reader) (response []byte, err error) {
 	var versionStr string
 	switch version {
 	case 1:
@@ -135,8 +134,7 @@ func (b *BlockBook) callWrapper(method string, route string, version int, body [
 	case "GET":
 		request, err = http.NewRequest(method, b.Url+versionStr+route, nil)
 	case "POST":
-		buf := bytes.NewBuffer(body)
-		request, err = http.NewRequest(method, b.Url+versionStr+route, buf)
+		request, err = http.NewRequest(method, b.Url+versionStr+route, body)
 	}
 	resp, err := client.Do(request)
 	if err != nil {
