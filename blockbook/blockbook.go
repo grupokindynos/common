@@ -7,6 +7,7 @@ import (
 	"errors"
 	"io/ioutil"
 	"net/http"
+	"time"
 )
 
 type BlockBook struct {
@@ -127,7 +128,7 @@ func (b *BlockBook) callWrapper(method string, route string, version int, body [
 		versionStr = "/api/"
 	}
 	client := http.Client{
-		Timeout: 30,
+		Timeout: 60 * time.Second,
 	}
 	var request *http.Request
 	switch method {
@@ -155,7 +156,7 @@ func NewBlockBookWrapper(url string) *BlockBook {
 			Transport:     nil,
 			CheckRedirect: nil,
 			Jar:           nil,
-			Timeout:       30,
+			Timeout:       30 * time.Second,
 		},
 	}
 	return bb
