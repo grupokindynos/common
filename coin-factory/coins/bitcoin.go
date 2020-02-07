@@ -47,8 +47,8 @@ var Bitcoin = Coin{
 		},
 	},
 	Rates: RatesSource{
-		Exchange:         "bitso",
-		FallBackExchange: "",
+		Exchange:         "binance",
+		FallBackExchange: "bitso",
 	},
 	BlockchainInfo: BlockchainInfo{
 		BlockTime:        10,
