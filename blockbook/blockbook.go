@@ -102,7 +102,7 @@ func (b *BlockBook) GetTxEth(txid string) (response EthTx, err error) {
 
 func (b *BlockBook) SendTx(rawTx string) (response string, err error) {
 	log.Println("Entra a sendTx")
-	data, err := b.callWrapper("POST", "sendtx", 2, strings.NewReader(rawTx))
+	data, err := b.callWrapper("POST", "sendtx/", 2, strings.NewReader(rawTx))
 	if err != nil {
 		return response, err
 	}
