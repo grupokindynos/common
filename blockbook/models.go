@@ -175,8 +175,6 @@ type EthTx struct {
 }
 
 type SendTx struct {
-	Error struct {
-		Message string `json:"message"`
-	} `json:"error"`
+	Error  string `json:"error"`
 	Result string `json:"result"`
 }

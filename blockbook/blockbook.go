@@ -116,7 +116,7 @@ func (b *BlockBook) SendTx(rawTx string) (response string, err error) {
 	if blockbookAnswer.Result != "" {
 		return blockbookAnswer.Result, nil
 	} else {
-		return "", errors.New(blockbookAnswer.Error.Message)
+		return "", errors.New(blockbookAnswer.Error)
 	}
 }
 
