@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"io"
+	"log"
 	"io/ioutil"
 	"net/http"
 	"strings"
@@ -104,11 +105,13 @@ func (b *BlockBook) SendTx(rawTx string) (response string, err error) {
 	if err != nil {
 		return response, err
 	}
+	log.Println(string(data))
 	var blockbookAnswer SendTx
 	err = json.Unmarshal(data, &blockbookAnswer)
 	if err != nil {
 		return response, err
 	}
+	log.Println(blockbookAnswer)
 	if blockbookAnswer.Result != "" {
 		return blockbookAnswer.Result, nil
 	} else {
