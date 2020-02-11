@@ -5,7 +5,6 @@ import (
 	"errors"
 	"io"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"strings"
 	"time"
@@ -101,18 +100,15 @@ func (b *BlockBook) GetTxEth(txid string) (response EthTx, err error) {
 // Methods for all coins
 
 func (b *BlockBook) SendTx(rawTx string) (response string, err error) {
-	log.Println("Entra a sendTx")
 	data, err := b.callWrapper("POST", "sendtx/", 2, strings.NewReader(rawTx))
 	if err != nil {
 		return response, err
 	}
-	log.Println(string(data))
 	var blockbookAnswer SendTx
 	err = json.Unmarshal(data, &blockbookAnswer)
 	if err != nil {
 		return response, err
 	}
-	log.Println(blockbookAnswer)
 	if blockbookAnswer.Result != "" {
 		return blockbookAnswer.Result, nil
 	} else {
