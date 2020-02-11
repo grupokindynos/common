@@ -100,7 +100,7 @@ func (b *BlockBook) GetTxEth(txid string) (response EthTx, err error) {
 // Methods for all coins
 
 func (b *BlockBook) SendTx(rawTx string) (response string, err error) {
-	data, err := b.callWrapper("POST", "sendtx/", 2, strings.NewReader(rawTx))
+	data, err := b.callWrapper("POST", "sendtx", 2, strings.NewReader(rawTx))
 	if err != nil {
 		return response, err
 	}
