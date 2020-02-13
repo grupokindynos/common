@@ -54,10 +54,10 @@ const (
 	AdrestiaStatusCreated AdrestiaStatus = iota
 	AdrestiaStatusFirstExchange
 	AdrestiaStatusFirstConversion
+	AdrestiaStatusFirstWithdrawal
 	AdrestiaStatusSecondExchange
 	AdrestiaStatusSecondConversion
 	AdrestiaStatusExchangeComplete
-	AdrestiaStatusFirstWithdrawal
 	AdrestiaStatusSecondWithdrawal
 	AdrestiaStatusCompleted
 	AdrestiaStatusError
