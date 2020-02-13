@@ -56,6 +56,8 @@ const (
 	AdrestiaStatusFirstConversion
 	AdrestiaStatusSecondExchange
 	AdrestiaStatusSecondConversion
+	AdrestiaStatusFirstWithdrawal
+	AdrestiaStatusSecondWithdrawal
 	AdrestiaStatusExchangeComplete
 	AdrestiaStatusCompleted
 	AdrestiaStatusError
@@ -66,11 +68,13 @@ var (
 		0: "CREATED",
 		1: "FIRST_EXCHANGE",
 		2: "FIRST_CONVERSION",
-		3: "SECOND_EXCHANGE",
-		4: "SECOND_CONVERSION",
-		5: "EXCHANGE_COMPLETE",
-		6: "COMPLETED",
-		7: "ERROR",
+		3: "FIRST_WITHDRAWAL",
+		4: "SECOND_EXCHANGE",
+		5: "SECOND_CONVERSION",
+		6: "SECOND_WITHDRAWAL",
+		7: "EXCHANGE_COMPLETE",
+		8: "COMPLETED",
+		9: "ERROR",
 	}
 )
 
