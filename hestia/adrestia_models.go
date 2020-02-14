@@ -1,15 +1,16 @@
 package hestia
 
 type AdrestiaOrder struct {
-	ID            string         `firestore:"id" json:"id"`
-	DualExchange  bool           `firestore:"dual_exchange" json:"dual_exchange"`
-	CreatedTime   int64          `firestore:"createdTime" json:"createdTime"`
-	FulfilledTime int64          `firestore:"fulfilledTime" json:"fulfilledTime"`
-	Status        AdrestiaStatus `firestore:"status" json:"status"`
-	Amount        float64        `firestore:"amount" json:"amount"`
-	BtcRate       float64        `firestore:"btc_rate" json:"btc_rate"`
-	FromCoin      string         `firestore:"from_coin" json:"from_coin"`
-	ToCoin        string         `firestore:"to_coin" json:"to_coin"`
+	ID             string         `firestore:"id" json:"id"`
+	DualExchange   bool           `firestore:"dual_exchange" json:"dual_exchange"`
+	CreatedTime    int64          `firestore:"createdTime" json:"createdTime"`
+	FulfilledTime  int64          `firestore:"fulfilledTime" json:"fulfilledTime"`
+	Status         AdrestiaStatus `firestore:"status" json:"status"`
+	Amount         float64        `firestore:"amount" json:"amount"`
+	ReceivedAmount float64        `firestore:"receivedAmount" json:"receivedAmount"`
+	BtcRate        float64        `firestore:"btc_rate" json:"btc_rate"`
+	FromCoin       string         `firestore:"from_coin" json:"from_coin"`
+	ToCoin         string         `firestore:"to_coin" json:"to_coin"`
 
 	Message string `firestore:"message" json:"message"`
 
@@ -61,20 +62,22 @@ const (
 	AdrestiaStatusSecondWithdrawal
 	AdrestiaStatusCompleted
 	AdrestiaStatusError
+	AdrestiaStatusPlutusDeposit
 )
 
 var (
 	AdrestiaStatusStr = map[AdrestiaStatus]string{
-		0: "CREATED",
-		1: "FIRST_EXCHANGE",
-		2: "FIRST_CONVERSION",
-		3: "FIRST_WITHDRAWAL",
-		4: "SECOND_EXCHANGE",
-		5: "SECOND_CONVERSION",
-		6: "EXCHANGE_COMPLETE",
-		7: "SECOND_WITHDRAWAL",
-		8: "COMPLETED",
-		9: "ERROR",
+		0:  "CREATED",
+		1:  "FIRST_EXCHANGE",
+		2:  "FIRST_CONVERSION",
+		3:  "FIRST_WITHDRAWAL",
+		4:  "SECOND_EXCHANGE",
+		5:  "SECOND_CONVERSION",
+		6:  "EXCHANGE_COMPLETE",
+		7:  "SECOND_WITHDRAWAL",
+		8:  "COMPLETED",
+		9:  "ERROR",
+		10: "PLUTUS_DEPOSIT",
 	}
 )
 
