@@ -153,6 +153,8 @@ type Voucher struct {
 	AmountFeeEuro        string  `firestore:"amount_fee_euro" json:"amount_fee_euro"`
 	Image                string  `firestore:"image" json:"image"`
 	PhoneNumber          int64   `firestore:"phone_nb" json:"phone_nb"`
+	ProviderId           int32   `firestore:"provider_id" json:"provider_id"`
+	Valid                int64   `firestore:"valid" json:"valid"`
 }
 
 type Deposit struct {
