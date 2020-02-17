@@ -154,7 +154,7 @@ type Voucher struct {
 	Image                string  `firestore:"image" json:"image"`
 	PhoneNumber          int64   `firestore:"phone_nb" json:"phone_nb"`
 	ProviderId           int32   `firestore:"provider_id" json:"provider_id"`
-	Valid                int64   `firestore:"valid" json:"valid"`
+	Valid                int32   `firestore:"valid" json:"valid"`
 }
 
 type Deposit struct {
