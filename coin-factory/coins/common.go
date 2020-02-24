@@ -27,6 +27,7 @@ type CoinInfo struct {
 	Token        bool                       `json:"token"`
 	TokenNetwork string                     `json:"token_network,omitempty"`
 	Contract     string                     `json:"contract,omitempty"`
+	Decimals     int                     	`json:"decimals,omitempty"`
 	Blockbook    string                     `json:"blockbook"`
 	Protocol     string                     `json:"protocol"`
 	TxVersion    int                        `json:"tx_version"`
