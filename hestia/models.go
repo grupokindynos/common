@@ -117,6 +117,7 @@ type Shift struct {
 	ToAddress      string  `firestore:"to_address" json:"to_address"`
 	PaymentProof   string  `firestore:"payment_proof" json:"payment_proof"`
 	ProofTimestamp int64   `firestore:"proof_timestamp" json:"proof_timestamp"`
+	Message        string  `firestore:"message" json:"message"`
 }
 
 type User struct {
@@ -156,6 +157,7 @@ type Voucher struct {
 	PhoneNumber          int64   `firestore:"phone_nb" json:"phone_nb"`
 	ProviderId           int32   `firestore:"provider_id" json:"provider_id"`
 	Valid                int32   `firestore:"valid" json:"valid"`
+	Message              string  `firestore:"message" json:"message"`
 }
 
 type Deposit struct {
