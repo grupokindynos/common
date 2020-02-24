@@ -13,6 +13,7 @@ var Tether = Coin{
 		Token:        true,
 		TokenNetwork: "ethereum",
 		Contract:     "0xdac17f958d2ee523a2206206994597c13d831ec7",
+		Decimals:     6
 	},
 	Rates: RatesSource{
 		Exchange:         "binance",
