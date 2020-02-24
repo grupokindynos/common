@@ -55,6 +55,7 @@ type Config struct {
 	Deposits Available `firestore:"deposits" json:"deposits"`
 	Vouchers Available `firestore:"vouchers" json:"vouchers"`
 	Orders   Available `firestore:"orders" json:"orders"`
+	Adrestia Available `firestore:"adrestia" json:"adrestia"`
 }
 
 type Available struct {
