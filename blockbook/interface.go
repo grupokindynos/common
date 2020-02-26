@@ -7,4 +7,5 @@ type BlockBookInterface interface {
 	GetTx(url string, txid string)
 	GetTxEth(url string, txid string)
 	SendTx(url string, rawTx string)
+	SendTxWithMessage(url string, rawTx string)
 }

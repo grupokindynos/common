@@ -116,6 +116,23 @@ func (b *BlockBook) SendTx(rawTx string) (response string, err error) {
 	}
 }
 
+func (b *BlockBook) SendTxWithMessage(rawTx string) (string, error, string) {
+	data, err := b.callWrapper("POST", "sendtx/", 2, strings.NewReader(rawTx))
+	if err != nil {
+		return "", err, string(data)
+	}
+	var blockbookAnswer SendTx
+	err = json.Unmarshal(data, &blockbookAnswer)
+	if err != nil {
+		return "", err, string(data)
+	}
+	if blockbookAnswer.Result != "" {
+		return blockbookAnswer.Result, nil, string(data)
+	} else {
+		return "", errors.New(blockbookAnswer.Error), string(data)
+	}
+}
+
 func (b *BlockBook) callWrapper(method string, route string, version int, body io.Reader) (response []byte, err error) {
 	var versionStr string
 	switch version {
