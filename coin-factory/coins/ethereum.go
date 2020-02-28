@@ -18,7 +18,7 @@ var Ethereum = Coin{
 		Token:        true,
 		TokenNetwork: "ethereum",
 		Blockbook:    "https://eth2.trezor.io",
-		Protocol:     "eth",
+		Protocol:     "ethereum",
 		TxVersion:    1,
 		TxBuilder:    "ethereum",
 		HDIndex:      60,
