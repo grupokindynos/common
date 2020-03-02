@@ -178,3 +178,17 @@ type SendTx struct {
 	Error  string `json:"error"`
 	Result string `json:"result"`
 }
+
+type Address struct {
+	Page               int      `json:"page"`
+	TotalPages         int      `json:"totalPages"`
+	ItemsOnPage        int      `json:"itemsOnPage"`
+	Address            string   `json:"address"`
+	Balance            string   `json:"balance"`
+	TotalReceived      string   `json:"totalReceived"`
+	TotalSent          string   `json:"totalSent"`
+	UnconfirmedBalance string   `json:"unconfirmedBalance"`
+	UnconfirmedTxs     int      `json:"unconfirmedTxs"`
+	Txs                int      `json:"txs"`
+	Txids              []string `json:"txids"`
+}

@@ -17,6 +17,18 @@ type BlockBook struct {
 
 // Methods for Bitcoin-like coins.
 
+func (b *BlockBook) GetAddress(address string) (response Address, err error) {
+	data, err := b.callWrapper("GET", "address/"+address, 2, nil)
+	if err != nil {
+		return response, err
+	}
+	err = json.Unmarshal(data, &response)
+	if err != nil {
+		return response, err
+	}
+	return
+}
+
 func (b *BlockBook) GetXpub(xpub string) (response Xpub, err error) {
 	data, err := b.callWrapper("GET", "xpub/"+xpub+"?details=txs", 2, nil)
 	if err != nil {
