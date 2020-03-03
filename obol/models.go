@@ -6,6 +6,11 @@ type Rate struct {
 	Rate float64 `json:"rate"`
 }
 
+type RateV2 struct {
+	Name string  `json:"name"`
+	Rate float64 `json:"rate"`
+}
+
 type Response struct {
 	Data   interface{} `json:"data"`
 	Status int         `json:"status"`
