@@ -6,6 +6,7 @@ require (
 	github.com/bwmarrin/discordgo v0.19.0
 	github.com/eabz/btcutil v0.0.0-20200121225113-5a78fc2600d7
 	github.com/gin-gonic/gin v1.4.0
+	github.com/go-telegram-bot-api/telegram-bot-api v4.6.4+incompatible
 	github.com/golang/mock v1.3.1
 	github.com/golang/protobuf v1.3.2 // indirect
 	github.com/google/uuid v1.1.1 // indirect
@@ -17,6 +18,7 @@ require (
 	github.com/olympus-protocol/ogen v0.0.0-20200122020117-3da99bac25aa
 	github.com/sethvargo/go-password v0.1.2
 	github.com/stretchr/testify v1.4.0
+	github.com/technoweenie/multipartstreamer v1.0.1 // indirect
 	github.com/ugorji/go v1.1.7 // indirect
 	golang.org/x/crypto v0.0.0-20200117160349-530e935923ad
 	golang.org/x/net v0.0.0-20190827160401-ba9fcec4b297 // indirect
