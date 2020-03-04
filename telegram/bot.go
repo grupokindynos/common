@@ -21,7 +21,7 @@ func NewTelegramBot(apiKey string, chatId string) TelegramBot {
 		_ = logger.SingleLog("telegram_log", "telegram", "NewTelegramBot - "+err.Error())
 		return TelegramBot{isWorking: false}
 	}
-	bot.Debug = true
+	//bot.Debug = true
 	tb := TelegramBot{
 		telegramBot: *bot,
 		isWorking:   true,
