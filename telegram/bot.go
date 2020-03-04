@@ -21,7 +21,7 @@ func NewTelegramBot(apiKey string, chatId string) TelegramBot {
 		_ = logger.SingleLog("telegram_log", "telegram", "NewTelegramBot - "+err.Error())
 		return TelegramBot{isWorking: false}
 	}
-	//bot.Debug = true
+
 	tb := TelegramBot{
 		telegramBot: *bot,
 		isWorking:   true,
@@ -42,7 +42,6 @@ func (tb *TelegramBot) SendMessage(message string) {
 	u := tgbotapi.NewUpdate(0)
 	u.Timeout = 60
 	chatId, _ := strconv.ParseInt(tb.chatID, 10, 64)
-	fmt.Println(chatId)
 	_, _ = tb.telegramBot.Send(tgbotapi.NewMessage(chatId, message))
 }
 
