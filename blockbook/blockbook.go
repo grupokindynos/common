@@ -6,6 +6,7 @@ import (
 	"io"
 	"io/ioutil"
 	"net/http"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -187,4 +188,28 @@ func NewBlockBookWrapper(url string) *BlockBook {
 		},
 	}
 	return bb
+}
+
+// utils
+func (b *BlockBook) FindDepositTxId(address string, amount int64) (string, error) {
+	addressData, err := b.GetAddress(address)
+	if err != nil {
+		return "", err
+	}
+	for _, txId := range addressData.Txids {
+		tx, err := b.GetTx(txId)
+		if err != nil {
+			return "", err
+		}
+		for _, vout := range tx.Vout {
+			voutValue, _ := strconv.ParseInt(vout.Value, 10, 64)
+			if amount != voutValue {continue}
+			for _, voutAddress := range vout.Addresses {
+				if voutAddress == address {
+					return txId, nil
+				}
+			}
+		}
+	}
+	return "", errors.New("txid not found")
 }
