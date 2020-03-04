@@ -17,7 +17,7 @@ type ObolRequest struct {
 }
 
 func (o *ObolRequest) GetCoin2FIATRate(fromCoin string, toCoin string) (float64, error) {
-	res, err := HttpClient.Get(o.ObolURL + "/complexfiat/" + fromCoin + "/" + toCoin)
+	res, err := HttpClient.Get(o.ObolURL + "/v2/complexfiat/" + fromCoin + "/" + toCoin)
 	if err != nil {
 		return 0, err
 	}
