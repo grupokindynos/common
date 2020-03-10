@@ -13,6 +13,7 @@ const (
 	VoucherStatusRefundFee
 	VoucherStatusRefunded
 	VoucherStatusRefundedPartially
+	VoucherStatusBitcouRefunded
 )
 
 var (
@@ -27,6 +28,7 @@ var (
 		7: "REFUND_FEE",
 		8: "REFUNDED",
 		9: "REFUNDED_PARTIALLY",
+		10: "BITCOU_REFUNDED",
 	}
 )
 
