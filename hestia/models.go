@@ -158,7 +158,7 @@ type Voucher struct {
 	ProviderId           int32   `firestore:"provider_id" json:"provider_id"`
 	Valid                int32   `firestore:"valid" json:"valid"`
 	Message              string  `firestore:"message" json:"message"`
-	BitcouRefundData	 Payment `firestore: "bitcou_refund_data" json:"bitcou_refund_data"`
+	BitcouRefundData	 Payment `firestore:"bitcou_refund_data" json:"bitcou_refund_data"`
 }
 
 type Deposit struct {
