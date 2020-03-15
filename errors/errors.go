@@ -29,5 +29,5 @@ var (
 	ErrorServiceUnavailable        = errors.New("the service you requested is currently unavailable")
 	ErrorAssetUnavailable          = errors.New("the asset you requested is currently unavailable for this service")
 	ErrorObtainingRates            = errors.New("rates for your conversion could not be calculated")
-	ErrprFillingPaymentInformation = errors.New("payment information could not be filled")
+	ErrorFillingPaymentInformation = errors.New("payment information could not be filled")
 )
