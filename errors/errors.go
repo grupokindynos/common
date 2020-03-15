@@ -25,4 +25,5 @@ var (
 	ErrorNoHeaderSignature  = errors.New("no signature found in header")
 	ErrorUnknownMethod      = errors.New("missing known method, currently support are GET and POST")
 	ErrorServiceUnavailable = errors.New("the service you requested is currently unavailable")
+	ErrorAssetUnavailable   = errors.New("the asset you requested is currently unavailable for this service")
 )
