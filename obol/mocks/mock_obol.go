@@ -10,7 +10,7 @@ import (
 	reflect "reflect"
 )
 
-// MockObolService is a mock of ObolService interface.go
+// MockObolService is a mock of ObolService interface
 type MockObolService struct {
 	ctrl     *gomock.Controller
 	recorder *MockObolServiceMockRecorder
@@ -63,6 +63,21 @@ func (mr *MockObolServiceMockRecorder) GetCoin2CoinRatesWithAmount(arg0, arg1, a
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetCoin2CoinRatesWithAmount", reflect.TypeOf((*MockObolService)(nil).GetCoin2CoinRatesWithAmount), arg0, arg1, arg2)
 }
 
+// GetCoin2FIATRate mocks base method
+func (m *MockObolService) GetCoin2FIATRate(arg0, arg1 string) (float64, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetCoin2FIATRate", arg0, arg1)
+	ret0, _ := ret[0].(float64)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetCoin2FIATRate indicates an expected call of GetCoin2FIATRate
+func (mr *MockObolServiceMockRecorder) GetCoin2FIATRate(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetCoin2FIATRate", reflect.TypeOf((*MockObolService)(nil).GetCoin2FIATRate), arg0, arg1)
+}
+
 // GetCoinRates mocks base method
 func (m *MockObolService) GetCoinRates(arg0 string) ([]obol.Rate, error) {
 	m.ctrl.T.Helper()
@@ -76,4 +91,19 @@ func (m *MockObolService) GetCoinRates(arg0 string) ([]obol.Rate, error) {
 func (mr *MockObolServiceMockRecorder) GetCoinRates(arg0 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetCoinRates", reflect.TypeOf((*MockObolService)(nil).GetCoinRates), arg0)
+}
+
+// GetCoinRatesV2 mocks base method
+func (m *MockObolService) GetCoinRatesV2(arg0 string) (map[string]obol.RateV2, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetCoinRatesV2", arg0)
+	ret0, _ := ret[0].(map[string]obol.RateV2)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetCoinRatesV2 indicates an expected call of GetCoinRatesV2
+func (mr *MockObolServiceMockRecorder) GetCoinRatesV2(arg0 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetCoinRatesV2", reflect.TypeOf((*MockObolService)(nil).GetCoinRatesV2), arg0)
 }
