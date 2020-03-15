@@ -30,4 +30,5 @@ var (
 	ErrorAssetUnavailable          = errors.New("the asset you requested is currently unavailable for this service")
 	ErrorObtainingRates            = errors.New("rates for your conversion could not be calculated")
 	ErrorFillingPaymentInformation = errors.New("payment information could not be filled")
+	ErrorShiftNotFound             = errors.New("we could not match the provided id with our registry. likely due to the shift time expiring")
 )
