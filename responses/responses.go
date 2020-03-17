@@ -41,7 +41,7 @@ func GlobalResponseMRT(header string, body string, c *gin.Context) *gin.Context 
 }
 
 // OpenApi
-func GlobalResponse(body string, c *gin.Context) *gin.Context {
+func GlobalResponse(body interface{}, c *gin.Context) *gin.Context {
 	c.JSON(200, body)
 	return c
 }
