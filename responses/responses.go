@@ -34,7 +34,7 @@ func GlobalResponseNoAuth(c *gin.Context) *gin.Context {
 }
 
 // GlobalResponseMRT is used to wrap all responses using a MRT token
-func GlobalResponseMRT(header string, body string, c *gin.Context) *gin.Context {
+func GlobalResponseMRT(body string, c *gin.Context) *gin.Context {
 	c.Header("service", header)
 	c.JSON(200, body)
 	return c
