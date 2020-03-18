@@ -1,119 +1,129 @@
 package hestia
 
-type AdrestiaOrder struct {
-	ID             string         `firestore:"id" json:"id"`
-	DualExchange   bool           `firestore:"dual_exchange" json:"dual_exchange"`
-	CreatedTime    int64          `firestore:"createdTime" json:"createdTime"`
-	FulfilledTime  int64          `firestore:"fulfilledTime" json:"fulfilledTime"`
-	Status         AdrestiaStatus `firestore:"status" json:"status"`
-	Amount         float64        `firestore:"amount" json:"amount"`
-	ReceivedAmount float64        `firestore:"receivedAmount" json:"receivedAmount"`
-	BtcRate        float64        `firestore:"btc_rate" json:"btc_rate"`
-	FromCoin       string         `firestore:"from_coin" json:"from_coin"`
-	ToCoin         string         `firestore:"to_coin" json:"to_coin"`
+// Represents either a withdrawal from a exchange to our hot wallet
+// or a deposit from our hot wallet to a exchange
+type SimpleTx struct {
+	Id string `firestore:"id" json:"id"`
+	TxId string `firestore:"txid" json:"txid"`
+	BalancerId string `firestore:"balancer_id" json:"balancer_id"`
+	Exchange string `firestore:"exchange" json:"exchange"`
+	Address string `firestore:"address" json:"address"`
+	Currency string `firestore:"currency" json:"currency"`
+	Amount float64 `firestore:"amount" json:"amount"`
+	Status SimpleTxStatus `firestore:"status" json:"status"`
+	Timestamp int64 `firestore:"timestamp" json:"timestamp"`
+}
 
-	Message string `firestore:"message" json:"message"`
+type Balancer struct {
+	Id string `firestore:"id" json:"id"`
+	Status BalancerStatus `firestore:"status" json:"status"`
+}
 
-	FirstOrder ExchangeOrder `firestore:"first_order" json:"first_order"`
-	FinalOrder ExchangeOrder `firestore:"final_order" json:"final_order"`
+type Trade struct {
+	Id string `firestore:"id" json:"id"`
+	OrderId string `firestore:"order_id" json:"order_id"`
+	Amount float64 `firestore:"amount" json:"amount"`
+	ReceivedAmount float64 `firestore:"received_amount" json:"received_amount"`
+	FromCoin string `firestore:"from_coin" json:"from_coin"`
+	ToCoin string `firestore:"to_coin" json:"to_coin"`
+	Symbol string `firestore:"symbol" json:"symbol"`
+	Side string `firestore:"side" json:"side"`
+	CreatedTime int64 `firestore:"created_time" json:"created_time"`
+	FulfilledTime int64 `firestore:"fulfilled_time" json:"fulfilled_time"`
+}
 
-	HETxId          string `firestore:"he_tx_id" json:"he_tx_id"`
-	EETxId          string `firestore:"ee_tx_id" json:"ee_tx_id"`
-	EHTxId          string `firestore:"eh_tx_id" json:"eh_tx_id"`
-	FirstExAddress  string `firestore:"f_ex_address" json:"f_ex_address"`
-	SecondExAddress string `firestore:"s_ex_address" json:"s_ex_address"`
+type BalancerOrder struct {
+	Id string `firestore:"id" json:"id"`
+	BalancerId string `firestore:"balancer_id" json:"balancer_id"`
+	FromCoin string `firestore:"from_coin" json:"from_coin"`
+	ToCoin string `firestore:"to_coin" json:"to_coin"`
+	DualConversion bool `firestore:"dual_conversion" json:"dual_conversion"`
+	OriginalAmount float64 `firestore:"original_amount" json:"original_amount"`
+	FirstTrade Trade `firestore:"first_trade" json:"first_trade"`
+	SecondTrade Trade `firestore:"second_trade" json:"second_trade"`
+	Status BalancerOrderStatus `firestore:"status" json:"status"`
+	ReceivedAmount float64 `firestore:"received_amount" json:"received_amount"`
+	DepositTxId string `firestore:"deposit_txid" json:"deposit_txid"`
+	WithdrawTxId string `firestore:"withdraw_txid" json:"withdraw_txid"`
+	DepositAddress string `firestore:"deposit_address" json:"deposit_address"`
 	WithdrawAddress string `firestore:"withdraw_address" json:"withdraw_address"`
 }
 
-type ExchangeOrder struct {
-	OrderId          string  `firestore:"order_id" json:"order_id"`
-	Symbol           string  `firestore:"symbol" json:"symbol"`
-	Side             string  `firestore:"side" json:"side"`
-	Amount           float64 `firestore:"amount" json:"amount"`
-	ReceivedAmount   float64 `firestore:"receivedAmount" json:"receivedAmount"`
-	CreatedTime      int64   `firestore:"createdTime" json:"createdTime"`
-	FulfilledTime    int64   `firestore:"fulfilledTime" json:"fulfilledTime"`
-	Exchange         string  `firestore:"exchange" json:"exchange"`
-	ReceivedCurrency string  `firestore:"receivedCurrency" json:"receivedCurrency"`
-	SoldCurrency     string  `firestore:"soldCurrency" json:"soldCurrency"`
-}
+type SimpleTxStatus int // For deposits or withdrawals to exchanges
+type BalancerStatus int
+type BalancerOrderStatus int
 
-type OrderStatus struct {
-	Status          ExchangeStatus
-	AvailableAmount float64
-}
-
-type AdrestiaOrderUpdate struct {
-	ID     string         `firestore:"id" json:"id"`
-	Status AdrestiaStatus `firestore:"status" json:"status"`
-}
-
-type AdrestiaStatus int
-type ExchangeStatus int
 
 const (
-	AdrestiaStatusCreated AdrestiaStatus = iota
-	AdrestiaStatusFirstExchange
-	AdrestiaStatusFirstConversion
-	AdrestiaStatusFirstWithdrawal
-	AdrestiaStatusSecondExchange
-	AdrestiaStatusSecondConversion
-	AdrestiaStatusExchangeComplete
-	AdrestiaStatusSecondWithdrawal
-	AdrestiaStatusCompleted
-	AdrestiaStatusError
-	AdrestiaStatusPlutusDeposit
+	SimpleTxStatusCreated SimpleTxStatus = iota
+	SimpleTxStatusPerformed
+	SimpleTxStatusCompleted
 )
 
 var (
-	AdrestiaStatusStr = map[AdrestiaStatus]string{
-		0:  "CREATED",
-		1:  "FIRST_EXCHANGE",
-		2:  "FIRST_CONVERSION",
-		3:  "FIRST_WITHDRAWAL",
-		4:  "SECOND_EXCHANGE",
-		5:  "SECOND_CONVERSION",
-		6:  "EXCHANGE_COMPLETE",
-		7:  "SECOND_WITHDRAWAL",
-		8:  "COMPLETED",
-		9:  "ERROR",
-		10: "PLUTUS_DEPOSIT",
+	SimpleTxStatusStr = map[SimpleTxStatus]string {
+		0: "CREATED",
+		1: "PERFORMED",
+		2: "COMPLETED",
 	}
 )
 
 const (
-	ExchangeStatusOpen ExchangeStatus = iota
-	ExchangeStatusCompleted
-	ExchangeStatusError
+	BalancerStatusCreated BalancerStatus = iota
+	BalancerStatusWithdrawal
+	BalancerStatusTradeOrders
+	BalancerStatusCompleted
 )
 
 var (
-	ExchangeStatusStr = map[ExchangeStatus]string{
-		0: "OPEN",
-		1: "COMPLETED",
-		2: "ERROR",
+	BalancerStatusStr = map[BalancerStatus]string {
+		0: "CREATED",
+		1: "WITHDRAWAL",
+		2: "TRADE_ORDERS",
+		3: "COMPLETED",
 	}
 )
 
-// Returns listing and reference currencies
-func (eo *ExchangeOrder) GetTradingPair() (string, string) {
-	if eo.Side == "buy" {
-		return eo.ReceivedCurrency, eo.SoldCurrency
-	} else {
-		return eo.SoldCurrency, eo.ReceivedCurrency
-	}
-}
+const (
+	BalancerOrderStatusCreated BalancerOrderStatus = iota
+	BalancerOrderStatusExchangeDepositSent
+	BalancerOrderStatusFirstTrade
+	BalancerOrderStatusSecondTrade
+	BalancerOrderStatusWithdrawal
+	BalancerOrderStatusPlutusDeposit
+	BalancerOrderStatusCompleted
+)
 
-func GetAdrestiaStatusString(status AdrestiaStatus) string {
-	value, ok := AdrestiaStatusStr[status]
+var (
+	BalancerOrderStatusStr = map[BalancerOrderStatus]string {
+		0: "CREATED",
+		1: "EXCHANGE_DEPOSIT_SENT",
+		2: "FIRST_TRADE",
+		3: "SECOND_TRADE",
+		4: "WITHDRAWAL",
+		5: "PLUTUS_DEPOSIT",
+		6: "COMPLETED",
+	}
+)
+
+func GetSimpleTxStatusString(status SimpleTxStatus) string {
+	value, ok := SimpleTxStatusStr[status]
 	if !ok {
 		return ""
 	}
 	return value
 }
 
-func GetExchangeStatusString(status ExchangeStatus) string {
-	value, ok := ExchangeStatusStr[status]
+func GetBalancerStatusString(status BalancerStatus) string {
+	value, ok := BalancerStatusStr[status]
+	if !ok {
+		return ""
+	}
+	return value
+}
+
+func GetBalancerOrderStatusString(status BalancerOrderStatus) string {
+	value, ok := BalancerOrderStatusStr[status]
 	if !ok {
 		return ""
 	}
