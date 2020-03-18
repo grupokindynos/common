@@ -173,6 +173,7 @@ type Deposit struct {
 }
 
 type ExchangeInfo struct {
+	Id string `firestore:"id" json:"id"`
 	Name string `firestore:"name" json:"name"`
 	StockCurrency string `firestore:"stock_currency" json:"stock_currency"`
 	StockAmount float64  `firestore:"stock_amount" json:"stock_amount"`
