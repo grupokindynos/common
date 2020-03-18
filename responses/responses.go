@@ -55,17 +55,17 @@ func GlobalOpenError(result interface{}, err error, c *gin.Context) *gin.Context
 	if err != nil {
 		switch err {
 		case commonErrors.ErrorAssetUnavailable:
-			c.JSON(400, gin.H{"message": "the asset you are trying to request is not available at the moment", "error": err.Error(), "status": 400})
+			c.JSON(400, gin.H{"message": "please try again later or contact support", "error": err.Error(), "status": 400})
 		case commonErrors.ErrorServiceUnavailable:
 			c.JSON(403, gin.H{"message": "the service is temporarily unavailable", "error": err.Error(), "status": 403})
 		case commonErrors.ErrorFillingPaymentInformation:
-			c.JSON(500, gin.H{"message": "there was a problem filling out your payment data", "error": err.Error(), "status": 500})
+			c.JSON(500, gin.H{"message": "please try again. if the problem persists contact support", "error": err.Error(), "status": 500})
 		case commonErrors.ErrorObtainingRates:
-			c.JSON(500, gin.H{"message": "the system failed at retrieving rates", "error": err.Error(), "status": 500})
+			c.JSON(500, gin.H{"message": "no rates found. if the problem persists contact support", "error": err.Error(), "status": 500})
 		case commonErrors.ErrorShiftNotFound:
-			c.JSON(404, gin.H{"message": "we could not find the shift information you requested", "error": err.Error(), "status": 404})
+			c.JSON(404, gin.H{"message": "please make sure you are querying the correct id", "error": err.Error(), "status": 404})
 		default:
-			c.JSON(500, gin.H{"message": "Unknown Error. Please Contact Support.", "error": err.Error(), "status": 500})
+			c.JSON(500, gin.H{"message": "unknown Error. please contact support.", "error": err.Error(), "status": 500})
 		}
 	} else {
 		c.JSON(200, gin.H{"data": result, "status": 1})
