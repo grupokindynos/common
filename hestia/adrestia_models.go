@@ -17,6 +17,7 @@ type SimpleTx struct {
 type Balancer struct {
 	Id string `firestore:"id" json:"id"`
 	Status BalancerStatus `firestore:"status" json:"status"`
+	Timestamp int64 `firestore:"timestamp" json:"timestamp"`
 }
 
 type Trade struct {
@@ -47,6 +48,8 @@ type BalancerOrder struct {
 	WithdrawTxId string `firestore:"withdraw_txid" json:"withdraw_txid"`
 	DepositAddress string `firestore:"deposit_address" json:"deposit_address"`
 	WithdrawAddress string `firestore:"withdraw_address" json:"withdraw_address"`
+	CreatedTime int64 `firestore:"created_time" json:"created_time"`
+	FulfilledTime int64 `firestore:"fulfilled_time" json:"fulfilled_time"`
 }
 
 type SimpleTxStatus int // For deposits or withdrawals to exchanges
