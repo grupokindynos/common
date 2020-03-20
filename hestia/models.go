@@ -183,9 +183,9 @@ type ExchangeInfo struct {
 	ApiPrivateKey string `firestore:"api_private_key" json:"api_private_key"`
 }
 
-type ExchangeOrder struct {
-	Status ExchangeOrderStatus `json:status`
-	ReceivedAmount float64 `json:received_amount`
+type ExchangeOrderInfo struct {
+	Status ExchangeOrderStatus `json:"status"`
+	ReceivedAmount float64 `json:"received_amount"`
 }
 
 type Response struct {
