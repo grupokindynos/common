@@ -10,6 +10,7 @@ type SimpleTx struct {
 	Address string `firestore:"address" json:"address"`
 	Currency string `firestore:"currency" json:"currency"`
 	Amount float64 `firestore:"amount" json:"amount"`
+	ReceivedAmount float64 `firestore:"received_amount" json:"received_amount"`
 	Status SimpleTxStatus `firestore:"status" json:"status"`
 	Timestamp int64 `firestore:"timestamp" json:"timestamp"`
 }
