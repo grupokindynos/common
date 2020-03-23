@@ -183,6 +183,11 @@ type ExchangeInfo struct {
 	ApiPrivateKey string `firestore:"api_private_key" json:"api_private_key"`
 }
 
+type ExchangeOrderInfo struct {
+	Status ExchangeOrderStatus `json:"status"`
+	ReceivedAmount float64 `json:"received_amount"`
+}
+
 type Response struct {
 	Data   interface{} `json:"data"`
 	Status int         `json:"status"`
@@ -196,3 +201,20 @@ type TokenVerification struct {
 	Valid bool   `json:"valid"`
 	UID   string `json:"uid"`
 }
+
+type ExchangeOrderStatus int
+
+const (
+	ExchangeOrderStatusOpen ExchangeOrderStatus = iota
+	ExchangeOrderStatusCompleted
+	ExchangeOrderStatusError
+)
+
+var (
+	ExchangeOrderStatusStr = map[ExchangeOrderStatus]string {
+		0: "OPEN",
+		1: "COMPLETED",
+		2: "ERROR",
+	}
+)
+
