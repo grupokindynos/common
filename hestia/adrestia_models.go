@@ -17,7 +17,8 @@ type SimpleTx struct {
 type Balancer struct {
 	Id string `firestore:"id" json:"id"`
 	Status BalancerStatus `firestore:"status" json:"status"`
-	Timestamp int64 `firestore:"timestamp" json:"timestamp"`
+	CreatedTime int64 `firestore:"created_time" json:"created_time"`
+	FulfilledTime int64 `firestore:"fulfilled_time" json:"fulfilled_time"`
 }
 
 type Trade struct {
@@ -61,6 +62,7 @@ const (
 	SimpleTxStatusCreated SimpleTxStatus = iota
 	SimpleTxStatusPerformed
 	SimpleTxStatusCompleted
+	SimpleTxStatusPlutusDeposit
 )
 
 var (
@@ -68,6 +70,7 @@ var (
 		0: "CREATED",
 		1: "PERFORMED",
 		2: "COMPLETED",
+		3: "PLUTUS_DEPOSIT", // Status only for withdrawals
 	}
 )
 
