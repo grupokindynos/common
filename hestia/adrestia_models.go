@@ -23,7 +23,6 @@ type Balancer struct {
 }
 
 type Trade struct {
-	Id string `firestore:"id" json:"id"`
 	OrderId string `firestore:"order_id" json:"order_id"`
 	Amount float64 `firestore:"amount" json:"amount"`
 	ReceivedAmount float64 `firestore:"received_amount" json:"received_amount"`
