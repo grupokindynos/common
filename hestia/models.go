@@ -28,7 +28,7 @@ type Coin struct {
 
 type AdrestiaInfo struct {
 	Available bool `firestore:"available" json:"available"`
-	CoinUsage int `firestore:"coin_usage" json:"coin_usage"`
+	CoinUsage int  `firestore:"coin_usage" json:"coin_usage"`
 }
 
 type CoinBalances struct {
@@ -129,8 +129,8 @@ type ShiftV2 struct {
 	ID             string  `firestore:"id" json:"id"`
 	UID            string  `firestore:"uid" json:"uid"`
 	Status         string  `firestore:"status" json:"status"`
-	InboundTrade   Trade[] `firestore:"inbound_trade" json:"inbound_trade"`
-	OutboundTrade  Trade[] `firestore:"outbound_trade" json:"outbound_trade"`
+	InboundTrade   []Trade `firestore:"inbound_trade" json:"inbound_trade"`
+	OutboundTrade  []Trade `firestore:"outbound_trade" json:"outbound_trade"`
 	Timestamp      int64   `firestore:"timestamp" json:"timestamp"`
 	Payment        Payment `firestore:"payment" json:"payment"`
 	FeePayment     Payment `firestore:"fee_payment" json:"fee_payment"`
@@ -181,7 +181,7 @@ type Voucher struct {
 	ProviderId           int32   `firestore:"provider_id" json:"provider_id"`
 	Valid                int32   `firestore:"valid" json:"valid"`
 	Message              string  `firestore:"message" json:"message"`
-	BitcouRefundData	 Payment `firestore:"bitcou_refund_data" json:"bitcou_refund_data"`
+	BitcouRefundData     Payment `firestore:"bitcou_refund_data" json:"bitcou_refund_data"`
 }
 
 type Deposit struct {
@@ -196,19 +196,19 @@ type Deposit struct {
 }
 
 type ExchangeInfo struct {
-	Id string `firestore:"id" json:"id"`
-	Name string `firestore:"name" json:"name"`
-	StockCurrency string `firestore:"stock_currency" json:"stock_currency"`
-	StockAmount float64  `firestore:"stock_amount" json:"stock_amount"`
+	Id                  string  `firestore:"id" json:"id"`
+	Name                string  `firestore:"name" json:"name"`
+	StockCurrency       string  `firestore:"stock_currency" json:"stock_currency"`
+	StockAmount         float64 `firestore:"stock_amount" json:"stock_amount"`
 	StockExpectedAmount float64 `firestore:"stock_expected_amount" json:"stock_expected_amount"`
-	StockMinimumAmount float64 `firestore:"stock_minimum_amount" json:"stock_minimum_amount"`
-	ApiPublicKey string `firestore:"api_public_key" json:"api_public_key"`
-	ApiPrivateKey string `firestore:"api_private_key" json:"api_private_key"`
+	StockMinimumAmount  float64 `firestore:"stock_minimum_amount" json:"stock_minimum_amount"`
+	ApiPublicKey        string  `firestore:"api_public_key" json:"api_public_key"`
+	ApiPrivateKey       string  `firestore:"api_private_key" json:"api_private_key"`
 }
 
 type ExchangeOrderInfo struct {
-	Status ExchangeOrderStatus `json:"status"`
-	ReceivedAmount float64 `json:"received_amount"`
+	Status         ExchangeOrderStatus `json:"status"`
+	ReceivedAmount float64             `json:"received_amount"`
 }
 
 type Response struct {
@@ -234,10 +234,9 @@ const (
 )
 
 var (
-	ExchangeOrderStatusStr = map[ExchangeOrderStatus]string {
+	ExchangeOrderStatusStr = map[ExchangeOrderStatus]string{
 		0: "OPEN",
 		1: "COMPLETED",
 		2: "ERROR",
 	}
 )
-
