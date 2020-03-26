@@ -137,3 +137,11 @@ func GetBalancerOrderStatusString(status BalancerOrderStatus) string {
 	}
 	return value
 }
+
+func (t *Trade) GetTradingPair() (string, string) {
+	if t.Side == "buy" {
+		return t.ToCoin, t.FromCoin
+	} else {
+		return t.FromCoin, t.ToCoin
+	}
+}
