@@ -35,13 +35,14 @@ func GetShiftStatusV2String(status ShiftStatus) string {
 type ShiftStatusv2 int
 
 const (
-	ShiftStatusV2Pending ShiftStatusv2 = iota
-	ShiftStatusV2Confirming
+	ShiftStatusV2Created ShiftStatusv2 = iota
 	ShiftStatusV2Confirmed
-	ShiftStatusV2Error
-	ShiftStatusV2Refund
-	ShiftStatusV2Refunded
+	ShiftStatusV2ProcessingOrders
+	ShiftStatusV2PartiallyCompleted
 	ShiftStatusV2Complete
+	ShiftStatusV2SentToUser
+	ShiftStatusV2Error
+	ShiftStatusV2Refunded
 )
 
 var (
@@ -50,8 +51,10 @@ var (
 		1: "CONFIRMED",
 		2: "PROCESSING_ORDERS",
 		3: "PARTIALLY_COMPLETED", // One of the two orders completed succesfully
-		4: "COMPLETED",           //
+		4: "COMPLETE",            //
 		5: "SENT_TO_USER",
+		6: "ERROR",
+		7: "REFUNDED",
 	}
 )
 
