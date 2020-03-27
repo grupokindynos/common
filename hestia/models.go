@@ -202,6 +202,7 @@ type ExchangeInfo struct {
 	StockAmount         float64 `firestore:"stock_amount" json:"stock_amount"`
 	StockExpectedAmount float64 `firestore:"stock_expected_amount" json:"stock_expected_amount"`
 	StockMinimumAmount  float64 `firestore:"stock_minimum_amount" json:"stock_minimum_amount"`
+	StockMaximumAmount  float64 `firestore:"stock_maximum_amount" json:"stock_maximum_amount"`
 	ApiPublicKey        string  `firestore:"api_public_key" json:"api_public_key"`
 	ApiPrivateKey       string  `firestore:"api_private_key" json:"api_private_key"`
 }
