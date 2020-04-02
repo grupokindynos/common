@@ -24,7 +24,7 @@ var (
 	}
 )
 
-func GetShiftStatusV2String(status ShiftStatus) string {
+func GetShiftStatusString(status ShiftStatus) string {
 	value, ok := ShiftStatusStr[status]
 	if !ok {
 		return ""
@@ -32,10 +32,10 @@ func GetShiftStatusV2String(status ShiftStatus) string {
 	return value
 }
 
-type ShiftStatusv2 int
+type ShiftStatusV2 int
 
 const (
-	ShiftStatusV2Created ShiftStatusv2 = iota
+	ShiftStatusV2Created ShiftStatusV2 = iota
 	ShiftStatusV2Confirmed
 	ShiftStatusV2ProcessingOrders
 	ShiftStatusV2PartiallyCompleted
@@ -46,7 +46,7 @@ const (
 )
 
 var (
-	ShiftStatusV2Str = map[ShiftStatus]string{
+	ShiftStatusV2Str = map[ShiftStatusV2]string{
 		0: "CREATED",
 		1: "CONFIRMED",
 		2: "PROCESSING_ORDERS",
@@ -58,8 +58,8 @@ var (
 	}
 )
 
-func GetShiftStatusString(status ShiftStatus) string {
-	value, ok := ShiftStatusStr[status]
+func GetShiftStatusv2String(status ShiftStatusV2) string {
+	value, ok := ShiftStatusV2Str[status]
 	if !ok {
 		return ""
 	}
