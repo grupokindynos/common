@@ -16,6 +16,7 @@ var Ethereum = Coin{
 		Segwit:       false,
 		Masternodes:  false,
 		Token:        true,
+		StableCoin:   false,
 		TokenNetwork: "ethereum",
 		Blockbook:    "https://eth2.trezor.io",
 		Protocol:     "ethereum",

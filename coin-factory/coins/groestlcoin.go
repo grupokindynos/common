@@ -15,6 +15,7 @@ var Groestlcoin = Coin{
 		Segwit:      true,
 		Masternodes: false,
 		Token:       false,
+		StableCoin:  false,
 		Blockbook:   "https://grs.polispay.com",
 		Protocol:    "grs",
 		TxVersion:   1,

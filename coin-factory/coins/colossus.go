@@ -15,6 +15,7 @@ var Colossus = Coin{
 		Segwit:      false,
 		Masternodes: true,
 		Token:       false,
+		StableCoin:  false,
 		Blockbook:   "https://colx.polispay.com",
 		Protocol:    "colx",
 		TxVersion:   1,

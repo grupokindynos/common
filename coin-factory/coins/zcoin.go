@@ -15,6 +15,7 @@ var Zcoin = Coin{
 		Segwit:      false,
 		Masternodes: true,
 		Token:       false,
+		StableCoin:  false,
 		Blockbook:   "https://xzc.polispay.com",
 		Protocol:    "xzc",
 		TxVersion:   1,
