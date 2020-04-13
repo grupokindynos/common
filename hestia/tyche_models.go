@@ -42,6 +42,7 @@ const (
 	ShiftStatusV2Complete
 	ShiftStatusV2SentToUser
 	ShiftStatusV2Error
+	ShiftStatusV2Refund
 	ShiftStatusV2Refunded
 )
 
