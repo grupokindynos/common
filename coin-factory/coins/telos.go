@@ -15,6 +15,7 @@ var Telos = Coin{
 		Segwit:      false,
 		Masternodes: true,
 		Token:       false,
+		StableCoin:  false,
 		Blockbook:   "https://telos.polispay.com",
 		Protocol:    "telos",
 		TxVersion:   2,

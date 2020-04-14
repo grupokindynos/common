@@ -18,16 +18,16 @@ const (
 
 var (
 	VoucherStatusStr = map[VoucherStatus]string{
-		0: "PENDING",
-		1: "CONFIRMED",
-		2: "CONFIRMING",
-		3: "AWAITING_PROVIDER",
-		4: "ERROR",
-		5: "COMPLETE",
-		6: "REFUND_TOTAL",
-		7: "REFUND_FEE",
-		8: "REFUNDED",
-		9: "REFUNDED_PARTIALLY",
+		0:  "PENDING",
+		1:  "CONFIRMED",
+		2:  "CONFIRMING",
+		3:  "AWAITING_PROVIDER",
+		4:  "ERROR",
+		5:  "COMPLETE",
+		6:  "REFUND_TOTAL",
+		7:  "REFUND_FEE",
+		8:  "REFUNDED",
+		9:  "REFUNDED_PARTIALLY",
 		10: "BITCOU_REFUNDED",
 	}
 )

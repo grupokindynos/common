@@ -15,6 +15,7 @@ var DeepOnion = Coin{
 		Segwit:      false,
 		Masternodes: false,
 		Token:       false,
+		StableCoin:  false,
 		Blockbook:   "https://onion.polispay.com",
 		Protocol:    "onion",
 		TxVersion:   2,

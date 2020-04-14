@@ -25,9 +25,10 @@ type CoinInfo struct {
 	Segwit       bool                       `json:"segwit"`
 	Masternodes  bool                       `json:"masternodes"`
 	Token        bool                       `json:"token"`
+	StableCoin   bool                       `json:"stable_coin"`
 	TokenNetwork string                     `json:"token_network,omitempty"`
 	Contract     string                     `json:"contract,omitempty"`
-	Decimals     int                     	`json:"decimals,omitempty"`
+	Decimals     int                        `json:"decimals,omitempty"`
 	Blockbook    string                     `json:"blockbook"`
 	Protocol     string                     `json:"protocol"`
 	TxVersion    int                        `json:"tx_version"`

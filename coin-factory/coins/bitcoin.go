@@ -16,6 +16,7 @@ var Bitcoin = Coin{
 		Segwit:      true,
 		Masternodes: false,
 		Token:       false,
+		StableCoin:  false,
 		Blockbook:   "https://btc2.trezor.io",
 		Protocol:    "bitcoin",
 		TxVersion:   1,

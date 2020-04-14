@@ -15,6 +15,7 @@ var Dash = Coin{
 		Segwit:      false,
 		Masternodes: true,
 		Token:       false,
+		StableCoin:  false,
 		Blockbook:   "https://dash2.trezor.io",
 		Protocol:    "dash",
 		TxVersion:   2,

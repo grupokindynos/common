@@ -15,6 +15,7 @@ var Digibyte = Coin{
 		Segwit:      true,
 		Masternodes: false,
 		Token:       false,
+		StableCoin:  false,
 		Blockbook:   "https://dgb1.trezor.io",
 		Protocol:    "dgb",
 		TxVersion:   2,

@@ -16,6 +16,7 @@ var Bitgreen = Coin{
 		Segwit:      false,
 		Masternodes: true,
 		Token:       false,
+		StableCoin:  false,
 		Blockbook:   "https://bitg.polispay.com",
 		Protocol:    "bitg",
 		TxVersion:   1,

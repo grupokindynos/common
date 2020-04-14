@@ -15,6 +15,7 @@ var Litecoin = Coin{
 		Segwit:      true,
 		Masternodes: false,
 		Token:       false,
+		StableCoin:  false,
 		Blockbook:   "https://ltc1.trezor.io",
 		Protocol:    "ltc",
 		TxVersion:   1,

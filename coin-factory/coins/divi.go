@@ -16,6 +16,7 @@ var Divi = Coin{
 		Segwit:      false,
 		Masternodes: true,
 		Token:       false,
+		StableCoin:  false,
 		Blockbook:   "https://divi.polispay.com",
 		Protocol:    "divi",
 		TxVersion:   1,
