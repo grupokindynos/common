@@ -203,7 +203,9 @@ func (b *BlockBook) FindDepositTxId(address string, amount int64) (string, error
 		}
 		for _, vout := range tx.Vout {
 			voutValue, _ := strconv.ParseInt(vout.Value, 10, 64)
-			if amount != voutValue {continue}
+			if amount != voutValue {
+				continue
+			}
 			for _, voutAddress := range vout.Addresses {
 				if voutAddress == address {
 					return txId, nil
