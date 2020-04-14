@@ -133,7 +133,6 @@ type ShiftV2 struct {
 	OutboundTrade  []Trade       `firestore:"outbound_trade" json:"outbound_trade"`
 	Timestamp      int64         `firestore:"timestamp" json:"timestamp"`
 	Payment        Payment       `firestore:"payment" json:"payment"`
-	FeePayment     Payment       `firestore:"fee_payment" json:"fee_payment"`
 	RefundAddr     string        `firestore:"refund_addr" json:"refund_addr"`
 	ToCoin         string        `firestore:"to_coin" json:"to_coin"`
 	ToAmount       int64         `firestore:"to_amount" json:"to_amount"`
