@@ -199,7 +199,6 @@ type ExchangeInfo struct {
 	Id                  string  `firestore:"id" json:"id"`
 	Name                string  `firestore:"name" json:"name"`
 	StockCurrency       string  `firestore:"stock_currency" json:"stock_currency"`
-	StockAmount         float64 `firestore:"stock_amount" json:"stock_amount"`
 	StockExpectedAmount float64 `firestore:"stock_expected_amount" json:"stock_expected_amount"`
 	StockMinimumAmount  float64 `firestore:"stock_minimum_amount" json:"stock_minimum_amount"`
 	StockMaximumAmount  float64 `firestore:"stock_maximum_amount" json:"stock_maximum_amount"`
