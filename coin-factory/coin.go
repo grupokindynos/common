@@ -29,6 +29,10 @@ var Coins = map[string]*coins.Coin{
 	"AYA":   &coins.AryaCoin,
 	"RPD":   &coins.Rapids,
 	"MW":    &coins.MasterWin,
+	"LMY":   &coins.LunchMoney,
+	"BAT":   &coins.BAT,
+	"LINK":  &coins.Chainlink,
+	"MANA":  &coins.Decentraland,
 }
 
 // GetCoin is the safe way to check if a coin exists and retrieve the coin data
