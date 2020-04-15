@@ -24,16 +24,16 @@ type Balancer struct {
 }
 
 type Trade struct {
-	OrderId        string  `firestore:"order_id" json:"order_id"`
-	Amount         float64 `firestore:"amount" json:"amount"`
-	ReceivedAmount float64 `firestore:"received_amount" json:"received_amount"`
-	FromCoin       string  `firestore:"from_coin" json:"from_coin"`
-	ToCoin         string  `firestore:"to_coin" json:"to_coin"`
-	Symbol         string  `firestore:"symbol" json:"symbol"`
-	Side           string  `firestore:"side" json:"side"`
-	Status         SimpleTxStatus  `firestore:"status" json:"status"`
-	CreatedTime    int64   `firestore:"created_time" json:"created_time"`
-	FulfilledTime  int64   `firestore:"fulfilled_time" json:"fulfilled_time"`
+	OrderId        string              `firestore:"order_id" json:"order_id"`
+	Amount         float64             `firestore:"amount" json:"amount"`
+	ReceivedAmount float64             `firestore:"received_amount" json:"received_amount"`
+	FromCoin       string              `firestore:"from_coin" json:"from_coin"`
+	ToCoin         string              `firestore:"to_coin" json:"to_coin"`
+	Symbol         string              `firestore:"symbol" json:"symbol"`
+	Side           string              `firestore:"side" json:"side"`
+	Status         ExchangeOrderStatus `firestore:"status" json:"status"`
+	CreatedTime    int64               `firestore:"created_time" json:"created_time"`
+	FulfilledTime  int64               `firestore:"fulfilled_time" json:"fulfilled_time"`
 }
 
 type BalancerOrder struct {
