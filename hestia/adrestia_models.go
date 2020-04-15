@@ -31,6 +31,7 @@ type Trade struct {
 	ToCoin         string  `firestore:"to_coin" json:"to_coin"`
 	Symbol         string  `firestore:"symbol" json:"symbol"`
 	Side           string  `firestore:"side" json:"side"`
+	Status         ExchangeOrderStatus  `firestore:"status" json:"status"`
 	CreatedTime    int64   `firestore:"created_time" json:"created_time"`
 	FulfilledTime  int64   `firestore:"fulfilled_time" json:"fulfilled_time"`
 }
