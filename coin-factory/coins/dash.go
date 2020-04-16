@@ -45,6 +45,7 @@ var Dash = Coin{
 		MinConfirmations: 1,
 	},
 	NetParams: &chaincfg.Params{
+		AddressMagicLen:   1,
 		Bech32HRPSegwit:   "",
 		PubKeyHashAddrID:  []byte{76},
 		ScriptHashAddrID:  []byte{16},

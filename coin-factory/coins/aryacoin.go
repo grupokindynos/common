@@ -46,6 +46,7 @@ var AryaCoin = Coin{
 		ExternalSource:   "aya.polispay.com",
 	},
 	NetParams: &chaincfg.Params{
+		AddressMagicLen:   1,
 		Bech32HRPSegwit:   "",
 		PubKeyHashAddrID:  []byte{23},
 		ScriptHashAddrID:  []byte{5},

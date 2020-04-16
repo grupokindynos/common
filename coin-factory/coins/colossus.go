@@ -45,6 +45,7 @@ var Colossus = Coin{
 		MinConfirmations: 1,
 	},
 	NetParams: &chaincfg.Params{
+		AddressMagicLen:   1,
 		Bech32HRPSegwit:   "",
 		PubKeyHashAddrID:  []byte{0x1e},
 		ScriptHashAddrID:  []byte{0xd},

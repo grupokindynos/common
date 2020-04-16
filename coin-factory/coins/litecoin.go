@@ -56,6 +56,7 @@ var Litecoin = Coin{
 		MinConfirmations: 1,
 	},
 	NetParams: &chaincfg.Params{
+		AddressMagicLen:   1,
 		Bech32HRPSegwit:   "ltc",
 		ScriptHashAddrID:  []byte{50},
 		PubKeyHashAddrID:  []byte{48},

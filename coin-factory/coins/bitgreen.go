@@ -46,6 +46,7 @@ var Bitgreen = Coin{
 		ExternalSource:   "bitg.polispay.com",
 	},
 	NetParams: &chaincfg.Params{
+		AddressMagicLen:   1,
 		Bech32HRPSegwit:   "bg",
 		PubKeyHashAddrID:  []byte{38},
 		ScriptHashAddrID:  []byte{6},

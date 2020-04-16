@@ -46,6 +46,7 @@ var FYDCoin = Coin{
 		ExternalSource:   "fyd.polispay.com",
 	},
 	NetParams: &chaincfg.Params{
+		AddressMagicLen:   1,
 		Bech32HRPSegwit:   "",
 		PubKeyHashAddrID:  []byte{36},
 		ScriptHashAddrID:  []byte{28},

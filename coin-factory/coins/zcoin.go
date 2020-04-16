@@ -45,6 +45,7 @@ var Zcoin = Coin{
 		MinConfirmations: 1,
 	},
 	NetParams: &chaincfg.Params{
+		AddressMagicLen:   1,
 		Bech32HRPSegwit:   "",
 		ScriptHashAddrID:  []byte{7},
 		PubKeyHashAddrID:  []byte{82},

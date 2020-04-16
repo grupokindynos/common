@@ -46,6 +46,7 @@ var Divi = Coin{
 		ExternalSource:   "divi.polispay.com",
 	},
 	NetParams: &chaincfg.Params{
+		AddressMagicLen: 1,
 		// chainparams https://github.com/DiviProject/Divi/blob/master0/divi/src/chainparams.cpp#L236-L238
 		Bech32HRPSegwit:  "",
 		PubKeyHashAddrID: []byte{30},

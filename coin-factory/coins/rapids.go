@@ -46,6 +46,7 @@ var Rapids = Coin{
 		ExternalSource:   "rpd.polispay.com",
 	},
 	NetParams: &chaincfg.Params{
+		AddressMagicLen:   1,
 		Bech32HRPSegwit:   "",
 		PubKeyHashAddrID:  []byte{61},
 		ScriptHashAddrID:  []byte{6},

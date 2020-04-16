@@ -45,6 +45,7 @@ var Ravencoin = Coin{
 		MinConfirmations: 4,
 	},
 	NetParams: &chaincfg.Params{
+		AddressMagicLen:   1,
 		Bech32HRPSegwit:   "",
 		PubKeyHashAddrID:  []byte{60},
 		ScriptHashAddrID:  []byte{122},

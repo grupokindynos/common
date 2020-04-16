@@ -57,6 +57,7 @@ var Bitcoin = Coin{
 		ExternalSource:   "btc2.trezor.io",
 	},
 	NetParams: &chaincfg.Params{
+		AddressMagicLen:   1,
 		Bech32HRPSegwit:   "bc",
 		PubKeyHashAddrID:  []byte{0x00},
 		ScriptHashAddrID:  []byte{0x05},
