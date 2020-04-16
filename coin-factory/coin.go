@@ -49,8 +49,10 @@ func GetCoin(tag string) (*coins.Coin, error) {
 		NetParams:      coin.NetParams,
 		Mnemonic:       os.Getenv("MNEMONIC_" + strings.ToUpper(tag)),
 	}
-	if !chaincfg.IsRegistered(coin.NetParams) {
-		_ = chaincfg.Register(coin.NetParams)
+	if !coin.Info.Token {
+		if !chaincfg.IsRegistered(coin.NetParams) {
+			_ = chaincfg.Register(coin.NetParams)
+		}
 	}
 	return coin, nil
 }
