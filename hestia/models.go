@@ -153,9 +153,9 @@ type ShiftV2 struct {
 }
 
 type DirectionalTrade struct {
-	Conversions []Trade        `firestore:"conversions" json:"conversions"`
-	Status      SimpleTxStatus `firestore:"status" json:"status"`
-	Exchange    string         `firestore:"exchange" json:"exchange"`
+	Conversions []Trade            `firestore:"conversions" json:"conversions"`
+	Status      ShiftV2TradeStatus `firestore:"status" json:"status"`
+	Exchange    string             `firestore:"exchange" json:"exchange"`
 }
 
 type User struct {

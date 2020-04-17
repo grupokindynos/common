@@ -66,3 +66,31 @@ func GetShiftStatusv2String(status ShiftStatusV2) string {
 	}
 	return value
 }
+
+type ShiftV2TradeStatus int
+
+const (
+	ShiftV2TradeStatusCreated ShiftV2TradeStatus = iota
+	ShiftV2TradeStatusPerforming
+	ShiftV2TradeStatusCompleted
+	ShiftV2TradeStatusWithdrew // just for outbound trade
+	ShiftV2TradeStatusWithdrawCompleted // just for outbound trade
+)
+
+var (
+	ShiftV2TradeStatusStr = map[ShiftV2TradeStatus]string {
+		0: "CREATED",
+		1: "PERFORMING",
+		2: "COMPLETED",
+		3: "WITHDREW",
+		4: "WITHDRAW_COMPLETED",
+	}
+)
+
+func GetShiftV2TradeStatusString(status ShiftV2TradeStatus) string {
+	value, ok := ShiftV2TradeStatusStr[status]
+	if !ok {
+		return ""
+	}
+	return value
+}
