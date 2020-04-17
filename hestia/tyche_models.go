@@ -73,7 +73,8 @@ const (
 	ShiftV2TradeStatusCreated ShiftV2TradeStatus = iota
 	ShiftV2TradeStatusPerforming
 	ShiftV2TradeStatusCompleted
-	ShiftV2TradeStatusWithdrew // just for outbound trade
+	ShiftV2TradeStatusWithdrawn // just for outbound trade
+	ShiftV2TradeStatusUserDeposit // just for outbound trade
 	ShiftV2TradeStatusWithdrawCompleted // just for outbound trade
 )
 
@@ -82,8 +83,9 @@ var (
 		0: "CREATED",
 		1: "PERFORMING",
 		2: "COMPLETED",
-		3: "WITHDREW",
-		4: "WITHDRAW_COMPLETED",
+		3: "WITHDRAWN",
+		4: "USER_DEPOSIT",
+		5: "WITHDRAW_COMPLETED",
 	}
 )
 
