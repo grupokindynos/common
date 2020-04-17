@@ -56,6 +56,7 @@ var Groestlcoin = Coin{
 		MinConfirmations: 1,
 	},
 	NetParams: &chaincfg.Params{
+		AddressMagicLen:   1,
 		Bech32HRPSegwit:   "grs",
 		ScriptHashAddrID:  []byte{5},
 		PubKeyHashAddrID:  []byte{36},

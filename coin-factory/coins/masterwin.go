@@ -46,6 +46,7 @@ var MasterWin = Coin{
 		ExternalSource:   "mw.polispay.com",
 	},
 	NetParams: &chaincfg.Params{
+		AddressMagicLen:   1,
 		Bech32HRPSegwit:   "",
 		PubKeyHashAddrID:  []byte{50},
 		ScriptHashAddrID:  []byte{17},

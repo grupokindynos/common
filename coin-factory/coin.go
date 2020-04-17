@@ -2,6 +2,7 @@ package coinfactory
 
 import (
 	"errors"
+	"github.com/eabz/btcutil/chaincfg"
 	"github.com/grupokindynos/common/coin-factory/coins"
 	"os"
 	"strings"
@@ -48,9 +49,10 @@ func GetCoin(tag string) (*coins.Coin, error) {
 		NetParams:      coin.NetParams,
 		Mnemonic:       os.Getenv("MNEMONIC_" + strings.ToUpper(tag)),
 	}
+	if !coin.Info.Token {
+		if !chaincfg.IsRegistered(coin.NetParams) {
+			_ = chaincfg.Register(coin.NetParams)
+		}
+	}
 	return coin, nil
-}
-
-func loadIcons() {
-
 }

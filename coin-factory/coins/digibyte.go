@@ -56,6 +56,7 @@ var Digibyte = Coin{
 		MinConfirmations: 1,
 	},
 	NetParams: &chaincfg.Params{
+		AddressMagicLen:   1,
 		Bech32HRPSegwit:   "dgb",
 		PubKeyHashAddrID:  []byte{30},
 		ScriptHashAddrID:  []byte{63},
