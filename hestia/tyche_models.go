@@ -70,22 +70,24 @@ func GetShiftStatusv2String(status ShiftStatusV2) string {
 type ShiftV2TradeStatus int
 
 const (
-	ShiftV2TradeStatusCreated ShiftV2TradeStatus = iota
+	ShiftV2TradeStatusInitialized ShiftV2TradeStatus = iota
+	ShiftV2TradeStatusCreated
 	ShiftV2TradeStatusPerforming
 	ShiftV2TradeStatusCompleted
-	ShiftV2TradeStatusWithdrawn // just for outbound trade
-	ShiftV2TradeStatusUserDeposit // just for outbound trade
+	ShiftV2TradeStatusWithdrawn         // just for outbound trade
+	ShiftV2TradeStatusUserDeposit       // just for outbound trade
 	ShiftV2TradeStatusWithdrawCompleted // just for outbound trade
 )
 
 var (
-	ShiftV2TradeStatusStr = map[ShiftV2TradeStatus]string {
-		0: "CREATED",
-		1: "PERFORMING",
-		2: "COMPLETED",
-		3: "WITHDRAWN",
-		4: "USER_DEPOSIT",
-		5: "WITHDRAW_COMPLETED",
+	ShiftV2TradeStatusStr = map[ShiftV2TradeStatus]string{
+		0: "INITIALIZED",
+		1: "CREATED",
+		2: "PERFORMING",
+		3: "COMPLETED",
+		4: "WITHDRAWN",
+		5: "USER_DEPOSIT",
+		6: "WITHDRAW_COMPLETED",
 	}
 )
 
