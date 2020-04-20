@@ -23,7 +23,9 @@ type Coin struct {
 	Vouchers Properties    `firestore:"vouchers" json:"vouchers"`
 	Orders   Properties    `firestore:"orders" json:"orders"`
 	Balances BalanceLimits `firestore:"balances" json:"balances"`
-	Adrestia AdrestiaInfo  `firestore:"adrestia" json:"adrestia"`
+	// Hot-fix: uncomment when https://github.com/grupokindynos/hestia/tree/adrestia2.0-endpoints on production
+	// Adrestia AdrestiaInfo  `firestore:"adrestia" json:"adrestia"`
+	Adrestia bool `firestore:"adrestia" json:"adrestia"`
 }
 
 type AdrestiaInfo struct {
