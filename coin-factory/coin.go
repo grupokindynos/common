@@ -2,11 +2,34 @@ package coinfactory
 
 import (
 	"errors"
-	"github.com/eabz/btcutil/chaincfg"
-	"github.com/grupokindynos/common/coin-factory/coins"
 	"os"
 	"strings"
+
+	"github.com/eabz/btcutil/chaincfg"
+	"github.com/grupokindynos/common/coin-factory/coins"
+	"github.com/martinboehm/btcd/wire"
 )
+
+// For bitcoin-like coins we need to asing a network magic to register addresses
+// and prevent prefix collitions.
+var nets = map[string]wire.BitcoinNet{
+	"BTC":   wire.BitcoinNet(1),
+	"BITG":  wire.BitcoinNet(2),
+	"COLX":  wire.BitcoinNet(3),
+	"DASH":  wire.BitcoinNet(4),
+	"DGB":   wire.BitcoinNet(5),
+	"DIVI":  wire.BitcoinNet(6),
+	"GRS":   wire.BitcoinNet(7),
+	"LTC":   wire.BitcoinNet(8),
+	"ONION": wire.BitcoinNet(9),
+	"POLIS": wire.BitcoinNet(10),
+	"TELOS": wire.BitcoinNet(11),
+	"XZC":   wire.BitcoinNet(12),
+	"FYD":   wire.BitcoinNet(13),
+	"AYA":   wire.BitcoinNet(14),
+	"RPD":   wire.BitcoinNet(15),
+	"MW":    wire.BitcoinNet(16),
+}
 
 // Coins refers to the coins that are being used on the API instance
 var Coins = map[string]*coins.Coin{
@@ -50,6 +73,7 @@ func GetCoin(tag string) (*coins.Coin, error) {
 		Mnemonic:       os.Getenv("MNEMONIC_" + strings.ToUpper(tag)),
 	}
 	if !coin.Info.Token {
+		coin.NetParams.Net = nets[coin.Info.Tag]
 		if !chaincfg.IsRegistered(coin.NetParams) {
 			_ = chaincfg.Register(coin.NetParams)
 		}

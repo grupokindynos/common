@@ -136,21 +136,21 @@ type Shift struct {
 }
 
 type ShiftV2 struct {
-	ID             string           `firestore:"id" json:"id"`
-	UID            string           `firestore:"uid" json:"uid"`
-	Status         ShiftStatusV2    `firestore:"status" json:"status"`
-	InboundTrade   DirectionalTrade `firestore:"inbound_trade" json:"inbound_trade"`
-	OutboundTrade  DirectionalTrade `firestore:"outbound_trade" json:"outbound_trade"`
-	Timestamp      int64            `firestore:"timestamp" json:"timestamp"`
-	Payment        PaymentWithFee   `firestore:"payment" json:"payment"`
-	RefundAddr     string           `firestore:"refund_addr" json:"refund_addr"`
-	ToCoin         string           `firestore:"to_coin" json:"to_coin"`
-	ToAmount       int64            `firestore:"to_amount" json:"to_amount"`
-	UserReceivedAmount float64 `firestore:"user_received_amount" json:"user_received_amount"`
-	ToAddress      string           `firestore:"to_address" json:"to_address"`
-	PaymentProof   string           `firestore:"payment_proof" json:"payment_proof"`
-	ProofTimestamp int64            `firestore:"proof_timestamp" json:"proof_timestamp"`
-	Message        string           `firestore:"message" json:"message"`
+	ID                 string           `firestore:"id" json:"id"`
+	UID                string           `firestore:"uid" json:"uid"`
+	Status             ShiftStatusV2    `firestore:"status" json:"status"`
+	InboundTrade       DirectionalTrade `firestore:"inbound_trade" json:"inbound_trade"`
+	OutboundTrade      DirectionalTrade `firestore:"outbound_trade" json:"outbound_trade"`
+	Timestamp          int64            `firestore:"timestamp" json:"timestamp"`
+	Payment            PaymentWithFee   `firestore:"payment" json:"payment"`
+	RefundAddr         string           `firestore:"refund_addr" json:"refund_addr"`
+	ToCoin             string           `firestore:"to_coin" json:"to_coin"`
+	ToAmount           int64            `firestore:"to_amount" json:"to_amount"`
+	UserReceivedAmount float64          `firestore:"user_received_amount" json:"user_received_amount"`
+	ToAddress          string           `firestore:"to_address" json:"to_address"`
+	PaymentProof       string           `firestore:"payment_proof" json:"payment_proof"`
+	ProofTimestamp     int64            `firestore:"proof_timestamp" json:"proof_timestamp"`
+	Message            string           `firestore:"message" json:"message"`
 }
 
 type DirectionalTrade struct {
