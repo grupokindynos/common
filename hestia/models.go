@@ -60,6 +60,13 @@ type PaymentWithFee struct {
 	Confirmations int32  `firestore:"confirmations" json:"confirmations"`
 }
 
+type LightPayment struct {
+	Address string `firestore:"address" json:"address"`
+	Coin    string `firestore:"coin" json:"coin"`
+	Txid    string `firestore:"txid" json:"txid"`
+	Amount  int64  `firestore:"amount" json:"amount"`
+}
+
 type Properties struct {
 	FeePercentage float64 `firestore:"fee_percentage" json:"fee_percentage"`
 	Available     bool    `firestore:"available" json:"available"`
@@ -151,6 +158,21 @@ type ShiftV2 struct {
 	PaymentProof       string           `firestore:"payment_proof" json:"payment_proof"`
 	ProofTimestamp     int64            `firestore:"proof_timestamp" json:"proof_timestamp"`
 	Message            string           `firestore:"message" json:"message"`
+}
+
+type LightShift struct {
+	ID                 string       `firestore:"id" json:"id"`
+	UID                string       `firestore:"uid" json:"uid"`
+	Status             string       `firestore:"status" json:"status"`
+	Timestamp          int64        `firestore:"timestamp" json:"timestamp"`
+	Payment            LightPayment `firestore:"payment" json:"payment"`
+	RefundAddr         string       `firestore:"refund_addr" json:"refund_addr"`
+	ToCoin             string       `firestore:"to_coin" json:"to_coin"`
+	ToAmount           int64        `firestore:"to_amount" json:"to_amount"`
+	UserReceivedAmount float64      `firestore:"user_received_amount" json:"user_received_amount"`
+	ToAddress          string       `firestore:"to_address" json:"to_address"`
+	PaymentProof       string       `firestore:"payment_proof" json:"payment_proof"`
+	ProofTimestamp     int64        `firestore:"proof_timestamp" json:"proof_timestamp"`
 }
 
 type DirectionalTrade struct {
