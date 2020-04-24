@@ -17,7 +17,7 @@ var LunchMoney = Coin{
 		Decimals:     18,
 	},
 	Rates: RatesSource{
-		Exchange:         "",
+		Exchange:         "folgory",
 		FallBackExchange: "",
 	},
 }
