@@ -192,6 +192,7 @@ type User struct {
 	Cards    []string       `firestore:"cards" json:"cards"`
 	Orders   []string       `firestore:"orders" json:"orders"`
 	ShiftV2  []string       `firestore:"shift2" json:"shift2"`
+	NewType  bool           `firestore:"new_type" json:"new_type"`
 }
 
 type KYCInformation struct{}
