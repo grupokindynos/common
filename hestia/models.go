@@ -192,7 +192,6 @@ type User struct {
 	Cards    []string       `firestore:"cards" json:"cards"`
 	Orders   []string       `firestore:"orders" json:"orders"`
 	ShiftV2  []string       `firestore:"shift2" json:"shift2"`
-	NewType  bool           `firestore:"new_type" json:"new_type"`
 }
 
 type KYCInformation struct{}
@@ -222,6 +221,7 @@ type Voucher struct {
 	Valid                int32   `firestore:"valid" json:"valid"`
 	Message              string  `firestore:"message" json:"message"`
 	BitcouRefundData     Payment `firestore:"bitcou_refund_data" json:"bitcou_refund_data"`
+	NewType              bool    `firestore:"new_type" json:"new_type"`
 }
 
 type Deposit struct {
