@@ -158,6 +158,7 @@ type ShiftV2 struct {
 	PaymentProof       string           `firestore:"payment_proof" json:"payment_proof"`
 	ProofTimestamp     int64            `firestore:"proof_timestamp" json:"proof_timestamp"`
 	Message            string           `firestore:"message" json:"message"`
+	OriginalUsdRate    float64          `firestore:"original_rate" json:"original_rate"`
 }
 
 type LightShift struct {
