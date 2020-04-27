@@ -36,8 +36,8 @@ var DeepOnion = Coin{
 		},
 	},
 	Rates: RatesSource{
-		Exchange:         "kucoin",
-		FallBackExchange: "crex24",
+		Exchange:         "crex24",
+		FallBackExchange: "",
 	},
 	BlockchainInfo: BlockchainInfo{
 		ExternalSource:   "",
