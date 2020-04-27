@@ -40,7 +40,7 @@ var Daps = Coin{
 		FallBackExchange: "",
 	},
 	BlockchainInfo: BlockchainInfo{
-		ExternalSource:   "crw.polispay.com",
+		ExternalSource:   "daps.polispay.com",
 		BlockTime:        2,
 		MinConfirmations: 3,
 	},

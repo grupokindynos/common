@@ -40,7 +40,7 @@ var DeepOnion = Coin{
 		FallBackExchange: "",
 	},
 	BlockchainInfo: BlockchainInfo{
-		ExternalSource:   "",
+		ExternalSource:   "onion.polispay.com",
 		BlockTime:        4,
 		MinConfirmations: 1,
 	},
