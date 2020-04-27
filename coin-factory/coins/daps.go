@@ -36,7 +36,7 @@ var Daps = Coin{
 		},
 	},
 	Rates: RatesSource{
-		Exchange:         "bittrex",
+		Exchange:         "stex",
 		FallBackExchange: "",
 	},
 	BlockchainInfo: BlockchainInfo{
