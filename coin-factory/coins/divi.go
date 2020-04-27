@@ -37,8 +37,8 @@ var Divi = Coin{
 		},
 	},
 	Rates: RatesSource{
-		Exchange:         "bitrue",
-		FallBackExchange: "crex24",
+		Exchange:         "crex24", // bitrue -> is not implemented yet for Shift.
+		FallBackExchange: "bitrue", // crex24
 	},
 	BlockchainInfo: BlockchainInfo{
 		BlockTime:        2,
