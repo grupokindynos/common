@@ -1,7 +1,5 @@
 package obol
 
-import "github.com/shopspring/decimal"
-
 type Rate struct {
 	Code string  `json:"code"`
 	Name string  `json:"name"`
