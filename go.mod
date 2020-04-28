@@ -18,6 +18,7 @@ require (
 	github.com/mattn/go-isatty v0.0.8 // indirect
 	github.com/olympus-protocol/ogen v0.0.0-20200122020117-3da99bac25aa
 	github.com/sethvargo/go-password v0.1.2
+	github.com/shopspring/decimal v0.0.0-20200427060321-c939845a686f
 	github.com/stretchr/testify v1.4.0
 	github.com/technoweenie/multipartstreamer v1.0.1 // indirect
 	github.com/ugorji/go v1.1.7 // indirect
