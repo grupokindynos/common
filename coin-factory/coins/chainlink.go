@@ -15,6 +15,7 @@ var Chainlink = Coin{
 		TokenNetwork: "ethereum",
 		Contract:     "0x514910771af9ca656af840dff83e8264ecf986ca",
 		Decimals:     18,
+		Blockbook:    "https://eth2.trezor.io",
 	},
 	Rates: RatesSource{
 		Exchange:         "binance",

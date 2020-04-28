@@ -15,6 +15,7 @@ var LunchMoney = Coin{
 		TokenNetwork: "ethereum",
 		Contract:     "0x66fd97a78d8854fec445cd1c80a07896b0b4851f",
 		Decimals:     18,
+		Blockbook:    "https://eth2.trezor.io",
 	},
 	Rates: RatesSource{
 		Exchange:         "lukki",

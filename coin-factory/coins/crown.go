@@ -19,7 +19,7 @@ var Crown = Coin{
 		Blockbook:   "https://crw.polispay.com",
 		Protocol:    "crw",
 		TxVersion:   1,
-		TxBuilder:   "bitcoinjs",
+		TxBuilder:   "bitgo",
 		HDIndex:     72,
 		Networks: map[string]CoinNetworkInfo{
 			"P2PKH": {

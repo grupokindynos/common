@@ -19,7 +19,7 @@ var SnowGem = Coin{
 		Blockbook:   "https://xsg.polispay.com",
 		Protocol:    "xsg",
 		TxVersion:   1,
-		TxBuilder:   "bitcore",
+		TxBuilder:   "bitgo",
 		HDIndex:     410,
 		Networks: map[string]CoinNetworkInfo{
 			"P2PKH": {

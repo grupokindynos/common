@@ -19,7 +19,7 @@ var DeepOnion = Coin{
 		Blockbook:   "https://onion.polispay.com",
 		Protocol:    "onion",
 		TxVersion:   2,
-		TxBuilder:   "bitcoinjs",
+		TxBuilder:   "bitgo",
 		HDIndex:     305,
 		Networks: map[string]CoinNetworkInfo{
 			"P2PKH": {

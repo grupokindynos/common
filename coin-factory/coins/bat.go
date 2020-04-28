@@ -15,6 +15,7 @@ var BAT = Coin{
 		TokenNetwork: "ethereum",
 		Contract:     "0x0d8775f648430679a709e98d2b0cb6250d2887ef",
 		Decimals:     18,
+		Blockbook:    "https://eth2.trezor.io",
 	},
 	Rates: RatesSource{
 		Exchange:         "binance",

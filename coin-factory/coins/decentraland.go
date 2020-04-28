@@ -15,6 +15,7 @@ var Decentraland = Coin{
 		TokenNetwork: "ethereum",
 		Contract:     "0x0f5d2fb29fb7d3cfee444a200298f468908cc942",
 		Decimals:     18,
+		Blockbook:    "https://eth2.trezor.io",
 	},
 	Rates: RatesSource{
 		Exchange:         "",

@@ -15,6 +15,7 @@ var TrueUSD = Coin{
 		TokenNetwork: "ethereum",
 		Contract:     "0x0000000000085d4780B73119b644AE5ecd22b376",
 		Decimals:     18,
+		Blockbook:    "https://eth2.trezor.io",
 	},
 	Rates: RatesSource{
 		Exchange:         "binance",
