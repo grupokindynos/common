@@ -21,7 +21,6 @@ var nets = map[string]wire.BitcoinNet{
 	"DIVI":  wire.BitcoinNet(6),
 	"GRS":   wire.BitcoinNet(7),
 	"LTC":   wire.BitcoinNet(8),
-	"ONION": wire.BitcoinNet(9),
 	"POLIS": wire.BitcoinNet(10),
 	"TELOS": wire.BitcoinNet(11),
 	"XZC":   wire.BitcoinNet(12),
@@ -29,6 +28,9 @@ var nets = map[string]wire.BitcoinNet{
 	"AYA":   wire.BitcoinNet(14),
 	"RPD":   wire.BitcoinNet(15),
 	"MW":    wire.BitcoinNet(16),
+	"XSG":   wire.BitcoinNet(17),
+	"CRW":   wire.BitcoinNet(18),
+	"DAPS":  wire.BitcoinNet(19),
 }
 
 // Coins refers to the coins that are being used on the API instance
@@ -42,7 +44,6 @@ var Coins = map[string]*coins.Coin{
 	"ETH":   &coins.Ethereum,
 	"GRS":   &coins.Groestlcoin,
 	"LTC":   &coins.Litecoin,
-	"ONION": &coins.DeepOnion,
 	"POLIS": &coins.Polis,
 	"TELOS": &coins.Telos,
 	"USDT":  &coins.Tether,
@@ -57,6 +58,9 @@ var Coins = map[string]*coins.Coin{
 	"BAT":   &coins.BAT,
 	"LINK":  &coins.Chainlink,
 	"MANA":  &coins.Decentraland,
+	"XSG":   &coins.SnowGem,
+	"CRW":   &coins.Crown,
+	"DAPS":  &coins.Daps,
 }
 
 // GetCoin is the safe way to check if a coin exists and retrieve the coin data

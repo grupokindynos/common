@@ -11,9 +11,9 @@ type CoinNetworkInfo struct {
 	MessagePrefix string               `json:"messagePrefix"`
 	Bech32        string               `json:"bech32"`
 	Bip32         CoinNetWorkBip32Info `json:"bip32"`
-	PubKeyHash    int                  `json:"pubKeyHash"`
-	ScriptHash    int                  `json:"scriptHash"`
-	Wif           int                  `json:"wif"`
+	PubKeyHash    []int                `json:"pubKeyHash"`
+	ScriptHash    []int                `json:"scriptHash"`
+	Wif           []int                `json:"wif"`
 }
 
 type CoinInfo struct {
