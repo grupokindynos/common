@@ -36,8 +36,8 @@ var Telos = Coin{
 		},
 	},
 	Rates: RatesSource{
-		Exchange:         "graviex",
-		FallBackExchange: "southxchange",
+		Exchange:         "crex24",
+		FallBackExchange: "graviex",
 	},
 	BlockchainInfo: BlockchainInfo{
 		ExternalSource:   "telos.polispay.com",
