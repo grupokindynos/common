@@ -1,7 +1,5 @@
 package obol
 
-import "github.com/shopspring/decimal"
-
 type Rate struct {
 	Code string  `json:"code"`
 	Name string  `json:"name"`
@@ -20,6 +18,6 @@ type Response struct {
 
 // CoinToCoinWithAmountResponse is the response of a CoinToCoinWithAmount result
 type CoinToCoinWithAmountResponse struct {
-	AveragePrice decimal.Decimal `json:"average_price"`
-	Amount       decimal.Decimal `json:"amount"`
+	AveragePrice float64 `json:"average_price"`
+	Amount       float64 `json:"amount"`
 }
