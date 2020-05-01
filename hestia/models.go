@@ -27,8 +27,8 @@ type Coin struct {
 }
 
 type AdrestiaInfo struct {
-	Available bool `firestore:"available" json:"available"`
-	CoinUsage int  `firestore:"coin_usage" json:"coin_usage"`
+	Available bool     `firestore:"available" json:"available"`
+	CoinUsage float64  `firestore:"coin_usage" json:"coin_usage"`
 }
 
 type CoinBalances struct {
