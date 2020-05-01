@@ -14,6 +14,10 @@ func GlobalResponseError(result interface{}, err error, c *gin.Context) *gin.Con
 		switch err {
 		case commonErrors.ErrorVoucherLimit:
 			c.JSON(202, gin.H{"message": "voucher daily limit exceeded", "error": err.Error(), "status": 407})
+		case commonErrors.ErrorShiftMinimumAmount:
+			c.JSON(411, gin.H{"message": "shift minimum amount not met", "error": err.Error(), "status": 411})
+		case commonErrors.ErrorShiftDailyLimit:
+			c.JSON(412, gin.H{"message": "shift daily limit exceeded", "error": err.Error(), "status": 412})
 		case commonErrors.ErrorNotFound:
 			c.JSON(404, gin.H{"message": "element not found in database", "error": err.Error(), "status": 1})
 		case commonErrors.ErrorNoUserInformation:
