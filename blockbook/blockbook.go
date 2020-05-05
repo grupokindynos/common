@@ -31,7 +31,7 @@ func (b *BlockBook) GetAddress(address string) (response Address, err error) {
 }
 
 func (b *BlockBook) GetXpub(xpub string) (response Xpub, err error) {
-	data, err := b.callWrapper("GET", "xpub/"+xpub+"?details=txs", 2, nil)
+	data, err := b.callWrapper("GET", "xpub/"+xpub+"?details=txs&gap=1000", 2, nil)
 	if err != nil {
 		return response, err
 	}
@@ -45,9 +45,9 @@ func (b *BlockBook) GetXpub(xpub string) (response Xpub, err error) {
 func (b *BlockBook) GetUtxo(xpub string, confirmed bool) (response []Utxo, err error) {
 	var url string
 	if confirmed {
-		url = "utxo/" + xpub + "?confirmed=true"
+		url = "utxo/" + xpub + "?confirmed=true&gap=1000"
 	} else {
-		url = "utxo/" + xpub
+		url = "utxo/" + xpub + "?gap=1000"
 	}
 	data, err := b.callWrapper("GET", url, 2, nil)
 	if err != nil {
