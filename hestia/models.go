@@ -226,6 +226,25 @@ type Voucher struct {
 	NewType              bool    `firestore:"new_type" json:"new_type"`
 }
 
+type VoucherV2 struct {
+	Id            string `firestore:"id" json:"id"`
+	CreatedTime   int64 `firestore:"created_time" json:"created_time"`
+	AmountEuro    float64 `firestore:"amount_euro" json:"amount_euro"`
+	UserPayment   Payment `firestore:"user_payment" json:"user_payment"`
+	Status        VoucherStatusV2 `firestore:"status" json:"status"`
+	RefundAddress string `firestore:"refund_address" json:"refund_address"`
+	VoucherId     string `firestore:"voucher_id" json:"voucher_id"`
+	VariantId     string `firestore:"variant_id" json:"variant_id"`
+	BitcouTxId    string `firestore:"bitcou_txid" json:"bitcou_txid"`
+	UserId        string `firestore:"user_id" json:"user_id"`
+	RefundTxId    string `firestore:"refund_txid" json:"refund_txid"`
+	FulfilledTime int64  `firestore:"fulfilled_time" json:"fulfilled_time"`
+	VoucherName   string `firestore:"voucher_name" json:"voucher_name"`
+	PhoneNumber   string `firestore:"phone_number" json:"phone_number"`
+	ProviderId    string `firestore:"provider_id" json:"provider_id"`
+	Conversion    DirectionalTrade `firestore:"conversion" json:"conversion"`
+}
+
 type Deposit struct {
 	ID           string  `firestore:"id" json:"id"`
 	UID          string  `firestore:"uid" json:"uid"`

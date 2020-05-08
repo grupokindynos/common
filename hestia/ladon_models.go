@@ -39,3 +39,34 @@ func GetVoucherStatusString(status VoucherStatus) string {
 	}
 	return value
 }
+
+
+type VoucherStatusV2 int
+
+const (
+	VoucherStatusV2PaymentProcessing VoucherStatusV2 = iota
+	VoucherStatusV2Redeemed
+	VoucherStatusV2PerformingTrade
+	VoucherStatusV2Complete
+	VoucherStatusV2Refunded
+	VoucherStatusv2Error
+)
+
+var(
+	VoucherStatusV2Str = map[VoucherStatusV2]string{
+		0: "PAYMENT_PROCESSING",
+		1: "REDEEMED",
+		2: "PERFORMING_TRADE",
+		3: "COMPLETE",
+		4: "REFUNDED",
+		5: "ERROR",
+	}
+)
+
+func GetVoucherStatusV2String(status VoucherStatusV2) string {
+	value, ok := VoucherStatusV2Str[status]
+	if !ok {
+		return ""
+	}
+	return value
+}
