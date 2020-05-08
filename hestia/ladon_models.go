@@ -49,7 +49,9 @@ const (
 	VoucherStatusV2PerformingTrade
 	VoucherStatusV2Complete
 	VoucherStatusV2Refunded
-	VoucherStatusv2Error
+	VoucherStatusV2Error
+	VoucherStatusV2NeedsRefund
+	VoucherStatusV2WaitingRefundTxId
 )
 
 var(
@@ -60,6 +62,8 @@ var(
 		3: "COMPLETE",
 		4: "REFUNDED",
 		5: "ERROR",
+		6: "NEEDS_REFUND",
+		7: "WAITING_REFUND_TXID",
 	}
 )
 
