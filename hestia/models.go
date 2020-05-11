@@ -244,6 +244,7 @@ type VoucherV2 struct {
 	ProviderId    string           `firestore:"provider_id" json:"provider_id"`
 	RedeemCode    string           `firestore:"redeem_code" json:"redeem_code"`
 	Conversion    DirectionalTrade `firestore:"conversion" json:"conversion"`
+	ReceivedAmount float64 		   `firestore:"received_amount" json:"received_amount"`
 }
 
 type Deposit struct {
