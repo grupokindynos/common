@@ -248,6 +248,17 @@ type VoucherV2 struct {
 	ReceivedAmount float64 		   `firestore:"received_amount" json:"received_amount"`
 }
 
+type LightVoucher struct {
+	Id string `firestore:"id" json:"id"`
+	VoucherId int `firestore:"voucher_id" json:"voucher_id"`
+	Name string `firestore:"name" json:"name"`
+	Timestamp int64 `firestore:"timestamp" json:"timestamp"`
+	Amount float64 `firestore:"amount" json:"amount"`
+	PaymentTxId string `firestore:"payment_txid" json:"payment_txid"`
+	PaymentCoin string `firestore:"payment_coin" json:"payment_coin"`
+	RefundTxId string `firestore:"refund_txid" json:"refund_txid"`
+}
+
 type Deposit struct {
 	ID           string  `firestore:"id" json:"id"`
 	UID          string  `firestore:"uid" json:"uid"`
