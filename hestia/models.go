@@ -247,6 +247,7 @@ type VoucherV2 struct {
 	Conversion    DirectionalTrade `firestore:"conversion" json:"conversion"`
 	ReceivedAmount float64 		   `firestore:"received_amount" json:"received_amount"`
 	Email		string		`firestore:"email" json:"email"`
+	ShippingMethod VoucherShippingMethod `firestore:"shipping_method" json:"shipping_method"`
 }
 
 type LightVoucher struct {
