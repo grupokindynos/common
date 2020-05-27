@@ -74,3 +74,27 @@ func GetVoucherStatusV2String(status VoucherStatusV2) string {
 	}
 	return value
 }
+
+type VoucherShippingMethod int
+
+const (
+	VoucherShippingMethodEmail VoucherShippingMethod = iota
+	VoucherShippingMethodAccount
+	VoucherShippingMethodApi
+)
+
+var (
+	VoucherShippingMethodStr = map[VoucherShippingMethod] string {
+		0: "EMAIL",
+		1: "ACCOUNT",
+		2: "API",
+	}
+)
+
+func GetVoucherShippingMethodString(method VoucherShippingMethod) string {
+	value, ok := VoucherShippingMethodStr[method]
+	if !ok {
+		return ""
+	}
+	return value
+}
