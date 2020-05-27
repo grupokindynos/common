@@ -253,6 +253,7 @@ type VoucherV2 struct {
 type LightVoucher struct {
 	Id string `firestore:"id" json:"id"`
 	VoucherId int `firestore:"voucher_id" json:"voucher_id"`
+	VariantId int `firestore:"variant_id" json:"variant_id"`
 	Name string `firestore:"name" json:"name"`
 	Timestamp int64 `firestore:"timestamp" json:"timestamp"`
 	Amount float64 `firestore:"amount" json:"amount"`
@@ -261,6 +262,7 @@ type LightVoucher struct {
 	RefundTxId string `firestore:"refund_txid" json:"refund_txid"`
 	Status string `firestore:"status" json:"status"`
 	ProviderId string `firestore:"provider_id" json:"provider_id"`
+	ShippingMethod VoucherShippingMethod `firestore:"shipping_method" json:"shipping_method"`
 }
 
 type Deposit struct {
