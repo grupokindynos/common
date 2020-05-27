@@ -258,6 +258,8 @@ type LightVoucher struct {
 	PaymentTxId string `firestore:"payment_txid" json:"payment_txid"`
 	PaymentCoin string `firestore:"payment_coin" json:"payment_coin"`
 	RefundTxId string `firestore:"refund_txid" json:"refund_txid"`
+	Status string `firestore:"status" json:"status"`
+	ProviderId string `firestore:"provider_id" json:"provider_id"`
 }
 
 type Deposit struct {
