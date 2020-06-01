@@ -61,6 +61,7 @@ var Coins = map[string]*coins.Coin{
 	"XSG":   &coins.SnowGem,
 	"CRW":   &coins.Crown,
 	"DAPS":  &coins.Daps,
+	"NULS":  &coins.Nuls,
 }
 
 // GetCoin is the safe way to check if a coin exists and retrieve the coin data
