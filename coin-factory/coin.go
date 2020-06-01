@@ -31,7 +31,6 @@ var nets = map[string]wire.BitcoinNet{
 	"XSG":   wire.BitcoinNet(17),
 	"CRW":   wire.BitcoinNet(18),
 	"DAPS":  wire.BitcoinNet(19),
-	"NULS":  wire.BitcoinNet(20),
 }
 
 // Coins refers to the coins that are being used on the API instance
@@ -78,7 +77,7 @@ func GetCoin(tag string) (*coins.Coin, error) {
 		NetParams:      coin.NetParams,
 		Mnemonic:       os.Getenv("MNEMONIC_" + strings.ToUpper(tag)),
 	}
-	if !coin.Info.Token {
+	if !coin.Info.Token && coin.Info.Tag != "NULS" {
 		coin.NetParams.Net = nets[coin.Info.Tag]
 		if !chaincfg.IsRegistered(coin.NetParams) {
 			_ = chaincfg.Register(coin.NetParams)
