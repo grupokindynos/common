@@ -9,7 +9,7 @@ import (
 
 // HttpClient a usable client with hardcoded timeout
 var HttpClient = http.Client{
-	Timeout: time.Second * 5,
+	Timeout: time.Second * 15,
 }
 
 type ObolRequest struct {
