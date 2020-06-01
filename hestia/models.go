@@ -262,6 +262,7 @@ type LightVoucher struct {
 	RefundTxId string `firestore:"refund_txid" json:"refund_txid"`
 	Status string `firestore:"status" json:"status"`
 	ProviderId string `firestore:"provider_id" json:"provider_id"`
+	RedeemCode string `firestore:"redeem_code" json:"redeem_code"`
 	ShippingMethod VoucherShippingMethod `firestore:"shipping_method" json:"shipping_method"`
 }
 
