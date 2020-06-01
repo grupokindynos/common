@@ -31,6 +31,7 @@ var nets = map[string]wire.BitcoinNet{
 	"XSG":   wire.BitcoinNet(17),
 	"CRW":   wire.BitcoinNet(18),
 	"DAPS":  wire.BitcoinNet(19),
+	"NULS":  wire.BitcoinNet(20),
 }
 
 // Coins refers to the coins that are being used on the API instance
