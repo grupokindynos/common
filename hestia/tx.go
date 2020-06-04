@@ -1,10 +1,10 @@
 package hestia
 
-import "github.com/olympus-protocol/ogen/utils/amount"
+import "github.com/shopspring/decimal"
 
 type Outputs struct {
 	Address string
-	Amount  amount.AmountType
+	Amount  decimal.Decimal
 }
 
 type PolisTxInfo struct {

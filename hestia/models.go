@@ -27,8 +27,8 @@ type Coin struct {
 }
 
 type AdrestiaInfo struct {
-	Available bool     `firestore:"available" json:"available"`
-	CoinUsage float64  `firestore:"coin_usage" json:"coin_usage"`
+	Available bool    `firestore:"available" json:"available"`
+	CoinUsage float64 `firestore:"coin_usage" json:"coin_usage"`
 }
 
 type CoinBalances struct {
@@ -184,17 +184,17 @@ type DirectionalTrade struct {
 }
 
 type User struct {
-	ID       string         `firestore:"id" json:"id"`
-	Email    string         `firestore:"email" json:"email"`
-	KYCData  KYCInformation `firestore:"kyc_data" json:"kyc_data"`
-	Role     string         `firestore:"role" json:"role"`
-	Shifts   []string       `firestore:"shifts" json:"shifts"`
-	Vouchers []string       `firestore:"vouchers" json:"vouchers"`
-	Deposits []string       `firestore:"deposits" json:"deposits"`
-	Cards    []string       `firestore:"cards" json:"cards"`
-	Orders   []string       `firestore:"orders" json:"orders"`
-	ShiftV2  []string       `firestore:"shift2" json:"shift2"`
-	VouchersV2 []string     `firestore:"vouchers2" json:"vouchers2"`
+	ID         string         `firestore:"id" json:"id"`
+	Email      string         `firestore:"email" json:"email"`
+	KYCData    KYCInformation `firestore:"kyc_data" json:"kyc_data"`
+	Role       string         `firestore:"role" json:"role"`
+	Shifts     []string       `firestore:"shifts" json:"shifts"`
+	Vouchers   []string       `firestore:"vouchers" json:"vouchers"`
+	Deposits   []string       `firestore:"deposits" json:"deposits"`
+	Cards      []string       `firestore:"cards" json:"cards"`
+	Orders     []string       `firestore:"orders" json:"orders"`
+	ShiftV2    []string       `firestore:"shift2" json:"shift2"`
+	VouchersV2 []string       `firestore:"vouchers2" json:"vouchers2"`
 }
 
 type KYCInformation struct{}
@@ -228,41 +228,41 @@ type Voucher struct {
 }
 
 type VoucherV2 struct {
-	Id            string           `firestore:"id" json:"id"`
-	CreatedTime   int64            `firestore:"created_time" json:"created_time"`
-	AmountEuro    int64          `firestore:"amount_euro" json:"amount_euro"`
-	UserPayment   Payment          `firestore:"user_payment" json:"user_payment"`
-	Status        VoucherStatusV2  `firestore:"status" json:"status"`
-	RefundAddress string           `firestore:"refund_address" json:"refund_address"`
-	VoucherId     int           `firestore:"voucher_id" json:"voucher_id"`
-	VariantId     int           `firestore:"variant_id" json:"variant_id"`
-	BitcouTxId    string           `firestore:"bitcou_txid" json:"bitcou_txid"`
-	UserId        string           `firestore:"user_id" json:"user_id"`
-	RefundTxId    string           `firestore:"refund_txid" json:"refund_txid"`
-	FulfilledTime int64            `firestore:"fulfilled_time" json:"fulfilled_time"`
-	VoucherName   string           `firestore:"voucher_name" json:"voucher_name"`
-	PhoneNumber   int64           `firestore:"phone_number" json:"phone_number"`
-	ProviderId    string           `firestore:"provider_id" json:"provider_id"`
-	RedeemCode    string           `firestore:"redeem_code" json:"redeem_code"`
-	Conversion    DirectionalTrade `firestore:"conversion" json:"conversion"`
-	ReceivedAmount float64 		   `firestore:"received_amount" json:"received_amount"`
-	Email		string		`firestore:"email" json:"email"`
+	Id             string                `firestore:"id" json:"id"`
+	CreatedTime    int64                 `firestore:"created_time" json:"created_time"`
+	AmountEuro     int64                 `firestore:"amount_euro" json:"amount_euro"`
+	UserPayment    Payment               `firestore:"user_payment" json:"user_payment"`
+	Status         VoucherStatusV2       `firestore:"status" json:"status"`
+	RefundAddress  string                `firestore:"refund_address" json:"refund_address"`
+	VoucherId      int                   `firestore:"voucher_id" json:"voucher_id"`
+	VariantId      int                   `firestore:"variant_id" json:"variant_id"`
+	BitcouTxId     string                `firestore:"bitcou_txid" json:"bitcou_txid"`
+	UserId         string                `firestore:"user_id" json:"user_id"`
+	RefundTxId     string                `firestore:"refund_txid" json:"refund_txid"`
+	FulfilledTime  int64                 `firestore:"fulfilled_time" json:"fulfilled_time"`
+	VoucherName    string                `firestore:"voucher_name" json:"voucher_name"`
+	PhoneNumber    int64                 `firestore:"phone_number" json:"phone_number"`
+	ProviderId     string                `firestore:"provider_id" json:"provider_id"`
+	RedeemCode     string                `firestore:"redeem_code" json:"redeem_code"`
+	Conversion     DirectionalTrade      `firestore:"conversion" json:"conversion"`
+	ReceivedAmount float64               `firestore:"received_amount" json:"received_amount"`
+	Email          string                `firestore:"email" json:"email"`
 	ShippingMethod VoucherShippingMethod `firestore:"shipping_method" json:"shipping_method"`
 }
 
 type LightVoucher struct {
-	Id string `firestore:"id" json:"id"`
-	VoucherId int `firestore:"voucher_id" json:"voucher_id"`
-	VariantId int `firestore:"variant_id" json:"variant_id"`
-	Name string `firestore:"name" json:"name"`
-	Timestamp int64 `firestore:"timestamp" json:"timestamp"`
-	Amount float64 `firestore:"amount" json:"amount"`
-	PaymentTxId string `firestore:"payment_txid" json:"payment_txid"`
-	PaymentCoin string `firestore:"payment_coin" json:"payment_coin"`
-	RefundTxId string `firestore:"refund_txid" json:"refund_txid"`
-	Status string `firestore:"status" json:"status"`
-	ProviderId string `firestore:"provider_id" json:"provider_id"`
-	RedeemCode string `firestore:"redeem_code" json:"redeem_code"`
+	Id             string                `firestore:"id" json:"id"`
+	VoucherId      int                   `firestore:"voucher_id" json:"voucher_id"`
+	VariantId      int                   `firestore:"variant_id" json:"variant_id"`
+	Name           string                `firestore:"name" json:"name"`
+	Timestamp      int64                 `firestore:"timestamp" json:"timestamp"`
+	Amount         float64               `firestore:"amount" json:"amount"`
+	PaymentTxId    string                `firestore:"payment_txid" json:"payment_txid"`
+	PaymentCoin    string                `firestore:"payment_coin" json:"payment_coin"`
+	RefundTxId     string                `firestore:"refund_txid" json:"refund_txid"`
+	Status         string                `firestore:"status" json:"status"`
+	ProviderId     string                `firestore:"provider_id" json:"provider_id"`
+	RedeemCode     string                `firestore:"redeem_code" json:"redeem_code"`
 	ShippingMethod VoucherShippingMethod `firestore:"shipping_method" json:"shipping_method"`
 }
 

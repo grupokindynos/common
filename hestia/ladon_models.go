@@ -40,7 +40,6 @@ func GetVoucherStatusString(status VoucherStatus) string {
 	return value
 }
 
-
 type VoucherStatusV2 int
 
 const (
@@ -54,7 +53,7 @@ const (
 	VoucherStatusV2WaitingRefundTxId
 )
 
-var(
+var (
 	VoucherStatusV2Str = map[VoucherStatusV2]string{
 		0: "PAYMENT_PROCESSING",
 		1: "REDEEMED",
@@ -84,7 +83,7 @@ const (
 )
 
 var (
-	VoucherShippingMethodStr = map[VoucherShippingMethod] string {
+	VoucherShippingMethodStr = map[VoucherShippingMethod]string{
 		0: "EMAIL",
 		1: "ACCOUNT",
 		2: "API",

@@ -16,8 +16,8 @@ require (
 	github.com/kr/pretty v0.1.0 // indirect
 	github.com/martinboehm/btcd v0.0.0-20190104121910-8e7c0427fee5
 	github.com/mattn/go-isatty v0.0.8 // indirect
-	github.com/olympus-protocol/ogen v0.0.0-20200122020117-3da99bac25aa
 	github.com/sethvargo/go-password v0.1.2
+	github.com/shopspring/decimal v1.2.0
 	github.com/stretchr/testify v1.4.0
 	github.com/technoweenie/multipartstreamer v1.0.1 // indirect
 	github.com/ugorji/go v1.1.7 // indirect
