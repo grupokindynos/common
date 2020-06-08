@@ -17,7 +17,7 @@ var Nuls = Coin{
 		Masternodes: false,
 		Token:       false,
 		StableCoin:  false,
-		Blockbook:   "",
+		Blockbook:   "https://api.nuls.io",
 		Protocol:    "nuls",
 		TxVersion:   1,
 		TxBuilder:   "nuls",
