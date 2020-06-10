@@ -248,6 +248,7 @@ type VoucherV2 struct {
 	ReceivedAmount float64               `firestore:"received_amount" json:"received_amount"`
 	Email          string                `firestore:"email" json:"email"`
 	ShippingMethod VoucherShippingMethod `firestore:"shipping_method" json:"shipping_method"`
+	Message        string                `firestore:"message" json:"message"`
 }
 
 type LightVoucher struct {
