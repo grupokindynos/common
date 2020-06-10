@@ -249,6 +249,7 @@ type VoucherV2 struct {
 	Email          string                `firestore:"email" json:"email"`
 	ShippingMethod VoucherShippingMethod `firestore:"shipping_method" json:"shipping_method"`
 	Message        string                `firestore:"message" json:"message"`
+	Valid          int32                 `firestore:"valid" json:"valid"`
 }
 
 type LightVoucher struct {
