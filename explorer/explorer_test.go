@@ -8,6 +8,7 @@ import (
 
 func TestExplorerFactory(t *testing.T) {
 	ef := NewExplorerFactory()
+	// nuls
 	nuls, _ := coinfactory.GetCoin("NULS")
 	explorer, _ := ef.GetExplorerByCoin(*nuls)
 	res, err := explorer.GetAddress("NULSd6HggApZFb5bvWkksdgXEy8WV4nHxjzED")
@@ -25,4 +26,17 @@ func TestExplorerFactory(t *testing.T) {
 	txid, err := explorer.FindDepositTxId("NULSd6HgjWe7C7chnLMLHbXVSuCDPLR5S8h1t", 600000000)
 	assert.Nil(t, err)
 	assert.Equal(t, "d4bdc0ad6408b6dfa569d34547efe0291b49e2bb5f83c3764c3a11c7247a2e8b", txid)
+	// blockbook
+	polis, _ := coinfactory.GetCoin("POLIS")
+	explorer, _ = ef.GetExplorerByCoin(*polis)
+	res, err = explorer.GetAddress("PQooE9ecq4mi3Us3vVigCZehuDJ3nTDrtf")
+	assert.Nil(t, err)
+	assert.Equal(t, "PQooE9ecq4mi3Us3vVigCZehuDJ3nTDrtf", res.Address)
+	txdata, err = explorer.GetTx("2c56355e9925a945ffef411fa40fc9755892933bc854b4aa55fcf34f21842a49")
+	assert.Nil(t, err)
+	assert.Equal(t, 622459, txdata.BlockHeight)
+	txid, err = explorer.FindDepositTxId("PHwa4qU9o5TPT5bSdr9A1dXjyF3qEGPbio", 1847829923)
+	assert.Nil(t, err)
+	assert.Equal(t, "2c56355e9925a945ffef411fa40fc9755892933bc854b4aa55fcf34f21842a49", txid)
+
 }
