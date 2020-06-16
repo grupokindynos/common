@@ -4,12 +4,10 @@ import (
 	"bytes"
 	"encoding/json"
 	"errors"
-	"fmt"
 	"io"
 	"io/ioutil"
 	"net/http"
 	"strconv"
-	"strings"
 	"time"
 )
 
@@ -50,6 +48,115 @@ type NulsInfoModel struct {
 	AssetId     int `json:"assetId"`
 }
 
+type RpcTxResponse struct {
+	JsonRpc string         `json:"jsonrpc"`
+	Id      string         `json:"id"`
+	Result  TxListResponse `json:"result"`
+}
+
+type TxListResponse struct {
+	PageNumber int      `json:"pageNumber"`
+	PageSize   int      `json:"pageSize"`
+	TotalCount int      `json:"totalCount"`
+	List       []NulsTx `json:"list"`
+}
+
+type NulsTx struct {
+	TxHash       string  `json:"txHash"`
+	Address      string  `json:"address"`
+	Type         int     `json:"type"`
+	CreateTime   int     `json:"createTime"`
+	Height       int     `json:"height"`
+	ChainId      int     `json:"chainId"`
+	AssetId      int     `json:"assetId"`
+	Symbol       string  `json:"symbol"`
+	Values       int     `json:"values"`
+	Fee          NulsFee `json:"fee"`
+	Balance      int     `json:"balance"`
+	TransferType int     `json:"transferType"`
+	Status       int     `json:"status"`
+}
+
+type NulsFee struct {
+	ChainId int    `json:"chainId"`
+	AssetId int    `json:"assetId"`
+	Symbol  string `json:"symbol"`
+	Value   int    `json:"value"`
+}
+
+type RpcRequest struct {
+	Jsonrpc string        `json:"jsonrpc"`
+	Method  string        `json:"method"`
+	Params  []interface{} `json:"params"`
+	Id      int           `json:"id"`
+}
+
+type NulsTxResponse struct {
+	Success bool         `json:"success"`
+	Data    NulsTxDetail `json:"data"`
+}
+
+type NulsFrom struct {
+	Address       string `json:"address"`
+	AssetsChainId int    `json:"assetsChainId"`
+	AssetsId      int    `json:"assetsId"`
+	Amount        string `json:"amount"`
+	Nonce         string `json:"nonce"`
+	Locked        int    `json:"locked"`
+}
+
+type NulsTo struct {
+	Address       string `json:"address"`
+	AssetsChainId int    `json:"assetsChainId"`
+	AssetsId      int    `json:"assetsId"`
+	Amount        string `json:"amount"`
+	LockTime      int    `json:"lockTime"`
+}
+
+type NulsTxDetail struct {
+	Hash                 string     `json:"hash"`
+	Type                 int        `json:"type"`
+	Time                 string     `json:"time"`
+	Timestamp            int        `json:"timestamp"`
+	BlockHeight          int        `json:"blockHeight"`
+	BlockHash            string     `json:"blockHash"`
+	Remark               string     `json:"remark"`
+	TransactionSignature string     `json:"transactionSignature"`
+	TxDataHex            string     `json:"txDataHex"`
+	Status               int        `json:"status"`
+	Size                 int        `json:"size"`
+	InBlockIndex         int        `json:"inBlockIndex"`
+	From                 []NulsFrom `json:"from"`
+	To                   []NulsTo   `json:"to"`
+}
+
+type NulsCalculatedFee struct {
+	Success bool `json:"success"`
+	Data    struct {
+		Value string `json:"value"`
+	} `json:"data"`
+}
+
+type NulsFeeRequest struct {
+	AddressCount int         `json:"addressCount"`
+	FromLength   int         `json:"fromLength"`
+	ToLength     int         `json:"toLength"`
+	Remark       interface{} `json:"remark"`
+	Price        interface{} `json:"price"`
+}
+
+type BroadcastRequest struct {
+	TxHex string `json:"txHex"`
+}
+
+type NulsBroadcast struct {
+	Success bool `json:"success"`
+	Data    struct {
+		Value bool   `json:"value"`
+		Hash  string `json:"hash"`
+	} `json:"data"`
+}
+
 func NewNulsWrapper(url string) *NulsExplorer {
 	ne := &NulsExplorer{
 		Url: url,
@@ -64,11 +171,7 @@ func NewNulsWrapper(url string) *NulsExplorer {
 	return ne
 }
 
-// Methods for Bitcoin-like coins.
-
 func (b *NulsExplorer) GetAddress(address string) (response Address, err error) {
-	fmt.Println("como")
-
 	body := &NulsInfoModel{
 		AssetChanId: 1,
 		AssetId:     1,
@@ -76,92 +179,202 @@ func (b *NulsExplorer) GetAddress(address string) (response Address, err error) 
 	buf := new(bytes.Buffer)
 	_ = json.NewEncoder(buf).Encode(body)
 	var nulsInfo NulsInfo
-	var nulsError NulsError
 	nulsdata, err := b.callWrapper("POST", "/api/accountledger/balance/"+address, 1, buf)
 	if err != nil {
 		return response, err
 	}
-	fmt.Println("estas")
-
 	err = json.Unmarshal(nulsdata, &nulsInfo)
 	if err != nil {
 		return response, err
 	}
 	if !nulsInfo.Success {
-		err = json.Unmarshal(nulsdata, &nulsError)
+		return response, handleNulsError(nulsdata)
+	}
+	// get the txs
+	var rpcresponse RpcTxResponse
+	body2 := &RpcRequest{
+		Jsonrpc: "2.0",
+		Method:  "getAcctTxs",
+		Params:  []interface{}{1, 1, 1, address, 0, 0, 0},
+		Id:      1234,
+	}
+	buf = new(bytes.Buffer)
+	_ = json.NewEncoder(buf).Encode(body2)
+	nulsdata, err = b.callWrapper("POST", address, 2, buf)
+	if err != nil {
+		return response, err
+	}
+	err = json.Unmarshal(nulsdata, &rpcresponse)
+	if err != nil {
+		return response, err
+	}
+
+	cont := rpcresponse.Result.TotalCount
+	var txList []NulsTx
+	var txIds []string
+	pNumber := 1
+	for cont > 0 {
+		pSize := 100
+		if cont < 100 {
+			pSize = cont
+		}
+		body2 = &RpcRequest{
+			Jsonrpc: "2.0",
+			Method:  "getAcctTxs",
+			Params:  []interface{}{1, pNumber, pSize, address, 0, 0, 0},
+			Id:      1234,
+		}
+		buf = new(bytes.Buffer)
+		_ = json.NewEncoder(buf).Encode(body2)
+		nulsdata, err = b.callWrapper("POST", address, 2, buf)
 		if err != nil {
 			return response, err
 		}
-		return response, errors.New(nulsError.Data.Message)
+		err = json.Unmarshal(nulsdata, &rpcresponse)
+		if err != nil {
+			return response, err
+		}
+		txList = append(txList, rpcresponse.Result.List...)
+		cont -= pSize
+		pNumber += 1
 	}
-	s, _ := json.MarshalIndent(nulsInfo, "", "\t")
-	fmt.Print(string(s))
+	totalReceived := 0
+	totalSent := 0
+	unconfirmedTxs := 0
+	for _, element := range txList {
+		txIds = append(txIds, element.TxHash)
+		if element.Status == 0 {
+			unconfirmedTxs += 1
+			continue
+		}
+		if element.TransferType == 1 {
+			totalReceived += element.Values
+		} else if element.TransferType == -1 {
+			totalSent += element.Values
+		}
+	}
 	response = Address{
 		Page:               1,
 		TotalPages:         1,
-		ItemsOnPage:        1,
+		ItemsOnPage:        cont,
 		Address:            address,
 		Balance:            nulsInfo.Data.Available,
-		TotalReceived:      "",
-		TotalSent:          "",
+		TotalReceived:      strconv.Itoa(totalReceived),
+		TotalSent:          strconv.Itoa(totalSent),
 		UnconfirmedBalance: nulsInfo.Data.Freeze,
-		UnconfirmedTxs:     1,
-		Txs:                1,
-		Txids:              []string{},
+		UnconfirmedTxs:     unconfirmedTxs,
+		Txs:                len(txIds),
+		Txids:              txIds,
 	}
 	return
+}
+
+func handleNulsError(data []byte) (err error) {
+	var nulsError NulsError
+	err = json.Unmarshal(data, &nulsError)
+	if err != nil {
+		return err
+	}
+	return errors.New(nulsError.Data.Message)
 }
 
 func (b *NulsExplorer) GetXpub(xpub string) (response Xpub, err error) {
-	data, err := b.callWrapper("GET", "xpub/"+xpub+"?details=txs&gap=1000", 2, nil)
-	if err != nil {
-		return response, err
-	}
-	err = json.Unmarshal(data, &response)
-	if err != nil {
-		return response, err
-	}
-	return
+	return response, errors.New("method not available for this coin type")
 }
 
 func (b *NulsExplorer) GetUtxo(xpub string, confirmed bool) (response []Utxo, err error) {
-	var url string
-	if confirmed {
-		url = "utxo/" + xpub + "?confirmed=true&gap=1000"
-	} else {
-		url = "utxo/" + xpub + "?gap=1000"
-	}
-	data, err := b.callWrapper("GET", url, 2, nil)
-	if err != nil {
-		return response, err
-	}
-	err = json.Unmarshal(data, &response)
-	if err != nil {
-		return response, err
-	}
-	return
+	return response, errors.New("method not available for this coin type")
+
 }
 
 func (b *NulsExplorer) GetTx(txid string) (response Tx, err error) {
-	data, err := b.callWrapper("GET", "tx/"+txid, 2, nil)
+	var tx NulsTxResponse
+	data, err := b.callWrapper("GET", "/api/tx/"+txid, 1, nil)
 	if err != nil {
 		return response, err
 	}
-	err = json.Unmarshal(data, &response)
+	err = json.Unmarshal(data, &tx)
 	if err != nil {
 		return response, err
+	}
+	if !tx.Success {
+		return response, handleNulsError(data)
+	}
+	var Vins []TxVin
+	var Vouts []TxVout
+
+	for _, fromTx := range tx.Data.From {
+		vin := TxVin{
+			Addresses: []string{fromTx.Address},
+			Hex:       fromTx.Nonce,
+			N:         fromTx.AssetsId,
+			Sequence:  fromTx.AssetsChainId,
+			Txid:      tx.Data.Hash,
+			Value:     fromTx.Amount,
+			Vout:      len(tx.Data.To),
+		}
+		Vins = append(Vins, vin)
+	}
+	for _, toTx := range tx.Data.To {
+		vout := TxVout{
+			Value:     toTx.Amount,
+			N:         toTx.AssetsId,
+			Spent:     true,
+			Hex:       tx.Data.Hash,
+			Addresses: []string{toTx.Address},
+		}
+		Vouts = append(Vouts, vout)
+	}
+	value := 0
+	inputValue, _ := strconv.Atoi(tx.Data.From[0].Amount)
+	outputValue, _ := strconv.Atoi(tx.Data.To[0].Amount)
+	if len(tx.Data.To) > 0 {
+		value = outputValue
+	} else {
+		value = inputValue
+	}
+	response = Tx{
+		BlockHash:     tx.Data.BlockHash,
+		BlockHeight:   tx.Data.BlockHeight,
+		BlockTime:     tx.Data.Timestamp,
+		Confirmations: 1,
+		Fees:          strconv.Itoa(inputValue - outputValue),
+		Hex:           tx.Data.TxDataHex,
+		LockTime:      tx.Data.To[0].LockTime,
+		Txid:          tx.Data.Hash,
+		Value:         strconv.Itoa(value),
+		ValueIn:       tx.Data.From[0].Amount,
+		Version:       tx.Data.Type,
+		Vin:           Vins,
+		Vout:          Vouts,
 	}
 	return
 }
 
 func (b *NulsExplorer) GetFee(nBlocks string) (response Fee, err error) {
-	data, err := b.callWrapper("GET", "estimatefee/"+nBlocks, 1, nil)
+	body := &NulsFeeRequest{
+		AddressCount: 1,
+		FromLength:   1,
+		ToLength:     1,
+		Remark:       nil,
+		Price:        nil,
+	}
+	buf := new(bytes.Buffer)
+	_ = json.NewEncoder(buf).Encode(body)
+	var nulsFee NulsCalculatedFee
+	nulsdata, err := b.callWrapper("POST", "/api/accountledger/calcTransferTxFee", 1, buf)
 	if err != nil {
 		return response, err
 	}
-	err = json.Unmarshal(data, &response)
+	err = json.Unmarshal(nulsdata, &nulsFee)
 	if err != nil {
 		return response, err
+	}
+	if !nulsFee.Success {
+		return response, handleNulsError(nulsdata)
+	}
+	response = Fee{
+		Result: nulsFee.Data.Value,
 	}
 	return
 }
@@ -169,76 +382,61 @@ func (b *NulsExplorer) GetFee(nBlocks string) (response Fee, err error) {
 // Methods for Ethereum
 
 func (b *NulsExplorer) GetEthAddress(addr string) (response EthAddr, err error) {
-	data, err := b.callWrapper("GET", "address/"+addr+"?details=txs", 2, nil)
-	if err != nil {
-		return response, err
-	}
-	err = json.Unmarshal(data, &response)
-	if err != nil {
-		return response, err
-	}
-	return
+	return response, errors.New("method not available for this coin type")
+
 }
 
 func (b *NulsExplorer) GetTxEth(txid string) (response EthTx, err error) {
-	data, err := b.callWrapper("GET", "tx/"+txid, 2, nil)
-	if err != nil {
-		return response, err
-	}
-	err = json.Unmarshal(data, &response)
-	if err != nil {
-		return response, err
-	}
-	return
+	return response, errors.New("method not available for this coin type")
 }
 
 // Methods for all coins
 
 func (b *NulsExplorer) SendTx(rawTx string) (response string, err error) {
-	data, err := b.callWrapper("POST", "sendtx/", 2, strings.NewReader(rawTx))
+	body := &BroadcastRequest{
+		TxHex: rawTx,
+	}
+	buf := new(bytes.Buffer)
+	_ = json.NewEncoder(buf).Encode(body)
+	var nulsRes NulsBroadcast
+	nulsdata, err := b.callWrapper("POST", "/api/accountledger/transaction/broadcast", 1, buf)
 	if err != nil {
 		return response, err
 	}
-	var blockbookAnswer SendTx
-	err = json.Unmarshal(data, &blockbookAnswer)
+	err = json.Unmarshal(nulsdata, &nulsRes)
 	if err != nil {
 		return response, err
 	}
-	if blockbookAnswer.Result != "" {
-		return blockbookAnswer.Result, nil
-	} else {
-		return "", errors.New(blockbookAnswer.Error)
+	if !nulsRes.Success {
+		return response, handleNulsError(nulsdata)
 	}
+	return nulsRes.Data.Hash, nil
+
 }
 
 func (b *NulsExplorer) SendTxWithMessage(rawTx string) (string, error, string) {
-	data, err := b.callWrapper("POST", "sendtx/", 2, strings.NewReader(rawTx))
-	if err != nil {
-		return "", err, string(data)
-	}
-	var blockbookAnswer SendTx
-	err = json.Unmarshal(data, &blockbookAnswer)
-	if err != nil {
-		return "", err, string(data)
-	}
-	if blockbookAnswer.Result != "" {
-		return blockbookAnswer.Result, nil, string(data)
-	} else {
-		return "", errors.New(blockbookAnswer.Error), string(data)
-	}
+	return "", errors.New("method not available for this coin type"), ""
 }
 
 func (b *NulsExplorer) callWrapper(method string, route string, version int, body io.Reader) (response []byte, err error) {
-	fmt.Println(b.Url + route)
+	var finalRoute string
+	switch version {
+	case 1:
+		finalRoute = b.Url + route
+	case 2:
+		finalRoute = b.rpcUrl
+	default:
+		finalRoute = b.Url + route
+	}
 	client := http.Client{
 		Timeout: 60 * time.Second,
 	}
 	var request *http.Request
 	switch method {
 	case "GET":
-		request, err = http.NewRequest(method, b.Url+route, body)
+		request, err = http.NewRequest(method, finalRoute, body)
 	case "POST":
-		request, err = http.NewRequest(method, b.Url+route, body)
+		request, err = http.NewRequest(method, finalRoute, body)
 	}
 	if err != nil {
 		return nil, err
