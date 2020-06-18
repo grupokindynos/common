@@ -1,4 +1,4 @@
-package blockbook
+package explorer
 
 import (
 	"encoding/json"

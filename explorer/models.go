@@ -1,4 +1,4 @@
-package blockbook
+package explorer
 
 type Status struct {
 	Backend struct {
