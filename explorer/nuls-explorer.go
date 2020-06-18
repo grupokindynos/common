@@ -415,7 +415,8 @@ func (b *NulsExplorer) SendTx(rawTx string) (response string, err error) {
 }
 
 func (b *NulsExplorer) SendTxWithMessage(rawTx string) (string, error, string) {
-	return "", errors.New("method not available for this coin type"), ""
+	txid, err := b.SendTx(rawTx)
+	return txid, err, ""
 }
 
 func (b *NulsExplorer) callWrapper(method string, route string, version int, body io.Reader) (response []byte, err error) {
