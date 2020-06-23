@@ -36,7 +36,7 @@ var Idx = Coin{
 		},
 	},
 	Rates: RatesSource{
-		Exchange:         "",
+		Exchange:         "mock",
 		FallBackExchange: "",
 	},
 	BlockchainInfo: BlockchainInfo{
