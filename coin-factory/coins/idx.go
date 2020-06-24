@@ -20,7 +20,7 @@ var Idx = Coin{
 		Protocol:    "idx",
 		TxVersion:   1,
 		TxBuilder:   "bitcoinjs",
-		HDIndex:     860,
+		HDIndex:     0,
 		Networks: map[string]CoinNetworkInfo{
 			"P2PKH": {
 				MessagePrefix: "\x18IDX Signed Message:\n",
@@ -52,7 +52,7 @@ var Idx = Coin{
 		PrivateKeyID:      []byte{210},
 		HDPrivateKeyID:    [4]byte{0x04, 0x88, 0xAD, 0xE4},
 		HDPublicKeyID:     [4]byte{0x04, 0x88, 0xB2, 0x1E},
-		HDCoinType:        860,
+		HDCoinType:        0,
 		Base58CksumHasher: base58.Sha256D,
 	},
 }
