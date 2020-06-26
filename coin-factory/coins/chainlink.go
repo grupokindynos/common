@@ -19,6 +19,6 @@ var Chainlink = Coin{
 	},
 	Rates: RatesSource{
 		Exchange:         "binance",
-		FallBackExchange: "",
+		FallBackExchange: "bittrex",
 	},
 }
