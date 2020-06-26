@@ -39,7 +39,7 @@ var Ethereum = Coin{
 	},
 	Rates: RatesSource{
 		Exchange:         "binance",
-		FallBackExchange: "",
+		FallBackExchange: "southxchange",
 	},
 	BlockchainInfo: BlockchainInfo{
 		BlockTime:        1,

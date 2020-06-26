@@ -19,6 +19,6 @@ var TrueUSD = Coin{
 	},
 	Rates: RatesSource{
 		Exchange:         "binance",
-		FallBackExchange: "",
+		FallBackExchange: "southxchange",
 	},
 }

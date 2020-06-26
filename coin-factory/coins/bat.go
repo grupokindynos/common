@@ -19,6 +19,6 @@ var BAT = Coin{
 	},
 	Rates: RatesSource{
 		Exchange:         "binance",
-		FallBackExchange: "",
+		FallBackExchange: "southxchange",
 	},
 }

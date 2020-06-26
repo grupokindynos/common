@@ -19,6 +19,6 @@ var USDCoin = Coin{
 	},
 	Rates: RatesSource{
 		Exchange:         "binance",
-		FallBackExchange: "",
+		FallBackExchange: "southxchange",
 	},
 }
