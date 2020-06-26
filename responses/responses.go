@@ -18,6 +18,8 @@ func GlobalResponseError(result interface{}, err error, c *gin.Context) *gin.Con
 			c.JSON(200, gin.H{"message": "shift minimum amount not met", "error": err.Error(), "status": 411})
 		case commonErrors.ErrorShiftDailyLimit:
 			c.JSON(200, gin.H{"message": "shift daily limit exceeded", "error": err.Error(), "status": 412})
+		case commonErrors.ErrorNotSupportedAmount:
+			c.JSON(200, gin.H{"message": "amount payed with this coin is not supported", "error": err.Error(), "status": 413})
 		case commonErrors.ErrorNotFound:
 			c.JSON(404, gin.H{"message": "element not found in database", "error": err.Error(), "status": 1})
 		case commonErrors.ErrorNoUserInformation:
