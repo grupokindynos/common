@@ -37,7 +37,7 @@ var Dash = Coin{
 	},
 	Rates: RatesSource{
 		Exchange:         "binance",
-		FallBackExchange: "bittrex",
+		FallBackExchange: "southxchange",
 	},
 	BlockchainInfo: BlockchainInfo{
 		ExternalSource:   "dash2.trezor.io",

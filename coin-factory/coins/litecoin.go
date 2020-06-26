@@ -48,7 +48,7 @@ var Litecoin = Coin{
 	},
 	Rates: RatesSource{
 		Exchange:         "binance",
-		FallBackExchange: "bittrex",
+		FallBackExchange: "southxchange",
 	},
 	BlockchainInfo: BlockchainInfo{
 		ExternalSource:   "ltc2.trezor.io",

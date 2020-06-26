@@ -49,7 +49,7 @@ var Bitcoin = Coin{
 	},
 	Rates: RatesSource{
 		Exchange:         "binance",
-		FallBackExchange: "bitso",
+		FallBackExchange: "southxchange",
 	},
 	BlockchainInfo: BlockchainInfo{
 		BlockTime:        10,
