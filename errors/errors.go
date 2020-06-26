@@ -33,4 +33,7 @@ var (
 	ErrorObtainingRates            = errors.New("rates for your conversion could not be calculated")
 	ErrorFillingPaymentInformation = errors.New("payment information could not be filled")
 	ErrorShiftNotFound             = errors.New("we could not match the provided id with our registry. likely due to the shift time expiring")
+
+	//Ladon
+	ErrorNotSupportedAmount = errors.New("the amount you're trying to pay is not supported with this coin. Please try with a different currency")
 )
