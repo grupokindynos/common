@@ -18,7 +18,7 @@ var TrueUSD = Coin{
 		Blockbook:    "https://eth2.trezor.io",
 	},
 	Rates: RatesSource{
-		Exchange:         "binance",
-		FallBackExchange: "southxchange",
+		Exchange:         "southxchange",
+		FallBackExchange: "binance",
 	},
 }

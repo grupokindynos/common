@@ -18,7 +18,7 @@ var USDCoin = Coin{
 		Blockbook:    "https://eth2.trezor.io",
 	},
 	Rates: RatesSource{
-		Exchange:         "binance",
-		FallBackExchange: "southxchange",
+		Exchange:         "crex24",
+		FallBackExchange: "binance",
 	},
 }
