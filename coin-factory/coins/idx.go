@@ -16,7 +16,7 @@ var Idx = Coin{
 		Masternodes: true,
 		Token:       false,
 		StableCoin:  false,
-		Blockbook:   "",
+		Blockbook:   "https://idx.polispay.com",
 		Protocol:    "idx",
 		TxVersion:   1,
 		TxBuilder:   "bitcoinjs",
@@ -40,7 +40,7 @@ var Idx = Coin{
 		FallBackExchange: "",
 	},
 	BlockchainInfo: BlockchainInfo{
-		ExternalSource:   "",
+		ExternalSource:   "idx.polispay.com",
 		BlockTime:        1,
 		MinConfirmations: 1,
 	},
