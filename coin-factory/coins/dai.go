@@ -18,7 +18,7 @@ var DAI = Coin{
 		Blockbook:    "https://eth2.trezor.io",
 	},
 	Rates: RatesSource{
-		Exchange:         "binance",
-		FallBackExchange: "southxchange",
+		Exchange:         "hitbtc",
+		FallBackExchange: "bittrex",
 	},
 }
