@@ -179,6 +179,7 @@ type LightShift struct {
 type DirectionalTrade struct {
 	Conversions    []Trade            `firestore:"conversions" json:"conversions"`
 	Status         ShiftV2TradeStatus `firestore:"status" json:"status"`
+	TargetCoin	   string 			  `firestore:"target_coin" json:"target_coin"`
 	Exchange       string             `firestore:"exchange" json:"exchange"`
 	WithdrawAmount float64            `firestore:"withdraw" json:"withdraw"`
 }
