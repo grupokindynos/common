@@ -51,6 +51,7 @@ const (
 	VoucherStatusV2Error
 	VoucherStatusV2NeedsRefund
 	VoucherStatusV2WaitingRefundTxId
+	VoucherStatusV2BitcouPayed
 )
 
 var (
