@@ -87,6 +87,17 @@ type TxVout struct {
 	Value     string   `json:"value"`
 }
 
+type TokenTransfer struct {
+	Type     string `json:"type"`
+	From     string `json:"from"`
+	To       string `json:"to"`
+	Token    string `json:"token"`
+	Name     string `json:"name"`
+	Symbol   string `json:"symbol"`
+	Decimals int    `json:"decimals"`
+	Value    string `json:"value"`
+}
+
 type Tx struct {
 	BlockHash     string   `json:"blockHash"`
 	BlockHeight   int      `json:"blockHeight"`
@@ -101,6 +112,7 @@ type Tx struct {
 	Version       int      `json:"version"`
 	Vin           []TxVin  `json:"vin"`
 	Vout          []TxVout `json:"vout"`
+	TokenTransfers []TokenTransfer `json:"tokenTransfers"`
 }
 
 type Fee struct {

@@ -51,6 +51,7 @@ const (
 	VoucherStatusV2Error
 	VoucherStatusV2NeedsRefund
 	VoucherStatusV2WaitingRefundTxId
+	VoucherStatusV2BitcouPayed
 )
 
 var (
@@ -63,6 +64,7 @@ var (
 		5: "ERROR",
 		6: "NEEDS_REFUND",
 		7: "WAITING_REFUND_TXID",
+		8: "BITCOU_PAYED",
 	}
 )
 
