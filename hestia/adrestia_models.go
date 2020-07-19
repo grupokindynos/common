@@ -146,3 +146,26 @@ func (t *Trade) GetTradingPair() (string, string) {
 		return t.FromCoin, t.ToCoin
 	}
 }
+
+// Exchange Factory
+type ServiceAccount int
+
+const (
+	VouchersAccount ServiceAccount = iota
+	ShiftAccount
+)
+
+var (
+	ServiceAccountStr = map[ServiceAccount]string {
+		0: "VOUCHERS",
+		1: "SHIFT",
+	}
+)
+
+func GetServiceAccountString(service ServiceAccount) string {
+	value, ok := ServiceAccountStr[service]
+	if !ok {
+		return ""
+	}
+	return value
+}
