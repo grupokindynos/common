@@ -190,12 +190,12 @@ func (b *NulsExplorer) GetAddress(address string) (response Address, err error) 
 	if !nulsInfo.Success {
 		return response, handleNulsError(nulsdata)
 	}
-	// get the txs
+	// get the tx history
 	var rpcresponse RpcTxResponse
 	body2 := &RpcRequest{
 		Jsonrpc: "2.0",
 		Method:  "getAcctTxs",
-		Params:  []interface{}{1, 1, 1, address, 0, 0, 0},
+		Params:  []interface{}{1, address, 0, 1, 1, -1, -1, 1, 1},
 		Id:      1234,
 	}
 	buf = new(bytes.Buffer)
@@ -221,7 +221,7 @@ func (b *NulsExplorer) GetAddress(address string) (response Address, err error) 
 		body2 = &RpcRequest{
 			Jsonrpc: "2.0",
 			Method:  "getAcctTxs",
-			Params:  []interface{}{1, pNumber, pSize, address, 0, 0, 0},
+			Params:  []interface{}{1, address, 0, 1, 1, -1, -1, pNumber, pSize},
 			Id:      1234,
 		}
 		buf = new(bytes.Buffer)
