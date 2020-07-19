@@ -1,5 +1,7 @@
 package hestia
 
+import "errors"
+
 // Represents either a withdrawal from a exchange to our hot wallet
 // or a deposit from our hot wallet to a exchange
 type SimpleTx struct {
@@ -168,4 +170,14 @@ func GetServiceAccountString(service ServiceAccount) string {
 		return ""
 	}
 	return value
+}
+
+func GetServiceAccountByString(service string) (ServiceAccount, error) {
+	if service == "ladon" {
+		return VouchersAccount, nil
+	} else if service == "tyche" {
+		return ShiftAccount, nil
+	} else {
+		return -1, errors.New("service not found")
+	}
 }
