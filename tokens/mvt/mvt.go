@@ -100,19 +100,19 @@ func VerifyMVTToken(tokenHeader string, tokenBody string, servicePubKey string, 
 }
 
 // VerifyRequest is a wrapper around VerifyMRTToken to get information correctly from the GIN context
-func VerifyRequest(c *gin.Context) (payload []byte, err error) {
+func VerifyRequest(c *gin.Context) (payload []byte, serviceStr string, err error) {
 	headerSignature := c.GetHeader("service")
 	if headerSignature == "" {
-		return nil, errors.ErrorNoHeaderSignature
+		return nil, "", errors.ErrorNoHeaderSignature
 	}
 	decodedHeader, err := jwt.DecodeJWSNoVerify(headerSignature)
 	if err != nil {
-		return nil, errors.ErrorSignatureParse
+		return nil, "", errors.ErrorSignatureParse
 	}
-	var serviceStr string
+
 	err = json.Unmarshal(decodedHeader, &serviceStr)
 	if err != nil {
-		return nil, errors.ErrorUnmarshal
+		return nil, "", errors.ErrorUnmarshal
 	}
 	// Check which service the request is announcing
 	var pubKey string
@@ -133,12 +133,12 @@ func VerifyRequest(c *gin.Context) (payload []byte, err error) {
 	if len(reqBody) > 0 {
 		err := json.Unmarshal(reqBody, &reqToken)
 		if err != nil {
-			return nil, errors.ErrorUnmarshal
+			return nil, serviceStr, errors.ErrorUnmarshal
 		}
 	}
 	valid, payload := VerifyMVTToken(headerSignature, reqToken, pubKey, os.Getenv("MASTER_PASSWORD"))
 	if !valid {
-		return nil, errors.ErrorInvalidPassword
+		return nil, serviceStr, errors.ErrorInvalidPassword
 	}
-	return payload, nil
+	return payload, serviceStr, nil
 }
