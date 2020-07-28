@@ -126,7 +126,7 @@ func VerifyRequest(c *gin.Context) (payload []byte, serviceStr string, err error
 	case "hestia":
 		pubKey = os.Getenv("HESTIA_PUBLIC_KEY")
 	default:
-		return nil, errors.ErrorWrongMessage
+		return nil, "", errors.ErrorWrongMessage
 	}
 	reqBody, _ := ioutil.ReadAll(c.Request.Body)
 	var reqToken string
