@@ -44,7 +44,7 @@ type BalanceLimits struct {
 
 type Payment struct {
 	Address       string `firestore:"address" json:"address"`
-	Amount        string  `firestore:"amount" json:"amount"`
+	Amount        int64  `firestore:"amount" json:"amount"`
 	Coin          string `firestore:"coin" json:"coin"`
 	Txid          string `firestore:"txid" json:"txid"`
 	Confirmations int32  `firestore:"confirmations" json:"confirmations"`
@@ -52,8 +52,8 @@ type Payment struct {
 
 type PaymentWithFee struct {
 	Address       string `firestore:"address" json:"address"`
-	Amount        string  `firestore:"amount" json:"amount"`
-	Fee           string  `firestore:"amount" json:"fee"`
+	Amount        int64  `firestore:"amount" json:"amount"`
+	Fee           int64  `firestore:"amount" json:"fee"`
 	Usable        int64  `firestore:"amount" json:"usable"`
 	Coin          string `firestore:"coin" json:"coin"`
 	Txid          string `firestore:"txid" json:"txid"`
@@ -64,7 +64,7 @@ type LightPayment struct {
 	Address string `firestore:"address" json:"address"`
 	Coin    string `firestore:"coin" json:"coin"`
 	Txid    string `firestore:"txid" json:"txid"`
-	Amount  string  `firestore:"amount" json:"amount"`
+	Amount  int64  `firestore:"amount" json:"amount"`
 }
 
 type Properties struct {
@@ -135,7 +135,7 @@ type Shift struct {
 	FeePayment     Payment `firestore:"fee_payment" json:"fee_payment"`
 	RefundAddr     string  `firestore:"refund_addr" json:"refund_addr"`
 	ToCoin         string  `firestore:"to_coin" json:"to_coin"`
-	ToAmount       string   `firestore:"to_amount" json:"to_amount"`
+	ToAmount       int64   `firestore:"to_amount" json:"to_amount"`
 	ToAddress      string  `firestore:"to_address" json:"to_address"`
 	PaymentProof   string  `firestore:"payment_proof" json:"payment_proof"`
 	ProofTimestamp int64   `firestore:"proof_timestamp" json:"proof_timestamp"`
@@ -152,13 +152,13 @@ type ShiftV2 struct {
 	Payment            PaymentWithFee   `firestore:"payment" json:"payment"`
 	RefundAddr         string           `firestore:"refund_addr" json:"refund_addr"`
 	ToCoin             string           `firestore:"to_coin" json:"to_coin"`
-	ToAmount           string            `firestore:"to_amount" json:"to_amount"`
-	UserReceivedAmount string          `firestore:"user_received_amount" json:"user_received_amount"`
+	ToAmount           int64            `firestore:"to_amount" json:"to_amount"`
+	UserReceivedAmount float64          `firestore:"user_received_amount" json:"user_received_amount"`
 	ToAddress          string           `firestore:"to_address" json:"to_address"`
 	PaymentProof       string           `firestore:"payment_proof" json:"payment_proof"`
 	ProofTimestamp     int64            `firestore:"proof_timestamp" json:"proof_timestamp"`
 	Message            string           `firestore:"message" json:"message"`
-	OriginalUsdRate    string          `firestore:"original_rate" json:"original_rate"`
+	OriginalUsdRate    float64          `firestore:"original_rate" json:"original_rate"`
 }
 
 type LightShift struct {
@@ -169,8 +169,8 @@ type LightShift struct {
 	Payment            LightPayment `firestore:"payment" json:"payment"`
 	RefundAddr         string       `firestore:"refund_addr" json:"refund_addr"`
 	ToCoin             string       `firestore:"to_coin" json:"to_coin"`
-	ToAmount           string        `firestore:"to_amount" json:"to_amount"`
-	UserReceivedAmount string      `firestore:"user_received_amount" json:"user_received_amount"`
+	ToAmount           int64        `firestore:"to_amount" json:"to_amount"`
+	UserReceivedAmount float64      `firestore:"user_received_amount" json:"user_received_amount"`
 	ToAddress          string       `firestore:"to_address" json:"to_address"`
 	PaymentProof       string       `firestore:"payment_proof" json:"payment_proof"`
 	ProofTimestamp     int64        `firestore:"proof_timestamp" json:"proof_timestamp"`
@@ -181,7 +181,7 @@ type DirectionalTrade struct {
 	Status         ShiftV2TradeStatus `firestore:"status" json:"status"`
 	TargetCoin	   string 			  `firestore:"target_coin" json:"target_coin"`
 	Exchange       string             `firestore:"exchange" json:"exchange"`
-	WithdrawAmount string            `firestore:"withdraw" json:"withdraw"`
+	WithdrawAmount float64            `firestore:"withdraw" json:"withdraw"`
 }
 
 type User struct {
