@@ -297,7 +297,7 @@ type ExchangeInfo struct {
 
 type ExchangeOrderInfo struct {
 	Status         ExchangeOrderStatus `json:"status"`
-	ReceivedAmount string             `json:"received_amount"`
+	ReceivedAmount float64             `json:"received_amount"`
 }
 
 type Response struct {
