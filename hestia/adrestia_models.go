@@ -25,8 +25,8 @@ type Balancer struct {
 
 type Trade struct {
 	OrderId        string              `firestore:"order_id" json:"order_id"`
-	Amount         float64             `firestore:"amount" json:"amount"`
-	ReceivedAmount float64             `firestore:"received_amount" json:"received_amount"`
+	Amount         string             `firestore:"amount" json:"amount"`
+	ReceivedAmount string             `firestore:"received_amount" json:"received_amount"`
 	FromCoin       string              `firestore:"from_coin" json:"from_coin"`
 	ToCoin         string              `firestore:"to_coin" json:"to_coin"`
 	Symbol         string              `firestore:"symbol" json:"symbol"`
