@@ -54,7 +54,7 @@ type PaymentWithFee struct {
 	Address       string `firestore:"address" json:"address"`
 	Amount        string  `firestore:"amount" json:"amount"`
 	Fee           string  `firestore:"amount" json:"fee"`
-	Usable        int64  `firestore:"amount" json:"usable"`
+	Usable        string  `firestore:"amount" json:"usable"`
 	Coin          string `firestore:"coin" json:"coin"`
 	Txid          string `firestore:"txid" json:"txid"`
 	Confirmations int32  `firestore:"confirmations" json:"confirmations"`
