@@ -251,6 +251,7 @@ type VoucherV2 struct {
 	ShippingMethod VoucherShippingMethod `firestore:"shipping_method" json:"shipping_method"`
 	Message        string                `firestore:"message" json:"message"`
 	Valid          int32                 `firestore:"valid" json:"valid"`
+	Country        string 				 `firestore:"country" json:"country"`
 }
 
 type LightVoucher struct {
