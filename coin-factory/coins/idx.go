@@ -36,8 +36,8 @@ var Idx = Coin{
 		},
 	},
 	Rates: RatesSource{
-		Exchange:         "mock",
-		FallBackExchange: "",
+		Exchange:         "stex",
+		FallBackExchange: "crex24",
 	},
 	BlockchainInfo: BlockchainInfo{
 		ExternalSource:   "idx.polispay.com",
