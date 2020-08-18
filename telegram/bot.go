@@ -48,3 +48,15 @@ func (tb *TelegramBot) SendError(message string) {
 	errorMessage := "**********ERROR**********\n" + message + "\n*************************"
 	tb.SendMessage(errorMessage)
 }
+
+func (tb *TelegramBot) Debug(val bool) {
+	tb.telegramBot.Debug = val
+}
+
+func (tb *TelegramBot) GetUpdates() (tgbotapi.UpdatesChannel, error){
+	u := tgbotapi.NewUpdate(0)
+	u.Timeout = 60
+
+	return tb.telegramBot.GetUpdatesChan(u)
+}
+
