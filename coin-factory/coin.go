@@ -5,9 +5,9 @@ import (
 	"os"
 	"strings"
 
-	"github.com/eabz/btcutil/chaincfg"
 	"github.com/grupokindynos/common/coin-factory/coins"
 	"github.com/martinboehm/btcd/wire"
+	"github.com/martinboehm/btcutil/chaincfg"
 )
 
 // For bitcoin-like coins we need to asing a network magic to register addresses
