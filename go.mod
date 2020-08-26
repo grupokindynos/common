@@ -3,8 +3,9 @@ module github.com/grupokindynos/common
 go 1.13
 
 require (
+	github.com/Groestlcoin/go-groestl-hash v0.0.0-20181012171753-790653ac190c // indirect
 	github.com/bwmarrin/discordgo v0.19.0
-	github.com/eabz/btcutil v0.0.0-20200121225113-5a78fc2600d7
+	github.com/dchest/blake256 v1.1.0 // indirect
 	github.com/gin-gonic/gin v1.4.0
 	github.com/go-telegram-bot-api/telegram-bot-api v4.6.4+incompatible
 	github.com/golang/mock v1.3.1
@@ -14,7 +15,8 @@ require (
 	github.com/joho/godotenv v1.3.0
 	github.com/json-iterator/go v1.1.7 // indirect
 	github.com/kr/pretty v0.1.0 // indirect
-	github.com/martinboehm/btcd v0.0.0-20190104121910-8e7c0427fee5
+	github.com/martinboehm/btcd v0.0.0-20200313230603-83af86142d93
+	github.com/martinboehm/btcutil v0.0.0-20200229134221-d7706467ae8f
 	github.com/mattn/go-isatty v0.0.8 // indirect
 	github.com/sethvargo/go-password v0.1.2
 	github.com/shopspring/decimal v1.2.0
@@ -26,4 +28,5 @@ require (
 	golang.org/x/sys v0.0.0-20191029155521-f43be2a4598c // indirect
 	gopkg.in/check.v1 v1.0.0-20180628173108-788fd7840127 // indirect
 	gopkg.in/square/go-jose.v2 v2.3.1
+	gopkg.in/yaml.v2 v2.2.4 // indirect
 )
