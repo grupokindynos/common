@@ -32,6 +32,7 @@ var nets = map[string]wire.BitcoinNet{
 	"CRW":   wire.BitcoinNet(18),
 	"DAPS":  wire.BitcoinNet(19),
 	"IDX":   wire.BitcoinNet(20),
+	"XBTX":  wire.BitcoinNet(21),
 }
 
 // Coins refers to the coins that are being used on the API instance
@@ -65,6 +66,7 @@ var Coins = map[string]*coins.Coin{
 	"NULS":  &coins.Nuls,
 	"IDX":   &coins.Idx,
 	"DAI":   &coins.DAI,
+	"XBTX":  &coins.BitcoinSubsidium,
 }
 
 // GetCoin is the safe way to check if a coin exists and retrieve the coin data
