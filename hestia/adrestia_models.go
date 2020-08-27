@@ -1,5 +1,7 @@
 package hestia
 
+import "log"
+
 // Represents either a withdrawal from a exchange to our hot wallet
 // or a deposit from our hot wallet to a exchange
 type SimpleTx struct {
@@ -156,7 +158,7 @@ const (
 )
 
 var (
-	ServiceAccountStr = map[ServiceAccount]string {
+	ServiceAccountStr = map[ServiceAccount]string{
 		0: "VOUCHERS",
 		1: "SHIFT",
 	}
@@ -172,8 +174,9 @@ func GetServiceAccountString(service ServiceAccount) string {
 
 func GetServiceAccountByString(service string) ServiceAccount {
 	if service == "tyche" {
+		log.Println("using tyche account")
 		return ShiftAccount
 	}
-
+	log.Println("using ladon account")
 	return VouchersAccount
 }
