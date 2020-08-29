@@ -5,9 +5,9 @@ import (
 	"os"
 	"strings"
 
-	"github.com/eabz/btcutil/chaincfg"
 	"github.com/grupokindynos/common/coin-factory/coins"
 	"github.com/martinboehm/btcd/wire"
+	"github.com/martinboehm/btcutil/chaincfg"
 )
 
 // For bitcoin-like coins we need to asing a network magic to register addresses
@@ -32,6 +32,7 @@ var nets = map[string]wire.BitcoinNet{
 	"CRW":   wire.BitcoinNet(18),
 	"DAPS":  wire.BitcoinNet(19),
 	"IDX":   wire.BitcoinNet(20),
+	"XBTX":  wire.BitcoinNet(21),
 }
 
 // Coins refers to the coins that are being used on the API instance
@@ -65,6 +66,7 @@ var Coins = map[string]*coins.Coin{
 	"NULS":  &coins.Nuls,
 	"IDX":   &coins.Idx,
 	"DAI":   &coins.DAI,
+	"XBTX":  &coins.BitcoinSubsidium,
 }
 
 // GetCoin is the safe way to check if a coin exists and retrieve the coin data
