@@ -1,6 +1,6 @@
 package coins
 
-import "github.com/eabz/btcutil/chaincfg"
+import "github.com/martinboehm/btcutil/chaincfg"
 
 type CoinNetWorkBip32Info struct {
 	Public  int `json:"public"`
@@ -39,8 +39,8 @@ type CoinInfo struct {
 
 // Coin is the basic coin structure to get the correct properties for each coin.
 type Coin struct {
-	Info           CoinInfo `json:"info"`
-	Rates          RatesSource
+	Info           CoinInfo    `json:"info"`
+	Rates          RatesSource `json:"rates_source"`
 	BlockchainInfo BlockchainInfo
 	Mnemonic       string
 	NetParams      *chaincfg.Params
@@ -48,8 +48,8 @@ type Coin struct {
 
 // RatesSource is the prefered source of exchange for rates
 type RatesSource struct {
-	Exchange         string // The main exchange used to get rate information.
-	FallBackExchange string // The fallback exchange to get if first fail.
+	Exchange         string `json:"exchange"`          // The main exchange used to get rate information.
+	FallBackExchange string `json:"fallback_exchange"` // The fallback exchange to get if first fails.
 }
 
 // BlockchainInfo is a model to get information for a particular blockchain

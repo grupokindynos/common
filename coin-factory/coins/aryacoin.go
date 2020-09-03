@@ -1,8 +1,8 @@
 package coins
 
 import (
-	"github.com/eabz/btcutil/base58"
-	"github.com/eabz/btcutil/chaincfg"
+	"github.com/martinboehm/btcutil/base58"
+	"github.com/martinboehm/btcutil/chaincfg"
 )
 
 // AryaCoin coinfactory information
