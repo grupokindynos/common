@@ -1,5 +1,22 @@
 package hestia
 
+type HestiaDB struct {
+	Balances            []CoinBalances  `json:"balances"`
+	Cards               []Card          `json:"cards"`
+	Coins               []Coin          `json:"coins"`
+	Config              Config          `json:"config"`
+	Deposits            []Deposit       `json:"deposits"`
+	Exchanges           []ExchangeInfo  `json:"exchanges"`
+	Orders              []Order         `json:"orders"`
+	Shifts              []Shift         `json:"shifts"`
+	Users               []User          `json:"users"`
+	Vouchers            []Voucher       `json:"vouchers"`
+	AdrestiaBalancer    []Balancer      `json:"adrestia_balancer"`
+	AdrestiaDeposits    []SimpleTx      `json:"adrestia_deposits"`
+	AdrestiaOrders      []BalancerOrder `json:"adrestia_orders"`
+	AdrestiaWithdrawals []SimpleTx      `json:"adrestia_withdrawals"`
+}
+
 type Card struct {
 	Address    string `firestore:"address" json:"address"`
 	CardCode   string `firestore:"card_code" json:"card_code"`
