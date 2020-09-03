@@ -176,6 +176,7 @@ type ShiftV2 struct {
 	ProofTimestamp     int64            `firestore:"proof_timestamp" json:"proof_timestamp"`
 	Message            string           `firestore:"message" json:"message"`
 	OriginalUsdRate    float64          `firestore:"original_rate" json:"original_rate"`
+	LastUpdated        int64			`firestore:"last_updated" json:"last_updated"`
 }
 
 type LightShift struct {
@@ -269,6 +270,7 @@ type VoucherV2 struct {
 	Message        string                `firestore:"message" json:"message"`
 	Valid          int32                 `firestore:"valid" json:"valid"`
 	Country        string 				 `firestore:"country" json:"country"`
+	LastUpdated	   int64				 `firestore:"last_updated" json:"last_updated"`
 }
 
 type LightVoucher struct {
