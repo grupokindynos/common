@@ -179,6 +179,11 @@ type ShiftV2 struct {
 	LastUpdated        int64			`firestore:"last_updated" json:"last_updated"`
 }
 
+type ShiftHistoryResponse struct {
+	Shifts []LightShift `firestore:"shifts" json:"shifts"`
+	Timestamp int64 	`firestore:"timestamp" json:"timestamp"`
+}
+
 type LightShift struct {
 	ID                 string       `firestore:"id" json:"id"`
 	UID                string       `firestore:"uid" json:"uid"`
