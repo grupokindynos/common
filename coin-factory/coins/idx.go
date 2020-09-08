@@ -42,7 +42,7 @@ var Idx = Coin{
 	BlockchainInfo: BlockchainInfo{
 		ExternalSource:   "idx.polispay.com",
 		BlockTime:        1,
-		MinConfirmations: 1,
+		MinConfirmations: 5,
 	},
 	NetParams: &chaincfg.Params{
 		AddressMagicLen:   1,
