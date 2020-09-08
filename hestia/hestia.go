@@ -72,7 +72,7 @@ func GetCoinsAvailability(productionURL string, adminFbToken string) (string, er
 
 // VerifyToken ask Hestia if a firebase token is valid
 func VerifyToken(productionURL string, service string, masterPassword string, fbToken string, hestiaAuthUser string, hestiaAuthPass string, servicePrivKey string, hestiaPubKey string) (valid bool, uid string, err error) {
-	req, err := mvt.CreateMVTToken("POST", productionURL+"/validate/token", service, masterPassword, fbToken, hestiaAuthUser, hestiaAuthPass, servicePrivKey)
+	req, err := mvt.CreateMVTToken("POST", productionURL+"validate/token", service, masterPassword, fbToken, hestiaAuthUser, hestiaAuthPass, servicePrivKey)
 	client := http.Client{
 		Timeout: time.Second * 5,
 	}
