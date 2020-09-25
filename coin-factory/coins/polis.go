@@ -42,7 +42,7 @@ var Polis = Coin{
 	BlockchainInfo: BlockchainInfo{
 		ExternalSource:   "blockbook.polispay.org",
 		BlockTime:        2,
-		MinConfirmations: 1,
+		MinConfirmations: 3,
 	},
 	NetParams: &chaincfg.Params{
 		AddressMagicLen:   1,
