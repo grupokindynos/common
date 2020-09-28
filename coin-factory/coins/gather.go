@@ -14,7 +14,7 @@ var Gather = Coin{
 		StableCoin:   true,
 		TokenNetwork: "ethereum",
 		Contract:     "0xc3771d47e2ab5a519e2917e61e23078d0c05ed7f",
-		Decimals:     6,
+		Decimals:     18,
 		Blockbook:    "https://eth2.trezor.io",
 	},
 	Rates: RatesSource{
