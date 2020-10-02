@@ -90,16 +90,21 @@ type Properties struct {
 }
 
 type Config struct {
-	Shift    Available `firestore:"shift" json:"shift"`
-	Deposits Available `firestore:"deposits" json:"deposits"`
-	Vouchers Available `firestore:"vouchers" json:"vouchers"`
-	Orders   Available `firestore:"orders" json:"orders"`
-	Adrestia Available `firestore:"adrestia" json:"adrestia"`
+	Shift    Available    `firestore:"shift" json:"shift"`
+	Deposits Available    `firestore:"deposits" json:"deposits"`
+	Vouchers Available    `firestore:"vouchers" json:"vouchers"`
+	Orders   Available    `firestore:"orders" json:"orders"`
+	Adrestia Available    `firestore:"adrestia" json:"adrestia"`
+	Params   CustomParams `firestore:"params" json:"params"`
 }
 
 type Available struct {
 	Service   bool `firestore:"service" json:"service"`
 	Processor bool `firestore:"processor" json:"processor"`
+}
+
+type CustomParams struct {
+	EthGasPrice int32 `firestore:"ethGasPrice" json:"ethGasPrice"`
 }
 
 type Order struct {
@@ -176,12 +181,12 @@ type ShiftV2 struct {
 	ProofTimestamp     int64            `firestore:"proof_timestamp" json:"proof_timestamp"`
 	Message            string           `firestore:"message" json:"message"`
 	OriginalUsdRate    float64          `firestore:"original_rate" json:"original_rate"`
-	LastUpdated        int64			`firestore:"last_updated" json:"last_updated"`
+	LastUpdated        int64            `firestore:"last_updated" json:"last_updated"`
 }
 
 type ShiftHistoryResponse struct {
-	Shifts []LightShift `firestore:"shifts" json:"shifts"`
-	Timestamp int64 	`firestore:"timestamp" json:"timestamp"`
+	Shifts    []LightShift `firestore:"shifts" json:"shifts"`
+	Timestamp int64        `firestore:"timestamp" json:"timestamp"`
 }
 
 type LightShift struct {
@@ -202,7 +207,7 @@ type LightShift struct {
 type DirectionalTrade struct {
 	Conversions    []Trade            `firestore:"conversions" json:"conversions"`
 	Status         ShiftV2TradeStatus `firestore:"status" json:"status"`
-	TargetCoin	   string 			  `firestore:"target_coin" json:"target_coin"`
+	TargetCoin     string             `firestore:"target_coin" json:"target_coin"`
 	Exchange       string             `firestore:"exchange" json:"exchange"`
 	WithdrawAmount float64            `firestore:"withdraw" json:"withdraw"`
 }
@@ -274,8 +279,8 @@ type VoucherV2 struct {
 	ShippingMethod VoucherShippingMethod `firestore:"shipping_method" json:"shipping_method"`
 	Message        string                `firestore:"message" json:"message"`
 	Valid          int32                 `firestore:"valid" json:"valid"`
-	Country        string 				 `firestore:"country" json:"country"`
-	LastUpdated	   int64				 `firestore:"last_updated" json:"last_updated"`
+	Country        string                `firestore:"country" json:"country"`
+	LastUpdated    int64                 `firestore:"last_updated" json:"last_updated"`
 }
 
 type LightVoucher struct {
@@ -306,17 +311,17 @@ type Deposit struct {
 }
 
 type ApiKeys struct {
-	PublicKey string `firestore:"public_key" json:"public_key"`
+	PublicKey  string `firestore:"public_key" json:"public_key"`
 	PrivateKey string `firestore:"private_key" json:"private_key"`
 }
 
 type ExchangeInfo struct {
-	Id                  string  `firestore:"id" json:"id"`
-	Name                string  `firestore:"name" json:"name"`
-	StockCurrency       string  `firestore:"stock_currency" json:"stock_currency"`
-	StockExpectedAmount float64 `firestore:"stock_expected_amount" json:"stock_expected_amount"`
-	StockMinimumAmount  float64 `firestore:"stock_minimum_amount" json:"stock_minimum_amount"`
-	StockMaximumAmount  float64 `firestore:"stock_maximum_amount" json:"stock_maximum_amount"`
+	Id                  string    `firestore:"id" json:"id"`
+	Name                string    `firestore:"name" json:"name"`
+	StockCurrency       string    `firestore:"stock_currency" json:"stock_currency"`
+	StockExpectedAmount float64   `firestore:"stock_expected_amount" json:"stock_expected_amount"`
+	StockMinimumAmount  float64   `firestore:"stock_minimum_amount" json:"stock_minimum_amount"`
+	StockMaximumAmount  float64   `firestore:"stock_maximum_amount" json:"stock_maximum_amount"`
 	Accounts            []ApiKeys `firestore:"accounts" json:"accounts"`
 }
 
