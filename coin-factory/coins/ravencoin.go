@@ -38,6 +38,7 @@ var Ravencoin = Coin{
 	Rates: RatesSource{
 		Exchange:         "binance",
 		FallBackExchange: "",
+		CoinGeckoId:      "ravencoin",
 	},
 	BlockchainInfo: BlockchainInfo{
 		ExternalSource:   "rvn.polispay.com",

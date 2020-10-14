@@ -38,6 +38,7 @@ var Telos = Coin{
 	Rates: RatesSource{
 		Exchange:         "southxchange",
 		FallBackExchange: "crex24",
+		CoinGeckoId:      "telos",
 	},
 	BlockchainInfo: BlockchainInfo{
 		ExternalSource:   "telos.polispay.com",

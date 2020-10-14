@@ -20,5 +20,6 @@ var BAT = Coin{
 	Rates: RatesSource{
 		Exchange:         "binance",
 		FallBackExchange: "southxchange",
+		CoinGeckoId:      "basic-attention-token",
 	},
 }

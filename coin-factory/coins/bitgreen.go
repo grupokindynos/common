@@ -39,6 +39,7 @@ var Bitgreen = Coin{
 	Rates: RatesSource{
 		Exchange:         "crex24",
 		FallBackExchange: "sistemkoin",
+		CoinGeckoId:      "bitcoin-green",
 	},
 	BlockchainInfo: BlockchainInfo{
 		BlockTime:        2,

@@ -36,8 +36,9 @@ var BitcoinSubsidium = Coin{
 		},
 	},
 	Rates: RatesSource{
-		Exchange:         "mock",
-		FallBackExchange: "birake",
+		Exchange:         "birake",
+		FallBackExchange: "mock",
+		CoinGeckoId:      "bitcoin-subsidium",
 	},
 	BlockchainInfo: BlockchainInfo{
 		ExternalSource:   "xbtx.polispay.com",

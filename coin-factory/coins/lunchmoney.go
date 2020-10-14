@@ -20,5 +20,6 @@ var LunchMoney = Coin{
 	Rates: RatesSource{
 		Exchange:         "lukki",
 		FallBackExchange: "folgory",
+		CoinGeckoId:      "lunch-money",
 	},
 }

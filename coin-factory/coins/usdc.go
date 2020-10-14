@@ -20,5 +20,6 @@ var USDCoin = Coin{
 	Rates: RatesSource{
 		Exchange:         "binance",
 		FallBackExchange: "crex24",
+		CoinGeckoId:      "usd-coin",
 	},
 }

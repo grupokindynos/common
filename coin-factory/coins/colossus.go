@@ -38,6 +38,7 @@ var Colossus = Coin{
 	Rates: RatesSource{
 		Exchange:         "crex24",
 		FallBackExchange: "",
+		CoinGeckoId:      "colossuscoinxt",
 	},
 	BlockchainInfo: BlockchainInfo{
 		ExternalSource:   "colx.polispay.com",

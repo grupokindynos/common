@@ -20,5 +20,6 @@ var TrueUSD = Coin{
 	Rates: RatesSource{
 		Exchange:         "southxchange",
 		FallBackExchange: "binance",
+		CoinGeckoId:      "true-usd",
 	},
 }

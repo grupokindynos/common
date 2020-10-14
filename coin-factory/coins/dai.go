@@ -20,5 +20,6 @@ var DAI = Coin{
 	Rates: RatesSource{
 		Exchange:         "hitbtc",
 		FallBackExchange: "bittrex",
+		CoinGeckoId:      "dai",
 	},
 }

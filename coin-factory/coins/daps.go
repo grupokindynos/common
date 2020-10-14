@@ -38,6 +38,7 @@ var Daps = Coin{
 	Rates: RatesSource{
 		Exchange:         "stex",
 		FallBackExchange: "",
+		CoinGeckoId:      "daps-token",
 	},
 	BlockchainInfo: BlockchainInfo{
 		ExternalSource:   "daps.polispay.com",

@@ -50,6 +50,7 @@ var Bitcoin = Coin{
 	Rates: RatesSource{
 		Exchange:         "binance",
 		FallBackExchange: "southxchange",
+		CoinGeckoId:      "bitcoin",
 	},
 	BlockchainInfo: BlockchainInfo{
 		BlockTime:        10,

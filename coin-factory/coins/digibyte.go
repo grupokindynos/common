@@ -49,6 +49,7 @@ var Digibyte = Coin{
 	Rates: RatesSource{
 		Exchange:         "bittrex",
 		FallBackExchange: "",
+		CoinGeckoId:      "digibyte",
 	},
 	BlockchainInfo: BlockchainInfo{
 		ExternalSource:   "dgb2.trezor.io",

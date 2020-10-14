@@ -20,5 +20,6 @@ var Decentraland = Coin{
 	Rates: RatesSource{
 		Exchange:         "",
 		FallBackExchange: "",
+		CoinGeckoId:      "decentraland",
 	},
 }

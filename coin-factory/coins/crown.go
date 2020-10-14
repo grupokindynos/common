@@ -38,6 +38,7 @@ var Crown = Coin{
 	Rates: RatesSource{
 		Exchange:         "bittrex",
 		FallBackExchange: "",
+		CoinGeckoId:      "crown",
 	},
 	BlockchainInfo: BlockchainInfo{
 		ExternalSource:   "crw.polispay.com",

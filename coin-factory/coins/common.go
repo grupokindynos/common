@@ -50,6 +50,7 @@ type Coin struct {
 type RatesSource struct {
 	Exchange         string `json:"exchange"`          // The main exchange used to get rate information.
 	FallBackExchange string `json:"fallback_exchange"` // The fallback exchange to get if first fails.
+	CoinGeckoId      string `json:"cg_id"`
 }
 
 // BlockchainInfo is a model to get information for a particular blockchain

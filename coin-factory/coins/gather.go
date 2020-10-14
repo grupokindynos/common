@@ -20,5 +20,6 @@ var Gather = Coin{
 	Rates: RatesSource{
 		Exchange:         "bithumb",
 		FallBackExchange: "",
+		CoinGeckoId:      "gather",
 	},
 }

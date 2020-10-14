@@ -39,6 +39,7 @@ var Nuls = Coin{
 	Rates: RatesSource{
 		Exchange:         "binance",
 		FallBackExchange: "",
+		CoinGeckoId:      "nuls",
 	},
 	BlockchainInfo: BlockchainInfo{
 		BlockTime:        1,

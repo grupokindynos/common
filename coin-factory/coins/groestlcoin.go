@@ -49,6 +49,7 @@ var Groestlcoin = Coin{
 	Rates: RatesSource{
 		Exchange:         "binance",
 		FallBackExchange: "bittrex",
+		CoinGeckoId:      "groestlcoin",
 	},
 	BlockchainInfo: BlockchainInfo{
 		ExternalSource:   "grs.polispay.com",

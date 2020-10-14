@@ -38,6 +38,7 @@ var Polis = Coin{
 	Rates: RatesSource{
 		Exchange:         "southxchange",
 		FallBackExchange: "crex24",
+		CoinGeckoId:      "polis",
 	},
 	BlockchainInfo: BlockchainInfo{
 		ExternalSource:   "blockbook.polispay.org",

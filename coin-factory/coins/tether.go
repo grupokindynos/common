@@ -20,5 +20,6 @@ var Tether = Coin{
 	Rates: RatesSource{
 		Exchange:         "binance",
 		FallBackExchange: "southxchange",
+		CoinGeckoId:      "tether",
 	},
 }

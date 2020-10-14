@@ -39,6 +39,7 @@ var FYDCoin = Coin{
 	Rates: RatesSource{
 		Exchange:         "crex24",
 		FallBackExchange: "",
+		CoinGeckoId:      "find-your-developer",
 	},
 	BlockchainInfo: BlockchainInfo{
 		BlockTime:        1,

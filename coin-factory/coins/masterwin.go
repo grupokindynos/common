@@ -39,6 +39,7 @@ var MasterWin = Coin{
 	Rates: RatesSource{
 		Exchange:         "crex24",
 		FallBackExchange: "",
+		CoinGeckoId:      "masterwin",
 	},
 	BlockchainInfo: BlockchainInfo{
 		BlockTime:        1,

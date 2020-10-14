@@ -39,6 +39,7 @@ var SnowGem = Coin{
 	Rates: RatesSource{
 		Exchange:         "stex",
 		FallBackExchange: "mercatox",
+		CoinGeckoId:      "snowgem",
 	},
 	BlockchainInfo: BlockchainInfo{
 		ExternalSource:   "xsg.polispay.com",

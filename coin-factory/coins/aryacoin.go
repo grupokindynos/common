@@ -39,6 +39,7 @@ var AryaCoin = Coin{
 	Rates: RatesSource{
 		Exchange:         "hitbtc",
 		FallBackExchange: "crex24",
+		CoinGeckoId:      "aryacoin",
 	},
 	BlockchainInfo: BlockchainInfo{
 		BlockTime:        1,

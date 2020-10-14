@@ -39,6 +39,7 @@ var Rapids = Coin{
 	Rates: RatesSource{
 		Exchange:         "crex24",
 		FallBackExchange: "",
+		CoinGeckoId:      "rapids",
 	},
 	BlockchainInfo: BlockchainInfo{
 		BlockTime:        1,

@@ -38,6 +38,7 @@ var Zcoin = Coin{
 	Rates: RatesSource{
 		Exchange:         "binance",
 		FallBackExchange: "bittrex",
+		CoinGeckoId:      "zcoin",
 	},
 	BlockchainInfo: BlockchainInfo{
 		ExternalSource:   "xzc.polispay.com",
