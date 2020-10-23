@@ -19,7 +19,7 @@ var Daps = Coin{
 		Blockbook:   "https://daps.polispay.com",
 		Protocol:    "daps",
 		TxVersion:   1,
-		TxBuilder:   "bitcoinjs",
+		TxBuilder:   "dapsjs",
 		HDIndex:     358,
 		Networks: map[string]CoinNetworkInfo{
 			"P2PKH": {
