@@ -11,7 +11,7 @@ var Gather = Coin{
 		Segwit:       false,
 		Masternodes:  false,
 		Token:        true,
-		StableCoin:   true,
+		StableCoin:   false,
 		TokenNetwork: "ethereum",
 		Contract:     "0xc3771d47e2ab5a519e2917e61e23078d0c05ed7f",
 		Decimals:     18,
