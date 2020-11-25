@@ -22,4 +22,8 @@ var Gather = Coin{
 		FallBackExchange: "",
 		CoinGeckoId:      "gather",
 	},
+	BlockchainInfo: {
+		BlockTime:        0.25,
+		MinConfirmations: 3,
+	},
 }
