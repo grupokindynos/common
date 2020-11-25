@@ -104,7 +104,8 @@ type Available struct {
 }
 
 type CustomParams struct {
-	EthGasPrice int32 `firestore:"ethGasPrice" json:"ethGasPrice"`
+	EthGasPrice   int32 `firestore:"ethGasPrice" json:"ethGasPrice"`
+	PolisRelayFee int32 `firestore:"polisFee" json:"polisFee"`
 }
 
 type Order struct {
