@@ -13,7 +13,7 @@ var WrappedPolis = Coin{
 		Token:        true,
 		StableCoin:   false,
 		TokenNetwork: "ethereum",
-		Contract:     "0x71c10040Db9B5Bf6d5Bdd81DAC26B47bb44eB4f0",
+		Contract:     "0x622f2962ae78e8686ecc1e30cf2f9a6e5ac35626",
 		Decimals:     18,
 		Blockbook:    "https://eth2.trezor.io",
 	},
