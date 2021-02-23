@@ -16,7 +16,7 @@ var Firo = Coin{
 		Masternodes: true,
 		Token:       false,
 		StableCoin:  false,
-		Blockbook:   "https://xzc.polispay.com",
+		Blockbook:   "https://firo.polispay.com",
 		Protocol:    "xzc",
 		TxVersion:   1,
 		TxBuilder:   "bitcoinjs",
@@ -41,7 +41,7 @@ var Firo = Coin{
 		CoinGeckoId:      "zcoin",
 	},
 	BlockchainInfo: BlockchainInfo{
-		ExternalSource:   "xzc.polispay.com",
+		ExternalSource:   "firo.polispay.com",
 		BlockTime:        5,
 		MinConfirmations: 2,
 	},
