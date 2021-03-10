@@ -24,7 +24,7 @@ var BinanceCoin = Coin{
 		TxBuilder:    "bsc",
 		HDIndex:      714,
 		Networks: map[string]CoinNetworkInfo{
-			"ETHEREUM": {
+			"BINANCE": {
 				MessagePrefix: "\x18Ethereum Signed Message:\n",
 				Bech32:        "",
 				Bip32: CoinNetWorkBip32Info{
