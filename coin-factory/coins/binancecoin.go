@@ -17,7 +17,7 @@ var BinanceCoin = Coin{
 		Masternodes:  false,
 		Token:        true,
 		StableCoin:   false,
-		TokenNetwork: "bsc",
+		TokenNetwork: "binance",
 		Blockbook:    "https://eth2.trezor.io",
 		Protocol:     "bsc",
 		TxVersion:    1,
