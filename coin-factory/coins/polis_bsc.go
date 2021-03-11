@@ -16,7 +16,7 @@ var PolisBSC = Coin{
 		TokenNetwork: "binance",
 		Contract:     "0x66fd97a78d8854fec445cd1c80a07896b0b4851f",
 		Decimals:     18,
-		Blockbook:    "",
+		Blockbook:    "https://bscscan.com",
 	},
 	Rates: RatesSource{
 		Exchange:         "pancake_swap",
