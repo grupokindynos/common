@@ -22,7 +22,7 @@ var BinanceCoin = Coin{
 		Protocol:     "bsc",
 		TxVersion:    1,
 		TxBuilder:    "bsc",
-		HDIndex:      714,
+		HDIndex:      60,
 		Networks: map[string]CoinNetworkInfo{
 			"BINANCE": {
 				MessagePrefix: "\x18Ethereum Signed Message:\n",
