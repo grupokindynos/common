@@ -14,7 +14,7 @@ var PolisBSC = Coin{
 		Token:        true,
 		StableCoin:   false,
 		TokenNetwork: "binance",
-		Contract:     "0xf067719eb6d0460b915394b5e2f264d8a6c79120",
+		Contract:     "0xb5bEa8a26D587CF665f2d78f077CcA3C7f6341BD",
 		Decimals:     18,
 		Blockbook:    "https://bscscan.com",
 	},
