@@ -99,19 +99,19 @@ type TokenTransfer struct {
 }
 
 type Tx struct {
-	BlockHash     string   `json:"blockHash"`
-	BlockHeight   int      `json:"blockHeight"`
-	BlockTime     int      `json:"blockTime"`
-	Confirmations int      `json:"confirmations"`
-	Fees          string   `json:"fees"`
-	Hex           string   `json:"hex"`
-	LockTime      int      `json:"lockTime"`
-	Txid          string   `json:"txid"`
-	Value         string   `json:"value"`
-	ValueIn       string   `json:"valueIn"`
-	Version       int      `json:"version"`
-	Vin           []TxVin  `json:"vin"`
-	Vout          []TxVout `json:"vout"`
+	BlockHash      string          `json:"blockHash"`
+	BlockHeight    int             `json:"blockHeight"`
+	BlockTime      int             `json:"blockTime"`
+	Confirmations  int             `json:"confirmations"`
+	Fees           string          `json:"fees"`
+	Hex            string          `json:"hex"`
+	LockTime       int             `json:"lockTime"`
+	Txid           string          `json:"txid"`
+	Value          string          `json:"value"`
+	ValueIn        string          `json:"valueIn"`
+	Version        int             `json:"version"`
+	Vin            []TxVin         `json:"vin"`
+	Vout           []TxVout        `json:"vout"`
 	TokenTransfers []TokenTransfer `json:"tokenTransfers"`
 }
 
