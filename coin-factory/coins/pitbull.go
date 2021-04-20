@@ -15,7 +15,7 @@ var Pitbull = Coin{
 		StableCoin:   false,
 		TokenNetwork: "binance",
 		Contract:     "0xA57ac35CE91Ee92CaEfAA8dc04140C8e232c2E50",
-		Decimals:     15,
+		Decimals:     9,
 		Blockbook:    "https://bscscan.com",
 	},
 	Rates: RatesSource{
