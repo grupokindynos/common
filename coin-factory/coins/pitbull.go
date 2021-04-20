@@ -19,8 +19,8 @@ var Pitbull = Coin{
 		Blockbook:    "https://bscscan.com",
 	},
 	Rates: RatesSource{
-		Exchange:         "pancake_swap",
-		FallBackExchange: "",
+		Exchange:         "mock",
+		FallBackExchange: "mock",
 		CoinGeckoId:      "",
 	},
 }
