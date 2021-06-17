@@ -145,21 +145,23 @@ func (b *BscScan) SendTx(rawTx string) (response string, err error) {
 }
 
 func (b *BscScan) SendTxWithMessage(rawTx string) (string, error, string) {
-	panic("not implemented")
-	//data, err := b.callWrapper("POST", "sendtx/", strings.NewReader(rawTx))
-	//if err != nil {
-	//	return "", err, string(data)
-	//}
-	//var blockbookAnswer SendTx
-	//err = json.Unmarshal(data, &blockbookAnswer)
-	//if err != nil {
-	//	return "", err, string(data)
-	//}
-	//if blockbookAnswer.Result != "" {
-	//	return blockbookAnswer.Result, nil, string(data)
-	//} else {
-	//	return "", errors.New(blockbookAnswer.Error), string(data)
-	//}
+	apikey := os.Getenv("BSC_SCAN_API_KEY") // Requires API Key to be set on target project
+	// https://api.bscscan.com/api?module=proxy&action=eth_sendRawTransaction&hex=0xf8ab2c85012a05f20083030d4094b5bea8a26d587cf665f2d78f077cca3c7f6341bd80b844a9059cbb000000000000000000000000ea703e63ba6c9b5224969d6483327b8e65af76cc000000000000000000000000000000000000000000000000117a4bf9521c48008193a01409d51b4476ddad15c2a793b273104a6da0405e9abd09a4dd697de02318d801a03d80c428d5835632e06c327f5e524bc54cecc8248bd4229388cdaf0918097c4d&apikey=VGW5CG1EQQ2MK4C7DKAHNEH98SA9T7RNNA
+	url := fmt.Sprintf("/api?module=proxy&action=eth_sendRawTransaction&hex=%s&apikey=%s", rawTx, apikey)
+	data, err := b.callWrapper("POST", url, strings.NewReader(rawTx))
+	if err != nil {
+		return "", err, string(data)
+	}
+	var blockbookAnswer SendTx
+	err = json.Unmarshal(data, &blockbookAnswer)
+	if err != nil {
+		return "", err, string(data)
+	}
+	if blockbookAnswer.Result != "" {
+		return blockbookAnswer.Result, nil, string(data)
+	} else {
+		return "", errors.New(blockbookAnswer.Error), string(data)
+	}
 }
 
 func (b *BscScan) callWrapper(method string, route string, body io.Reader) (response []byte, err error) {
