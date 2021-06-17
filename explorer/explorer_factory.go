@@ -7,8 +7,7 @@ import (
 	"strings"
 )
 
-type ExplorerFactory struct {
-}
+type ExplorerFactory struct {}
 
 func NewExplorerFactory() *ExplorerFactory {
 	exFactory := new(ExplorerFactory)
@@ -21,8 +20,10 @@ func (e *ExplorerFactory) createInstance(name string, url string) (Explorer, err
 		return NewBlockBookWrapper(url), nil
 	} else if exName == "nuls" {
 		return NewNulsWrapper(url), nil
+	} else if exName == "bscscan" {
+		return NewBscScanWrapper(url), nil
 	} else {
-		return nil, errors.New("Explorer not found")
+		return nil, errors.New("explorer not found")
 	}
 }
 
@@ -30,6 +31,9 @@ func (e *ExplorerFactory) GetExplorerByCoin(coin coins.Coin) (Explorer, error) {
 	coinInfo, _ := coinfactory.GetCoin(coin.Info.Tag)
 	if coinInfo.Info.Protocol == "nuls" {
 		return e.createInstance("nuls", coinInfo.Info.Blockbook)
+	}
+	if coin.Info.TokenNetwork == "binance" {
+		return e.createInstance("bscscan", "https://api.bscscan.com")
 	}
 	return e.createInstance("blockbook", coinInfo.Info.Blockbook)
 }
