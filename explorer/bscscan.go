@@ -14,10 +14,10 @@ import (
 )
 
 type BscScan struct {
-	Url    string
-	client *http.Client
+	Url        string
+	client     *http.Client
 	bscScanUrl string
-	bscApiUrl string
+	bscApiUrl  string
 }
 
 // Methods for Bitcoin-like coins.
@@ -149,7 +149,7 @@ func (b *BscScan) SendTx(rawTx string) (response string, err error) {
 	}
 	var bscScanAnswer BSCResponse
 	err = json.Unmarshal(data, &bscScanAnswer)
-	if err != nil || bscScanAnswer.Error.Message != ""{
+	if err != nil || bscScanAnswer.Error.Message != "" {
 		if err == nil {
 			return response, errors.New(bscScanAnswer.Error.Message)
 		}
@@ -238,7 +238,7 @@ func NewBscScanWrapper(url string) *BscScan {
 			Jar:           nil,
 			Timeout:       30 * time.Second,
 		},
-		bscApiUrl: "http://localhost:5000",
+		bscApiUrl:  "http://localhost:5000",
 		bscScanUrl: "https://pp-bsc-api.herokuapp.com",
 		// bscScanUrl: "https://api.bscscan.com",
 	}
