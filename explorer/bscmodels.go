@@ -18,10 +18,12 @@ type BSCBase struct {
 type BSCTxInfoResponse struct {
 	BSCBase
 	Data struct{
-		Block int64 `json:"block"`
-		Confirmations int64 `json:"confirmations"`
-		IsServiceTx bool `json:"service_tx"`
-		TransactionHash string `json:"tx_hash"`
-		ReceivedAmount float64 `json:"received_amount"`
+		TxInfo struct {
+			Block int64 `json:"block"`
+			Confirmations int64 `json:"confirmations"`
+			IsServiceTx bool `json:"service_tx"`
+			TransactionHash string `json:"tx_hash"`
+			ReceivedAmount float64 `json:"received_amount"`
+		}`json:"tx_info"`
 	} `json:"data"`
 }
