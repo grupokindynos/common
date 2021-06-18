@@ -79,13 +79,13 @@ func (b *BscScan) GetTx(txid string) (response Tx, err error) {
 	}
 	response = Tx{
 		BlockHash:      "",
-		BlockHeight:    int(txInfo.Data.Block),
+		BlockHeight:    int(txInfo.Data.TxInfo.Block),
 		BlockTime:      0,
-		Confirmations:  int(txInfo.Data.Confirmations),
+		Confirmations:  int(txInfo.Data.TxInfo.Confirmations),
 		Fees:           "",
 		Hex:            "",
 		LockTime:       0,
-		Txid:           txInfo.Data.TransactionHash,
+		Txid:           txInfo.Data.TxInfo.TransactionHash,
 		Value:          "",
 		ValueIn:        "",
 		Version:        0,
