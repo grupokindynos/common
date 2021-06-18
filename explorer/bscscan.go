@@ -68,7 +68,7 @@ func (b *BscScan) GetUtxo(xpub string, confirmed bool) (response []Utxo, err err
 }
 
 func (b *BscScan) GetTx(txid string) (response Tx, err error) {
-	data, err := b.callBscAPIWrapper("GET", "tx/"+txid, nil)
+	data, err := b.callBscAPIWrapper("GET", "api/v1/tx/"+txid, nil)
 	if err != nil {
 		return response, err
 	}
