@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-type ExplorerFactory struct {}
+type ExplorerFactory struct{}
 
 func NewExplorerFactory() *ExplorerFactory {
 	exFactory := new(ExplorerFactory)
