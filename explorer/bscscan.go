@@ -192,6 +192,7 @@ func (b *BscScan) callWrapper(method string, route string, body io.Reader) (resp
 	}
 	var request *http.Request
 	url := fmt.Sprintf("%s/%s", b.bscScanUrl, route)
+	log.Println("url: ", url)
 	switch method {
 	case "GET":
 		request, err = http.NewRequest(method, url, nil)
@@ -242,9 +243,9 @@ func NewBscScanWrapper(url string) *BscScan {
 			Jar:           nil,
 			Timeout:       30 * time.Second,
 		},
-		bscApiUrl:  "http://localhost:5000",
-		bscScanUrl: "https://pp-bsc-api.herokuapp.com",
-		// bscScanUrl: "https://api.bscscan.com",
+		bscApiUrl: "https://pp-bsc-api.herokuapp.com",
+		// bscScanUrl: "https://pp-bsc-api.herokuapp.com",
+		bscScanUrl: "https://api.bscscan.com",
 	}
 	return bb
 }
