@@ -38,8 +38,8 @@ var BinanceCoin = Coin{
 		},
 	},
 	Rates: RatesSource{
-		Exchange:         "binance",
-		FallBackExchange: "",
+		Exchange:         "pancake_swap",
+		FallBackExchange: "binance",
 		CoinGeckoId:      "binancecoin",
 	},
 	BlockchainInfo: BlockchainInfo{
